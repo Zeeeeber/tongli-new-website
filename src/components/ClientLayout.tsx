@@ -103,9 +103,9 @@ export default function ClientLayout({
 
         {/* Brand name */}
         <div className="mt-6 text-center relative z-10">
-          <h1 className="text-white/90 text-sm font-extralight tracking-[0.4em]">
+          <p className="text-white/90 text-sm font-extralight tracking-[0.4em]">
             TONGLI TIMBER
-          </h1>
+          </p>
           <div className="w-10 h-px bg-white/60 mx-auto mt-3" />
         </div>
       </div>

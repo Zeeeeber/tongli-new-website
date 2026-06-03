@@ -1,9 +1,12 @@
-"use client";
-
+import { Metadata } from "next";
 import Link from "next/link";
-import { useState } from "react";
+import { FAQSection } from "@/components/product/FAQSection";
 
-// Engineered Wood Veneer products
+export const metadata: Metadata = {
+  title: "Engineered Wood Veneer | Reconstituted Veneer 300+ Patterns | Tongli Timber",
+  description: "Reconstituted veneer with 300+ consistent patterns, stable colors, and uniform textures. Perfect for large-scale production requiring batch-to-batch consistency.",
+};
+
 const products = [
   { name: "Oak Classic Engineered", code: "TLE-001", pattern: "Straight Grain", tone: "Light" },
   { name: "Walnut Elite Engineered", code: "TLE-002", pattern: "Straight Grain", tone: "Dark" },
@@ -29,16 +32,14 @@ const applications = [
   { name: "Commercial Projects", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
 ];
 
+const faqs = [
+  { q: "What is engineered wood veneer?", a: "Engineered wood veneer (reconstituted veneer) is made from fast-growing wood species that are dyed, sliced, and reassembled to create consistent, repeatable patterns. It offers the aesthetic of natural wood with superior batch-to-batch consistency." },
+  { q: "How many patterns are available?", a: "We offer 300+ patterns in various wood species, colors, and grain styles. New patterns are developed regularly to meet market trends and customer requirements." },
+  { q: "What are the advantages over natural veneer?", a: "Engineered veneer provides consistent color and grain across batches, ideal for large-scale production. It offers more design flexibility with predictable patterns and can be produced in longer lengths without joint lines." },
+  { q: "Can I get custom patterns?", a: "Yes, we offer custom pattern development and color matching for bulk orders. Contact our team with your reference samples or specifications." },
+];
+
 export default function EngineeredWoodVeneerPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const faqs = [
-    { q: "What is engineered wood veneer?", a: "Engineered wood veneer (reconstituted veneer) is made from fast-growing wood species that are dyed, sliced, and reassembled to create consistent, repeatable patterns. It offers the aesthetic of natural wood with superior batch-to-batch consistency." },
-    { q: "How many patterns are available?", a: "We offer 300+ patterns in various wood species, colors, and grain styles. New patterns are developed regularly to meet market trends and customer requirements." },
-    { q: "What are the advantages over natural veneer?", a: "Engineered veneer provides consistent color and grain across batches, ideal for large-scale production. It offers more design flexibility with predictable patterns and can be produced in longer lengths without joint lines." },
-    { q: "Can I get custom patterns?", a: "Yes, we offer custom pattern development and color matching for bulk orders. Contact our team with your reference samples or specifications." },
-  ];
-
   return (
     <>
       {/* Breadcrumb */}
@@ -46,13 +47,9 @@ export default function EngineeredWoodVeneerPage() {
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
             <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             <Link href="/products" className="hover:text-[#0F6B3A]">Products</Link>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
             <span className="text-[#1F2621] font-medium">Engineered Wood Veneer</span>
           </div>
         </div>
@@ -129,7 +126,6 @@ export default function EngineeredWoodVeneerPage() {
             <h2 className="text-3xl font-bold text-[#1F2621]">Popular Patterns</h2>
             <p className="text-[#6b7280] mt-4">Explore our engineered veneer collection</p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product) => (
               <div key={product.code} className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300">
@@ -183,31 +179,7 @@ export default function EngineeredWoodVeneerPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
-            </div>
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-[#FDFBF7] rounded-xl border border-[#E5E1D8] overflow-hidden">
-                  <button onClick={() => setOpenFaq(openFaq === index ? null : index)} className="w-full flex items-center justify-between p-6 text-left font-semibold text-[#1F2621] hover:text-[#0F6B3A] transition-colors">
-                    <span className="pr-4">{faq.q}</span>
-                    <svg className={`w-5 h-5 text-[#0F6B3A] flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}>
-                    <div className="px-6 pb-6 text-[#6b7280] leading-relaxed">{faq.a}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <FAQSection faqs={faqs} />
 
       {/* CTA */}
       <section className="py-16 bg-[#0F6B3A]">

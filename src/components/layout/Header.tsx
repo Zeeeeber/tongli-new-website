@@ -22,15 +22,15 @@ const productCategories = [
   { name: "Natural Wood Veneer", href: "/products/natural-wood-veneer", desc: "Oak, Walnut, Teak, 80+ species" },
   { name: "Engineered Wood Veneer", href: "/products/engineered-wood-veneer", desc: "300+ consistent patterns" },
   { name: "3D Wood Panels", href: "/products/3d-wood-panels", desc: "Decorative carved panels" },
-  { name: "Veneer Edge Banding", href: "/products/edge-banding", desc: "Matching edge strips" },
+  { name: "Veneer Edge Banding", href: "/products/veneer-edge-banding", desc: "Matching edge strips" },
   { name: "Melamine Board", href: "/products/melamine-board", desc: "Melamine faced boards" },
   { name: "Supporting Boards", href: "/products/supporting-boards", desc: "Plywood, Blockboard, OSB cores" },
 ];
 
 const resourceCategories = [
-  { name: "Product News", href: "/resources/product-news", desc: "New products, technical guides, and recommendations" },
-  { name: "Industry News", href: "/resources/industry-news", desc: "Market trends and design innovations" },
-  { name: "Company News", href: "/resources/company-news", desc: "Company updates and certifications" },
+  { name: "Product News", href: "/resources/category/product-news", desc: "New products, technical guides, and recommendations" },
+  { name: "Industry News", href: "/resources/category/industry-news", desc: "Market trends and design innovations" },
+  { name: "Company News", href: "/resources/category/company-news", desc: "Company updates and certifications" },
 ];
 
 export default function Header() {

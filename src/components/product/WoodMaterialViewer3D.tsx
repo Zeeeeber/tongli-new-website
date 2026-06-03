@@ -11,7 +11,7 @@ interface WoodMaterialViewerProps {
   woodName?: string;
 }
 
-function WoodSlab({ diffuseMap, roughness, yOffset }: { diffuseMap: string; roughness: number; yOffset: number }) {
+function WoodSlab({ texture, roughness, yOffset }: { texture: THREE.Texture; roughness: number; yOffset: number }) {
   const meshRef = useRef<THREE.Mesh>(null);
 
   useFrame((state) => {
@@ -24,7 +24,7 @@ function WoodSlab({ diffuseMap, roughness, yOffset }: { diffuseMap: string; roug
     <mesh ref={meshRef} position={[0, yOffset, 0]} castShadow receiveShadow>
       <boxGeometry args={[2.8, 0.12, 1.2]} />
       <meshStandardMaterial
-        map={diffuseMap}
+        map={texture}
         roughness={roughness}
         metalness={0.04}
         side={THREE.FrontSide}
@@ -61,7 +61,7 @@ function WoodSlabLoader({ diffuseMap }: { diffuseMap: string }) {
       {slabs.map((slab, i) => (
         <WoodSlab
           key={i}
-          diffuseMap={texture}
+          texture={texture}
           roughness={slab.roughness}
           yOffset={slab.yOffset}
         />

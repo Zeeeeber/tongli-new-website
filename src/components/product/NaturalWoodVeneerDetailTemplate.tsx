@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ContactFormModal } from "@/app/contact/page";
+import { ContactFormModal } from "@/components/contact/ContactFormModal";
 
 export interface NaturalWoodVeneerProduct {
   name: string;

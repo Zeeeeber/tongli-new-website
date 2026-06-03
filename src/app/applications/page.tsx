@@ -36,48 +36,48 @@ const C = {
 
 const applicationScenarios = [
   {
-    id: "furniture-manufacturing",
+    id: "furniture",
     name: "Furniture Manufacturing",
     buyer: "Furniture factories, OEM manufacturers",
     pain: "Bulk color matching, surface processing, substrate stability",
     tags: ["Color Consistency", "Substrate Stability", "Edge Matching"],
-    href: "/applications/furniture-manufacturing",
+    href: "/applications#furniture",
     label: "Furniture",
   },
   {
-    id: "door-production",
+    id: "doors",
     name: "Door Production",
     buyer: "Door factories, door panel processors",
     pain: "Large surface flatness, grain matching, project batch consistency",
     tags: ["Flatness", "Grain Matching", "Batch Uniformity"],
-    href: "/applications/door-production",
+    href: "/applications#doors",
     label: "Doors",
   },
   {
-    id: "cabinets-wardrobes",
+    id: "cabinets",
     name: "Cabinets & Wardrobes",
     buyer: "Cabinet factories, wardrobe makers, whole-house customization factories",
     pain: "Panel-edge matching, color system management, environmental compliance",
     tags: ["Edge Matching", "Color System", "Cost Control"],
-    href: "/applications/cabinets-wardrobes",
+    href: "/applications#cabinets",
     label: "Cabinets",
   },
   {
-    id: "wall-panels-interior",
+    id: "wall-panels",
     name: "Wall Panels & Interior",
     buyer: "Wall panel manufacturers, interior contractors, wood veneer installers",
     pain: "Large-area color consistency, design effect implementation, installation flatness",
     tags: ["Design Effect", "Visual Impact", "Stability"],
-    href: "/applications/wall-panels-interior",
+    href: "/applications#wall-panels",
     label: "Wall Panels",
   },
   {
-    id: "hotel-commercial",
+    id: "hotel",
     name: "Hotel & Commercial",
     buyer: "Hotel fit-out contractors, commercial space developers, material buyers",
     pain: "Sample-bulk matching, delivery reliability, multi-space consistency",
     tags: ["Project Consistency", "Export Support", "Multi-space Matching"],
-    href: "/applications/hotel-commercial",
+    href: "/applications#hotel",
     label: "Hotel & Commercial",
   },
   {
@@ -86,7 +86,7 @@ const applicationScenarios = [
     buyer: "Custom integrators, real estate developers, joinery system suppliers",
     pain: "Multi-product coordination, system compatibility, long-term supply",
     tags: ["System Matching", "One-Stop Solution", "Cost Optimization"],
-    href: "/applications/whole-house-customization",
+    href: "/applications#whole-house",
     label: "Whole House",
   },
 ];
@@ -339,11 +339,11 @@ function SupportCard({ item, index }: { item: typeof supportServices[0]; index: 
 // Application Scenario Card
 // ============================================
 const scenarioImageMap: Record<string, string> = {
-  "furniture-manufacturing": "/images/applications/furniture.png",
-  "door-production": "/images/applications/doors.png",
-  "cabinets-wardrobes": "/images/applications/customization.png",
-  "wall-panels-interior": "/images/applications/hotel.png",
-  "hotel-commercial": "/images/applications/commercial.png",
+  "furniture": "/images/applications/furniture.png",
+  "doors": "/images/applications/doors.png",
+  "cabinets": "/images/applications/customization.png",
+  "wall-panels": "/images/applications/hotel.png",
+  "hotel": "/images/applications/commercial.png",
   "whole-house": "/images/applications/wholesaler.png",
 };
 

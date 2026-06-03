@@ -95,7 +95,7 @@ function useAutoScroll(containerRef: React.RefObject<HTMLDivElement>, isVisible:
 // Animated counter hook
 function useCountUp(end: number, duration: number = 2000, isVisible: boolean = false) {
   const [count, setCount] = useState(0);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number>(0);
 
   useEffect(() => {
     if (!isVisible) {

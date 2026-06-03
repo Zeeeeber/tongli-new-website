@@ -1,0 +1,131 @@
+# Tongli Timber 外贸独立站 - Cursor 项目规则
+
+## 项目概述
+
+Tongli Timber B2B 外贸独立站，使用 Next.js + WordPress Headless CMS，目标是通过 Google SEO 获取海外客户询盘。
+
+**核心约束：**
+- 网站不是展示型页面，而是可长期运营的获客工具
+- 所有动态内容（产品、博客、案例）最终由 WordPress 管理
+- 业务人员可在 WordPress 后台正常发布内容，无需修改代码
+- 所有页面必须符合 Google SEO 基础要求
+
+---
+
+## 绝对禁止事项
+
+1. **❌ 不要修改已有 URL 结构**
+   - 不要修改 sitemap 中的任何 URL
+   - 不要创建新的顶级路径
+   - 不要使用中文或特殊字符作为 URL
+
+2. **❌ 不要写死内容和数据**
+   - 不要把产品、博客、案例内容写死在 page.tsx
+   - 不要伪造客户、证书、案例、数据
+   - 动态内容必须通过数据文件或 API 管理
+
+3. **❌ 不要破坏 SEO**
+   - 每个页面必须有唯一 title、meta description、canonical
+   - 每个页面必须有 H1 和 breadcrumb
+   - 所有图片必须有 alt 文本
+   - 产品页必须有 Product Schema，博客页必须有 Article Schema
+
+4. **❌ 不要随意修改视觉设计**
+   - 不要大幅修改已确认的 UI 设计
+   - 不要更换配色方案或布局结构
+   - 样式微调可以，大改需确认
+
+---
+
+## URL 结构规范
+
+```
+/                           # 首页
+/products                   # 产品列表
+/products/[category]       # 产品分类页
+/products/[category]/[slug] # 产品详情（动态）
+/collections                # 系列列表
+/collections/[slug]         # 系列详情
+/applications               # 应用场景
+/applications/[slug]        # 应用详情
+/custom-solutions           # 定制服务
+/about                      # 关于我们
+/projects                   # 项目案例（动态）
+/projects/[slug]            # 案例详情（动态）
+/resources                  # 资源/博客（动态）
+/resources/[slug]          # 文章详情（动态）
+/contact                    # 联系我们
+```
+
+---
+
+## SEO 技术要求
+
+每个页面必须包含：
+
+| 元素 | 要求 |
+|------|------|
+| `<title>` | 唯一，50-60 字符，包含品牌名 |
+| `<meta name="description">` | 唯一，150-160 字符 |
+| `<link rel="canonical">` | 指向规范 URL |
+| `<h1>` | 每页唯一 |
+| Breadcrumb | Home > Category > Page |
+| Image alt | 所有图片必须设置 |
+| Schema | Product/Article Schema + BreadcrumbList |
+
+---
+
+## 文件修改规则
+
+### 修改前
+- 先阅读 docs/ 目录下的规则文档
+- 确认修改不影响 URL 和 SEO
+
+### 修改后
+必须说明：
+1. 修改了哪些文件
+2. 具体修改了什么
+3. 确认遵守了规范
+
+### 大改前
+- **必须**先输出计划
+- **必须**等待确认
+- **必须**更新相关文档
+
+---
+
+## WordPress CMS 状态
+
+**当前状态：** Next.js 已完成，WordPress Headless CMS 尚未集成
+
+**过渡方案：** 动态内容暂时通过 TypeScript 数据文件管理
+
+**最终目标：** 所有产品、博客、案例迁移到 WordPress，后台管理，前端自动更新
+
+---
+
+## 开发规范
+
+- 优先使用 Next.js App Router + Server Components
+- 避免滥用 `use client`
+- 优先使用 Tailwind CSS
+- 遵循现有文件组织结构
+- 保持代码整洁和可维护
+
+---
+
+## 相关文档
+
+- `docs/00-project-brief.md` - 项目概述
+- `docs/01-site-map.md` - 网站结构
+- `docs/02-wordpress-cms-architecture.md` - WordPress CMS 架构
+- `docs/03-seo-technical-checklist.md` - SEO 技术清单
+- `docs/04-content-publishing-workflow.md` - 内容发布流程
+- `docs/05-cursor-working-rules.md` - 开发规则
+
+---
+
+## 联系与支持
+
+- 项目负责人：[待定]
+- GitHub: https://github.com/Zeeeeber/tongli-new-website

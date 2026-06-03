@@ -24,7 +24,7 @@ function useHorizontalScroll() {
 // Animated counter hook with smooth spring-like easing
 function useCountUp(end: number, duration: number = 2000, start: number = 0, isVisible: boolean = false, delay: number = 0) {
   const [count, setCount] = useState(start);
-  const frameRef = useRef<number>();
+  const frameRef = useRef<number>(0);
   const startRef = useRef<number | null>(null);
   const startedRef = useRef(false);
 
@@ -42,6 +42,9 @@ function useCountUp(end: number, duration: number = 2000, start: number = 0, isV
         startedRef.current = true;
       }
 
+      if (startRef.current === null) {
+        return;
+      }
       const elapsed = currentTime - startRef.current;
 
       if (elapsed < delay) {
@@ -472,7 +475,7 @@ export default function HomePage() {
 
               {/* Veneer Edge Banding */}
               <Link
-                href="/products/edge-banding"
+                href="/products/veneer-edge-banding"
                 className="group relative overflow-hidden rounded-xl"
                 style={{ aspectRatio: '1/1' }}
               >
@@ -628,7 +631,7 @@ export default function HomePage() {
 
             {/* Veneer Edge Banding */}
             <Link
-              href="/products/edge-banding"
+              href="/products/veneer-edge-banding"
               className="group relative overflow-hidden rounded-xl lg:rounded-2xl"
               style={{ aspectRatio: '1/1' }}
             >

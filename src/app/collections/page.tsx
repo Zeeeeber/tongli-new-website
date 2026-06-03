@@ -22,9 +22,9 @@ function SwatchGallery({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number>(0);
   const positionRef = useRef(0);
-  const lastTimeRef = useRef<number>();
+  const lastTimeRef = useRef<number>(0);
   const contentWidthRef = useRef(0);
 
   const scrollSpeed = 0.8; // pixels per frame

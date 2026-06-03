@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     template: "%s | Tongli Timber",
   },
   description: "Dongguan Tongli Timber Products Co., Ltd. - Professional manufacturer of wood veneer panels, natural wood veneer, engineered veneer, and 3D wood panels for global B2B buyers.",
-  keywords: ["wood veneer panels", "wood veneer", "engineered veneer", "3D wood panels", "manufacturer", "B2B", "furniture materials"],
 };
 
 export default function RootLayout({
