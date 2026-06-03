@@ -1,26 +1,259 @@
 @import "tailwindcss";
 
+/* Tongli Timber Brand Theme */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Colors */
+  --color-primary: #0F6B3A;
+  --color-primary-dark: #124B34;
+  --color-primary-light: #4C8A68;
+
+  /* Neutral Colors */
+  --color-ivory: #F7F3EC;
+  --color-beige: #E9E0D2;
+  --color-wood: #8B5E3C;
+  --color-charcoal: #1F2621;
+
+  /* Accent */
+  --color-accent-red: #C94B3C;
+
+  /* Semantic */
+  --background: var(--color-ivory);
+  --foreground: var(--color-charcoal);
+  --muted: #6b7280;
+  --border: #d1d5db;
 }
 
 @theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-primary-light: var(--color-primary-light);
+  --color-ivory: var(--color-ivory);
+  --color-beige: var(--color-beige);
+  --color-wood: var(--color-wood);
+  --color-charcoal: var(--color-charcoal);
+  --color-accent-red: var(--color-accent-red);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base Styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Headings use Inter */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-weight: 700;
+}
+
+/* Container */
+.container-page {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-page {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Section spacing */
+.section-spacing {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Utility classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Smooth transitions */
+a, button {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Premium Hero Animations */
+@keyframes scroll-indicator {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-50%) translateY(6px);
+    opacity: 0.5;
+  }
+}
+
+.animate-scroll {
+  animation: scroll-indicator 2s ease-in-out infinite;
+}
+
+/* Subtle float animation for decorative elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Gradient text effect for premium feel */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #4C8A68 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Splash pulse animation */
+@keyframes splash-pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+}
+
+.animate-splash-pulse {
+  animation: splash-pulse 3s ease-in-out infinite;
+}
+
+/* Applications section animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+/* Staggered animation for cards */
+.grid > *:nth-child(1) { animation-delay: 0ms; }
+.grid > *:nth-child(2) { animation-delay: 100ms; }
+.grid > *:nth-child(3) { animation-delay: 200ms; }
+.grid > *:nth-child(4) { animation-delay: 300ms; }
+.grid > *:nth-child(5) { animation-delay: 400ms; }
+.grid > *:nth-child(6) { animation-delay: 500ms; }
+
+/* Partners marquee animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Hide scrollbar for horizontal scroll galleries */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horizontal scroll smooth behavior */
+#project-scroll {
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+
+#project-scroll:active {
+  cursor: grabbing;
+}
+
+/* Gallery fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Project card stagger — each card delays based on position */
+.columns-2 > div,
+.columns-3 > div {
+  animation: fadeIn 0.4s ease-out both;
+}
+
+.columns-2 > div:nth-child(1),
+.columns-3 > div:nth-child(1) { animation-delay: 0ms; }
+.columns-2 > div:nth-child(2),
+.columns-3 > div:nth-child(2) { animation-delay: 60ms; }
+.columns-2 > div:nth-child(3),
+.columns-3 > div:nth-child(3) { animation-delay: 120ms; }
+.columns-2 > div:nth-child(4),
+.columns-3 > div:nth-child(4) { animation-delay: 180ms; }
+.columns-2 > div:nth-child(5),
+.columns-3 > div:nth-child(5) { animation-delay: 240ms; }
+.columns-2 > div:nth-child(6),
+.columns-3 > div:nth-child(6) { animation-delay: 300ms; }
+.columns-2 > div:nth-child(7),
+.columns-3 > div:nth-child(7) { animation-delay: 360ms; }
+.columns-2 > div:nth-child(8),
+.columns-3 > div:nth-child(8) { animation-delay: 420ms; }
+.columns-2 > div:nth-child(n+9),
+.columns-3 > div:nth-child(n+9) { animation-delay: 480ms; }
+
+/* Testimonial auto-scroll animation */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
