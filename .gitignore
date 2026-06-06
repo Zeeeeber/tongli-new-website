@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Long filename images (exceed Windows MAX_PATH)
+public/images/products/natural\ wood\ veneer/
+
+# scripts (build tools)
+/scripts/

@@ -60,8 +60,8 @@ export default function PrivacyPage() {
                 <h2 className="text-xl font-bold text-[#1F2621] mb-4">Contact Us</h2>
                 <p>
                   If you have any questions about this Privacy Policy, please contact us at{' '}
-                  <a href="mailto:info@tonglitimber.com" className="text-[#0F6B3A] hover:underline">
-                    info@tonglitimber.com
+                  <a href="mailto:tonglitimber@tongli-dg.com" className="text-[#0F6B3A] hover:underline">
+                    tonglitimber@tongli-dg.com
                   </a>
                 </p>
               </div>

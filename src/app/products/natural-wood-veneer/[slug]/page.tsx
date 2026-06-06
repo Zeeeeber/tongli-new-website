@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import {
   getProductBySlug,
   getAllProductSlugs,
-  naturalWoodVeneerRelatedProducts,
 } from "@/data/products/natural-wood-veneer-products";
 import { NaturalWoodVeneerDetailTemplate } from "@/components/product/NaturalWoodVeneerDetailTemplate";
 
@@ -66,7 +65,6 @@ export default async function NaturalWoodVeneerProductDetailPage({ params }: Pag
     <NaturalWoodVeneerDetailTemplate
       product={product}
       slug={slug}
-      relatedProducts={naturalWoodVeneerRelatedProducts}
     />
   );
 }

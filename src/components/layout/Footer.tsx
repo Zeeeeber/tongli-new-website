@@ -6,14 +6,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#1c1c1c] text-white">
-      {/* Top decorative line */}
       <div className="h-[3px] bg-gradient-to-r from-[#c8a45a] via-[#d4b06a] to-[#c8a45a]" />
-      
+
       <div className="container-page py-14 lg:py-16">
-        {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          
-          {/* Brand Column */}
+
           <div className="lg:pr-8">
             <Link href="/" className="inline-block mb-5">
               <Image
@@ -24,8 +21,7 @@ export default function Footer() {
                 className="h-12 w-auto"
               />
             </Link>
-            
-            {/* Certifications */}
+
             <div className="flex items-center gap-3 mb-6">
               <Image
                 src="/certifications/fsc.png"
@@ -49,28 +45,8 @@ export default function Footer() {
                 className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
-
-            {/* Social */}
-            <div className="flex gap-2">
-              <a href="#" aria-label="Facebook" className="w-9 h-9 rounded flex items-center justify-center border border-gray-600 hover:border-[#c8a45a] hover:bg-[#c8a45a]/10 transition-all text-gray-400 hover:text-[#c8a45a]">
-                <Image src="/images/social/icons8-facebook.svg" alt="Facebook" width={20} height={20} className="w-5 h-5 [&>path]:fill-current" />
-              </a>
-              <a href="#" aria-label="Instagram" className="w-9 h-9 rounded flex items-center justify-center border border-gray-600 hover:border-[#c8a45a] hover:bg-[#c8a45a]/10 transition-all text-gray-400 hover:text-[#c8a45a]">
-                <Image src="/images/social/icons8-instagram-50.svg" alt="Instagram" width={20} height={20} className="w-5 h-5" />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="w-9 h-9 rounded flex items-center justify-center border border-gray-600 hover:border-[#c8a45a] hover:bg-[#c8a45a]/10 transition-all text-gray-400 hover:text-[#c8a45a]">
-                <Image src="/images/social/icons8-linkedin-50.svg" alt="LinkedIn" width={20} height={20} className="w-5 h-5" />
-              </a>
-              <a href="#" aria-label="YouTube" className="w-9 h-9 rounded flex items-center justify-center border border-gray-600 hover:border-[#c8a45a] hover:bg-[#c8a45a]/10 transition-all text-gray-400 hover:text-[#c8a45a]">
-                <Image src="/images/social/icons8-youtube-50.svg" alt="YouTube" width={20} height={20} className="w-5 h-5" />
-              </a>
-              <a href="#" aria-label="WhatsApp" className="w-9 h-9 rounded flex items-center justify-center border border-gray-600 hover:border-[#c8a45a] hover:bg-[#c8a45a]/10 transition-all text-gray-400 hover:text-[#c8a45a]">
-                <Image src="/images/social/icons8-whatsapp-50.svg" alt="WhatsApp" width={20} height={20} className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
-          {/* Products */}
           <div>
             <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Products</h4>
             <ul className="space-y-2.5 text-sm text-gray-400">
@@ -78,11 +54,10 @@ export default function Footer() {
               <li><Link href="/products/natural-wood-veneer" className="hover:text-white transition-colors">Natural Wood Veneer</Link></li>
               <li><Link href="/products/engineered-wood-veneer" className="hover:text-white transition-colors">Engineered Wood Veneer</Link></li>
               <li><Link href="/products/3d-wood-panels" className="hover:text-white transition-colors">3D Wood Panels</Link></li>
-              <li><Link href="/products" className="text-[#c8a45a] hover:text-[#d4b06a] transition-colors">View All →</Link></li>
+              <li><Link href="/products" className="text-[#c8a45a] hover:text-[#d4b06a] transition-colors">View All</Link></li>
             </ul>
           </div>
 
-          {/* Company */}
           <div>
             <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Company</h4>
             <ul className="space-y-2.5 text-sm text-gray-400">
@@ -93,7 +68,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Contact</h4>
             <ul className="space-y-3 text-sm text-gray-400">
@@ -108,11 +82,11 @@ export default function Footer() {
                 <svg className="w-4 h-4 text-[#c8a45a] flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                <a href="mailto:info@tonglitimber.com" className="hover:text-white transition-colors">info@tonglitimber.com</a>
+                <a href="mailto:tonglitimber@tongli-dg.com" className="hover:text-white transition-colors">tonglitimber@tongli-dg.com</a>
               </li>
               <li className="pt-2">
-                <Link 
-                  href="/contact" 
+                <Link
+                  href="/contact"
                   className="inline-flex items-center gap-2 text-[#c8a45a] hover:text-[#d4b06a] transition-colors font-medium"
                 >
                   Get a Quote
@@ -126,7 +100,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Bottom Bar */}
       <div className="border-t border-gray-800">
         <div className="container-page py-5">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-xs text-gray-500">

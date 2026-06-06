@@ -90,7 +90,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-white/60 text-sm">Call us directly</p>
-                      <a href="tel:+8613342688937" className="text-2xl font-bold text-white hover:text-[#4C8A68] transition-colors">+86 133 4268 8937</a>
+                      <a href="tel:+8615817587053" className="text-2xl font-bold text-white hover:text-[#4C8A68] transition-colors">+86 15817587053</a>
                     </div>
                   </div>
                 </div>
@@ -103,7 +103,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-white/60 text-sm">Chat on WhatsApp</p>
-                      <a href="https://wa.me/8613342688937" className="text-lg font-semibold text-white hover:text-[#25D366] transition-colors">+86 133 4268 8937</a>
+                      <a href="https://wa.me/8615817587053" className="text-lg font-semibold text-white hover:text-[#25D366] transition-colors">+86 15817587053</a>
                     </div>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-white/60 text-sm">Email us</p>
-                      <a href="mailto:dgtongli@tongli-dg.com" className="text-lg font-semibold text-white hover:text-[#4C8A68] transition-colors">dgtongli@tongli-dg.com</a>
+                      <a href="mailto:tonglitimber@tongli-dg.com" className="text-lg font-semibold text-white hover:text-[#4C8A68] transition-colors">tonglitimber@tongli-dg.com</a>
                     </div>
                   </div>
                 </div>

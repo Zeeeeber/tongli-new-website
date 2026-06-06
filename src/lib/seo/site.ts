@@ -8,8 +8,8 @@ export const siteConfig = {
   tagline: "Premium Wood Veneer & Panel Solutions",
   description:
     "Professional wood veneer manufacturer since 1999. We specialize in natural wood veneer, engineered veneer, veneer plywood, and decorative panels for furniture, doors, and interior projects worldwide.",
-  url: "https://www.tonglitimber.com",
-  canonicalUrl: "https://www.tonglitimber.com",
+  url: "https://tlveneer.com",
+  canonicalUrl: "https://tlveneer.com",
   locale: "en_US",
   language: "en",
   country: "US",
@@ -26,19 +26,19 @@ export const companyConfig = {
     country: "China",
     postalCode: "",
   },
-  phone: "+86 133 4268 8937",
-  email: "info@tonglitimber.com",
-  whatsapp: "+8613342688937",
+  phone: "+86 15817587053",
+  email: "tonglitimber@tongli-dg.com",
+  whatsapp: "8615817587053",
   googleMaps: "https://maps.google.com/?q=No.655+Houjie+Section+Dongguan+China",
 } as const;
 
 export const contactConfig = {
   sales: {
-    email: "sales@tonglitimber.com",
-    whatsapp: "+8613342688937",
+    email: "tonglitimber@tongli-dg.com",
+    whatsapp: "+8615817587053",
   },
   support: {
-    email: "info@tonglitimber.com",
+    email: "tonglitimber@tongli-dg.com",
   },
   hours: {
     weekdays: "8:30 AM - 6:00 PM",
@@ -48,12 +48,12 @@ export const contactConfig = {
 } as const;
 
 export const socialLinks = {
-  facebook: "https://www.facebook.com/TongliTimber",
-  instagram: "https://www.instagram.com/tongli_timber",
-  linkedin: "https://www.linkedin.com/company/tongli-timber",
-  youtube: "https://www.youtube.com/@TongliTimber",
-  tiktok: "https://www.tiktok.com/@tongli_timber",
-  whatsapp: "https://wa.me/8613342688937",
+  facebook: "#",
+  instagram: "#",
+  linkedin: "#",
+  youtube: "#",
+  tiktok: "#",
+  whatsapp: "https://wa.me/8615817587053",
 } as const;
 
 export const socialNames = {

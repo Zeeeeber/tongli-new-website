@@ -16,11 +16,36 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: {
-    default: "Tongli Timber - Premium Wood Veneer Panels Manufacturer",
-    template: "%s | Tongli Timber",
+  metadataBase: new URL("https://tlveneer.com"),
+  title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
+  description:
+    "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
+  alternates: {
+    canonical: "https://tlveneer.com/",
   },
-  description: "Dongguan Tongli Timber Products Co., Ltd. - Professional manufacturer of wood veneer panels, natural wood veneer, engineered veneer, and 3D wood panels for global B2B buyers.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Tongli Timber",
+    title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
+    description:
+      "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
+    url: "https://tlveneer.com/",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
+    description:
+      "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
+  },
 };
 
 export default function RootLayout({

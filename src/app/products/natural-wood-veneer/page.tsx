@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 import { NaturalWoodVeneerCategoryClient } from "@/components/product/NaturalWoodVeneerCategoryClient";
@@ -107,34 +108,48 @@ export default function NaturalWoodVeneerPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {naturalWoodVeneerProducts.slice(0, 8).map((product) => (
-              <Link 
-                key={product.code} 
-                href={`/products/natural-wood-veneer/${product.slug}`}
-                className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#8B5E3C]/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="aspect-square bg-gradient-to-br from-[#D4C4B0] to-[#C4A77D] relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
-                      <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
-                      </svg>
+            {naturalWoodVeneerProducts.map((product) => {
+              const productImage = product.featuredImage || product.gallery[0] || null;
+
+              return (
+                <Link 
+                  key={product.slug} 
+                  href={`/products/natural-wood-veneer/${product.slug}`}
+                  className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#8B5E3C]/30 hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="aspect-square bg-gradient-to-br from-[#D4C4B0] to-[#C4A77D] relative overflow-hidden">
+                    {productImage ? (
+                      <Image
+                        src={productImage}
+                        alt={product.imageAlt || product.name}
+                        fill
+                        sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
+                          <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
+                          </svg>
+                        </div>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-[#8B5E3C]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="px-4 py-2 bg-white text-[#8B5E3C] rounded-lg font-medium text-sm">View Details</span>
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-[#8B5E3C]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="px-4 py-2 bg-white text-[#8B5E3C] rounded-lg font-medium text-sm">View Details</span>
+                  <div className="p-4">
+                    <span className="text-xs text-[#8B5E3C] font-mono">{product.code}</span>
+                    <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1">{product.name}</h3>
+                    <div className="text-xs text-[#6b7280] space-y-1">
+                      <p>{product.specs.veneerSpecies} | {product.specs.cuttingMethod}</p>
+                      <p>{product.specs.veneerThickness} thickness</p>
+                    </div>
                   </div>
-                </div>
-                <div className="p-4">
-                  <span className="text-xs text-[#8B5E3C] font-mono">{product.code}</span>
-                  <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1">{product.name}</h3>
-                  <div className="text-xs text-[#6b7280] space-y-1">
-                    <p>{product.specs.veneerSpecies} | {product.specs.cuttingMethod}</p>
-                    <p>{product.specs.veneerThickness} thickness</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

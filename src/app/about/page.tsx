@@ -631,26 +631,41 @@ const factorySections = [
 ];
 
 export default function AboutPage() {
+  const [heroVideoError, setHeroVideoError] = useState(false);
+
   return (
     <div className="bg-ivory">
       {/* Hero Banner with Video - Full Screen */}
       <section className="relative h-screen min-h-[600px] overflow-hidden">
-        {/* Video Background */}
+        {heroVideoError && (
+          <div
+            className="absolute inset-0 z-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/images/cta-wood-bg.png')" }}
+          />
+        )}
+
         <video
           autoPlay
-          loop
           muted
+          loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          preload="auto"
+          poster="/images/cta-wood-bg.png"
+          className="absolute inset-0 z-0 w-full h-full object-cover"
+          onCanPlay={() => setHeroVideoError(false)}
+          onLoadedData={() => setHeroVideoError(false)}
+          onError={() => setHeroVideoError(true)}
         >
-          <source src="/videos/ablout banner videos.mp4" type="video/mp4" />
+          <source src="/videos/about-banner.mp4" type="video/mp4" />
         </video>
 
+        <div className="absolute inset-0 z-10 bg-black/10" />
+
         {/* Centered Logo and Brand Name */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="flex flex-col items-center gap-6">
+        <div className="absolute inset-0 z-20 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-5">
             {/* Logo */}
-            <div className="w-28 lg:w-36 xl:w-44">
+            <div className="w-24 lg:w-32 xl:w-40 opacity-90">
               <Image 
                 src="/images/tongli-hero-logo-v2.png"
                 alt="Tongli Timber Logo"
@@ -662,7 +677,7 @@ export default function AboutPage() {
             </div>
             {/* Brand Name */}
             <div className="text-center">
-              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-[0.3em] text-white drop-shadow-lg" style={{ fontFamily: 'Georgia, serif' }}>
+              <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-[0.26em] text-white/90 drop-shadow-md" style={{ fontFamily: 'Georgia, serif' }}>
                 TONGLI TIMBER
               </h1>
             </div>

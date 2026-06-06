@@ -3,6 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
+import ProjectModal, { type Project } from "@/components/projects/ProjectModal";
+import { projects as allProjects } from "@/data/projects";
 
 // Horizontal scroll hook for project gallery
 function useHorizontalScroll() {
@@ -203,6 +206,12 @@ function StatItem({ value, suffix, label, sublabel, delay, isVisible }: {
 export default function HomePage() {
   const [loaded, setLoaded] = useState(false);
   const { scrollRef, scroll } = useHorizontalScroll();
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  // Featured projects for home page gallery (IDs: 19, 3, 5, 14, 16, 15, 26, 24)
+  const homeProjects = allProjects.filter((p) =>
+    [19, 3, 5, 14, 16, 15, 26, 24].includes(p.id)
+  );
 
   useEffect(() => {
     setLoaded(true);
@@ -684,22 +693,10 @@ export default function HomePage() {
             </Link>
           </div>
 
-          {/* View All Link */}
-          <div className="text-center mt-10 lg:mt-16">
-            <Link
-              href="/products"
-              className="group inline-flex items-center gap-3 lg:gap-4 px-8 lg:px-12 py-4 lg:py-5 bg-[#0F6B3A] text-white rounded-full text-base lg:text-lg font-bold hover:bg-[#124B34] transition-all hover:shadow-xl hover:-translate-y-1"
-            >
-              <span>View All Products</span>
-              <svg className="w-5 lg:w-6 h-5 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Applications Section - Redesigned */}
+      {/* Applications Section */}
       <section className="py-12 md:py-16 lg:py-28 bg-gradient-to-b from-[#F7F3EC] to-white relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#0F6B3A]/5 rounded-full blur-3xl" />
@@ -1061,19 +1058,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="text-center">
-            <Link href="/custom-solutions" className="group inline-flex items-center gap-3 lg:gap-4 px-10 lg:px-14 py-4 lg:py-5 bg-gradient-to-r from-[#0F6B3A] to-[#124B34] text-white rounded-full text-base lg:text-lg font-bold hover:shadow-2xl hover:shadow-[#0F6B3A]/30 hover:-translate-y-1 transition-all duration-300">
-              <span>View Full Custom Options</span>
-              <svg className="w-5 lg:w-6 h-5 lg:h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Project Gallery - Redesigned */}
+      {/* Project Gallery */}
       <section className="py-12 md:py-16 lg:py-28 bg-white relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#E5E1D8] to-transparent" />
@@ -1090,8 +1078,14 @@ export default function HomePage() {
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-2 sm:mb-4 leading-tight">Our Projects</h2>
               <p className="text-base sm:text-lg text-[#6b7280] max-w-2xl">See how our wood veneer panels are used in real-world applications</p>
             </div>
-            <div className="flex items-center gap-3">
-              <button 
+            <div className="flex items-center gap-4">
+              <Link href="/projects" className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
+                <span>View All Projects</span>
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </Link>
+              <button
                 onClick={() => scroll('left')}
                 className="w-12 h-12 rounded-full bg-white border border-[#E5E1D8] shadow-md flex items-center justify-center hover:bg-[#0F6B3A] hover:text-white hover:border-[#0F6B3A] transition-all duration-300"
               >
@@ -1099,7 +1093,7 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
-              <button 
+              <button
                 onClick={() => scroll('right')}
                 className="w-12 h-12 rounded-full bg-[#0F6B3A] text-white shadow-md flex items-center justify-center hover:bg-[#124B34] transition-all duration-300"
               >
@@ -1118,113 +1112,50 @@ export default function HomePage() {
             className="flex gap-5 overflow-x-auto scroll-smooth pb-6 px-4 sm:px-6 lg:px-[6.25%] xl:px-[8.33%] snap-x snap-mandatory scrollbar-hide"
           >
             {/* Project Cards */}
-            {[
-              {
-                title: "Dubai Tourism Hotel",
-                location: "Dubai, UAE",
-                product: "Engineered Wood Veneer",
-                category: "Hotel",
-                image: "/images/projects/19.中东迪拜旅游酒店项目/科技木皮-迪拜-酒店项目 (1).jpg",
-              },
-              {
-                title: "Singapore IBS Hotel",
-                location: "Singapore",
-                product: "White Oak Veneer Panel",
-                category: "Hotel",
-                image: "/images/projects/3.新加坡IBS酒店/项目案例图 (1).jpg",
-              },
-              {
-                title: "Singapore Penthouse",
-                location: "Singapore",
-                product: "Pecan Veneer Panel",
-                category: "Residential",
-                image: "/images/projects/5.山核桃私人大平层-全屋定制-新加坡/核山桃 (1).jpg",
-              },
-              {
-                title: "Blue Bottle Coffee",
-                location: "Tokyo, Japan",
-                product: "Oak Veneer Furniture",
-                category: "Hospitality",
-                image: "/images/projects/14.Blue Bottle咖啡港未来店-家具桌子椅子柜子/丨咖啡店丨咖啡港未来店东京科技与工艺结合的木制家具_5.jpg",
-              },
-              {
-                title: "PDG Real Estate HQ",
-                location: "Melbourne, Australia",
-                product: "Melamine & Veneer Panel",
-                category: "Commercial",
-                image: "/images/projects/16.PDG房地产开发商的总部带来了酒店的感觉-办公室-墨尔本-三聚氰胺板/豪华材料为PDG房地产开发商的总部带来了酒店的感觉_3.jpg",
-              },
-              {
-                title: "Leymarie Gourdon Apartment",
-                location: "France",
-                product: "White Oak & Teak Panel",
-                category: "Residential",
-                image: "/images/projects/15.巴蒂尼奥勒斯美术馆Leymarie Gourdon-公寓-法国-白橡柚木/巴蒂尼奥勒斯美术馆_1.jpg",
-              },
-              {
-                title: "India Private Villa",
-                location: "India",
-                product: "Walnut & Oak Veneer Panel",
-                category: "Residential",
-                image: "/images/projects/26.印度私人别墅全屋定制工程/印度私人住宅棵树环绕的温馨家园_7.jpg",
-              },
-              {
-                title: "Spain Social Space",
-                location: "Spain",
-                product: "Wood Grain Melamine Board",
-                category: "Commercial",
-                image: "/images/projects/24.西班牙社交空间/现代社交空间设计_6.jpg",
-              },
-            ].map((project, index) => (
-              <Link
-                key={index}
-                href="/projects"
-                className="group flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] snap-start"
+            {homeProjects.map((project) => (
+              <button
+                key={project.id}
+                onClick={() => setSelectedProject(project)}
+                className="group flex-shrink-0 w-[260px] md:w-[300px] lg:w-[340px] snap-start text-left bg-transparent border-none p-0 cursor-pointer"
               >
                 <div className="relative overflow-hidden rounded-2xl aspect-[3/4] shadow-lg group-hover:shadow-2xl transition-all duration-500">
                   <Image
-                    src={project.image}
-                    alt={project.title}
+                    src={project.images[0].src}
+                    alt={project.images[0].alt}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="340px"
                     unoptimized
                   />
-                  
+
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#0F6B3A] text-xs font-semibold rounded-full shadow">
-                      {project.category}
+                      {project.productType}
                     </span>
                   </div>
-                  
+
                   {/* Hover Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="text-white/60 text-sm mb-1">{project.location}</div>
-                    <h3 className="text-white font-bold text-lg mb-1">{project.title}</h3>
-                    <p className="text-white/80 text-sm">{project.product}</p>
-                    
-                    {/* View Project Arrow */}
+                    <h3 className="text-white font-bold text-lg mb-1">{project.name}</h3>
+                    <p className="text-white/80 text-sm line-clamp-1">{project.products}</p>
+
+                    {/* View Photo Arrow */}
                     <div className="mt-3 flex items-center gap-2 text-[#C9A87C] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                      <span>View Project</span>
+                      <span>View Photo</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
                     </div>
                   </div>
                 </div>
-              </Link>
+              </button>
             ))}
-          </div>
-        </div>
-        
-        {/* Scroll indicator */}
-        <div className="mx-auto px-4 sm:px-6 lg:px-[6.25%] xl:px-[8.33%] mt-6">
-          <div className="flex items-center justify-center gap-2 text-[#6b7280] text-sm">
-            <span>Drag or use arrows to scroll</span>
           </div>
         </div>
       </section>
@@ -1249,71 +1180,49 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                type: "Wood Veneer Panel",
-                location: "Standard Size",
-                product: "White Oak & Teak Veneer Plywood",
-                surface: "4x8 ft, Custom Sizes",
-                image: "/images/products/wood_veneer_panels.png",
-              },
-              {
-                type: "Natural Wood Veneer",
-                location: "80+ Species",
-                product: "C/C & Q/C Natural Wood Veneer",
-                surface: "0.5mm–3mm Thickness",
-                image: "/images/products/natural_wood_veneer.png",
-              },
-              {
-                type: "Engineered Wood Veneer",
-                location: "300+ Styles",
-                product: "Engineered Wood Veneer Sheet",
-                surface: "Consistent Color & Pattern",
-                image: "/images/products/engineered_veneer.png",
-              },
-              {
-                type: "Melamine Board",
-                location: "Various Sizes",
-                product: "Wood Grain & Solid Color Melamine",
-                surface: "MR, E0, E1, E2",
-                image: "/images/products/melamine_board.png",
-              },
-              {
-                type: "3D Wood Panel",
-                location: "Solid Wood",
-                product: "3D Carved Wall Panel",
-                surface: "Oak, Walnut, Teak",
-                image: "/images/products/3d_wood_panel.png",
-              },
-              {
-                type: "Veneer Edge Banding",
-                location: "All Species",
-                product: "Wood Veneer Edge Banding Strip",
-                surface: "Width: 10mm–100mm",
-                image: "/images/products/veneer_edge_banding.png",
-              },
-            ].map((product, index) => (
-              <div key={index} className="group relative overflow-hidden rounded-2xl lg:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300">
-                <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-[#0F6B3A]/10 via-[#F7F3EC] to-[#E9E0D2] flex items-center justify-center">
-                  <div className="text-center p-6">
-                    <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#0F6B3A]/10 backdrop-blur-sm flex items-center justify-center">
-                      <svg className="w-8 h-8 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
+            {naturalWoodVeneerProducts.slice(0, 6).map((product) => {
+              const productImage = product.featuredImage || product.gallery[0] || null;
+
+              return (
+                <Link
+                  key={product.slug}
+                  href={`/products/natural-wood-veneer/${product.slug}`}
+                  className="group relative overflow-hidden rounded-2xl lg:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#0F6B3A]/10 via-[#F7F3EC] to-[#E9E0D2] p-4">
+                    {productImage ? (
+                      <Image
+                        src={productImage}
+                        alt={product.imageAlt || product.name}
+                        fill
+                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                        className="object-contain group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center p-6">
+                          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#0F6B3A]/10 backdrop-blur-sm flex items-center justify-center">
+                            <svg className="w-8 h-8 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </div>
+                          <span className="text-sm font-medium text-[#6b7280]">Product Image</span>
+                        </div>
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1F2621]/75 via-[#1F2621]/15 to-transparent" />
+                  </div>
+                  <div className="p-6 lg:p-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="px-3 lg:px-4 py-1.5 lg:py-2 bg-[#0F6B3A]/10 text-[#0F6B3A] text-sm lg:text-base font-medium rounded">Natural Wood Veneer</span>
+                      <span className="text-sm lg:text-base text-[#6b7280]">{product.specs.cuttingMethod}</span>
                     </div>
-                    <span className="text-sm font-medium text-[#6b7280]">Product Image</span>
+                    <h3 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl group-hover:text-[#0F6B3A] transition-colors line-clamp-2">{product.name}</h3>
+                    <p className="text-base lg:text-lg text-[#6b7280]">{product.specs.veneerSpecies} • {product.specs.veneerThickness}</p>
                   </div>
-                </div>
-                <div className="p-6 lg:p-8">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 lg:px-4 py-1.5 lg:py-2 bg-[#0F6B3A]/10 text-[#0F6B3A] text-sm lg:text-base font-medium rounded">{product.type}</span>
-                    <span className="text-sm lg:text-base text-[#6b7280]">{product.location}</span>
-                  </div>
-                  <h3 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl group-hover:text-[#0F6B3A] transition-colors">{product.product}</h3>
-                  <p className="text-base lg:text-lg text-[#6b7280]">{product.surface}</p>
-                </div>
-              </div>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1453,6 +1362,14 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Project Image Lightbox */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </>
   );
 }

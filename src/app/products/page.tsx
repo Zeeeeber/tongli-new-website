@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
+import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 
 // Design System
 const C = {
@@ -52,32 +54,23 @@ const filterMaterials = [
 ];
 
 // Featured products
-const featuredProducts = [
-  { name: "White Oak Veneer Plywood", category: "Wood Veneer Panels", spec: "1220×2440mm / 18mm" },
-  { name: "Natural Oak Veneer", category: "Natural Wood Veneer", spec: "0.5mm Thickness" },
-  { name: "Walnut Engineered Veneer", category: "Engineered Wood Veneer", spec: "300×600mm" },
-  { name: "3D Wave Panel", category: "3D Wood Panels", spec: "1220×2440mm / 18mm" },
-  { name: "Rift-Cut Teak Veneer", category: "Natural Wood Veneer", spec: "0.5mm Thickness" },
-  { name: "MR MDF Board", category: "Supporting Boards", spec: "1220×2440mm" },
-  { name: "Melamine White Board", category: "Melamine Board", spec: "1220×2440mm" },
-  { name: "Oak Edge Banding", category: "Veneer Edge Banding", spec: "23mm Width" },
-];
+const featuredProducts = naturalWoodVeneerProducts.slice(0, 6).map((product) => ({
+  name: product.name,
+  category: "Natural Wood Veneer",
+  spec: `${product.specs.veneerSpecies} / ${product.specs.veneerThickness}`,
+  slug: product.slug,
+  image: product.featuredImage || product.gallery[0] || null,
+}));
 
 // All products for display
-const allProducts = [
-  { name: "White Oak Veneer Plywood", category: "Wood Veneer Panels", spec: "1220×2440mm / 18mm", featured: true },
-  { name: "Natural Oak Veneer", category: "Natural Wood Veneer", spec: "0.5mm Thickness", featured: true },
-  { name: "Walnut Engineered Veneer", category: "Engineered Wood Veneer", spec: "300×600mm Sheets", featured: true },
-  { name: "3D Wave Panel", category: "3D Wood Panels", spec: "1220×2440mm / 18mm", featured: false },
-  { name: "Birch Plywood", category: "Wood Veneer Panels", spec: "1220×2440mm", featured: false },
-  { name: "Melamine White Board", category: "Melamine Board", spec: "1220×2440mm", featured: false },
-  { name: "Rift-Cut Teak Veneer", category: "Natural Wood Veneer", spec: "0.5mm Thickness", featured: false },
-  { name: "Oak Edge Banding", category: "Veneer Edge Banding", spec: "23mm Width", featured: false },
-  { name: "Marine Grade Plywood", category: "Supporting Boards", spec: "1220×2440mm", featured: false },
-  { name: "Fire Retardant MDF", category: "Supporting Boards", spec: "1220×2440mm", featured: false },
-  { name: "Sapele Veneer", category: "Natural Wood Veneer", spec: "0.5mm Thickness", featured: false },
-  { name: "Pattern Engineered Veneer", category: "Engineered Wood Veneer", spec: "300×600mm", featured: false },
-];
+const allProducts = naturalWoodVeneerProducts.map((product, index) => ({
+  name: product.name,
+  category: "Natural Wood Veneer",
+  spec: `${product.specs.veneerSpecies} / ${product.specs.veneerThickness}`,
+  featured: index < 6,
+  slug: product.slug,
+  image: product.featuredImage || product.gallery[0] || null,
+}));
 
 export default function ProductsPage() {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
@@ -106,46 +99,41 @@ export default function ProductsPage() {
     );
   };
 
+  const displayProducts = useMemo(() => {
+    return allProducts;
+  }, []);
+
   return (
     <>
 
-      {/* Hero Banner - Arpa Style: Full Video → Split with White Panel */}
-      <section className="relative min-h-screen overflow-hidden">
-        {/* Video Container - full screen, white panel slides over right half */}
-        <div
-          className="absolute inset-0 z-0"
-        >
-          {/* Fallback image always rendered under video */}
-          <div
-            className="absolute inset-0 z-0 bg-cover bg-center"
-            style={{
-              backgroundImage: "url('/images/banner-bg.png')",
-              opacity: videoError ? 1 : 0,
-              transition: "opacity 0.5s ease",
-            }}
-          />
+      {/* Hero Banner - Video Background */}
+      <section className="relative h-[60vh] min-h-[480px] md:min-h-screen overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          {videoError && (
+            <div
+              className="absolute inset-0 z-0 bg-cover bg-center"
+              style={{ backgroundImage: "url('/images/banner-bg.png')" }}
+            />
+          )}
           <video
             ref={videoRef}
-            className="w-full h-full"
-            style={{ objectFit: "cover" }}
+            className="absolute inset-0 z-0 w-full h-full object-cover"
             autoPlay
             muted
             loop
             playsInline
             preload="auto"
+            poster="/images/banner-bg.png"
             onCanPlay={() => setVideoError(false)}
+            onLoadedData={() => setVideoError(false)}
             onError={() => setVideoError(true)}
           >
             <source src="/videos/banner-hero.mp4" type="video/mp4" />
-            <source src="/videos/banner.mp4" type="video/mp4" />
           </video>
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/20 z-10" />
+          <div className="absolute inset-0 z-10 bg-black/10" />
         </div>
 
-        {/* White Panel - slides in from right after 2 seconds */}
-        <div
-          className="absolute inset-y-0 z-10 flex items-center"
+        <div className="absolute inset-y-0 right-0 z-20 hidden md:flex items-center"
           style={{
             left: heroLoaded ? "50%" : "100%",
             width: "50%",
@@ -366,7 +354,7 @@ export default function ProductsPage() {
               {/* Results Header */}
               <div className="flex items-center justify-between mb-6">
                 <p className="text-[#6b7280]">
-                  Showing <span className="font-medium text-[#1F2621]">{allProducts.length}</span> products
+                  Showing <span className="font-medium text-[#1F2621]">{displayProducts.length}</span> products
                 </p>
                 <select className="px-4 py-2 bg-white border border-[#E5E1D8] rounded-lg text-sm text-[#1F2621] focus:outline-none focus:border-[#0F6B3A]">
                   <option>Sort by: Featured</option>
@@ -378,30 +366,40 @@ export default function ProductsPage() {
 
               {/* Products Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {allProducts.map((product, index) => (
+                {displayProducts.map((product) => (
                   <div 
-                    key={product.name}
+                    key={product.slug}
                     className="group bg-white rounded-xl border border-[#E5E1D8] hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300 overflow-hidden"
                   >
                     {/* Product Image */}
-                    <div className="aspect-square bg-gradient-to-br from-[#F7F3EC] via-[#E8E4DB] to-[#D4CFC5] relative">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
-                          <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                          </svg>
+                    <div className="aspect-square bg-gradient-to-br from-[#F7F3EC] via-[#E8E4DB] to-[#D4CFC5] relative overflow-hidden">
+                      {product.image ? (
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
+                            <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </div>
                         </div>
-                      </div>
+                      )}
                       {/* Featured Badge */}
                       {product.featured && (
-                        <span className="absolute top-3 left-3 px-2 py-1 bg-[#0F6B3A] text-white text-xs font-medium rounded">
+                        <span className="absolute top-3 right-3 px-2 py-1 bg-[#0F6B3A] text-white text-xs font-medium rounded">
                           Featured
                         </span>
                       )}
                       {/* Hover Overlay */}
                       <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                         <Link 
-                          href={`/products/${product.category.toLowerCase()}`}
+                          href={`/products/natural-wood-veneer/${product.slug}`}
                           className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm hover:bg-[#F7F3EC] transition-colors"
                         >
                           View Product

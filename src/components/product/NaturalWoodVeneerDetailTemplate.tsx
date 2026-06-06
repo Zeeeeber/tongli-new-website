@@ -1,78 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
-
-export interface NaturalWoodVeneerProduct {
-  name: string;
-  code: string;
-  category: string;
-  shortDesc: string;
-  tags: string[];
-  specs: {
-    productType: string;
-    veneerSpecies: string;
-    cuttingMethod: string;
-    grainPattern: string;
-    veneerThickness: string;
-    sheetSize: string;
-    moq: string;
-    leadTime: string;
-    packaging: string;
-    application: string;
-  };
-  overview: string;
-  galleryImages?: string[];
-}
+import { naturalWoodVeneerProducts, type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
 
 interface NaturalWoodVeneerDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
   slug: string;
-  relatedProducts?: {
-    name: string;
-    code: string;
-    species: string;
-    cut: string;
-    href: string;
-    gradient: string;
-  }[];
 }
 
-const defaultRelatedProducts = [
-  {
-    name: "Plain Sawn White Oak",
-    code: "NV-CCWO-01",
-    species: "White Oak",
-    cut: "Plain Sawn",
-    href: "/products/natural-wood-veneer/plain-sawn-white-oak",
-    gradient: "from-[#D4B896] to-[#B8956A]",
-  },
-  {
-    name: "Quarter Sawn White Oak",
-    code: "NV-QCWO-01",
-    species: "White Oak",
-    cut: "Quarter Sawn",
-    href: "/products/natural-wood-veneer/quarter-sawn-white-oak",
-    gradient: "from-[#C9A87C] to-[#A88B5C]",
-  },
-  {
-    name: "Engineered White Oak",
-    code: "EV-CCWO-01",
-    species: "White Oak",
-    cut: "Engineered",
-    href: "/products/engineered-wood-veneer/oak-classic",
-    gradient: "from-[#D4C4B0] to-[#B8A48C]",
-  },
-  {
-    name: "White Oak Veneer Panel",
-    code: "VP-WO-01",
-    species: "White Oak",
-    cut: "Veneer on Plywood",
-    href: "/products/wood-veneer-panels/white-oak-veneer-plywood",
-    gradient: "from-[#C8A97E] to-[#A68B5E]",
-  },
-];
+const placeholderRelatedProducts = [0, 1, 2, 3];
 
 const defaultApplications = [
   { name: "Furniture", icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" },
@@ -104,14 +43,67 @@ const defaultFaqs = [
 export function NaturalWoodVeneerDetailTemplate({
   product,
   slug,
-  relatedProducts = defaultRelatedProducts,
 }: NaturalWoodVeneerDetailTemplateProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showContactModal, setShowContactModal] = useState(false);
+  const thumbnailScrollRef = useRef<HTMLDivElement>(null);
+  const productImages = useMemo(() => {
+    if (product.gallery?.length) {
+      return product.gallery;
+    }
 
-  const titleCase = (str: string) =>
-    str.replace(/\b[a-zA-Z]+\b/g, (word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+    if (product.featuredImage) {
+      return [product.featuredImage];
+    }
+
+    return [];
+  }, [product.featuredImage, product.gallery]);
+  const relatedProducts = useMemo(() => {
+    const currentTags = new Set(product.tags);
+
+    return naturalWoodVeneerProducts
+      .filter((candidate) => candidate.slug !== slug)
+      .map((candidate) => {
+        let score = 0;
+
+        if (candidate.specs.veneerSpecies === product.specs.veneerSpecies) {
+          score += 4;
+        }
+
+        if (candidate.specs.cuttingMethod === product.specs.cuttingMethod) {
+          score += 3;
+        }
+
+        const sharedTagCount = candidate.tags.filter((tag) => currentTags.has(tag)).length;
+        score += sharedTagCount;
+
+        return {
+          product: candidate,
+          score,
+        };
+      })
+      .sort((a, b) => b.score - a.score || a.product.name.localeCompare(b.product.name))
+      .slice(0, 4)
+      .map(({ product: candidate }) => candidate);
+  }, [product.specs.cuttingMethod, product.specs.veneerSpecies, product.tags, slug]);
+  const hasProductImages = productImages.length > 0;
+  const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
+  const imageAlt = product.imageAlt || product.name;
+  const showThumbnailArrows = hasProductImages && productImages.length > 4;
+
+  const scrollThumbnails = (direction: "left" | "right") => {
+    thumbnailScrollRef.current?.scrollBy({
+      left: direction === "left" ? -240 : 240,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    if (selectedImage >= productImages.length) {
+      setSelectedImage(0);
+    }
+  }, [productImages.length, selectedImage]);
 
   return (
     <>
@@ -141,7 +133,7 @@ export function NaturalWoodVeneerDetailTemplate({
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row gap-6">
             {/* Product Categories Sidebar */}
-            <aside className="w-full md:w-64 flex-shrink-0">
+            <aside className="hidden md:block md:w-64 flex-shrink-0">
               <div className="bg-[#FDFBF7] rounded-2xl border border-[#E5E1D8] overflow-hidden sticky top-24">
                 <div className="px-5 py-4 border-b border-[#E5E1D8]">
                   <h3 className="font-bold text-[#1F2621]">Product Categories</h3>
@@ -213,29 +205,91 @@ export function NaturalWoodVeneerDetailTemplate({
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Image Gallery */}
                 <div>
-                  <div className="aspect-video sm:aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] rounded-2xl overflow-hidden mb-4 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-32 h-32 mx-auto rounded-2xl bg-white/50 backdrop-blur-sm flex items-center justify-center mb-4">
-                        <svg className="w-16 h-16 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
+                  <div className="aspect-square md:aspect-video lg:aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] rounded-2xl overflow-hidden mb-4 flex items-center justify-center relative">
+                    {activeImage ? (
+                      <Image
+                        src={activeImage}
+                        alt={imageAlt}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className="object-contain md:object-cover"
+                      />
+                    ) : (
+                      <div className="text-center">
+                        <div className="w-32 h-32 mx-auto rounded-2xl bg-white/50 backdrop-blur-sm flex items-center justify-center mb-4">
+                          <svg className="w-16 h-16 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-[#8B5E3C]/50">Product Image {selectedImage + 1}</span>
                       </div>
-                      <span className="text-sm text-[#8B5E3C]/50">Product Image {selectedImage + 1}</span>
-                    </div>
+                    )}
                   </div>
                   {/* Thumbnails */}
-                  <div className="grid grid-cols-4 gap-3">
-                    {[0, 1, 2, 3].map((i) => (
+                  <div className="relative">
+                    {showThumbnailArrows && (
                       <button
-                        key={i}
-                        onClick={() => setSelectedImage(i)}
-                        className={`aspect-square rounded-lg bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] flex items-center justify-center ${selectedImage === i ? "ring-2 ring-[#0F6B3A]" : ""}`}
+                        type="button"
+                        onClick={() => scrollThumbnails("left")}
+                        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[#1F2621] shadow-md transition hover:bg-white"
+                        aria-label="Scroll thumbnails left"
                       >
-                        <svg className="w-6 h-6 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                         </svg>
                       </button>
-                    ))}
+                    )}
+
+                    {showThumbnailArrows && (
+                      <button
+                        type="button"
+                        onClick={() => scrollThumbnails("right")}
+                        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[#1F2621] shadow-md transition hover:bg-white"
+                        aria-label="Scroll thumbnails right"
+                      >
+                        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </button>
+                    )}
+
+                    <div
+                      ref={thumbnailScrollRef}
+                      className="flex gap-3 overflow-x-auto overflow-y-hidden whitespace-nowrap scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+                    >
+                      {hasProductImages ? (
+                        productImages.map((image, i) => (
+                          <button
+                            key={`${image}-${i}`}
+                            onClick={() => setSelectedImage(i)}
+                            className={`relative h-24 w-24 sm:h-28 sm:w-28 flex-none rounded-lg bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] overflow-hidden ${selectedImage === i ? "ring-2 ring-[#0F6B3A]" : ""}`}
+                            aria-label={`View product image ${i + 1}`}
+                            type="button"
+                          >
+                            <Image
+                              src={image}
+                              alt={`${imageAlt} ${i + 1}`}
+                              fill
+                              sizes="120px"
+                              className="object-cover"
+                            />
+                          </button>
+                        ))
+                      ) : (
+                        [0, 1, 2, 3].map((i) => (
+                          <button
+                            key={i}
+                            onClick={() => setSelectedImage(i)}
+                            className={`h-24 w-24 sm:h-28 sm:w-28 flex-none rounded-lg bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] flex items-center justify-center ${selectedImage === i ? "ring-2 ring-[#0F6B3A]" : ""}`}
+                            type="button"
+                          >
+                            <svg className="w-6 h-6 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                          </button>
+                        ))
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -296,23 +350,6 @@ export function NaturalWoodVeneerDetailTemplate({
                     </a>
                   </div>
 
-                  {/* Social Media Links */}
-                  <div className="flex items-center gap-3 mt-4">
-                    <span className="text-xs text-[#9CA3AF]">Follow us:</span>
-                    {[
-                      { href: "https://www.facebook.com/TongliTimber", icon: "M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" },
-                      { href: "https://www.instagram.com/tongli_timber", icon: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" },
-                      { href: "https://www.linkedin.com/company/tongli-timber", icon: "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" },
-                      { href: "https://www.youtube.com/@TongliTimber", icon: "M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" },
-                      { href: "https://www.tiktok.com/@tongli_timber", icon: "M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" },
-                    ].map((social) => (
-                      <a key={social.href} href={social.href} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-[#F3F4F6] hover:bg-[#0F6B3A] flex items-center justify-center transition-colors">
-                        <svg className="w-4 h-4 text-[#6b7280] hover:text-white transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                          <path d={social.icon} />
-                        </svg>
-                      </a>
-                    ))}
-                  </div>
 
                   <ContactFormModal isOpen={showContactModal} onClose={() => setShowContactModal(false)} />
                 </div>
@@ -327,33 +364,70 @@ export function NaturalWoodVeneerDetailTemplate({
         <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-8">Related Products</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatedProducts.map((rp) => (
-              <Link
-                key={rp.code}
-                href={rp.href}
-                className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className={`aspect-square bg-gradient-to-br ${rp.gradient} relative`}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
-                      <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
-                      </svg>
+            {relatedProducts.length > 0 ? (
+              relatedProducts.map((relatedProduct) => {
+                const relatedImage = relatedProduct.featuredImage || relatedProduct.gallery[0] || null;
+                const relatedLabel = relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Natural Wood Veneer";
+
+                return (
+                  <Link
+                    key={relatedProduct.slug}
+                    href={`/products/natural-wood-veneer/${relatedProduct.slug}`}
+                    className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] relative overflow-hidden">
+                      {relatedImage ? (
+                        <Image
+                          src={relatedImage}
+                          alt={relatedProduct.imageAlt || relatedProduct.name}
+                          fill
+                          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
+                            <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
+                            </svg>
+                          </div>
+                        </div>
+                      )}
+                      <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">View Details</span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">{relatedLabel}</span>
+                      <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">{relatedProduct.name}</h3>
+                      <p className="text-sm text-[#6b7280] line-clamp-3">{relatedProduct.shortDesc}</p>
+                    </div>
+                  </Link>
+                );
+              })
+            ) : (
+              placeholderRelatedProducts.map((item) => (
+                <div
+                  key={item}
+                  className="bg-white rounded-xl border border-[#E5E1D8] overflow-hidden"
+                >
+                  <div className="aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] relative overflow-hidden">
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
+                        <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
+                        </svg>
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">View Details</span>
+                  <div className="p-4">
+                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">Natural Wood Veneer</span>
+                    <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">Related Product</h3>
+                    <p className="text-sm text-[#6b7280] line-clamp-3">More natural wood veneer products will appear here.</p>
                   </div>
                 </div>
-                <div className="p-4">
-                  <span className="text-xs text-[#0F6B3A] font-mono">{rp.code}</span>
-                  <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1">{rp.name}</h3>
-                  <div className="text-xs text-[#6b7280]">
-                    <p>{rp.species} | {rp.cut}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
@@ -389,7 +463,7 @@ export function NaturalWoodVeneerDetailTemplate({
                         {row.label}
                       </td>
                       <td className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-sm text-[#6b7280] align-top">
-                        {typeof row.value === "string" ? titleCase(row.value) : row.value}
+                        {row.value}
                       </td>
                     </tr>
                   ))}

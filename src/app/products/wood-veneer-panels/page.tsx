@@ -5,14 +5,14 @@ import { useState } from "react";
 
 // Wood Veneer Panels products data
 const products = [
-  { name: "White Oak Wood Veneer Plywood", code: "WVP-WO-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
-  { name: "Walnut Wood Veneer Plywood", code: "WVP-WN-001", substrate: "MDF", thickness: "18mm", spec: "1220×2440mm" },
-  { name: "Teak Wood Veneer Plywood", code: "WVP-TE-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
-  { name: "Oak Engineered Veneer Panel", code: "WVP-OE-001", substrate: "Particle Board", thickness: "18mm", spec: "1220×2440mm" },
-  { name: "Cherry Wood Veneer Plywood", code: "WVP-CH-001", substrate: "Birch Plywood", thickness: "15mm", spec: "1220×2440mm" },
-  { name: "Maple Wood Veneer Plywood", code: "WVP-MA-001", substrate: "MDF", thickness: "18mm", spec: "1220×2440mm" },
-  { name: "Ash Wood Veneer Plywood", code: "WVP-AS-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
-  { name: "Sapele Wood Veneer Plywood", code: "WVP-SA-001", substrate: "OSB", thickness: "21mm", spec: "1220×2440mm" },
+  { slug: "white-oak-veneer-plywood", name: "White Oak Wood Veneer Plywood", code: "WVP-WO-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
+  { slug: "walnut-veneer-plywood", name: "Walnut Wood Veneer Plywood", code: "WVP-WN-001", substrate: "MDF", thickness: "18mm", spec: "1220×2440mm" },
+  { slug: "teak-veneer-plywood", name: "Teak Wood Veneer Plywood", code: "WVP-TE-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
+  { slug: "oak-engineered-veneer-panel", name: "Oak Engineered Veneer Panel", code: "WVP-OE-001", substrate: "Particle Board", thickness: "18mm", spec: "1220×2440mm" },
+  { slug: "cherry-veneer-plywood", name: "Cherry Wood Veneer Plywood", code: "WVP-CH-001", substrate: "Birch Plywood", thickness: "15mm", spec: "1220×2440mm" },
+  { slug: "maple-veneer-plywood", name: "Maple Wood Veneer Plywood", code: "WVP-MA-001", substrate: "MDF", thickness: "18mm", spec: "1220×2440mm" },
+  { slug: "ash-veneer-plywood", name: "Ash Wood Veneer Plywood", code: "WVP-AS-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
+  { slug: "sapele-veneer-plywood", name: "Sapele Wood Veneer Plywood", code: "WVP-SA-001", substrate: "OSB", thickness: "21mm", spec: "1220×2440mm" },
 ];
 
 const features = [
@@ -158,7 +158,7 @@ export default function WoodVeneerPanelsPage() {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
                     <Link 
-                      href={`/products/wood-veneer-panels/${product.name.toLowerCase().replace(/\s+/g, '-')}`}
+                      href={`/products/wood-veneer-panels/${product.slug}`}
                       className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm hover:bg-[#F7F3EC]"
                     >
                       View Details
