@@ -408,29 +408,6 @@ function CustomizationCard({
               />
             ) : null}
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-4 mt-auto pt-4">
-              <Link
-                href={section.href}
-                className="group inline-flex items-center gap-3 px-7 py-3.5 text-sm font-bold rounded-full text-white transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-                style={{ background: "linear-gradient(135deg, #0F6B3A 0%, #124B34 100%)" }}
-              >
-                <span>View All Options</span>
-                <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-              <Link
-                href="/contact?type=sample"
-                className="group inline-flex items-center gap-2 px-7 py-3.5 text-sm font-bold rounded-full border-2 transition-all duration-300 hover:-translate-y-1"
-                style={{ borderColor: C.primary, color: C.primary }}
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-                </svg>
-                <span>Request Sample</span>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
