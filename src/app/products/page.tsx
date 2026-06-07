@@ -80,7 +80,7 @@ export default function ProductsPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setHeroLoaded(true), 2000);
+    const timer = setTimeout(() => setHeroLoaded(true), 100);
     return () => clearTimeout(timer);
   }, []);
 

@@ -632,6 +632,7 @@ const factorySections = [
 
 export default function AboutPage() {
   const [heroVideoError, setHeroVideoError] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
     <div className="bg-ivory">
@@ -651,9 +652,9 @@ export default function AboutPage() {
           playsInline
           preload="auto"
           poster="/images/cta-wood-bg.png"
-          className="absolute inset-0 z-0 w-full h-full object-cover"
-          onCanPlay={() => setHeroVideoError(false)}
-          onLoadedData={() => setHeroVideoError(false)}
+          className={`absolute inset-0 z-0 w-full h-full object-cover transition-opacity duration-500 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
+          onCanPlay={() => { setHeroVideoError(false); setVideoLoaded(true); }}
+          onLoadedData={() => { setHeroVideoError(false); setVideoLoaded(true); }}
           onError={() => setHeroVideoError(true)}
         >
           <source src="/videos/about-banner.mp4" type="video/mp4" />
