@@ -31,6 +31,20 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
+  icons: {
+    icon: [
+      { url: "/favicon/favicon.ico" },
+      { url: "/favicon/favicon.png", type: "image/png" },
+      { url: "/favicon/icon.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/favicon/apple-icon.png", type: "image/png", sizes: "180x180" },
+    ],
+    other: {
+      rel: "apple-touch-icon-precomposed",
+      url: "/favicon/apple-icon.png",
+    },
+  },
   openGraph: {
     type: "website",
     siteName: "Tongli Timber",

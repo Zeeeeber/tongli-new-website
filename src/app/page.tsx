@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
+import { featuredProducts } from "@/data/featured-products";
 import ProjectModal, { type Project } from "@/components/projects/ProjectModal";
 import { projects as allProjects } from "@/data/projects";
 
@@ -1180,45 +1180,30 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {naturalWoodVeneerProducts.slice(0, 6).map((product) => {
-              const productImage = product.featuredImage || product.gallery[0] || null;
-
+            {featuredProducts.map((product) => {
               return (
                 <Link
                   key={product.slug}
-                  href={`/products/natural-wood-veneer/${product.slug}`}
+                  href={product.href}
                   className="group relative overflow-hidden rounded-2xl lg:rounded-3xl bg-white shadow-sm hover:shadow-xl transition-all duration-300"
                 >
                   <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-[#0F6B3A]/10 via-[#F7F3EC] to-[#E9E0D2] p-4">
-                    {productImage ? (
-                      <Image
-                        src={productImage}
-                        alt={product.imageAlt || product.name}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-contain group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center p-6">
-                          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[#0F6B3A]/10 backdrop-blur-sm flex items-center justify-center">
-                            <svg className="w-8 h-8 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                            </svg>
-                          </div>
-                          <span className="text-sm font-medium text-[#6b7280]">Product Image</span>
-                        </div>
-                      </div>
-                    )}
+                    <Image
+                      src={product.featuredImage}
+                      alt={product.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-contain group-hover:scale-105 transition-transform duration-500"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#1F2621]/75 via-[#1F2621]/15 to-transparent" />
                   </div>
                   <div className="p-6 lg:p-8">
                     <div className="flex items-center gap-3 mb-4">
                       <span className="px-3 lg:px-4 py-1.5 lg:py-2 bg-[#0F6B3A]/10 text-[#0F6B3A] text-sm lg:text-base font-medium rounded">Natural Wood Veneer</span>
-                      <span className="text-sm lg:text-base text-[#6b7280]">{product.specs.cuttingMethod}</span>
+                      <span className="text-sm lg:text-base text-[#6b7280]">{product.cuttingMethod}</span>
                     </div>
                     <h3 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl group-hover:text-[#0F6B3A] transition-colors line-clamp-2">{product.name}</h3>
-                    <p className="text-base lg:text-lg text-[#6b7280]">{product.specs.veneerSpecies} • {product.specs.veneerThickness}</p>
+                    <p className="text-base lg:text-lg text-[#6b7280]">{product.veneerSpecies}</p>
                   </div>
                 </Link>
               );
