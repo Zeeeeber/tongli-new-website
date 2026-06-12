@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
-import type { WoodVeneerPanelProduct } from "@/data/products/wood-veneer-panel-products";
+import { woodVeneerPanelProducts, type WoodVeneerPanelProduct } from "@/data/products/wood-veneer-panel-products";
 
 interface WoodVeneerPanelDetailTemplateProps {
   product: WoodVeneerPanelProduct;
@@ -392,21 +393,27 @@ export default function WoodVeneerPanelDetailTemplate({
 
   const faqs = product.faqs && product.faqs.length > 0 ? product.faqs : defaultFaqs;
 
-  const relatedProducts = product.relatedProducts && product.relatedProducts.length > 0
-    ? product.relatedProducts.map((rp, i) => ({
-        name: rp.name,
-        code: `WVP-${String(i + 1).padStart(3, "0")}`,
-        species: rp.name,
-        cut: "Wood Veneer Panel",
-        href: rp.href,
-        gradient: [
-          "from-[#C8A97E] to-[#A68B5E]",
-          "from-[#B88A5A] to-[#8F6842]",
-          "from-[#D8C4A8] to-[#B89D7C]",
-          "from-[#A86F55] to-[#7E4F3B]",
-        ][i % 4],
-      }))
-    : defaultRelatedProducts;
+  // Get related products from real data source, excluding current product
+  const allWvpProducts = Object.values(woodVeneerPanelProducts).filter(
+    (p) => p.featuredImage && p.featuredImage.length > 0
+  );
+  const relatedWvpProducts = allWvpProducts
+    .filter((p) => p.slug !== product.slug)
+    .slice(0, 4)
+    .map((p) => ({
+      name: p.name,
+      code: p.code,
+      species: p.name,
+      cut: "Wood Veneer Panel",
+      href: `/products/wood-veneer-panels/${p.slug}`,
+      image: p.featuredImage || (p.gallery[0] ?? null),
+      gradient: [
+        "from-[#C8A97E] to-[#A68B5E]",
+        "from-[#B88A5A] to-[#8F6842]",
+        "from-[#D8C4A8] to-[#B89D7C]",
+        "from-[#A86F55] to-[#7E4F3B]",
+      ][Math.floor(Math.random() * 4)],
+    }));
 
   return (
     <>
@@ -503,28 +510,71 @@ export default function WoodVeneerPanelDetailTemplate({
             <div className="flex-1 min-w-0">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <div className="aspect-square md:aspect-video lg:aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] rounded-2xl overflow-hidden mb-4 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-32 h-32 mx-auto rounded-2xl bg-white/50 backdrop-blur-sm flex items-center justify-center mb-4">
-                        <svg className="w-16 h-16 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
+                  <div className="relative aspect-square md:aspect-video lg:aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] rounded-2xl overflow-hidden mb-4 flex items-center justify-center">
+                    {product.gallery && product.gallery.length > 0 ? (
+                      <Image
+                        src={product.gallery[selectedImage] || product.featuredImage}
+                        alt={product.imageAlt || product.name}
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="object-contain"
+                        priority
+                      />
+                    ) : product.featuredImage ? (
+                      <Image
+                        src={product.featuredImage}
+                        alt={product.imageAlt || product.name}
+                        fill
+                        sizes="(min-width: 1024px) 50vw, 100vw"
+                        className="object-contain"
+                        priority
+                      />
+                    ) : (
+                      <div className="text-center">
+                        <div className="w-32 h-32 mx-auto rounded-2xl bg-white/50 backdrop-blur-sm flex items-center justify-center mb-4">
+                          <svg className="w-16 h-16 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <span className="text-sm text-[#8B5E3C]/50">No Image Available</span>
                       </div>
-                      <span className="text-sm text-[#8B5E3C]/50">Product Image {selectedImage + 1}</span>
-                    </div>
+                    )}
                   </div>
-                  <div className="grid grid-cols-4 gap-3">
-                    {[0, 1, 2, 3].map((i) => (
-                      <button
-                        key={i}
-                        onClick={() => setSelectedImage(i)}
-                        className={`aspect-square rounded-lg bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] flex items-center justify-center ${selectedImage === i ? "ring-2 ring-[#0F6B3A]" : ""}`}
-                      >
+                  <div className="flex gap-3 overflow-x-auto overflow-y-hidden whitespace-nowrap scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+                    {product.gallery && product.gallery.length > 0 ? (
+                      product.gallery.slice(0, 4).map((img, i) => (
+                        <button
+                          key={i}
+                          onClick={() => setSelectedImage(i)}
+                          className={`relative h-20 w-20 sm:h-24 sm:w-24 flex-none rounded-lg overflow-hidden ${selectedImage === i ? "ring-2 ring-[#0F6B3A]" : ""}`}
+                        >
+                          <Image
+                            src={img}
+                            alt={`${product.name} - Image ${i + 1}`}
+                            fill
+                            sizes="100px"
+                            className="object-cover"
+                          />
+                        </button>
+                      ))
+                    ) : product.featuredImage ? (
+                      <div className="h-20 w-20 sm:h-24 sm:w-24 flex-none rounded-lg bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] flex items-center justify-center">
                         <svg className="w-6 h-6 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
-                      </button>
-                    ))}
+                      </div>
+                    ) : (
+                      [0, 1, 2, 3].map((i) => (
+                        <div
+                          key={i}
+                          className="h-20 w-20 sm:h-24 sm:w-24 flex-none rounded-lg bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] flex items-center justify-center"
+                        >
+                          <svg className="w-6 h-6 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                      ))
+                    )}
                   </div>
                 </div>
 
@@ -594,20 +644,30 @@ export default function WoodVeneerPanelDetailTemplate({
         <div className="container mx-auto px-4 sm:px-6">
           <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-8">Related Products</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {relatedProducts.map((rp) => (
+            {relatedWvpProducts.length > 0 ? relatedWvpProducts.map((rp) => (
               <Link
                 key={rp.code}
                 href={rp.href}
                 className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300"
               >
-                <div className={`aspect-square bg-gradient-to-br ${rp.gradient} relative`}>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
-                      <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
-                      </svg>
+                <div className="aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] relative overflow-hidden">
+                  {rp.image ? (
+                    <Image
+                      src={rp.image}
+                      alt={rp.name}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
+                        <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">View Details</span>
                   </div>
@@ -616,11 +676,15 @@ export default function WoodVeneerPanelDetailTemplate({
                   <span className="text-xs text-[#0F6B3A] font-mono">{rp.code}</span>
                   <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1">{rp.name}</h3>
                   <div className="text-xs text-[#6b7280]">
-                    <p>{rp.species} | {rp.cut}</p>
+                    <p>Wood Veneer Panel</p>
                   </div>
                 </div>
               </Link>
-            ))}
+            )) : (
+              <div className="col-span-full text-center py-12 text-[#6b7280]">
+                No related products available.
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -669,7 +733,15 @@ export default function WoodVeneerPanelDetailTemplate({
             <div className="container mx-auto px-4 sm:px-6">
               <div className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 ${section.reverse ? "" : ""}`}>
                 <div className={`w-full md:w-1/2 ${section.reverse ? "order-2 md:order-1" : "order-2 md:order-2"}`}>
-                  <img src={section.image} alt={section.alt} className="w-full h-auto object-contain rounded-2xl" />
+                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB]">
+                    <Image
+                      src={section.image}
+                      alt={section.alt}
+                      fill
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
                 <div className={`flex-1 ${section.reverse ? "order-1 md:order-2" : "order-1 md:order-1"}`}>
                   <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">{section.eyebrow}</p>

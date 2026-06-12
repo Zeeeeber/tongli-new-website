@@ -10,9 +10,11 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return Object.keys(woodVeneerPanelProducts).map((slug) => ({
-    slug,
-  }));
+  return Object.values(woodVeneerPanelProducts)
+    .filter((p) => p.featuredImage && p.featuredImage.length > 0)
+    .map((product) => ({
+      slug: product.slug,
+    }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {

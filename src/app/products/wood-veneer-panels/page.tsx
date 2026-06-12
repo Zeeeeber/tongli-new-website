@@ -1,19 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
+import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
 
-// Wood Veneer Panels products data
-const products = [
-  { slug: "white-oak-veneer-plywood", name: "White Oak Wood Veneer Plywood", code: "WVP-WO-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
-  { slug: "walnut-veneer-plywood", name: "Walnut Wood Veneer Plywood", code: "WVP-WN-001", substrate: "MDF", thickness: "18mm", spec: "1220×2440mm" },
-  { slug: "teak-veneer-plywood", name: "Teak Wood Veneer Plywood", code: "WVP-TE-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
-  { slug: "oak-engineered-veneer-panel", name: "Oak Engineered Veneer Panel", code: "WVP-OE-001", substrate: "Particle Board", thickness: "18mm", spec: "1220×2440mm" },
-  { slug: "cherry-veneer-plywood", name: "Cherry Wood Veneer Plywood", code: "WVP-CH-001", substrate: "Birch Plywood", thickness: "15mm", spec: "1220×2440mm" },
-  { slug: "maple-veneer-plywood", name: "Maple Wood Veneer Plywood", code: "WVP-MA-001", substrate: "MDF", thickness: "18mm", spec: "1220×2440mm" },
-  { slug: "ash-veneer-plywood", name: "Ash Wood Veneer Plywood", code: "WVP-AS-001", substrate: "Birch Plywood", thickness: "18mm", spec: "1220×2440mm" },
-  { slug: "sapele-veneer-plywood", name: "Sapele Wood Veneer Plywood", code: "WVP-SA-001", substrate: "OSB", thickness: "21mm", spec: "1220×2440mm" },
-];
+// Convert object to array for rendering - only products with featuredImage
+const products = Object.values(woodVeneerPanelProducts).filter(
+  (p) => p.featuredImage && p.featuredImage.length > 0
+);
 
 const features = [
   { title: "Multiple Substrates", description: "Plywood, MDF, Particle Board, OSB available", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
@@ -143,39 +138,53 @@ export default function WoodVeneerPanelsPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((product) => (
               <div 
-                key={product.code}
+                key={product.slug}
                 className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300"
               >
                 {/* Product Image */}
-                <div className="aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
-                      <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
+                <Link href={`/products/wood-veneer-panels/${product.slug}`} className="block aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] relative overflow-hidden">
+                  {product.featuredImage ? (
+                    <Image
+                      src={product.featuredImage}
+                      alt={product.imageAlt || product.name}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
+                        <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
+                  )}
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2">
-                    <Link 
-                      href={`/products/wood-veneer-panels/${product.slug}`}
-                      className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm hover:bg-[#F7F3EC]"
-                    >
+                    <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">
                       View Details
-                    </Link>
+                    </span>
                   </div>
-                </div>
+                </Link>
                 
                 {/* Product Info */}
                 <div className="p-4">
                   <span className="text-xs text-[#8B5E3C] font-medium">{product.code}</span>
-                  <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1">
-                    {product.name}
+                  <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-2 leading-snug">
+                    <Link href={`/products/wood-veneer-panels/${product.slug}`} className="hover:text-[#0F6B3A] transition-colors">
+                      {product.name}
+                    </Link>
                   </h3>
-                  <div className="text-xs text-[#6b7280] space-y-1">
-                    <p>{product.substrate}</p>
-                    <p>{product.thickness} | {product.spec}</p>
-                  </div>
+                  {product.tags && product.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {product.tags.slice(0, 3).map((tag) => (
+                        <span key={tag} className="text-[10px] px-2 py-0.5 bg-[#F7F3EC] text-[#8B5E3C] rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
