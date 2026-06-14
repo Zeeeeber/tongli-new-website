@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
+import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-veneer-products";
 
 // Design System
 const C = {
@@ -92,6 +93,17 @@ const allProductsData: ProductCard[] = [
       tags: p.tags.slice(0, 3),
       href: `/products/wood-veneer-panels/${p.slug}`,
     })),
+  // Engineered Wood Veneer — 8 products
+  ...engineeredWoodVeneerProducts.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    category: "Engineered Wood Veneer",
+    categoryId: "engineered-wood-veneer" as CategoryId,
+    description: p.shortDesc,
+    image: p.featuredImage || (p.gallery[0] ?? null),
+    tags: p.tags.slice(0, 3),
+    href: `/products/engineered-wood-veneer/${p.slug}`,
+  })),
 ];
 
 export default function ProductsPage() {
