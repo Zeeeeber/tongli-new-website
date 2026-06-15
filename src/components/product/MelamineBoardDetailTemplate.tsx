@@ -11,34 +11,30 @@ interface MelamineBoardDetailTemplateProps {
   slug: string;
 }
 
-const placeholderRelatedProducts = [0, 1, 2, 3];
+const imageBase = "/images/products/products_melamine boards_detail page";
 
-const defaultApplications = [
-  { name: "Furniture", icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" },
-  { name: "Cabinet Doors", icon: "M4 6h16M4 10h16M4 14h16M4 18h16" },
-  { name: "Wall Panels", icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" },
-  { name: "Architectural Panels", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
-  { name: "Door Faces", icon: "M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" },
-  { name: "Interior Decoration", icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" },
-];
-
-const defaultQualityPackaging = [
-  "Grain consistency sorting before bundling",
-  "Moisture content control (6-10%)",
-  "Thickness tolerance within ±0.05mm",
-  "Flatness inspection and pressing",
-  "Paper interleaving between sheets",
-  "Wooden crate packaging for international shipping",
-  "UV protection and moisture barrier",
-];
-
-const defaultFaqs = [
-  { q: "What payment terms do you accept?", a: "Payment terms: TT in advance (30% of deposit before production and 70% balance before shipment), bank transfer, LC etc. Please note we do EXW/FOB/CNF/CIF/DDU/DDP." },
-  { q: "What is the average lead time?", a: "It depends on the product type and order quantity. Usually we can ship within 7 days for normal orders after receiving full payment. But for large orders, we need about 15 to 20 days." },
-  { q: "Can you supply the relevant documentation?", a: "Yes, we can provide most documentation including Certificate of Origin, Phytosanitary Certificate, Bill of Lading, Commercial Invoice, Packing List, etc." },
-  { q: "What is your main customer group?", a: "Our main customers are fancy plywood wholesalers, furniture factories, door factories, whole-house customization factories, cabinet production enterprises, hotel construction and decoration / real estate decoration, and so on." },
-  { q: "How can we make a deal easily if I have a specific sample in hand?", a: "You send us your sample abroad and tell us your specific requirements. Then we produce a relevant sample according to yours with quotation. And then we send you our sample to your country for your reference and confirmation." },
-];
+const melamineFaqs = [
+  {
+    q: "What payment terms do you accept?",
+    a: "Payment terms: TT in advance (30% of deposit before production and 70% balance before shipment), bank transfer, LC etc. Please note we do EXW/FOB/CNF/CIF/DDU/DDP.",
+  },
+  {
+    q: "What is the average lead time?",
+    a: "It depends on the product type and order quantity. Usually we can ship within 7 days for normal orders after receiving full payment. But for large orders, we need about 15 to 20 days.",
+  },
+  {
+    q: "Can you supply the relevant documentation?",
+    a: "Yes, we can provide most documentation including Certificate of Origin, Phytosanitary Certificate, Bill of Lading, Commercial Invoice, Packing List, etc.",
+  },
+  {
+    q: "What is your main customer group?",
+    a: "Our main customers are fancy plywood wholesalers, furniture factories, door factories, whole-house customization factories, cabinet production enterprises, hotel construction and decoration / real estate decoration, and so on.",
+  },
+  {
+    q: "How can we make a deal easily if I have a specific sample in hand?",
+    a: "You send us your sample abroad and tell us your specific requirements. Then we produce a relevant sample according to yours with quotation. And then we send you our sample to your country for your reference and confirmation.",
+  },
+] as const;
 
 export function MelamineBoardDetailTemplate({
   product,
@@ -59,9 +55,11 @@ export function MelamineBoardDetailTemplate({
 
     return [];
   }, [product.featuredImage, product.gallery]);
+
   const relatedProducts: any[] = useMemo(() => {
     return [];
   }, []);
+
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
   const imageAlt = product.imageAlt || product.name;
@@ -325,7 +323,6 @@ export function MelamineBoardDetailTemplate({
                     </a>
                   </div>
 
-
                   <ContactFormModal isOpen={showContactModal} onClose={() => setShowContactModal(false)} />
                 </div>
               </div>
@@ -381,27 +378,20 @@ export function MelamineBoardDetailTemplate({
                 );
               })
             ) : (
-              placeholderRelatedProducts.map((item) => (
-                <div
-                  key={item}
-                  className="bg-white rounded-xl border border-[#E5E1D8] overflow-hidden"
-                >
-                  <div className="aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
-                        <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="p-4">
-                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">Melamine Board</span>
-                    <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">Related Product</h3>
-                    <p className="text-sm text-[#6b7280] line-clamp-3">More melamine board products will appear here.</p>
-                  </div>
+              <div
+                className="col-span-full bg-white rounded-xl border border-[#E5E1D8] p-12 text-center"
+              >
+                <div className="w-20 h-20 rounded-xl bg-[#F7F3EC] mx-auto flex items-center justify-center mb-4">
+                  <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
+                  </svg>
                 </div>
-              ))
+                <h3 className="font-semibold text-[#1F2621] mb-2">More Melamine Board Options Available</h3>
+                <p className="text-sm text-[#6b7280] mb-4">We offer a full range of melamine boards with different substrates, colors and finishes.</p>
+                <Link href="/products/melamine-board" className="text-[#0F6B3A] font-medium text-sm hover:underline">
+                  View All Melamine Boards &rarr;
+                </Link>
+              </div>
             )}
           </div>
         </div>
@@ -416,19 +406,18 @@ export function MelamineBoardDetailTemplate({
               <table className="w-full min-w-[600px]">
                 <tbody>
                   {[
-                    { label: "Brand Name", value: "TONGLI" },
-                    { label: "Product Name", value: "Natural Wood Veneer, Natural Veneer, Solid Wood Veneer, Real Wood Veneer, Genuine Wood Veneer, Sliced Natural Veneer, Rotary Cut Natural Veneer, Half-Round Natural Veneer, Peeled Natural Veneer, Natural Sliced Wood Veneer, Solid Veneer, Timber Veneer, Natural Plain Veneer, Natural Face Veneer, Natural Thin Veneer, Natural Thick Veneer" },
-                    { label: "Veneer Types", value: "Red Oak / White Oak, Ash, Sapele, Teak, Maple, Cherry, Birch, Black Walnut, Wenge, Elm, etc." },
-                    { label: "Veneer Grain", value: "Mainly C/C (Crown Cut) And Q/C (Quarter Cut)" },
-                    { label: "Length", value: "2.5-3.8m" },
-                    { label: "Width", value: "12-20cm" },
-                    { label: "Thickness", value: "0.15mm-1mm (Mainly 0.4mm-0.45mm)" },
-                    { label: "Veneer Grade", value: "AAA+ / AAA / AA" },
-                    { label: "Usage", value: "Interior Walls, Ceilings, Furniture, Cabinet Doors, Wardrobes, Doors, Partitions, Hotel Decoration, Office Decoration, Home Decoration, Background Walls, Display Shelves, Decorative Lines, Commercial Space Decoration, Villa Decoration, Shopping Mall Decoration" },
-                    { label: "Export Packing", value: "Palletized Packaging, Stretch Film Wrapping, Cardboard Box Packaging" },
-                    { label: "Delivery Time", value: "Normally About 5 to 7 Days, Depends on Quantity and Requirement" },
-                    { label: "Main Customer Group", value: "Wholesalers, Furniture Factories, Door Factories, Whole-House Customization Factories, Cabinet Factories, Hotel Construction and Decoration Projects, Real Estate Decoration Projects" },
-                    { label: "Payment Term", value: "30% by TT as Deposit of Order, 70% by TT Before Loading or 70% by Irrevocable LC at Sight" },
+                    { label: "Brand Name", value: "Tongli" },
+                    { label: "Product Name", value: "Melamine Board, Melamine Faced Board, Melamine Plywood, Melamine MDF, Melamine Particle Board, Decorative Panel Board, Laminated Board, Pre-laminated Panel" },
+                    { label: "Substrate", value: "Plywood, Plain MDF, Moisture-Resistant MDF, Fire-Retardant MDF, Particle Board" },
+                    { label: "Surface Style", value: "Pure Color Melamine, Wood Grain Melamine, High Gloss Melamine, Matte Melamine, UV High-Gloss, Natural Veneer Effect" },
+                    { label: "Size", value: "2440×1220mm (Standard), 2600/2800/3050/3200/3400/3600×1220mm (Extended)" },
+                    { label: "Thickness", value: "3-25mm" },
+                    { label: "Glue", value: "ENF / E0 / E1 / E2 (Mainly E1)" },
+                    { label: "Usage", value: "Furniture, Cabinets, Wardrobes, TV Cabinets, Office Furniture, Drawers, Shelves, Wall Panels, Interior Decoration, Commercial Spaces" },
+                    { label: "Export Packing", value: "Palletized Packaging, Stretch Film Wrapping, Cardboard Box Packaging, Wooden Frame Packaging" },
+                    { label: "Delivery Time", value: "Normally About 5 To 7 Days, It Depends On Quantity And Requirement" },
+                    { label: "Main Customer Group", value: "Wholesalers, Furniture Factories, Cabinet Manufacturers, Distributors, Interior Project Buyers" },
+                    { label: "Payment Term", value: "30% by TT as deposit of order, 70% by TT before loading or 70% by irrevocable LC at sight" },
                   ].map((row, index) => (
                     <tr
                       key={row.label}
@@ -449,19 +438,30 @@ export function MelamineBoardDetailTemplate({
         </div>
       </section>
 
-      {/* Product Detail Content - 8 Sections */}
+      {/* 13 Detail Sections */}
       <div>
-        {/* 01. Banner */}
+        {/* 01. Banner / Production Line */}
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="w-full md:w-1/2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/1.Banner_melamine boards manufacturer.jpg`} alt="Melamine Board Manufacturer" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
               <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">{product.category}</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Natural Wood Veneer Manufacturer</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Supplying natural wood veneer sheets for furniture, doors, panels and interior projects.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies natural wood veneer in a wide range of species, grains, grades and thickness options. From veneer slicing and grading to matching, packing and export delivery, we help furniture manufacturers, door factories, panel producers and interior project buyers source stable and beautiful veneer materials for production.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Melamine Board Manufacturer</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Custom melamine faced boards for furniture, cabinets, wardrobes and interior decoration.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies melamine boards with different substrates, colors, wood grain patterns, surface finishes and sizes. From substrate selection to melamine lamination, cutting, packaging and export loading, we provide one-stop panel solutions for furniture factories, cabinet manufacturers, distributors and interior project buyers.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
-                  {["Natural wood veneer sheets and rolls", "Multiple wood species and grain options", "Custom grade, thickness and matching methods", "Suitable for furniture, doors, panels and decoration projects", "Factory direct supply with export experience"].map((point) => (
+                  {[
+                    "Melamine faced plywood, MDF and particle board",
+                    "Solid color, wood grain and high-gloss designs",
+                    "Custom size, thickness and surface finish options",
+                    "Suitable for furniture, cabinets, wardrobes and wall panels",
+                    "Factory direct supply with export packaging support",
+                  ].map((point) => (
                     <div key={point} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -470,19 +470,7 @@ export function MelamineBoardDetailTemplate({
                     </div>
                   ))}
                 </div>
-                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Veneer Sample</button>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image
-                    src="/images/products/products_natural wood veneer_detail page/1.Banner_wood veneer manufacturer.png"
-                    alt="Natural Wood Veneer Manufacturer"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto"
-                    unoptimized
-                  />
-                </div>
+                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Board Sample</button>
               </div>
             </div>
           </div>
@@ -492,42 +480,19 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/2.natural wood veneer real shots.png" alt="Natural Wood Veneer Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Real Shots</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Real Natural Wood Veneer Sheets for Selection</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Clear grain, natural color variation and real material details before order confirmation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Each natural wood veneer has its own unique grain, color and texture. Our real product photos help customers check veneer appearance, grain direction, sheet quality and color tone before placing orders. Whether you need oak, walnut, ash, teak, eucalyptus or other natural veneer species, we can provide sample photos, catalog references and physical samples for approval.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Furniture surface decoration", "Door skin production", "Veneer plywood lamination", "Wall panel and cabinet manufacturing", "Sample confirmation before bulk order"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                      </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 03. Application */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Applications</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Natural Wood Veneer for High-end Interior Surfaces</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A flexible decorative material for furniture, wall panels, doors and custom interiors.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Natural wood veneer is widely used in furniture, wooden doors, cabinets, wardrobes, wall cladding, hotel interiors and full-house customization projects. It keeps the natural beauty of real wood while offering better material efficiency than solid wood. With different veneer species and matching methods, customers can create warm, elegant and customized interior surfaces.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Real Shots</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Real Melamine Board Photos for Material Confirmation</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Check surface color, gloss, texture and board structure before ordering.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our real product photos show different melamine board finishes, including solid color, wood grain, glossy surface and decorative patterns. Buyers can check surface appearance, edge structure and board quality before mass production. Samples can be arranged for color confirmation, project approval and furniture production testing.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Furniture and cabinet surfaces", "Wooden doors and door skins", "Wall panels and background walls", "Hotel, apartment and commercial interiors", "Wardrobes, closets and customized decoration"].map((item) => (
+                  {[
+                    "Color and surface selection",
+                    "Furniture factory sample approval",
+                    "Cabinet and wardrobe material confirmation",
+                    "Distributor product catalog preparation",
+                    "Bulk order quality reference",
+                  ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -539,29 +504,36 @@ export function MelamineBoardDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/3.natural wood veneer application.png" alt="Natural Wood Veneer Application" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src={`${imageBase}/2.melamine boards real shots.png`} alt="Melamine Board Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 04. Custom Options */}
-        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+        {/* 03. Product Features */}
+        <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
+              <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/4.natural wood veneer custom option-v2.png" alt="Custom Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src={`${imageBase}/3.melamine boards product features .png`} alt="Melamine Board Product Features" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Custom Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Custom Veneer Options for Different Design Requirements</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose the right grain, matching method, grade and thickness for your project.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We support customized natural wood veneer solutions according to your production and design needs. Customers can choose straight grain, crown cut, book match, slip match or mixed match. Different veneer grades and thickness options are also available to match budget, visual effect and processing requirements.</p>
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Product Features</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Durable Surface for Daily Use and Easy Maintenance</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A practical decorative board for furniture and interior manufacturing.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Melamine boards are widely used because of their stable surface performance and cost-effective decorative effect. The melamine surface is easy to clean, resistant to daily stains and suitable for frequent-use furniture surfaces. For specific requirements, moisture-resistant MDF, fire-retardant MDF and other functional substrates can also be selected.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Straight grain and mountain grain options", "Book match, slip match and mixed match", "AAA+, AAA and AA grade selection", "Thin veneer: around 0.15-0.3mm", "Thick veneer: around 0.4mm-1mm", "Custom matching for furniture, doors and panel projects"].map((item) => (
+                  {[
+                    "Easy to clean and maintain",
+                    "Good resistance to daily stains and scratches",
+                    "Stable color and decorative surface",
+                    "Water-resistant surface for daily use",
+                    "UV-resistant and high-gloss options available",
+                    "Fire-retardant substrate available upon request",
+                  ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -569,6 +541,42 @@ export function MelamineBoardDetailTemplate({
                       <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 04. Product Application */}
+        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Applications</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Widely Used in Furniture, Cabinets and Interior Projects</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A flexible panel solution for modern home and commercial spaces.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Melamine boards are commonly used in kitchen cabinets, wardrobes, TV cabinets, office furniture, drawers, shelves, wall panels and other interior decoration projects. With rich color and texture choices, they help manufacturers create consistent, modern and cost-effective furniture products.</p>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {[
+                    "Kitchen cabinets and cabinet doors",
+                    "Wardrobes and closet systems",
+                    "TV cabinets and storage furniture",
+                    "Office furniture and shelving",
+                    "Wall panels and decorative interiors",
+                    "Apartment, hotel and commercial furniture projects",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/4.melamine boards application.png`} alt="Melamine Board Application" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
@@ -581,11 +589,17 @@ export function MelamineBoardDetailTemplate({
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">About Us</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Wood Veneer Supplier Since 1999</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Experienced manufacturer for veneer, veneer panels and decorative wood materials.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in natural wood veneer, engineered veneer, veneer plywood, fancy plywood, UV coated veneer panels and 3D wood panels. With years of production experience and export service, we support global customers with stable material supply, customized processing and professional communication.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Decorative Panel Supplier Since 1999</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Experienced in veneer panels, melamine boards and customized wood-based materials.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in decorative wood-based panels, including melamine boards, veneer plywood, fancy plywood, UV coated panels, natural wood veneer and engineered veneer. With years of manufacturing experience, we support global buyers with stable quality, flexible customization and professional export service.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Established in 1999", "Experienced in wood veneer and veneer panel production", "Factory facilities for veneer processing and lamination", "Support for samples, customization and bulk orders", "Serving furniture, door, panel and interior project customers worldwide"].map((item) => (
+                  {[
+                    "Established in 1999",
+                    "Experienced decorative panel manufacturer",
+                    "Support for substrate, color, size and packaging customization",
+                    "Serving furniture, cabinet, door and interior project customers",
+                    "Export experience for overseas distributors and manufacturers",
+                  ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -597,29 +611,36 @@ export function MelamineBoardDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/5.natural wood veneer_Company Profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src={`${imageBase}/5.melamine boards _Company Profile.png`} alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 06. Customer Feedback */}
+        {/* 06. Related Products */}
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
+              <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/6.natural wood veneer_custom feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src={`${imageBase}/6.melamine boards_related products.png`} alt="Related Products" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Quality, communication and reliable delivery are the foundation of long-term cooperation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Many customers choose us again because of stable veneer quality, clear communication and practical support during sourcing. From sample checking to bulk order delivery, we help buyers confirm wood species, veneer thickness, grain matching, edge banding compatibility and packaging requirements.</p>
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Related Products</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">More Melamine Board Solutions for Different Uses</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose the right substrate according to strength, cost, moisture resistance and application.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We provide a full range of melamine faced boards for different production needs. Customers can choose melamine plywood, melamine MDF, melamine particle board, moisture-resistant MDF and fire-retardant MDF according to the final application and market requirements.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Consistent veneer quality", "Accurate sample confirmation", "Matched veneer and edge banding options", "Clear order communication", "Reliable packaging and delivery", "Support for repeat orders and long-term cooperation"].map((item) => (
+                  {[
+                    "Melamine faced plywood",
+                    "Melamine plain MDF",
+                    "Melamine particle board",
+                    "Melamine moisture-resistant MDF",
+                    "Melamine fire-retardant MDF",
+                    "Custom laminated panels available",
+                  ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -633,17 +654,24 @@ export function MelamineBoardDetailTemplate({
           </div>
         </section>
 
-        {/* 07. Certifications */}
+        {/* 07. Customer Feedback */}
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certified Supplier Support for Global Buyers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Product documents and compliance support for import, project and supplier evaluation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For international buyers, certification and supplier documents are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company qualification documents according to different market and project requirements. This helps customers reduce sourcing risk and complete supplier review more efficiently.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable quality, clear communication and reliable delivery support long-term cooperation.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our customers value stable board quality, accurate sample confirmation and reliable export packaging. From color matching to edge banding compatibility, we help buyers reduce sourcing risks and ensure that the final boards meet their production and market needs.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["SGS-related test reports", "FSC-related documentation", "CE / GMC certificate support", "Company qualification documents", "Export and project approval support"].map((item) => (
+                  {[
+                    "Consistent color and surface finish",
+                    "Good board quality after delivery",
+                    "Matched edge banding options",
+                    "Clear sample and order communication",
+                    "Reliable packaging for export shipment",
+                    "Support for repeat orders and long-term supply",
+                  ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -655,29 +683,35 @@ export function MelamineBoardDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/7.natural wood veneer_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src={`${imageBase}/7.melamine boards_custom feedback.png`} alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 08. Packaging Options */}
+        {/* 08. Certifications */}
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
+              <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/8.natural wood veneer packaging.png" alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src={`${imageBase}/8.melamine boards_Certification.jpg`} alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Safe Packaging for Samples, Small Orders and Bulk Shipments</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Flexible packing methods for different order quantities and shipping needs.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Natural wood veneer needs proper packaging to prevent damage, moisture and bending during transportation. We provide different packaging solutions for sample orders, small orders and bulk shipments. Veneer sheets can be packed in rolls, bundles, cartons, pallets or export containers according to customer requirements.</p>
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certified Supplier Support for Global Buyers</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Product documents and compliance support for purchasing, import and project approval.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For international buyers, supplier qualification and product documentation are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company documents according to different market and project requirements, helping customers complete supplier evaluation more efficiently.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Sample brochure", "Stretch film wrapping", "Roll and bundle packing", "Pallet packaging", "Cardboard box packaging", "Custom export packaging available"].map((item) => (
+                  {[
+                    "SGS-related test reports",
+                    "CE / GMC certificate support",
+                    "FSC-related documentation when required",
+                    "Company qualification documents",
+                    "Export and project approval support",
+                  ].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -685,6 +719,185 @@ export function MelamineBoardDetailTemplate({
                       <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 09. Substrate Options */}
+        <section className="py-10 sm:py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Substrate Options</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Multiple Substrate Options for Different Applications</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Select the right base board for strength, moisture resistance, cost and processing needs.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Melamine boards can be produced with different substrates, including plywood, plain MDF, moisture-resistant MDF, fire-retardant MDF and particle board. Each substrate has different advantages, so buyers can choose according to furniture type, budget, processing method and final application environment.</p>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {[
+                    "Plywood",
+                    "Plain MDF",
+                    "Moisture-resistant MDF",
+                    "Fire-retardant MDF",
+                    "Particle board",
+                    "Custom substrate options available",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/9.melamine boards_substrate_options.png`} alt="Substrate Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 10. Dimension Options */}
+        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="w-full md:w-1/2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/10.melamine boards_dimensions_options.png`} alt="Dimension Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Dimension Options</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Standard and Extended Sizes Available</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Flexible dimensions for furniture production, cabinet manufacturing and project orders.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We support standard and customized melamine board sizes to meet different production needs. The common size is 2440×1220mm, while extended sizes can be supplied for doors, wall panels, wardrobes and special project applications. Thickness and glue options can also be customized according to customer requirements.</p>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {[
+                    "Sample size: 300×200mm",
+                    "Standard size: 2440×1220mm",
+                    "Extended sizes: 2600/2800/3050/3200/3400/3600×1220mm",
+                    "Thickness options: 3–25mm",
+                    "Glue options: ENF / E0 / E1 / E2, mainly E1",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 11. Style Options */}
+        <section className="py-10 sm:py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Style Options</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Rich Melamine Colors and Decorative Styles</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Solid color, wood grain, high-gloss and natural veneer looks for different markets.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Melamine boards offer a wide range of decorative choices for furniture and interior design. Customers can choose pure color, wood grain, high-gloss surface, matte texture or natural veneer effect according to product positioning and market preference. Custom colors and patterns can also be discussed for project or distributor orders.</p>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {[
+                    "Pure color melamine",
+                    "Wood grain melamine",
+                    "High gloss melamine",
+                    "Matte and soft light finish",
+                    "Natural veneer effect",
+                    "More colors and patterns available",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/11.melamine boards_style options .png`} alt="Style Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 12. Surface Treatment Options */}
+        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="w-full md:w-1/2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/12.melamine boards_surface_treatment_option .png`} alt="Surface Treatment Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Surface Treatment Options</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Different Surface Finishes for Different Visual Effects</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose gloss, texture and touch feeling according to your furniture design.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Different surface treatments create different visual effects and user experiences. We can provide glossy, soft light, matte, UV high-gloss and textured finishes. These options help customers match different furniture styles, from modern minimalist cabinets to warm wood grain interiors.</p>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {[
+                    "Glossy finish",
+                    "Soft light finish",
+                    "Matte finish",
+                    "UV high-gloss finish",
+                    "Textured surface",
+                    "Custom finish available upon request",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 13. Packaging Options */}
+        <section className="py-10 sm:py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Export Packaging for Samples, Bulk Orders and Custom Shipments</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Protecting boards during storage, handling and international transportation.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Proper packaging is important for melamine boards because the surface needs to be protected during transportation. We provide sample packaging, bulk loading, custom packaging and wooden frame packaging according to order quantity and shipping requirements. Packaging can be adjusted for distributors, furniture factories and project deliveries.</p>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {[
+                    "Sample packaging",
+                    "Bulk container loading",
+                    "Custom packaging",
+                    "Wooden frame packaging",
+                    "Export pallet support",
+                    "Packaging can be customized according to customer requirements",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div className="w-full md:w-1/2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/13.melamine boards_packaging_option .png`} alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
@@ -700,11 +913,11 @@ export function MelamineBoardDetailTemplate({
               <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-widest mb-2 sm:mb-3">FAQ</p>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
               <div className="w-12 sm:w-16 h-1 bg-[#0F6B3A] mx-auto mt-3 sm:mt-4 rounded-full"></div>
-              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm">Everything you need to know about our natural wood veneer</p>
+              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm">Everything you need to know about our melamine boards</p>
             </div>
 
             <div className="space-y-3">
-              {defaultFaqs.map((faq, index) => (
+              {melamineFaqs.map((faq, index) => (
                 <div
                   key={index}
                   className="group bg-white rounded-2xl border border-[#E5E1D8] overflow-hidden hover:border-[#0F6B3A]/30 transition-all duration-300"
