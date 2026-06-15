@@ -587,7 +587,12 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
+              <div className="w-full md:w-1/2 md:order-1">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/5.melamine boards _Company Profile.png`} alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+              <div className="flex-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">About Us</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Decorative Panel Supplier Since 1999</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Experienced in veneer panels, melamine boards and customized wood-based materials.</p>
@@ -609,11 +614,6 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/5.melamine boards _Company Profile.png`} alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -622,12 +622,7 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/6.melamine boards_related products.png`} alt="Related Products" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1">
+              <div className="flex-1 md:order-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Related Products</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">More Melamine Board Solutions for Different Uses</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose the right substrate according to strength, cost, moisture resistance and application.</p>
@@ -650,6 +645,11 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
+              <div className="w-full md:w-1/2 md:order-2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/6.melamine boards_related products.png`} alt="Related Products" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -658,7 +658,12 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
+              <div className="w-full md:w-1/2 md:order-1">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/7.melamine boards_custom feedback.png`} alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+              <div className="flex-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable quality, clear communication and reliable delivery support long-term cooperation.</p>
@@ -681,11 +686,6 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/7.melamine boards_custom feedback.png`} alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -694,12 +694,7 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/8.melamine boards_Certification.jpg`} alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1">
+              <div className="flex-1 md:order-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certified Supplier Support for Global Buyers</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Product documents and compliance support for purchasing, import and project approval.</p>
@@ -721,6 +716,11 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
+              <div className="w-full md:w-1/2 md:order-2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/8.melamine boards_Certification.jpg`} alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -729,7 +729,12 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
+              <div className="w-full md:w-1/2 md:order-1">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/9.melamine boards_substrate_options.png`} alt="Substrate Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+              <div className="flex-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Substrate Options</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Multiple Substrate Options for Different Applications</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Select the right base board for strength, moisture resistance, cost and processing needs.</p>
@@ -752,11 +757,6 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/9.melamine boards_substrate_options.png`} alt="Substrate Options" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -765,12 +765,7 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/10.melamine boards_dimensions_options.png`} alt="Dimension Options" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1">
+              <div className="flex-1 md:order-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Dimension Options</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Standard and Extended Sizes Available</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Flexible dimensions for furniture production, cabinet manufacturing and project orders.</p>
@@ -792,6 +787,11 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
+              <div className="w-full md:w-1/2 md:order-2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/10.melamine boards_dimensions_options.png`} alt="Dimension Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -800,7 +800,12 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
+              <div className="w-full md:w-1/2 md:order-1">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/11.melamine boards_style options .png`} alt="Style Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+              <div className="flex-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Style Options</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Rich Melamine Colors and Decorative Styles</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Solid color, wood grain, high-gloss and natural veneer looks for different markets.</p>
@@ -823,11 +828,6 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/11.melamine boards_style options .png`} alt="Style Options" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
             </div>
           </div>
         </section>
@@ -836,12 +836,7 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/12.melamine boards_surface_treatment_option .png`} alt="Surface Treatment Options" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1">
+              <div className="flex-1 md:order-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Surface Treatment Options</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Different Surface Finishes for Different Visual Effects</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose gloss, texture and touch feeling according to your furniture design.</p>
@@ -864,6 +859,11 @@ export function MelamineBoardDetailTemplate({
                   ))}
                 </div>
               </div>
+              <div className="w-full md:w-1/2 md:order-2">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/12.melamine boards_surface_treatment_option .png`} alt="Surface Treatment Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -872,7 +872,12 @@ export function MelamineBoardDetailTemplate({
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
+              <div className="w-full md:w-1/2 md:order-1">
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src={`${imageBase}/13.melamine boards_packaging_option .png`} alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
+              </div>
+              <div className="flex-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Export Packaging for Samples, Bulk Orders and Custom Shipments</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Protecting boards during storage, handling and international transportation.</p>
@@ -893,11 +898,6 @@ export function MelamineBoardDetailTemplate({
                       <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
                   ))}
-                </div>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src={`${imageBase}/13.melamine boards_packaging_option .png`} alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
