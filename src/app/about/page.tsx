@@ -950,7 +950,7 @@ export default function AboutPage() {
             {/* Certificate Video - Auto loop like GIF */}
             <div className="flex justify-center">
               <video
-                className="w-full max-w-[75vw] rounded-2xl overflow-hidden shadow-2xl"
+                className="w-full md:max-w-[75vw] rounded-2xl overflow-hidden shadow-2xl"
                 src="/videos/about_certificate.mp4"
                 autoPlay
                 loop

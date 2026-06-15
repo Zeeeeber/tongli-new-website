@@ -442,18 +442,18 @@ export function NaturalWoodVeneerDetailTemplate({
                 <tbody>
                   {[
                     { label: "Brand Name", value: "TONGLI" },
-                    { label: "Product Name", value: "Veneers, Natural Wood Veneer, Rotary Cut Veneers, Face Veneer, Engineered Wood Veneer" },
-                    { label: "Natural Wood Veneer", value: "Red Oak / White Oak, Ash, Sapele, Teak, Maple, Cherry, Birch, Black Walnut, Wenge, Elm, etc." },
+                    { label: "Product Name", value: "Natural Wood Veneer, Natural Veneer, Solid Wood Veneer, Real Wood Veneer, Genuine Wood Veneer, Sliced Natural Veneer, Rotary Cut Natural Veneer, Half-Round Natural Veneer, Peeled Natural Veneer, Natural Sliced Wood Veneer, Solid Veneer, Timber Veneer, Natural Plain Veneer, Natural Face Veneer, Natural Thin Veneer, Natural Thick Veneer" },
+                    { label: "Veneer Types", value: "Red Oak / White Oak, Ash, Sapele, Teak, Maple, Cherry, Birch, Black Walnut, Wenge, Elm, etc." },
                     { label: "Veneer Grain", value: "Mainly C/C (Crown Cut) And Q/C (Quarter Cut)" },
                     { label: "Length", value: "2.5-3.8m" },
                     { label: "Width", value: "12-20cm" },
-                    { label: "Thickness", value: "0.15mm-1mm (mainly 0.4mm-0.45mm)" },
+                    { label: "Thickness", value: "0.15mm-1mm (Mainly 0.4mm-0.45mm)" },
                     { label: "Veneer Grade", value: "AAA+ / AAA / AA" },
-                    { label: "Usage", value: "Interior walls, ceilings, furniture, cabinet doors, wardrobes, doors, partitions, hotel decoration, office decoration, home decoration, background walls, display shelves, decorative lines, commercial space decoration, villa decoration, shopping mall decoration" },
-                    { label: "Export Packing", value: "Palletized packaging, stretch film wrapping, cardboard box packaging" },
-                    { label: "Delivery Time", value: "Normally about 5 to 7 days, depends on quantity and requirement" },
-                    { label: "Main Customer Group", value: "Wholesalers, furniture factories, door factories, whole-house customization factories, cabinet factories, hotel construction and decoration projects, real estate decoration projects" },
-                    { label: "Payment Term", value: "30% by TT as deposit of order, 70% by TT before loading or 70% by irrevocable LC at sight" },
+                    { label: "Usage", value: "Interior Walls, Ceilings, Furniture, Cabinet Doors, Wardrobes, Doors, Partitions, Hotel Decoration, Office Decoration, Home Decoration, Background Walls, Display Shelves, Decorative Lines, Commercial Space Decoration, Villa Decoration, Shopping Mall Decoration" },
+                    { label: "Export Packing", value: "Palletized Packaging, Stretch Film Wrapping, Cardboard Box Packaging" },
+                    { label: "Delivery Time", value: "Normally About 5 to 7 Days, Depends on Quantity and Requirement" },
+                    { label: "Main Customer Group", value: "Wholesalers, Furniture Factories, Door Factories, Whole-House Customization Factories, Cabinet Factories, Hotel Construction and Decoration Projects, Real Estate Decoration Projects" },
+                    { label: "Payment Term", value: "30% by TT as Deposit of Order, 70% by TT Before Loading or 70% by Irrevocable LC at Sight" },
                   ].map((row, index) => (
                     <tr
                       key={row.label}
@@ -498,7 +498,16 @@ export function NaturalWoodVeneerDetailTemplate({
                 <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Veneer Sample</button>
               </div>
               <div className="w-full md:w-1/2">
-                <img src="/images/products/products_natural wood veneer_detail page/1.Banner_wood veneer manufacturer.png" alt="Natural Wood Veneer Manufacturer" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image
+                    src="/images/products/products_natural wood veneer_detail page/1.Banner_wood veneer manufacturer.png"
+                    alt="Natural Wood Veneer Manufacturer"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto"
+                    unoptimized
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -509,7 +518,9 @@ export function NaturalWoodVeneerDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
-                <img src="/images/products/products_natural wood veneer_detail page/2.natural wood veneer real shots.png" alt="Natural Wood Veneer Real Shots" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src="/images/products/products_natural wood veneer_detail page/2.natural wood veneer real shots.png" alt="Natural Wood Veneer Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Real Shots</p>
@@ -552,7 +563,9 @@ export function NaturalWoodVeneerDetailTemplate({
                 </div>
               </div>
               <div className="w-full md:w-1/2">
-                <img src="/images/products/products_natural wood veneer_detail page/3.natural wood veneer application.png" alt="Natural Wood Veneer Application" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src="/images/products/products_natural wood veneer_detail page/3.natural wood veneer application.png" alt="Natural Wood Veneer Application" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
               </div>
             </div>
           </div>
@@ -563,7 +576,9 @@ export function NaturalWoodVeneerDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
-                <img src="/images/products/products_natural wood veneer_detail page/4.natural wood veneer custom option-v2.png" alt="Custom Options" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src="/images/products/products_natural wood veneer_detail page/4.natural wood veneer custom option-v2.png" alt="Custom Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Custom Options</p>
@@ -606,7 +621,9 @@ export function NaturalWoodVeneerDetailTemplate({
                 </div>
               </div>
               <div className="w-full md:w-1/2">
-                <img src="/images/products/products_natural wood veneer_detail page/5.natural wood veneer_Company Profile.png" alt="Company Profile" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src="/images/products/products_natural wood veneer_detail page/5.natural wood veneer_Company Profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
               </div>
             </div>
           </div>
@@ -617,7 +634,9 @@ export function NaturalWoodVeneerDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
-                <img src="/images/products/products_natural wood veneer_detail page/6.natural wood veneer_custom feedback.png" alt="Customer Feedback" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src="/images/products/products_natural wood veneer_detail page/6.natural wood veneer_custom feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
@@ -660,7 +679,9 @@ export function NaturalWoodVeneerDetailTemplate({
                 </div>
               </div>
               <div className="w-full md:w-1/2">
-                <img src="/images/products/products_natural wood veneer_detail page/7..natural wood veneer_Certification.png" alt="Certifications" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src="/images/products/products_natural wood veneer_detail page/7.natural wood veneer_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
               </div>
             </div>
           </div>
@@ -671,7 +692,9 @@ export function NaturalWoodVeneerDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
-                <img src="/images/products/products_natural wood veneer_detail page/8.natural wood veneer packaging.png" alt="Packaging Options" className="w-full h-auto object-contain" />
+                <div className="w-full rounded-2xl overflow-hidden">
+                  <Image src="/images/products/products_natural wood veneer_detail page/8.natural wood veneer packaging.png" alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging</p>

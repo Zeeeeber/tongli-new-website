@@ -517,7 +517,7 @@ export default function WoodVeneerPanelDetailTemplate({
                         alt={product.imageAlt || product.name}
                         fill
                         sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="object-contain"
+                        className="object-cover"
                         priority
                       />
                     ) : product.featuredImage ? (
@@ -526,7 +526,7 @@ export default function WoodVeneerPanelDetailTemplate({
                         alt={product.imageAlt || product.name}
                         fill
                         sizes="(min-width: 1024px) 50vw, 100vw"
-                        className="object-contain"
+                        className="object-cover"
                         priority
                       />
                     ) : (
@@ -733,13 +733,14 @@ export default function WoodVeneerPanelDetailTemplate({
             <div className="container mx-auto px-4 sm:px-6">
               <div className={`flex flex-col md:flex-row items-center gap-8 md:gap-16 ${section.reverse ? "" : ""}`}>
                 <div className={`w-full md:w-1/2 ${section.reverse ? "order-2 md:order-1" : "order-2 md:order-2"}`}>
-                  <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB]">
+                  <div className="w-full rounded-2xl overflow-hidden">
                     <Image
                       src={section.image}
                       alt={section.alt}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-contain"
+                      width={800}
+                      height={600}
+                      className="w-full h-auto"
+                      unoptimized
                     />
                   </div>
                 </div>
