@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 
 export default function SupportingBoardsPage() {
   return (

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 
 export const metadata = {
   title: "Veneer Edge Banding | Wood Veneer Edge Strips | Tongli Timber",
