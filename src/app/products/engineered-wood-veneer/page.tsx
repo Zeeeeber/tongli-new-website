@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import Link from "next/link";
 import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-veneer-products";

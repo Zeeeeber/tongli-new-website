@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import { useState } from "react";
 import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
