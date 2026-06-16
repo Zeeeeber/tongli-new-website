@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 
 export default function MelamineBoardPage() {
