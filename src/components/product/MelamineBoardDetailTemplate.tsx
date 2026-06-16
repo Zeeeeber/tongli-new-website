@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
+import { melamineBoardProducts, type MelamineBoardProduct } from "@/data/products/melamine-board-products";
 
 interface MelamineBoardDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
@@ -56,9 +57,11 @@ export function MelamineBoardDetailTemplate({
     return [];
   }, [product.featuredImage, product.gallery]);
 
-  const relatedProducts: any[] = useMemo(() => {
-    return [];
-  }, []);
+  const relatedProducts: MelamineBoardProduct[] = useMemo(() => {
+    return melamineBoardProducts
+      .filter((p) => p.slug !== slug)
+      .slice(0, 4);
+  }, [slug]);
 
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
@@ -339,7 +342,7 @@ export function MelamineBoardDetailTemplate({
             {relatedProducts.length > 0 ? (
               relatedProducts.map((relatedProduct) => {
                 const relatedImage = relatedProduct.featuredImage || relatedProduct.gallery[0] || null;
-                const relatedLabel = relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Melamine Board";
+                const relatedLabel = relatedProduct.specs?.coreMaterial || relatedProduct.tags[0] || "Melamine Board";
 
                 return (
                   <Link

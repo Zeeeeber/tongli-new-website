@@ -6,6 +6,7 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
 import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-veneer-products";
+import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 
 // Design System
 const C = {
@@ -103,6 +104,17 @@ const allProductsData: ProductCard[] = [
     image: p.featuredImage || (p.gallery[0] ?? null),
     tags: p.tags.slice(0, 3),
     href: `/products/engineered-wood-veneer/${p.slug}`,
+  })),
+  // Melamine Board — 5 products
+  ...melamineBoardProducts.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    category: "Melamine Board",
+    categoryId: "melamine-board" as CategoryId,
+    description: p.shortDesc,
+    image: p.featuredImage || (p.gallery[0] ?? null),
+    tags: p.tags.slice(0, 3),
+    href: `/products/melamine-board/${p.slug}`,
   })),
 ];
 
