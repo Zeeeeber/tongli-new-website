@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 import { NaturalWoodVeneerCategoryClient } from "@/components/product/NaturalWoodVeneerCategoryClient";
 import { createPageMetadata } from "@/lib/seo/metadata";
+import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Natural Wood Veneer",
@@ -30,35 +30,11 @@ export default function NaturalWoodVeneerPage() {
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative bg-gradient-to-r from-[#8B5E3C] to-[#6B4A2C] py-16 lg:py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Product Category</span>
-              <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">Natural Wood Veneer</h1>
-              <p className="text-white/80 text-lg leading-relaxed mb-8">
-                Authentic wood veneer sheets with natural grain patterns, organic textures, and unique color variations. Sourced from over 80 wood species worldwide.
-              </p>
-              <div className="flex gap-4">
-                <Link href="/collections/natural-wood-veneer" className="px-6 py-3 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">
-                  View Collections
-                </Link>
-                <Link href="/contact?type=sample" className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">
-                  Request Samples
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <div className="grid grid-cols-3 gap-3">
-                {["#D4A574", "#C49A6C", "#B8956F", "#A67B5B", "#8B6914", "#704214"].map((color, i) => (
-                  <div key={i} className="aspect-square rounded-xl shadow-lg" style={{ backgroundColor: color }} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Banner */}
+      <ProductCategoryBanner
+        title="Natural Wood Veneer"
+        image="/images/products-page-banners/natural-wood-veneer.jpg"
+      />
 
       {/* Category Introduction */}
       <section className="py-12 bg-white">

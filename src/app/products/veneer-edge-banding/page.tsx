@@ -25,19 +25,11 @@ export default function VeneerEdgeBandingPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#8B5E3C] to-[#6B4A2C] py-16 lg:py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Product Category</span>
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">Veneer Edge Banding</h1>
-            <p className="text-white/80 text-lg leading-relaxed">
-              Premium veneer edge banding strips matching our wood veneer panels. Available in various wood species, 
-              thicknesses, and widths to meet your furniture and cabinet production needs.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Hero Banner */}
+      <ProductCategoryBanner
+        title="Veneer Edge Banding"
+        image="/images/products-page-banners/veneer-edge-banding.jpg"
+      />
 
       {/* Info Section */}
       <section className="py-16 lg:py-20 bg-white">

@@ -26,18 +26,11 @@ export default function MelamineBoardPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#6B4A2C] to-[#8B5E3C] py-16 lg:py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Product Category</span>
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">Melamine Board</h1>
-            <p className="text-white/80 text-lg leading-relaxed">
-              High-quality melamine faced boards with a wide selection of substrates, colors, wood grain patterns, and surface finishes. Ideal for furniture manufacturing, cabinet production, and interior decoration projects.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Hero Banner */}
+      <ProductCategoryBanner
+        title="Melamine Board"
+        image="/images/products-page-banners/melamine-board.jpg"
+      />
 
       {/* Product Grid */}
       <section className="py-16 bg-white">

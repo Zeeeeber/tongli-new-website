@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Image from "next/image";
+import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import Link from "next/link";
 import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-veneer-products";
 
@@ -26,35 +26,11 @@ export default function EngineeredWoodVeneerPage() {
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative bg-gradient-to-r from-[#0F6B3A] to-[#124B34] py-16 lg:py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Product Category</span>
-              <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">Engineered Wood Veneer</h1>
-              <p className="text-white/80 text-lg leading-relaxed mb-8">
-                Reconstituted veneer with 300+ consistent patterns, stable colors, and uniform textures. Perfect for large-scale production requiring batch-to-batch consistency.
-              </p>
-              <div className="flex gap-4 flex-wrap">
-                <Link href="/contact?type=sample" className="px-6 py-3 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">
-                  Request Samples
-                </Link>
-                <Link href="/contact" className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">
-                  Contact Us
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:flex items-center justify-center">
-              <div className="grid grid-cols-3 gap-3 max-w-sm">
-                {["#654321", "#8B7355", "#A0826D", "#C4A77D", "#E8D4B8", "#D4B896"].map((color, i) => (
-                  <div key={i} className="aspect-square rounded-xl shadow-lg" style={{ backgroundColor: color }} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Banner */}
+      <ProductCategoryBanner
+        title="Engineered Wood Veneer"
+        image="/images/products-page-banners/engineered-wood-veneer.jpg"
+      />
 
       {/* Product Grid */}
       <section className="py-16 bg-white">

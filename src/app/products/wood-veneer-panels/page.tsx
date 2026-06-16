@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import { useState } from "react";
 import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
 
@@ -47,44 +47,11 @@ export default function WoodVeneerPanelsPage() {
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative bg-gradient-to-r from-[#0F6B3A] to-[#124B34] py-16 lg:py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Product Category</span>
-              <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">Wood Veneer Panels</h1>
-              <p className="text-white/80 text-lg leading-relaxed mb-8">
-                Premium wood veneer panels combining natural or engineered veneer faces with quality substrates. Ideal for furniture, doors, cabinets, wall panels, and interior applications.
-              </p>
-              <div className="flex gap-4">
-                <Link 
-                  href="#products" 
-                  className="px-6 py-3 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
-                >
-                  View Products
-                </Link>
-                <Link 
-                  href="/contact?type=sample" 
-                  className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
-                >
-                  Request Samples
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-square bg-white/10 rounded-2xl backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-white/40 text-sm">Veneer Panel</span>
-                </div>
-                <div className="aspect-square bg-white/10 rounded-2xl backdrop-blur-sm flex items-center justify-center mt-8">
-                  <span className="text-white/40 text-sm">Cross Section</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Banner */}
+      <ProductCategoryBanner
+        title="Wood Veneer Panels"
+        image="/images/products-page-banners/wood-veneer-panels.jpg"
+      />
 
       {/* Category Introduction */}
       <section className="py-12 bg-white">

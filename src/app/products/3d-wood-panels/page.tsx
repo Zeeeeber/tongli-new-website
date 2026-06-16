@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import Link from "next/link";
 import { FAQSection } from "@/components/product/FAQSection";
 
@@ -58,38 +59,11 @@ export default function ThreeDWoodPanelsPage() {
         </div>
       </div>
 
-      {/* hero */}
-      <section className="relative bg-gradient-to-r from-[#4C8A68] to-[#0F6B3A] py-16 lg:py-20">
-        <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Product Category</span>
-              <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">3D Wood Panels</h1>
-              <p className="text-white/80 text-lg leading-relaxed mb-8">
-                Decorative carved solid wood panels featuring distinctive 3D textures. Add depth and visual interest to walls, doors, ceilings, and furniture surfaces.
-              </p>
-              <div className="flex gap-4">
-                <Link href="#products" className="px-6 py-3 bg-white rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors" style={{ color: accentColor }}>
-                  View Products
-                </Link>
-                <Link href="/contact?type=sample" className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">
-                  Request Samples
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="aspect-square bg-white/10 rounded-2xl backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-white/40 text-sm">3D Pattern</span>
-                </div>
-                <div className="aspect-square bg-white/10 rounded-2xl backdrop-blur-sm flex items-center justify-center mt-8">
-                  <span className="text-white/40 text-sm">Wall Application</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Banner */}
+      <ProductCategoryBanner
+        title="3D Wood Panels"
+        image="/images/products-page-banners/3d-wood-panels.jpg"
+      />
 
       {/* Category Introduction */}
       <section className="py-12 bg-white">

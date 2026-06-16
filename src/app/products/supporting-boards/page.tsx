@@ -20,19 +20,11 @@ export default function SupportingBoardsPage() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#5C6B5E] to-[#4A5A4D] py-16 lg:py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Product Category</span>
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">Supporting Boards</h1>
-            <p className="text-white/80 text-lg leading-relaxed">
-              High-quality substrate boards for veneer lamination and construction. 
-              Available in Plywood, MDF, Particle Board, and OSB to meet various project requirements.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Hero Banner */}
+      <ProductCategoryBanner
+        title="Supporting Boards"
+        image="/images/products-page-banners/supporting-boards.jpg"
+      />
 
       {/* Board Types */}
       <section className="py-16 lg:py-20 bg-white">
