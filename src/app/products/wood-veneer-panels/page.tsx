@@ -10,13 +10,6 @@ const products = Object.values(woodVeneerPanelProducts).filter(
   (p) => p.featuredImage && p.featuredImage.length > 0
 );
 
-const features = [
-  { title: "Multiple Substrates", description: "Plywood, MDF, Particle Board, OSB available", icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" },
-  { title: "Custom Sizes", description: "Standard and custom dimensions available", icon: "M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" },
-  { title: "Various Finishes", description: "Sand, UV Lacquer, PU, Melamine", icon: "M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" },
-  { title: "E0/E1 Grades", description: "Environmental compliance for indoor use", icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" },
-];
-
 const applications = [
   { name: "Furniture", icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" },
   { name: "Doors", icon: "M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" },
@@ -101,28 +94,6 @@ export default function WoodVeneerPanelsPage() {
             <p className="text-[#6b7280] leading-relaxed">
               Wood veneer panels are manufactured by laminating natural or engineered wood veneer onto various substrates including plywood, MDF, particle board, and OSB. This combination provides the aesthetic beauty of real wood with the structural stability and cost-effectiveness of engineered panels.
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Key Features */}
-      <section className="py-16 bg-[#FDFBF7]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Key Features</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {features.map((feature) => (
-              <div key={feature.title} className="bg-white rounded-xl p-6 border border-[#E5E1D8] text-center">
-                <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-[#0F6B3A]/10 flex items-center justify-center">
-                  <svg className="w-7 h-7 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={feature.icon} />
-                  </svg>
-                </div>
-                <h3 className="font-semibold text-[#1F2621] mb-2">{feature.title}</h3>
-                <p className="text-sm text-[#6b7280]">{feature.description}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
