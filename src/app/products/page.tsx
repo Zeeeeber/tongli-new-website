@@ -184,7 +184,7 @@ export default function ProductsPage() {
           >
             <source src="/videos/banner-hero.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 z-10 bg-black/10" />
+          <div className="absolute inset-0 z-10" />
         </div>
 
         <div className="absolute inset-y-0 right-0 z-20 hidden md:flex items-center"

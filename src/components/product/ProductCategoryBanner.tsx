@@ -10,7 +10,7 @@ export function ProductCategoryBanner({
   image,
 }: ProductCategoryBannerProps) {
   return (
-    <section className="relative w-full overflow-hidden bg-[#1a1a1a]">
+    <section className="relative w-full overflow-hidden">
       <Image
         src={image}
         alt={title}
@@ -19,9 +19,6 @@ export function ProductCategoryBanner({
         priority
         className="block w-full h-auto"
       />
-
-      {/* Dark overlay — does NOT affect image dimensions */}
-      <div className="absolute inset-0 bg-black/30" />
 
       {/* Title centered */}
       <div className="absolute inset-0 flex items-center justify-center">
