@@ -161,7 +161,7 @@ export default function ProductsPage() {
     <>
 
       {/* Hero Banner - Video Background */}
-      <section className="relative h-[60vh] min-h-[480px] md:min-h-screen overflow-hidden">
+      <section className="relative h-[517px] overflow-hidden">
         <div className="absolute inset-0 z-0">
           {videoError && (
             <div
