@@ -15,6 +15,23 @@ export default function VeneerEdgeBandingPage() {
         image="/images/products-page-banners/veneer-edge-banding.jpg"
       />
 
+      {/* Breadcrumb */}
+      <div className="bg-[#F7F3EC] py-4">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center gap-2 text-sm text-[#6b7280]">
+            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            <Link href="/products" className="hover:text-[#0F6B3A]">Products</Link>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+            <span className="text-[#1F2621] font-medium">Veneer Edge Banding</span>
+          </div>
+        </div>
+      </div>
+
       {/* Info Section */}
       <section className="py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-6">
