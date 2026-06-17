@@ -7,7 +7,7 @@ type ProductCategoryBannerProps = {
 
 export function ProductCategoryBanner({ title, image }: ProductCategoryBannerProps) {
   return (
-    <section className="relative h-[280px] md:h-[420px] overflow-hidden">
+    <section className="relative h-[517px] overflow-hidden">
       <Image
         src={image}
         alt={title}
