@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 import { NaturalWoodVeneerCategoryClient } from "@/components/product/NaturalWoodVeneerCategoryClient";
