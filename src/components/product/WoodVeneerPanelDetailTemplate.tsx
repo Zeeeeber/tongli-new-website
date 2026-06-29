@@ -109,7 +109,7 @@ const detailedSpecificationRows = [
     value: "4x8ft, 4x9ft, 4x10ft, 4x11ft, 4x12ft / 2440x1220mm, 2600x1220mm, 2800x1220mm, 3050x1220mm, 3200x1220mm, 3400x1220mm, 3600x1220mm",
   },
   { label: "Thickness", value: "2.5mm / 3.0mm / 3.6mm / 5mm / 9mm / 12mm / 15mm / 18mm / 25mm" },
-  { label: "Surface Finish", value: "AAA+ / AAA / AA" },
+  { label: "Surface Finish", value: "Closed Paint / Open Paint / Semi-open Paint / Water-based Paint Finishes" },
   { label: "Moisture", value: "7-12% (depends on the thickness)" },
   { label: "Formaldehyde Emission Grade", value: "ENF / E0 / E1 / P1 / P2" },
   {
