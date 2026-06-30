@@ -1,23 +1,14 @@
 import { Metadata } from "next";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
+import Image from "next/image";
 import Link from "next/link";
 import { FAQSection } from "@/components/product/FAQSection";
+import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-products";
 
 export const metadata: Metadata = {
   title: "3D Wood Panels | Decorative Carved Wood Panels | Tongli Timber",
   description: "Decorative carved solid wood panels featuring distinctive 3D textures. Add depth and visual interest to walls, doors, ceilings, and furniture surfaces.",
 };
-
-const products = [
-  { name: "Wave Pattern Panel", code: "3D-WP-001", pattern: "Wave", size: "1220×2440mm", thickness: "18mm" },
-  { name: "Bamboo Weave Panel", code: "3D-BW-001", pattern: "Bamboo", size: "1220×2440mm", thickness: "15mm" },
-  { name: "Diamond Pattern Panel", code: "3D-DP-001", pattern: "Diamond", size: "1220×2440mm", thickness: "18mm" },
-  { name: "Hexagon Honeycomb", code: "3D-HH-001", pattern: "Hexagon", size: "1220×2440mm", thickness: "12mm" },
-  { name: "Classic Flute Panel", code: "3D-CF-001", pattern: "Flute", size: "1220×2440mm", thickness: "18mm" },
-  { name: "Geometric Grid", code: "3D-GG-001", pattern: "Grid", size: "1220×2440mm", thickness: "15mm" },
-  { name: "Woven Texture Panel", code: "3D-WT-001", pattern: "Woven", size: "1220×2440mm", thickness: "18mm" },
-  { name: "Linear Slat Panel", code: "3D-LS-001", pattern: "Slat", size: "1220×2440mm", thickness: "12mm" },
-];
 
 const features = [
   { title: "Custom Patterns", description: "Over 50 unique 3D patterns available", icon: "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" },
@@ -107,33 +98,60 @@ export default function ThreeDWoodPanelsPage() {
       <section id="products" className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Popular Patterns</h2>
-            <p className="text-[#6b7280] mt-4">Explore our 3D wood panel collection</p>
+            <h2 className="text-3xl font-bold text-[#1F2621]">3D Wood Panel Collection</h2>
+            <p className="text-[#6b7280] mt-4">
+              Showing <span className="font-medium text-[#1F2621]">{threeDWoodPanelsProducts.length}</span> products in 3D Wood Panels
+            </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product) => (
-              <div key={product.code} className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#4C8A68]/30 hover:shadow-lg transition-all duration-300">
-                <div className="aspect-square bg-gradient-to-br from-[#C4A77D] to-[#A68B5B] relative">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
-                      <svg className="w-10 h-10" style={{ color: `${accentColor}4D` }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
+            {threeDWoodPanelsProducts.map((product) => (
+              <div
+                key={product.slug}
+                className="group bg-white rounded-xl border border-[#E5E1D8] overflow-hidden hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300"
+              >
+                <Link
+                  href={`/products/3d-wood-panels/${product.slug}`}
+                  className="block aspect-square bg-gradient-to-br from-[#F7F3EC] to-[#E8E4DB] relative overflow-hidden"
+                >
+                  {product.featuredImage ? (
+                    <Image
+                      src={product.featuredImage}
+                      alt={product.imageAlt || product.name}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-xl bg-white/60 backdrop-blur-sm flex items-center justify-center">
+                        <svg className="w-10 h-10 text-[#8B5E3C]/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
                     </div>
+                  )}
+                  <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">
+                      View Details
+                    </span>
                   </div>
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" style={{ backgroundColor: `${accentColor}E6` }}>
-                    <button className="px-4 py-2 bg-white rounded-lg font-medium text-sm" style={{ color: accentColor }}>
-                      Request Sample
-                    </button>
-                  </div>
-                </div>
+                </Link>
                 <div className="p-4">
-                  <span className="text-xs font-mono" style={{ color: accentColor }}>{product.code}</span>
-                  <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1">{product.name}</h3>
-                  <div className="text-xs text-[#6b7280] space-y-1">
-                    <p>{product.pattern} Pattern</p>
-                    <p>{product.size} | {product.thickness}</p>
-                  </div>
+                  <span className="text-xs text-[#8B5E3C] font-medium">{product.code}</span>
+                  <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-2 leading-snug">
+                    <Link href={`/products/3d-wood-panels/${product.slug}`} className="hover:text-[#0F6B3A] transition-colors">
+                      {product.name}
+                    </Link>
+                  </h3>
+                  {product.tags && product.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1">
+                      {product.tags.slice(0, 3).map((tag) => (
+                        <span key={tag} className="text-[10px] px-2 py-0.5 bg-[#F7F3EC] text-[#8B5E3C] rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

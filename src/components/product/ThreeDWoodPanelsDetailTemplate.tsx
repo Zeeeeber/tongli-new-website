@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
+import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-products";
 
 interface ThreeDWoodPanelsDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
@@ -89,8 +90,18 @@ export function ThreeDWoodPanelsDetailTemplate({
     return [];
   }, [product.featuredImage, product.gallery]);
   const relatedProducts = useMemo((): NaturalWoodVeneerProduct[] => {
-    return [];
-  }, []);
+    const idx = threeDWoodPanelsProducts.findIndex((p) => p.slug === product.slug);
+    if (idx === -1) {
+      return threeDWoodPanelsProducts.slice(0, 4) as unknown as NaturalWoodVeneerProduct[];
+    }
+    const ordered: typeof threeDWoodPanelsProducts = [];
+    const total = threeDWoodPanelsProducts.length;
+    for (let offset = 1; offset < total && ordered.length < 4; offset++) {
+      const candidate = threeDWoodPanelsProducts[(idx + offset) % total];
+      ordered.push(candidate);
+    }
+    return ordered as unknown as NaturalWoodVeneerProduct[];
+  }, [product.slug]);
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
   const imageAlt = product.imageAlt || product.name;
