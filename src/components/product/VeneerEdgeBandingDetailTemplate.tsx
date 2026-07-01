@@ -433,19 +433,54 @@ export function VeneerEdgeBandingDetailTemplate({
                 <tbody>
                   {[
                     { label: "Brand Name", value: "TONGLI" },
-                    { label: "Product Name", value: "Wood Decorative Panel/Wood Decorative Board/Wall Cladding Panel/Wood Paneling Interior/Decorative Wall Covering Panels/3D Wood Panel" },
-                    { label: "Solid Wood Types", value: "Black Walnut/White Oak/Red Oak/Olive Wood/Carbonized wood etc." },
-                    { label: "Substrate Types", value: "Plain MDF/Moisture-resistant MDF/Flame Retardant MDF/Black MDF/Blockboard/Commercial Plywood/Marine Plywood/Flame Retardant Plywood" },
-                    { label: "Dimension", value: "4x8ft, 4x9ft, 4x10ft, 4x11ft, 4x12ft / 2440x1220mm, 2600x1220mm, 2800x1220mm, 3050x1220mm, 3200x1220mm, 3400x1220mm, 3600x1220mm" },
-                    { label: "Standard Thickness", value: "12mm+5mm/Can Be Customized" },
-                    { label: "Surface Finish", value: "Wax Oil/Closed Paint/Open Paint/Semi-open Paint/Water-based Paint Finishes" },
-                    { label: "Substrate Moisture", value: "7-12%(depends on the thickness)" },
-                    { label: "Formaldehyde Emission Grade", value: "ENF/E0/E1/P1/P2" },
-                    { label: "Usage", value: "Interior walls, ceilings, furniture, cabinet doors, wardrobes, doors, partitions, hotel decoration, office decoration, home decoration, background walls, display shelves, decorative lines, commercial space decoration, villa decoration, shopping mall decoration" },
-                    { label: "Kinds of export packing", value: "Wooden frame packaging,in bulk, custom packaging." },
-                    { label: "Delivery time", value: "Normally about 10 to 25 days, it depends on quantity and requirement." },
-                    { label: "Main customer group", value: "Wholesalers, furniture factories, door factories, whole-house customization factories, cabinet factories, hotel construction and decoration projects, real estate decoration projects" },
-                    { label: "Payment term", value: "30% by TT as deposit of order, 70% by TT before loading or 70% by irrevocable LC at sight" },
+                    {
+                      label: "Product Name",
+                      value:
+                        "Solid Wood Edge Banding / Solid Wood Edge Tape / Solid Wood Edging Strip / Wood Edge Banding / Natural Wood Edge Banding / Hardwood Edge Banding / Real Wood Edge Banding / Solid Timber Edge Banding / Wooden Edge Banding Strip / Solid Wood Veneer Edge Banding",
+                    },
+                    {
+                      label: "Edge Banding Types",
+                      value:
+                        "Natural Wood Veneer Edge Banding/Engineered Wood Veneer Edge Banding/PVC Edge Banding",
+                    },
+                    { label: "Length", value: "100 or 200 meters per roll" },
+                    {
+                      label: "Thickness",
+                      value:
+                        "0.15mm-1mm mainly 0.4mm-0.45mm/Can Be Customized",
+                    },
+                    { label: "Width", value: "10mm-400mm" },
+                    { label: "Veneer Grade", value: "AAA+/AAA/AA" },
+                    {
+                      label: "Surface Finish",
+                      value:
+                        "Closed Paint/Open Paint/Semi-open Paint/Water-based Paint Finishes",
+                    },
+                    {
+                      label: "Usage",
+                      value:
+                        "Furniture Edging/Cabinet Edge Finishing/Wardrobe Edge Sealing/Door Panel Edging/Shelf Edge Protection/Tabletop Edge Banding/Drawer Edge Finishing/Office Furniture Edging/Decorative Panel Edge Sealing/Interior Wood Panel Finishing",
+                    },
+                    {
+                      label: "Kinds of export packing",
+                      value:
+                        "Palletized Packaging, Stretch Film Wrapping, Cardboard Box Packaging",
+                    },
+                    {
+                      label: "Delivery time",
+                      value:
+                        "Normally about 10 to 25 days, it depends on quantity and requirement.",
+                    },
+                    {
+                      label: "Main customer group",
+                      value:
+                        "Wholesalers, furniture factories, door factories, whole-house customization factories, cabinet factories, hotel construction and decoration projects, real estate decoration projects",
+                    },
+                    {
+                      label: "Payment term",
+                      value:
+                        "30% by TT as deposit of order, 70% by TT before loading or 70% by irrevocable LC at sight",
+                    },
                   ].map((row, index) => (
                     <tr
                       key={row.label}
