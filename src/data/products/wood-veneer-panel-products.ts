@@ -139,12 +139,12 @@ Sample consultation and custom specifications are available for project requirem
     },
     seoTitle: "Bird's Eye Maple Veneer Plywood | Decorative Wood Veneer Panel",
     metaDescription: "Bird's eye maple veneer plywood with distinctive figure for furniture, cabinet doors, wall panels and high-end interior decoration.",
-    featuredImage: "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-01.jpg",
+    featuredImage: "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-01.png",
     gallery: [
-      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-01.jpg",
-      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-02.jpg",
-      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-03.jpg",
-      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-04.jpg",
+      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-01.png",
+      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-02.png",
+      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-03.png",
+      "/images/products/wood-veneer-panels/birds-eye-maple-veneer-plywood/image-04.png",
     ],
     imageAlt: "Bird's Eye Maple Veneer Plywood panel with distinctive bird's eye figure",
     overview: `Bird's eye maple veneer plywood features one of nature's most distinctive and eye-catching wood figures. The small, swirling eye-like patterns created by irregular grain growth make this veneer highly prized for premium furniture, cabinet doors, and decorative wall panels.
