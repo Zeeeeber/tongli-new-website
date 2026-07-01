@@ -8,6 +8,7 @@ import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-produ
 import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-veneer-products";
 import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-products";
+import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 
 // Design System
 const C = {
@@ -127,6 +128,17 @@ const allProductsData: ProductCard[] = [
     image: p.featuredImage || (p.gallery[0] ?? null),
     tags: p.tags.slice(0, 3),
     href: `/products/3d-wood-panels/${p.slug}`,
+  })),
+  // Veneer Edge Banding — 19 products
+  ...veneerEdgeBandingProducts.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    category: "Veneer Edge Banding",
+    categoryId: "veneer-edge-banding" as CategoryId,
+    description: p.shortDesc,
+    image: p.featuredImage || (p.gallery[0] ?? null),
+    tags: p.tags.slice(0, 3),
+    href: `/products/veneer-edge-banding/${p.slug}`,
   })),
 ];
 

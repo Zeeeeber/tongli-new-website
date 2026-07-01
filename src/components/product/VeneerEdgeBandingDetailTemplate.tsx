@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
+import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 
 interface VeneerEdgeBandingDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
@@ -89,8 +90,11 @@ export function VeneerEdgeBandingDetailTemplate({
     return [];
   }, [product.featuredImage, product.gallery]);
   const relatedProducts = useMemo((): NaturalWoodVeneerProduct[] => {
-    return [];
-  }, []);
+    return veneerEdgeBandingProducts
+      .filter((p) => p.slug !== slug)
+      .slice(0, 4)
+      .map((p) => p as unknown as NaturalWoodVeneerProduct);
+  }, [slug]);
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
   const imageAlt = product.imageAlt || product.name;
