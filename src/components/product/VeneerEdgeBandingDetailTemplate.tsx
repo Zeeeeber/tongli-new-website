@@ -462,249 +462,306 @@ export function VeneerEdgeBandingDetailTemplate({
         </div>
       </section>
 
-      {/* Product Detail Content - 8 Sections */}
-      <div>
-        {/* 01. Banner */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">{product.category}</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Veneer Edge Banding Manufacturer</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Supplying veneer edge banding for furniture, cabinets, panels and interior projects.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies veneer edge banding in a wide range of species, grains, grades and thickness options. From veneer slicing and grading to matching, packing and export delivery, we help furniture manufacturers, door factories, panel producers and interior project buyers source stable and beautiful edge banding materials for production.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
-                  {["Veneer edge banding sheets and rolls", "Multiple wood species and grain options", "Custom grade, thickness and matching methods", "Suitable for furniture, doors, panels and decoration projects", "Factory direct supply with export experience"].map((point) => (
-                    <div key={point} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+            {/* Product Detail Content - 10 Sections */}
+            <div>
+              {/* 01. Banner */}
+              <section className="py-10 sm:py-16 bg-white">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="flex-1">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">{product.category}</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Veneer Edge Banding Manufacturer</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Real wood veneer edge banding for furniture, doors, cabinets and decorative panels.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies natural wood veneer edge banding for furniture manufacturers, door factories, cabinet producers and wood panel distributors. Our edge banding can be matched with veneer plywood, wood veneer panels, melamine boards and other decorative panels, helping customers achieve a consistent wood grain effect from panel surface to edge detail.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
+                        {["Natural wood veneer edge banding", "Matched with veneer panels and decorative boards", "Flexible rolls for manual or machine application", "Multiple wood species, colors and thickness options", "Suitable for furniture, doors, cabinets and interior panels"].map((point) => (
+                          <div key={point} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{point}</span>
+                          </div>
+                        ))}
                       </div>
-                      <span className="text-sm text-[#6b7280]">{point}</span>
+                      <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Sample</button>
                     </div>
-                  ))}
-                </div>
-                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Sample</button>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image
-                    src="/images/products/products_natural wood veneer_detail page/1.Banner_wood veneer manufacturer.png"
-                    alt="Veneer Edge Banding Manufacturer"
-                    width={800}
-                    height={600}
-                    className="w-full h-auto"
-                    unoptimized
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 02. Real Shots */}
-        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/2.natural wood veneer real shots.png" alt="Veneer Edge Banding Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Real Shots</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Real Veneer Edge Banding for Selection</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Clear grain, natural color variation and real material details before order confirmation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Each veneer edge banding has its own unique grain, color and texture. Our real product photos help customers check edge banding appearance, grain direction, sheet quality and color tone before placing orders. Whether you need oak, walnut, ash, teak or other species, we can provide sample photos, catalog references and physical samples for approval.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Furniture edge protection", "Cabinet door finishing", "Panel edge lamination", "Shelf and table edge manufacturing", "Sample confirmation before bulk order"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                    <div className="w-full md:w-1/2">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image
+                          src="/images/products/products_veneer edge banding_detail page/1.Detail Page_Banner_Veneer Edge Banding Manufacturer.jpg"
+                          alt="Veneer Edge Banding Manufacturer"
+                          width={800}
+                          height={600}
+                          className="w-full h-auto"
+                          unoptimized
+                        />
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </section>
 
-        {/* 03. Application */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Applications</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Veneer Edge Banding for High-end Interior Surfaces</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A flexible finishing material for furniture, cabinets, panels and custom interiors.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Veneer edge banding is widely used in furniture, wooden doors, cabinets, wardrobes, wall cladding, hotel interiors and full-house customization projects. It keeps the natural beauty of real wood while offering better material efficiency than solid wood edge strips. With different species and matching methods, customers can create warm, elegant and customized interior surfaces.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Furniture and cabinet surfaces", "Wooden doors and door edges", "Wall panels and background walls", "Hotel, apartment and commercial interiors", "Wardrobes, closets and customized decoration"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+              {/* 02. Product Features */}
+              <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="w-full md:w-1/2 order-2 md:order-1">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/2. Veneer Edge Banding_Feature.png" alt="Veneer Edge Banding Feature" width={800} height={600} className="w-full h-auto" unoptimized />
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/3.natural wood veneer application.png" alt="Veneer Edge Banding Application" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 04. Custom Options */}
-        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/4.natural wood veneer custom option-v2.png" alt="Custom Options" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Custom Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Custom Edge Banding Options for Different Design Requirements</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose the right grain, matching method, grade and thickness for your project.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We support customized veneer edge banding solutions according to your production and design needs. Customers can choose straight grain, crown cut, book match, slip match or mixed match. Different grades and thickness options are also available to match budget, visual effect and processing requirements.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Straight grain and mountain grain options", "Book match, slip match and mixed match", "AAA+, AAA and AA grade selection", "Thin edge banding: around 0.4-0.6mm", "Thick edge banding: around 0.8mm-2mm", "Custom matching for furniture, doors and panel projects"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                    <div className="flex-1 order-1 md:order-2">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Product Features</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Flexible Edge Banding for Smooth Application</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Designed for curved edges, straight edges and common furniture processing needs.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our veneer edge banding has good flexibility and can be used for both straight and curved edge applications. It supports manual application and machine edge banding, making it suitable for different production workflows. With uniform primer on the back, it helps improve bonding performance during installation.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Good flexibility for different edge shapes", "Can be installed on 90-degree edges", "Suitable for manual or machine application", "Uniform primer for easier bonding", "Convenient roll format for production use", "Stable performance for furniture and panel processing"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </section>
 
-        {/* 05. Company Profile */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">About Us</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Wood Products Supplier Since 1999</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Experienced manufacturer for wood veneer, edge banding and decorative wood materials.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in natural wood veneer, engineered veneer, veneer plywood, fancy plywood, UV coated veneer panels, edge banding and 3D wood panels. With years of production experience and export service, we support global customers with stable material supply, customized processing and professional communication.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Established in 1999", "Experienced in wood veneer and edge banding production", "Factory facilities for veneer processing and lamination", "Support for samples, customization and bulk orders", "Serving furniture, door, panel and interior project customers worldwide"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+              {/* 03. Product Advantages */}
+              <section className="py-10 sm:py-16 bg-white">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="flex-1">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Product Advantages</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Matched Color and Reliable Surface Performance</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Helping furniture edges match the main panel surface more naturally.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">A good edge banding solution should not only cover the board edge, but also match the panel surface in color, grain and texture. We support color matching according to customer samples, helping manufacturers create a more unified and premium final product. The veneer edge banding also offers good flexibility, wear resistance and impact resistance for daily furniture use.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Color matching according to customer samples", "Natural wood grain appearance", "Good aging resistance and flexibility", "Wear-resistant surface for daily use", "Good impact resistance for furniture edges", "Suitable for long-term production and repeat orders"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/5.natural wood veneer_Company Profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 06. Customer Feedback */}
-        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/6.natural wood veneer_custom feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Quality, communication and reliable delivery are the foundation of long-term cooperation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Many customers choose us again because of stable edge banding quality, clear communication and practical support during sourcing. From sample checking to bulk order delivery, we help buyers confirm wood species, thickness, grain matching and packaging requirements.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Consistent edge banding quality", "Accurate sample confirmation", "Matched veneer and edge banding options", "Clear order communication", "Reliable packaging and delivery", "Support for repeat orders and long-term cooperation"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                    <div className="w-full md:w-1/2">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/3. Veneer Edge Banding_Advantage.png" alt="Veneer Edge Banding Advantage" width={800} height={600} className="w-full h-auto" unoptimized />
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </section>
 
-        {/* 07. Certifications */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certified Supplier Support for Global Buyers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Product documents and compliance support for import, project and supplier evaluation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For international buyers, certification and supplier documents are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company qualification documents according to different market and project requirements. This helps customers reduce sourcing risk and complete supplier review more efficiently.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["SGS-related test reports", "FSC-related documentation", "CE / GMC certificate support", "Company qualification documents", "Export and project approval support"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+              {/* 04. Product Application */}
+              <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="w-full md:w-1/2 order-2 md:order-1">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/4. Veneer Edge Banding_Application.png" alt="Veneer Edge Banding Application" width={800} height={600} className="w-full h-auto" unoptimized />
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/7.natural wood veneer_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 08. Packaging Options */}
-        <section className="py-10 sm:py-16 bg-[#FDFBF7]">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="w-full md:w-1/2 order-2 md:order-1">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/8.natural wood veneer packaging.png" alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
-                </div>
-              </div>
-              <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Safe Packaging for Samples, Small Orders and Bulk Shipments</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Flexible packing methods for different order quantities and shipping needs.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Veneer edge banding needs proper packaging to prevent damage, moisture and bending during transportation. We provide different packaging solutions for sample orders, small orders and bulk shipments. Edge banding can be packed in rolls, bundles, cartons, pallets or export containers according to customer requirements.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Sample brochure", "Stretch film wrapping", "Roll and bundle packing", "Pallet packaging", "Cardboard box packaging", "Custom export packaging available"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                    <div className="flex-1 order-1 md:order-2">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Product Application</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Widely Used in Furniture, Cabinets and Interior Panels</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A practical edge finishing material for modern wood products.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Veneer edge banding is widely used for wardrobes, cabinets, drawers, shelves, doors, tables, wall panels and customized furniture. It helps cover exposed board edges and creates a natural wood finish that matches the main panel surface. Whether used for residential furniture or commercial interior projects, edge banding is an important detail for improving the final product appearance.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Wardrobes and closet systems", "Kitchen cabinets and cabinet doors", "Drawers, shelves and storage furniture", "Wooden doors and door panels", "Wall panels and decorative boards", "Office furniture and customized interiors"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
-                  ))}
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+              </section>
 
+              {/* 05. Wood Veneer Species */}
+              <section className="py-10 sm:py-16 bg-white">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="flex-1">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Wood Veneer Species</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Multiple Wood Species for Different Panel Designs</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose matching veneer edge banding according to your panel surface and market style.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We provide veneer edge banding in different wood species and colors to match various decorative panels. Common options include okoume, white oak, red oak, rosewood, American cherry, natural black walnut, sapeli, teak and cedar wood. Custom species and colors can also be discussed according to customer samples or project requirements.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Okoume", "White Oak", "Red Oak", "Rosewood", "American Cherry", "Natural Black Walnut", "Sapeli", "Teak", "Cedar Wood", "Custom veneer species available upon request"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="w-full md:w-1/2">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/5. Veneer Edge Banding_Wood Veneer Species.png" alt="Wood Veneer Species" width={800} height={600} className="w-full h-auto" unoptimized />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 06. Company Profile */}
+              <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="w-full md:w-1/2 order-2 md:order-1">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/6. Veneer Edge Banding_Company Profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
+                      </div>
+                    </div>
+                    <div className="flex-1 order-1 md:order-2">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Company Profile</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Decorative Wood Material Supplier Since 1999</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Supporting customers with veneer, veneer panels and matching edge banding solutions.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in natural wood veneer, veneer plywood, fancy plywood, UV coated panels, 3D wood panels and veneer edge banding. With years of experience in veneer processing and decorative panel production, we help global buyers source matching panel and edge banding materials from one supplier.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Established in 1999", "Experienced in veneer and decorative panel production", "Support for matching panels and edge banding", "Custom wood species, color and thickness options", "Factory direct supply for overseas buyers", "Serving furniture, cabinet, door and interior project customers"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 07. Customer Feedback */}
+              <section className="py-10 sm:py-16 bg-white">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="flex-1">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Customer Feedback</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable quality, accurate matching and smooth communication support long-term cooperation.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For furniture and panel manufacturers, edge banding matching is an important detail. Customers choose us because we can help match veneer edge banding with panel surfaces, confirm samples before bulk orders, and provide practical communication throughout the production process. From sample approval to shipment, we focus on reducing sourcing risk for overseas buyers.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Matched edge banding and panel surface", "Accurate sample confirmation before order", "Stable quality for repeat production", "Clear communication during customization", "Reliable packaging for international shipping", "Support for long-term supply cooperation"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="w-full md:w-1/2">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/7. Veneer Edge Banding_Customer Feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 08. Certifications */}
+              <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="w-full md:w-1/2 order-2 md:order-1">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/8. Veneer Edge Banding_Certification.jpg" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
+                      </div>
+                    </div>
+                    <div className="flex-1 order-1 md:order-2">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certification and Document Support for Global Buyers</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Helping customers complete supplier evaluation, import review and project approval.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For international buyers, supplier qualification and product documents are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company documents according to different market and project requirements, helping customers reduce sourcing risk and complete supplier approval more efficiently.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["SGS-related test reports", "CE / GMC certificate support", "FSC-related documentation when required", "Company qualification documents", "Export and project approval support", "Material documents for buyer review"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 09. Production Process */}
+              <section className="py-10 sm:py-16 bg-white">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="flex-1">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Production Process</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Controlled Production Process for Stable Edge Banding Quality</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">From gluing and laminating to slitting, joining and inspection, each step supports consistent supply.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our veneer edge banding production includes gluing, laminating, hot pressing, slitting, joining, cutting, quality inspection and shipping. By controlling each production step, we help ensure stable bonding, consistent roll width, smooth surface appearance and reliable processing performance for furniture and panel manufacturers.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Gluing", "Laminating", "Hot pressing", "Slitting", "Joining", "Cutting", "Quality inspection", "Packaging and shipping"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <div className="w-full md:w-1/2">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/9. Veneer Edge Banding_Production Process.png" alt="Production Process" width={800} height={600} className="w-full h-auto" unoptimized />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 10. Packaging Options */}
+              <section className="py-10 sm:py-16 bg-[#FDFBF7]">
+                <div className="container mx-auto px-4 sm:px-6">
+                  <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+                    <div className="w-full md:w-1/2 order-2 md:order-1">
+                      <div className="w-full rounded-2xl overflow-hidden">
+                        <Image src="/images/products/products_veneer edge banding_detail page/10. Veneer Edge Banding_Packaging Options.png" alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                      </div>
+                    </div>
+                    <div className="flex-1 order-1 md:order-2">
+                      <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging Options</p>
+                      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Flexible Packaging for Samples, Small Orders and Bulk Shipments</h2>
+                      <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Protecting veneer edge banding during storage, handling and international transportation.</p>
+                      <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Veneer edge banding is usually supplied in rolls, so proper packaging is important to prevent deformation, moisture and surface damage during transportation. We provide catalog support, sample packaging, small order packaging and bulk shipment packaging according to customer needs. Packaging can be adjusted for distributors, furniture factories and project buyers.</p>
+                      <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                        {["Wood veneer catalog available", "Sample packaging", "Small order roll packaging", "Bulk shipment packaging", "Export carton or pallet support", "Custom packaging available upon request"].map((item) => (
+                          <div key={item} className="flex items-center gap-2">
+                            <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                              <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                            </div>
+                            <span className="text-sm text-[#6b7280]">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
       {/* FAQ */}
       <section className="py-12 sm:py-16 bg-[#FDFBF7]">
         <div className="container mx-auto px-4 sm:px-6">
