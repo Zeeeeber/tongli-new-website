@@ -26,6 +26,7 @@ export interface NaturalWoodVeneerProduct {
     leadTime: string;
     packaging: string;
     application: string;
+    [k: string]: string;
   };
   imageAlt: string;
   featuredImage: string;
@@ -35,6 +36,11 @@ export interface NaturalWoodVeneerProduct {
   relatedProducts: { name: string; href: string }[];
   featured?: boolean;
   updatedAt?: string;
+  productName?: string;
+  h1Title?: string;
+  shortDescription?: string;
+  applications?: string[];
+  categorySlug?: string;
 }
 
 export interface RelatedProduct {

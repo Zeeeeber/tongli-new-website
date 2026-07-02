@@ -9,6 +9,7 @@ import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-ve
 import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-products";
 import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
+import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
 
 // Design System
 const C = {
@@ -139,6 +140,17 @@ const allProductsData: ProductCard[] = [
     image: p.featuredImage || (p.gallery[0] ?? null),
     tags: p.tags.slice(0, 3),
     href: `/products/veneer-edge-banding/${p.slug}`,
+  })),
+  // Supporting Boards — birch plywood published; other sub-categories remain placeholders
+  ...supportingBoardsProducts.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    category: "Supporting Boards",
+    categoryId: p.subCategorySlug as CategoryId,
+    description: p.shortDesc,
+    image: p.featuredImage || (p.gallery[0] ?? null),
+    tags: p.tags.slice(0, 3),
+    href: `/products/supporting-boards/${p.slug}`,
   })),
 ];
 

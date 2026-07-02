@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
+import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
 
 interface FireproofMDFDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
@@ -93,8 +94,11 @@ export function FireproofMDFDetailTemplate({
     return [];
   }, [product.featuredImage, product.gallery]);
   const relatedProducts = useMemo((): NaturalWoodVeneerProduct[] => {
-    return [];
-  }, []);
+    return supportingBoardsProducts
+      .filter((p) => p.slug !== slug)
+      .slice(0, 4)
+      .map((p) => p as unknown as NaturalWoodVeneerProduct);
+  }, [slug]);
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
   const imageAlt = product.imageAlt || product.name;

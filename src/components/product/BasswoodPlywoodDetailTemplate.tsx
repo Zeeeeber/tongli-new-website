@@ -5,9 +5,8 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
-import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
 
-interface RawMDFDetailTemplateProps {
+interface BasswoodPlywoodDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
   slug: string;
 }
@@ -74,10 +73,10 @@ const sidebarCategories: SidebarCategory[] = [
   },
 ];
 
-export function RawMDFDetailTemplate({
+export function BasswoodPlywoodDetailTemplate({
   product,
   slug,
-}: RawMDFDetailTemplateProps) {
+}: BasswoodPlywoodDetailTemplateProps) {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showContactModal, setShowContactModal] = useState(false);
@@ -94,11 +93,8 @@ export function RawMDFDetailTemplate({
     return [];
   }, [product.featuredImage, product.gallery]);
   const relatedProducts = useMemo((): NaturalWoodVeneerProduct[] => {
-    return supportingBoardsProducts
-      .filter((p) => p.slug !== slug)
-      .slice(0, 4)
-      .map((p) => p as unknown as NaturalWoodVeneerProduct);
-  }, [slug]);
+    return [];
+  }, []);
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
   const imageAlt = product.imageAlt || product.name;
@@ -131,7 +127,7 @@ export function RawMDFDetailTemplate({
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products/supporting-boards" className="hover:text-[#0F6B3A]">Raw MDF</Link>
+            <Link href="/products/supporting-boards" className="hover:text-[#0F6B3A]">Basswood Plywood</Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
@@ -362,7 +358,7 @@ export function RawMDFDetailTemplate({
             {relatedProducts.length > 0 ? (
               relatedProducts.map((relatedProduct) => {
                 const relatedImage = relatedProduct.featuredImage || relatedProduct.gallery[0] || null;
-                const relatedLabel = relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Raw MDF";
+                const relatedLabel = relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Basswood Plywood";
 
                 return (
                   <Link
@@ -416,9 +412,9 @@ export function RawMDFDetailTemplate({
                     </div>
                   </div>
                   <div className="p-4">
-                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">Raw MDF</span>
+                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">Basswood Plywood</span>
                     <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">Related Product</h3>
-                    <p className="text-sm text-[#6b7280] line-clamp-3">More raw MDF products will appear here.</p>
+                    <p className="text-sm text-[#6b7280] line-clamp-3">More basswood plywood products will appear here.</p>
                   </div>
                 </div>
               ))
@@ -436,18 +432,20 @@ export function RawMDFDetailTemplate({
               <table className="w-full min-w-[600px]">
                 <tbody>
                   {[
-                    { label: "Brand Name", value: "TONGLI" },
-                    { label: "Product Name", value: "MDF / Medium Density Fiberboard / MDF Board / Fiberboard / HDF/ Raw MDF / Plain MDF / Melamine MDF / Laminated MDF / Moisture Resistant MDF / MR MDF / Waterproof MDF / Fire Resistant MDF / Fire Rated MDF / Flame Retardant MDF / FR MDF / Black MDF / Black MDF Board / Black Fiberboard" },
-                    { label: "MDF Types", value: "Plain MDF, HMR MDF (Moisture-Proof MDF), FR MDF (Fire-Resistant MDF), Black MDF" },
-                    { label: "Dimension", value: "4x8ft, 4x9ft, 4x10ft, 4x11ft, 4x12ft / 2440x1220mm, 2600x1220mm, 2800x1220mm, 3050x1220mm, 3200x1220mm, 3400x1220mm, 3600x1220mm" },
-                    { label: "Thickness", value: "3.0mm / 5mm / 9mm / 12mm / 15mm / 18mm / 25mm" },
-                    { label: "Density", value: "630kg/m³-1080kg/m³" },
-                    { label: "Face/Back", value: "RAW / Sanded / Laminated" },
-                    { label: "Formaldehyde Emission Grade", value: "ENF / E0 / E1 / E2" },
-                    { label: "Usage", value: "Furniture Manufacturing / Cabinet Doors / Wardrobe Panels / Interior Wall Panels / Decorative Panels / Shop Fitting Displays / Office Partitions / Acoustic Panels / Painted Furniture Surfaces / Exhibition Booth Construction" },
-                    { label: "Kinds of export packing", value: "Wooden frame packaging, in bulk, custom packaging." },
-                    { label: "Delivery time", value: "Normally about 10 to 25 days, it depends on quantity and requirement." },
-                    { label: "Main customer group", value: "Wholesalers, furniture factories, door factories, whole-house customization factories, cabinet factories, hotel construction and decoration projects, real estate decoration projects" },
+                    { label: "Brand Name", value: "Tongli" },
+                    { label: "Product Name", value: "Basswood Plywood / Basswood Plywood Sheet / Basswood Ply / Basswood Craft Plywood / Basswood Laser Plywood / Basswood Veneer Plywood / Lightweight Plywood / Plywood for Laser Cut" },
+                    { label: "Face Veneer", value: "Basswood Veneer" },
+                    { label: "Core", value: "Mainly Poplar" },
+                    { label: "Dimension", value: "930*930mm/1220*2440mm" },
+                    { label: "Standard Thickness", value: "2mm/2.5mm/3.0mm/3.6mm/5mm/9mm/12mm/15mm/18mm/25mm" },
+                    { label: "Thickness Tolerance", value: "±0.2mm" },
+                    { label: "Substrate Moisture", value: "7-12%(Depends On The Thickness)" },
+                    { label: "Formaldehyde Emission Grade", value: "Enf/E0/E1/P1/P2" },
+                    { label: "Usage", value: "Laser Cutting / Model Making / DIY Crafts / Toy Manufacturing / Furniture Back Panels / Drawer Bottoms / Interior Decorative Panels / Signage Boards / Packaging Boxes / RC Aircraft Models" },
+                    { label: "Loading Quantity", value: "8 Packages For 20'Gp / 16 Packages For 40'Hq" },
+                    { label: "Kinds Of Export Packing", value: "Wooden Frame Packaging, In Bulk, Custom Packaging." },
+                    { label: "Delivery Time", value: "Normally About 7 To 15Days, It Depends On Quantity And Requirement." },
+                    { label: "Main Customer Group", value: "Wholesalers, Furniture Factories, Door Factories, Whole-House Customization Factories, Cabinet Factories, Hotel Construction And Decoration Projects, Real Estate Decoration Projects" },
                     { label: "Payment term", value: "30% by TT as deposit of order, 70% by TT before loading or 70% by irrevocable LC at sight" },
                   ].map((row, index) => (
                     <tr
@@ -469,19 +467,19 @@ export function RawMDFDetailTemplate({
         </div>
       </section>
 
-      {/* Product Detail Content - 11 Sections */}
+      {/* Product Detail Content - 10 Sections */}
       <div>
-        {/* 01. Banner / MDF Board Manufacturer */}
+        {/* 01. Banner */}
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">{product.category}</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Professional MDF Board Supplier</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Custom MDF board solutions for furniture, cabinets, doors, wall panels and interior decoration.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies MDF boards for furniture manufacturers, cabinet factories, door producers, wood panel distributors and interior project buyers. We provide plain MDF, moisture-resistant MDF, fire-retardant MDF, black MDF, melamine MDF, UV MDF, veneer MDF and 3D MDF according to different production and project requirements.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Basswood Plywood Manufacturer</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Lightweight and easy-to-process plywood for crafts, laser cutting, models and decorative projects.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies basswood plywood for craft manufacturers, laser cutting workshops, model makers, toy producers, packaging suppliers and DIY material distributors. With a light color, smooth surface and uniform texture, basswood plywood is easy to cut, engrave, carve and process, making it a practical material for detailed wood products and creative applications.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
-                  {["Plain MDF, MR MDF, FR MDF and black MDF available", "Suitable for furniture, cabinets, doors and wall panels", "Custom size, thickness, density and surface options", "Can be laminated with melamine, veneer or UV coating", "Factory direct supply with export packaging support"].map((point) => (
+                  {["Lightweight basswood plywood panels", "Smooth surface and uniform texture", "Suitable for laser cutting, carving and engraving", "Easy to process for crafts and model making", "Standard and custom sizes available", "Factory direct supply with export packaging support"].map((point) => (
                     <div key={point} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -495,8 +493,8 @@ export function RawMDFDetailTemplate({
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/products/products_mdf_detail page/1.Detail Page_Detail Page_Banner.png"
-                    alt="MDF Board Manufacturer"
+                    src="/images/products/products_basswood plywood_detail page/1. Detail Page_Banner_Basswood Plywood Manufacturer.png"
+                    alt="Basswood Plywood Manufacturer"
                     width={800}
                     height={600}
                     className="w-full h-auto"
@@ -508,22 +506,22 @@ export function RawMDFDetailTemplate({
           </div>
         </section>
 
-        {/* 02. Real Shots / 产品实拍 */}
+        {/* 02. Product Real Shots */}
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/2.Detail Page_MDF_Real Shots.png" alt="MDF Board Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/2. Basswood Plywood_Real Shot.png" alt="Basswood Plywood Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Real Shots</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Real MDF Board Photos for Material Confirmation</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Check surface smoothness, board density, edge structure and color before ordering.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our real product photos show different MDF board types, including plain MDF, moisture-resistant MDF, fire-retardant MDF and other customized boards. The clean surface, dense fiber structure and stable board edge make MDF suitable for cutting, routing, painting, laminating and furniture production. Samples can be arranged for quality checking before bulk orders.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Real Basswood Plywood Photos for Quality Checking</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Check surface smoothness, board color, edge structure and panel details before ordering.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our real product photos show the natural light color, clean surface and layered plywood structure of basswood plywood. The smooth face and neat edge quality make it suitable for laser cutting, craft processing, model production and decorative use. Samples can be arranged before bulk orders to confirm thickness, size, surface quality and cutting performance.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Sample confirmation before mass production", "Surface and edge quality checking", "Furniture and cabinet material approval", "Color and board type comparison", "Bulk order quality reference"].map((item) => (
+                  {["Sample confirmation before bulk order", "Surface and edge quality checking", "Laser cutting material testing", "Craft and model material approval", "Distributor product catalog reference", "Bulk order quality comparison"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -537,63 +535,51 @@ export function RawMDFDetailTemplate({
           </div>
         </section>
 
-        {/* 03. Product Features / 产品特点 */}
+        {/* 03. Product Features */}
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Product Features</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Dense Structure, Smooth Surface and Stable Processing Performance</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A practical wood-based panel for furniture production and interior manufacturing.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">MDF board is widely used because of its smooth surface, dense fiber structure and good processing performance. It can be cut, drilled, routed, painted, laminated or carved according to different production needs. For higher requirements, moisture-resistant MDF and fire-retardant MDF options are also available.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Key Features</p>
-                  {["Smooth and flat surface for finishing", "Dense fiber structure, not easy to break", "Good strength for furniture and decorative use", "Moisture-resistant MDF option available", "Fire-retardant MDF option available", "Suitable for cutting, routing, laminating and painting"].map((point) => (
-                    <div key={point} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                      </div>
-                      <span className="text-sm text-[#6b7280]">{point}</span>
-                    </div>
-                  ))}
-                </div>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Smooth Surface and Easy Processing Performance</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A lightweight plywood material designed for clean cutting, carving and creative production.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Basswood plywood is widely used because of its fine texture, light weight and easy processing performance. The smooth double-side sanding helps support painting, printing, engraving and further finishing. Clean cutting edges and uniform board structure make it suitable for detailed patterns, small parts and precision craft production.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Additional Benefits</p>
-                  {["Good structural strength for cabinets and furniture", "Stable shape and size for interior applications", "Suitable for areas such as kitchens and bathrooms when using MR MDF", "Can support decorative surfaces such as melamine, veneer and UV coating"].map((point) => (
-                    <div key={point} className="flex items-center gap-2">
+                  {["Easy to process with uniform texture", "Smooth surface with double-side sanding", "Clean cutting edges for detailed work", "Neat and aesthetically pleasing panel cuts", "Lightweight and easy to handle", "Suitable for laser cutting, carving and painting"].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{point}</span>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
                   ))}
                 </div>
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/3.Detail Page_MDF_Productt Feature.png" alt="MDF Product Features" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/3. Basswood Plywood_Feature.png" alt="Basswood Plywood Features" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 04. Product Application / 应用场景 */}
+        {/* 04. Product Application */}
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/4.Detail Page_MDF_Application.png" alt="MDF Application" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/4. Basswood Plywood_Application.png" alt="Basswood Plywood Application" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Applications</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Widely Used in Furniture, Cabinets and Interior Projects</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A versatile panel material for modern residential and commercial spaces.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">MDF boards are commonly used in kitchen cabinets, wardrobes, shelves, drawers, wall panels, doors, display fixtures, commercial counters and decorative furniture. Its smooth surface and stable structure make it suitable for both visible decorative surfaces and hidden structural components.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Application</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Ideal for Crafts, Models, Toys and Creative Wood Products</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A popular plywood material for laser cutting, DIY projects and detailed decorative parts.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Basswood plywood is commonly used for model aircraft, wooden puzzles, craft houses, decorative ornaments, educational toys, DIY kits, gift packaging, signage and small wooden products. Its light color and easy cutting performance make it especially suitable for laser cutting workshops and creative product manufacturers.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  {["Kitchen cabinets and cabinet doors", "Wardrobes and closet systems", "Shelves, drawers and storage furniture", "Interior wall panels and decorative boards", "Doors and furniture components", "Commercial display counters and shop fixtures", "Photo frames, crafts and small wood products"].map((item) => (
+                  {["Laser cutting and engraving", "Model aircraft and architectural models", "Wooden puzzles and DIY craft kits", "Educational toys and decorative products", "Gift packaging and small wood boxes", "Signage, ornaments and creative displays", "Handmade and hobby material supply"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -607,18 +593,17 @@ export function RawMDFDetailTemplate({
           </div>
         </section>
 
-        {/* 05. Company Profile / 工厂介绍 */}
+        {/* 05. Company Profile */}
         <section className="py-10 sm:py-16 bg-white">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">About Us</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Decorative Wood Panel Supplier Since 1999</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Supporting global buyers with MDF, plywood, veneer panels and customized wood-based materials.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in decorative wood-based panels, including MDF boards, veneer plywood, fancy plywood, natural wood veneer, engineered veneer, UV coated panels and 3D wood panels. With years of production experience and export service, we help global buyers source stable materials for furniture, doors, cabinets and interior projects.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Plywood and Decorative Panel Supplier Since 1999</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Supporting global buyers with plywood, veneer panels and customized wood-based materials.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in plywood, veneer plywood, fancy plywood, natural wood veneer, engineered veneer, UV coated panels and other decorative wood-based materials. With years of production experience and export service, we provide basswood plywood and related panel solutions for craft suppliers, distributors, furniture factories and project buyers worldwide.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Why Choose Tongli Timber</p>
-                  {["Established in 1999", "Experienced in decorative panel production", "Multiple MDF board types available", "Support for size, thickness, surface and packaging customization", "Serving furniture, cabinet, door and interior project customers", "Export experience for overseas buyers and distributors"].map((item) => (
+                  {["Established in 1999", "Experienced in plywood and decorative panel production", "Support for samples, customization and bulk orders", "Multiple size and thickness options available", "Export packaging and container loading support", "Serving craft, model, furniture and interior material buyers"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -630,29 +615,52 @@ export function RawMDFDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/5.Detail Page_Company Profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/6. Basswood Plywood_Company Profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 06. Certifications / 证书资质 */}
+        {/* 06. Customer Feedback */}
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/6.Detail Page_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/7. Basswood Plywood_Customer Feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable quality, clear communication and reliable delivery support long-term cooperation.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our customers value stable panel quality, accurate sample confirmation and reliable shipment support. For basswood plywood buyers, we help confirm surface quality, cutting performance, thickness, size and packaging details before production, reducing sourcing risk and improving purchasing efficiency.</p>
+                <div className="grid grid-cols-1 gap-2 sm:gap-3">
+                  {["Clear sample confirmation before production", "Stable plywood quality for repeat orders", "Accurate size and thickness communication", "Smooth surface for cutting and craft production", "Reliable packaging for international shipping", "Support for long-term supply cooperation"].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 07. Certifications */}
+        <section className="py-10 sm:py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
                 <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certification and Document Support for Global Buyers</h2>
                 <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Helping customers complete supplier evaluation, import review and project approval.</p>
                 <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For international buyers, supplier qualification and product documentation are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company documents according to different market and project requirements, helping customers reduce sourcing risk and complete supplier approval more efficiently.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Document Support</p>
                   {["SGS-related test reports", "CE / GMC certificate support", "FSC-related documentation when required", "Company qualification documents", "Export and project approval support", "Material documents for buyer review"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
@@ -663,82 +671,55 @@ export function RawMDFDetailTemplate({
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 07. Customer Feedback / 客户反馈 */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable quality, clear communication and reliable delivery support long-term cooperation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our customers value stable MDF quality, accurate sample confirmation and reliable export packaging. From board type selection to size, thickness, surface treatment and delivery communication, we help overseas buyers reduce sourcing risk and make purchasing more efficient.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Customer Concerns We Help Solve</p>
-                  {["Clear sample confirmation before production", "Stable board quality for repeat orders", "Accurate size and thickness communication", "Matched surface and edge banding options", "Reliable packaging for international shipping", "Support for long-term supply cooperation"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                      </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/7.Detail Page_Customer Feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/8. Basswood Plywood_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 08. Related Products / 相关产品 */}
+        {/* 08. Production Process */}
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/8.Detail Page_MDF_Rlated Products.png" alt="MDF Related Products" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/9. Basswood Plywood_Production Process.png" alt="Production Process" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Related Products</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">More MDF Board Solutions for Different Applications</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose the right MDF type according to moisture resistance, fire resistance, surface effect and processing needs.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We provide different MDF board options for various production and project requirements. Plain MDF is suitable for general furniture and decorative use. Moisture-resistant MDF can be selected for areas with higher humidity. Fire-retardant MDF is suitable for projects with higher safety requirements. Black MDF, melamine MDF, UV MDF, veneer MDF and 3D MDF are also available for decorative applications.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Related MDF Options</p>
-                  {["Plain MDF", "Moisture-resistant MDF", "Black MDF", "Fire-retardant MDF", "Melamine MDF", "UV MDF", "Veneer MDF", "3D MDF", "Custom MDF board solutions available"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                      </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 09. Production Process / 生产流程 */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Production Process</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Controlled MDF Processing for Stable Board Quality</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">From board preparation to finishing and packaging, each step supports consistent supply.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our MDF board supply and processing workflow includes material selection, board preparation, surface sanding, laminating or coating when required, cutting, quality inspection, stacking, packaging and loading. For customized MDF products, we can also provide melamine lamination, veneer lamination, UV coating and CNC processing according to customer requirements.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Controlled Production Process for Stable Basswood Plywood Quality</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">From veneer selection to pressing, sanding and inspection, each step supports consistent supply.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our basswood plywood production includes selecting and grading, core assembling, adjusting, cold pressing, repairing, veneer laminating, hot pressing, edge cutting, sanding, quality inspection and packing. Through controlled production steps, we help ensure stable board structure, smoother surface quality and better processing performance for cutting, carving and craft applications.</p>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                  {["Selecting and grading", "Core assembling", "Adjusting", "Cold pressing", "Repairing", "Veneer laminating", "Hot pressing", "Edge cutting", "Sanding", "Quality inspection", "Packing and shipment preparation"].map((item) => (
+                    <div key={item} className="flex items-center gap-2">
+                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                      </div>
+                      <span className="text-sm text-[#6b7280]">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 09. Dimension Options */}
+        <section className="py-10 sm:py-16 bg-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+              <div className="flex-1">
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Dimension Options</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Standard and Custom Sizes for Craft and Bulk Production</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Flexible dimensions for samples, laser cutting, model making and distributor orders.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We provide both small-format and standard-size basswood plywood to meet different production needs. Small sizes are suitable for craft kits, laser cutting, DIY products and sample testing, while standard panels can support bulk processing and further cutting by manufacturers or distributors.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Process Includes</p>
-                  {["Material and board selection", "Surface sanding and preparation", "Laminating or coating when required", "Cutting and size adjustment", "Surface and edge quality inspection", "Stacking and warehouse storage", "Packaging and container loading", "Custom processing support available"].map((item) => (
+                  {["Sample size: 300×200mm", "Sample size: 300×300mm", "Sample size: 460×460mm", "Sample size: 460×920mm", "Standard size: 2440×1220mm", "Standard size: 920×920mm", "Custom size available upon request"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -750,55 +731,29 @@ export function RawMDFDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/9.Detail Page_MDF_Product Process.png" alt="MDF Production Process" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/10. Basswood Plywood_Dimension Options.png" alt="Dimension Options" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 10. Dimension Options / 尺寸厚度选择 */}
+        {/* 10. Packaging Options */}
         <section className="py-10 sm:py-16 bg-[#FDFBF7]">
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/10.Detail Page_MDF_Dimensions Options.png" alt="MDF Dimension Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood plywood_detail page/11. Basswood Plywood_Packaging Options.png" alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Dimension Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Standard and Extended Sizes Available</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Flexible dimensions for furniture production, cabinet manufacturing and project orders.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We support standard and customized MDF board sizes to meet different production needs. The common size is 2440×1220mm, while extended sizes can be supplied for doors, wall panels, wardrobes and special project applications. Thickness and glue options can also be customized according to customer requirements.</p>
-                <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Size & Thickness Options</p>
-                  {["Sample size: 300×200mm", "Standard size: 2440×1220mm", "Extended sizes: 2600 / 2800 / 3050 / 3200 / 3400 / 3600×1220mm", "Thickness options: 3–25mm", "Glue options: ENF / E0 / E1 / E2, mainly E1", "Custom size and thickness available upon request"].map((item) => (
-                    <div key={item} className="flex items-center gap-2">
-                      <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                      </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 11. Packaging Options / 包装方式 */}
-        <section className="py-10 sm:py-16 bg-white">
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
-              <div className="flex-1">
                 <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Export Packaging for Samples, Bulk Orders and Custom Shipments</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Protecting MDF boards during storage, handling and international transportation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Proper packaging is important for MDF boards because panels need protection from surface damage, edge impact and moisture during transportation. We provide sample packaging, bulk loading, custom packaging and wooden frame packaging according to order quantity and shipping requirements.</p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Export Packaging for Samples, Small Orders and Bulk Shipments</h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Protecting plywood panels during storage, handling and international transportation.</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Proper packaging is important for basswood plywood because the light-colored surface and clean edges need protection during transportation. We provide sample packaging, bulk loading, custom packaging and wooden frame packaging according to order quantity and shipping requirements. Packaging can be adjusted for small-format craft boards, standard panels or distributor orders.</p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
-                  <p className="text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider">Packaging Methods</p>
-                  {["Sample packaging", "Bulk container loading", "Custom packaging", "Wooden frame packaging", "Export pallet support", "Protective packing for panel edges and surfaces", "Packaging can be customized according to customer requirements"].map((item) => (
+                  {["Sample packaging", "Small-size board packaging", "Bulk container loading", "Custom packaging", "Wooden frame packaging", "Export pallet support", "Protective packing for panel edges and surfaces", "Packaging can be customized according to customer requirements"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
@@ -806,11 +761,6 @@ export function RawMDFDetailTemplate({
                       <span className="text-sm text-[#6b7280]">{item}</span>
                     </div>
                   ))}
-                </div>
-              </div>
-              <div className="w-full md:w-1/2">
-                <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_mdf_detail page/11.Detail Page_MDF_Packaging_Option .png" alt="MDF Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
@@ -826,7 +776,7 @@ export function RawMDFDetailTemplate({
               <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-widest mb-2 sm:mb-3">FAQ</p>
               <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
               <div className="w-12 sm:w-16 h-1 bg-[#0F6B3A] mx-auto mt-3 sm:mt-4 rounded-full"></div>
-              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm">Everything you need to know about our MDF</p>
+              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm">Everything you need to know about our basswood plywood</p>
             </div>
 
             <div className="space-y-3">
@@ -866,4 +816,4 @@ export function RawMDFDetailTemplate({
   );
 }
 
-export default RawMDFDetailTemplate;
+export default BasswoodPlywoodDetailTemplate;
