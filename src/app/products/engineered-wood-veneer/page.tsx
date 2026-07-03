@@ -37,13 +37,25 @@ export default function EngineeredWoodVeneerPage() {
         </div>
       </div>
 
+      {/* Category Introduction */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-2xl font-bold text-[#1F2621] mb-4">About Engineered Wood Veneer</h2>
+            <p className="text-[#6b7280] leading-relaxed">
+              Engineered wood veneer (also called reconstituted veneer) is manufactured from rapidly renewable tropical wood species. The logs are sliced into thin layers, dyed in controlled color tones, and then re-bonded into blocks that produce consistent grain patterns and colors when re-sliced. This process delivers 300+ design options with stable colors, uniform textures, and reliable batch-to-batch consistency — ideal for large-scale commercial production.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Product Grid */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">All Products</h2>
+            <h2 className="text-3xl font-bold text-[#1F2621]">Product Range</h2>
             <p className="text-[#6b7280] mt-4">
-              {products.length} products available
+              {products.length} reconstituted veneer patterns available
             </p>
           </div>
 
@@ -101,8 +113,8 @@ export default function EngineeredWoodVeneerPage() {
             <h2 className="text-3xl font-bold mb-4">Need Engineered Wood Veneer?</h2>
             <p className="text-white/80 mb-8">Contact us for pattern availability, custom development, and sample requests.</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact?type=sample" className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">Request Samples</Link>
-              <Link href="/contact" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">Contact Us</Link>
+              <Link href="/contact?type=sample" className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">Contact Us</Link>
+              <Link href="/products" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">View All Products</Link>
             </div>
           </div>
         </div>

@@ -53,7 +53,7 @@ export default function WoodVeneerPanelsPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#1F2621]">Product Range</h2>
-            <p className="text-[#6b7280] mt-4">Explore our wood veneer panel collection</p>
+            <p className="text-[#6b7280] mt-4">Explore our wood veneer panel collection — ready-to-use wood veneer sheets pre-bonded to balanced substrate</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -110,13 +110,6 @@ export default function WoodVeneerPanelsPage() {
               </div>
             ))}
           </div>
-
-          {/* Load More */}
-          <div className="mt-12 text-center">
-            <button className="px-8 py-3 border-2 border-[#E5E1D8] text-[#1F2621] rounded-lg font-semibold hover:border-[#0F6B3A] hover:text-[#0F6B3A] transition-colors">
-              Load More Products
-            </button>
-          </div>
         </div>
       </section>
 
@@ -129,17 +122,17 @@ export default function WoodVeneerPanelsPage() {
               Contact Tongli for product inquiries, custom specifications, or sample requests.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link 
-                href="/contact?type=quote" 
+              <Link
+                href="/contact"
                 className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Request a Quote
+                Contact Us
               </Link>
-              <Link 
-                href="/contact?type=sample" 
+              <Link
+                href="/products"
                 className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                Request Samples
+                View All Products
               </Link>
             </div>
           </div>

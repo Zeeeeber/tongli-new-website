@@ -53,8 +53,8 @@ export default function NaturalWoodVeneerPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Popular Species</h2>
-            <p className="text-[#6b7280] mt-4">Explore our natural wood veneer collection</p>
+            <h2 className="text-3xl font-bold text-[#1F2621]">Product Range</h2>
+            <p className="text-[#6b7280] mt-4">Explore our natural wood veneer collection — authentic sliced veneer sheets with unique grain patterns from 80+ species</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
