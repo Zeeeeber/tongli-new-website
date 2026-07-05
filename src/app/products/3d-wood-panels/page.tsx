@@ -121,8 +121,8 @@ export default function ThreeDWoodPanelsPage() {
             <h2 className="text-3xl font-bold mb-4">Need 3D Wood Panels?</h2>
             <p className="text-white/80 mb-8">Contact us for pattern availability, custom development, and sample requests.</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact?type=sample" className="px-8 py-4 bg-white rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors" style={{ color: accentColor }}>Request Samples</Link>
-              <Link href="/contact?type=quote" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">View All Products</Link>
+              <Link href="/contact" className="px-8 py-4 bg-white rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors" style={{ color: accentColor }}>Contact Us</Link>
+              <Link href="/products" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">View All Products</Link>
             </div>
           </div>
         </div>

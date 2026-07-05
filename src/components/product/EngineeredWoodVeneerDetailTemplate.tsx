@@ -331,12 +331,12 @@ export function EngineeredWoodVeneerDetailTemplate({
 
                   {/* Actions */}
                   <div className="flex flex-wrap gap-4">
-                    <button
-                      onClick={() => setShowContactModal(true)}
+                    <Link
+                      href="/contact"
                       className="flex-1 min-w-[120px] px-4 py-3 bg-[#0F6B3A] text-white text-center rounded-lg font-semibold hover:bg-[#124B34] transition-colors"
                     >
                       CONTACT US
-                    </button>
+                    </Link>
                     <a
                       href="https://wa.me/message/2DMHTU2VVZTKC1"
                       target="_blank"

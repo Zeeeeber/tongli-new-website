@@ -113,7 +113,7 @@ export default function EngineeredWoodVeneerPage() {
             <h2 className="text-3xl font-bold mb-4">Need Engineered Wood Veneer?</h2>
             <p className="text-white/80 mb-8">Contact us for pattern availability, custom development, and sample requests.</p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact?type=sample" className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">Contact Us</Link>
+              <Link href="/contact" className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">Contact Us</Link>
               <Link href="/products" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">View All Products</Link>
             </div>
           </div>

@@ -107,13 +107,13 @@ export function ContactActionsClient({ productName }: ContactActionsClientProps)
   return (
     <>
       <div className="flex flex-wrap gap-4">
-        <button
-          onClick={() => setShowContactModal(true)}
+        <Link
+          href="/contact"
           className="flex-1 min-w-[120px] px-4 py-3 text-white text-center rounded-lg font-semibold transition-colors"
           style={{ backgroundColor: "#0F6B3A" }}
         >
           CONTACT US
-        </button>
+        </Link>
         <a
           href="https://wa.me/message/2DMHTU2VVZTKC1"
           target="_blank"
