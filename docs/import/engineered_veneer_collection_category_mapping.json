@@ -1,0 +1,834 @@
+[
+  {
+    "code": "TL-H-1",
+    "displayName": "TL-H-1 Dyed Multicolor Chevron",
+    "category": "Dyed",
+    "styleType": "Chevron / Multicolor",
+    "recommendedBadge": "TL-H-1 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1212",
+    "displayName": "TL-H-1212 Dark Wenge Straight Grain",
+    "category": "Dark",
+    "styleType": "Straight Grain / Wenge Look",
+    "recommendedBadge": "TL-H-1212 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1216",
+    "displayName": "TL-H-1216 Light Oak Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Oak Look",
+    "recommendedBadge": "TL-H-1216 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1700",
+    "displayName": "TL-H-1700 Dark Walnut Linear Grain",
+    "category": "Dark",
+    "styleType": "Straight Grain / Walnut Look",
+    "recommendedBadge": "TL-H-1700 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1701",
+    "displayName": "TL-H-1701 Golden Teak Linear Grain",
+    "category": "Warm",
+    "styleType": "Straight Grain / Teak Look",
+    "recommendedBadge": "TL-H-1701 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1702",
+    "displayName": "TL-H-1702 Smoked Brown Straight Grain",
+    "category": "Smoked",
+    "styleType": "Straight Grain / Smoked Wood Look",
+    "recommendedBadge": "TL-H-1702 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1708",
+    "displayName": "TL-H-1708 Warm Walnut Straight Grain",
+    "category": "Warm",
+    "styleType": "Straight Grain / Walnut Look",
+    "recommendedBadge": "TL-H-1708 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1712C",
+    "displayName": "TL-H-1712C Warm Oak Linear Grain",
+    "category": "Warm",
+    "styleType": "Straight Grain / Oak Look",
+    "recommendedBadge": "TL-H-1712C · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1722N",
+    "displayName": "TL-H-1722N Dark Walnut Crown Grain",
+    "category": "Dark",
+    "styleType": "Crown Grain / Walnut Look",
+    "recommendedBadge": "TL-H-1722N · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1728",
+    "displayName": "TL-H-1728 Dark Striped Wenge Grain",
+    "category": "Dark",
+    "styleType": "Striped / Wenge Look",
+    "recommendedBadge": "TL-H-1728 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1730",
+    "displayName": "TL-H-1730 Golden Brown Linear Grain",
+    "category": "Warm",
+    "styleType": "Straight Grain / Teak Look",
+    "recommendedBadge": "TL-H-1730 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1902",
+    "displayName": "TL-H-1902 Smoked White Oak Crown Grain",
+    "category": "Smoked",
+    "styleType": "Crown Grain / Oak Look",
+    "recommendedBadge": "TL-H-1902 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1912",
+    "displayName": "TL-H-1912 Dyed Multicolor Mosaic Pattern",
+    "category": "Dyed",
+    "styleType": "Geometric / Multicolor",
+    "recommendedBadge": "TL-H-1912 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1916",
+    "displayName": "TL-H-1916 Dyed Grey Mosaic Pattern",
+    "category": "Dyed",
+    "styleType": "Geometric / Grey Pattern",
+    "recommendedBadge": "TL-H-1916 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1918",
+    "displayName": "TL-H-1918 Smoked Walnut Crown Grain",
+    "category": "Smoked",
+    "styleType": "Crown Grain / Walnut Look",
+    "recommendedBadge": "TL-H-1918 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1920",
+    "displayName": "TL-H-1920 Light Figured Maple Grain",
+    "category": "Light",
+    "styleType": "Figured / Maple Look",
+    "recommendedBadge": "TL-H-1920 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1922",
+    "displayName": "TL-H-1922 Dark Pinstripe Linear Grain",
+    "category": "Dark",
+    "styleType": "Pinstripe / Linear",
+    "recommendedBadge": "TL-H-1922 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-1932",
+    "displayName": "TL-H-1932 Dyed Abstract Color Pattern",
+    "category": "Dyed",
+    "styleType": "Abstract / Multicolor",
+    "recommendedBadge": "TL-H-1932 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-2",
+    "displayName": "TL-H-2 Dyed Blue Grey Chevron",
+    "category": "Dyed",
+    "styleType": "Chevron / Dyed",
+    "recommendedBadge": "TL-H-2 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-2206C",
+    "displayName": "TL-H-2206C Light Ash Crown Grain",
+    "category": "Light",
+    "styleType": "Crown Grain / Ash Look",
+    "recommendedBadge": "TL-H-2206C · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-232",
+    "displayName": "TL-H-232 Dyed Black White Zebra Grain",
+    "category": "Dyed",
+    "styleType": "Zebra / High Contrast",
+    "recommendedBadge": "TL-H-232 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-2501",
+    "displayName": "TL-H-2501 Light Curly Figured Grain",
+    "category": "Light",
+    "styleType": "Curly / Figured",
+    "recommendedBadge": "TL-H-2501 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-2802",
+    "displayName": "TL-H-2802 Smoked Grey Straight Grain",
+    "category": "Smoked",
+    "styleType": "Straight Grain / Grey",
+    "recommendedBadge": "TL-H-2802 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-2900",
+    "displayName": "TL-H-2900 Light Birdseye Texture",
+    "category": "Light",
+    "styleType": "Birdseye / Figured",
+    "recommendedBadge": "TL-H-2900 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-2904",
+    "displayName": "TL-H-2904 Smoked Grey Crown Grain",
+    "category": "Smoked",
+    "styleType": "Crown Grain / Smoked",
+    "recommendedBadge": "TL-H-2904 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-2906",
+    "displayName": "TL-H-2906 Light Fine Birdseye Texture",
+    "category": "Light",
+    "styleType": "Birdseye / Figured",
+    "recommendedBadge": "TL-H-2906 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3",
+    "displayName": "TL-H-3 Dyed Multicolor Chevron",
+    "category": "Dyed",
+    "styleType": "Chevron / Multicolor",
+    "recommendedBadge": "TL-H-3 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3002",
+    "displayName": "TL-H-3002 Dark Wenge Pinstripe",
+    "category": "Dark",
+    "styleType": "Pinstripe / Wenge Look",
+    "recommendedBadge": "TL-H-3002 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3006",
+    "displayName": "TL-H-3006 Smoked Grey Speckled Texture",
+    "category": "Smoked",
+    "styleType": "Speckled / Grey",
+    "recommendedBadge": "TL-H-3006 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3166N",
+    "displayName": "TL-H-3166N Light Natural Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Light Wood",
+    "recommendedBadge": "TL-H-3166N · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3203",
+    "displayName": "TL-H-3203 Light Linear Stripe Grain",
+    "category": "Light",
+    "styleType": "Linear Stripe / Light",
+    "recommendedBadge": "TL-H-3203 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3204",
+    "displayName": "TL-H-3204 Dark Herringbone Chevron",
+    "category": "Dark",
+    "styleType": "Chevron / Herringbone",
+    "recommendedBadge": "TL-H-3204 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3208",
+    "displayName": "TL-H-3208 Light Herringbone Chevron",
+    "category": "Light",
+    "styleType": "Chevron / Herringbone",
+    "recommendedBadge": "TL-H-3208 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3210",
+    "displayName": "TL-H-3210 Light Ash Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Ash Look",
+    "recommendedBadge": "TL-H-3210 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3212",
+    "displayName": "TL-H-3212 Smoked Grey Woven Texture",
+    "category": "Smoked",
+    "styleType": "Woven / Grey",
+    "recommendedBadge": "TL-H-3212 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3216",
+    "displayName": "TL-H-3216 Smoked Oak Crown Grain",
+    "category": "Smoked",
+    "styleType": "Crown Grain / Oak Look",
+    "recommendedBadge": "TL-H-3216 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3218",
+    "displayName": "TL-H-3218 Light Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Light Wood",
+    "recommendedBadge": "TL-H-3218 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3222",
+    "displayName": "TL-H-3222 Dark Woven Linear Texture",
+    "category": "Dark",
+    "styleType": "Woven / Linear",
+    "recommendedBadge": "TL-H-3222 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3226",
+    "displayName": "TL-H-3226 Light Ripple Figured Grain",
+    "category": "Light",
+    "styleType": "Figured / Ripple",
+    "recommendedBadge": "TL-H-3226 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3234",
+    "displayName": "TL-H-3234 Dyed Red Burl Pattern",
+    "category": "Dyed",
+    "styleType": "Burl / Red Dyed",
+    "recommendedBadge": "TL-H-3234 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3240",
+    "displayName": "TL-H-3240 Warm Teak Straight Grain",
+    "category": "Warm",
+    "styleType": "Straight Grain / Teak Look",
+    "recommendedBadge": "TL-H-3240 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3242",
+    "displayName": "TL-H-3242 Smoked Grey Linear Stripe",
+    "category": "Smoked",
+    "styleType": "Linear Stripe / Grey",
+    "recommendedBadge": "TL-H-3242 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3248",
+    "displayName": "TL-H-3248 Dark Geometric Grid Pattern",
+    "category": "Dark",
+    "styleType": "Geometric / Grid",
+    "recommendedBadge": "TL-H-3248 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3256",
+    "displayName": "TL-H-3256 Light Figured Oak Grain",
+    "category": "Light",
+    "styleType": "Figured / Oak Look",
+    "recommendedBadge": "TL-H-3256 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3258",
+    "displayName": "TL-H-3258 Dark Crosshatch Texture",
+    "category": "Dark",
+    "styleType": "Crosshatch / Decorative",
+    "recommendedBadge": "TL-H-3258 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3262",
+    "displayName": "TL-H-3262 Warm Figured Burl Grain",
+    "category": "Warm",
+    "styleType": "Figured / Burl",
+    "recommendedBadge": "TL-H-3262 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3264",
+    "displayName": "TL-H-3264 Light Chevron Grain",
+    "category": "Light",
+    "styleType": "Chevron / Light",
+    "recommendedBadge": "TL-H-3264 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3266",
+    "displayName": "TL-H-3266 Light Herringbone Pattern",
+    "category": "Light",
+    "styleType": "Herringbone / Pattern",
+    "recommendedBadge": "TL-H-3266 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3268",
+    "displayName": "TL-H-3268 Dyed Black White Geometric Pattern",
+    "category": "Dyed",
+    "styleType": "Geometric / High Contrast",
+    "recommendedBadge": "TL-H-3268 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3276C",
+    "displayName": "TL-H-3276C Dark Walnut Crown Grain",
+    "category": "Dark",
+    "styleType": "Crown Grain / Walnut Look",
+    "recommendedBadge": "TL-H-3276C · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3278C",
+    "displayName": "TL-H-3278C Smoked Grey Figured Grain",
+    "category": "Smoked",
+    "styleType": "Figured / Grey",
+    "recommendedBadge": "TL-H-3278C · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3280C",
+    "displayName": "TL-H-3280C Warm Zebra Grain",
+    "category": "Warm",
+    "styleType": "Zebra / Warm",
+    "recommendedBadge": "TL-H-3280C · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3282",
+    "displayName": "TL-H-3282 Dyed Blue Black Wave Pattern",
+    "category": "Dyed",
+    "styleType": "Wave / Blue Dyed",
+    "recommendedBadge": "TL-H-3282 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3294",
+    "displayName": "TL-H-3294 Smoked Grey Diamond Pattern",
+    "category": "Smoked",
+    "styleType": "Diamond / Grey",
+    "recommendedBadge": "TL-H-3294 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3298",
+    "displayName": "TL-H-3298 Warm Orange Herringbone",
+    "category": "Warm",
+    "styleType": "Herringbone / Warm",
+    "recommendedBadge": "TL-H-3298 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3300",
+    "displayName": "TL-H-3300 Smoked Grey Burl Pattern",
+    "category": "Smoked",
+    "styleType": "Burl / Grey",
+    "recommendedBadge": "TL-H-3300 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3302",
+    "displayName": "TL-H-3302 Dark Chevron Grain",
+    "category": "Dark",
+    "styleType": "Chevron / Dark",
+    "recommendedBadge": "TL-H-3302 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3304",
+    "displayName": "TL-H-3304 Smoked Grey Diamond Pattern",
+    "category": "Smoked",
+    "styleType": "Diamond / Grey",
+    "recommendedBadge": "TL-H-3304 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3306C",
+    "displayName": "TL-H-3306C Warm Oak Straight Grain",
+    "category": "Warm",
+    "styleType": "Straight Grain / Oak Look",
+    "recommendedBadge": "TL-H-3306C · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3308",
+    "displayName": "TL-H-3308 Light Oak Crown Grain",
+    "category": "Light",
+    "styleType": "Crown Grain / Oak Look",
+    "recommendedBadge": "TL-H-3308 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3310",
+    "displayName": "TL-H-3310 Smoked Grey Pinstripe",
+    "category": "Smoked",
+    "styleType": "Pinstripe / Grey",
+    "recommendedBadge": "TL-H-3310 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3318",
+    "displayName": "TL-H-3318 Light Chevron Grain",
+    "category": "Light",
+    "styleType": "Chevron / Light",
+    "recommendedBadge": "TL-H-3318 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3320N",
+    "displayName": "TL-H-3320N Light Oak Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Oak Look",
+    "recommendedBadge": "TL-H-3320N · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3322N",
+    "displayName": "TL-H-3322N Warm Oak Straight Grain",
+    "category": "Warm",
+    "styleType": "Straight Grain / Oak Look",
+    "recommendedBadge": "TL-H-3322N · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3324",
+    "displayName": "TL-H-3324 Warm Figured Wood Grain",
+    "category": "Warm",
+    "styleType": "Figured / Warm",
+    "recommendedBadge": "TL-H-3324 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3326C",
+    "displayName": "TL-H-3326C Dark Grey Straight Grain",
+    "category": "Dark",
+    "styleType": "Straight Grain / Dark Grey",
+    "recommendedBadge": "TL-H-3326C · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3328",
+    "displayName": "TL-H-3328 Smoked Crown Grain",
+    "category": "Smoked",
+    "styleType": "Crown Grain / Smoked",
+    "recommendedBadge": "TL-H-3328 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3330",
+    "displayName": "TL-H-3330 Dark Wenge Wavy Grain",
+    "category": "Dark",
+    "styleType": "Wavy Grain / Wenge Look",
+    "recommendedBadge": "TL-H-3330 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3332",
+    "displayName": "TL-H-3332 Light Burl Pattern",
+    "category": "Light",
+    "styleType": "Burl / Light",
+    "recommendedBadge": "TL-H-3332 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3338C",
+    "displayName": "TL-H-3338C Smoked Olive Grey Grain",
+    "category": "Smoked",
+    "styleType": "Straight Grain / Grey",
+    "recommendedBadge": "TL-H-3338C · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3339",
+    "displayName": "TL-H-3339 Dark Narrow Linear Stripe",
+    "category": "Dark",
+    "styleType": "Linear Stripe / Dark",
+    "recommendedBadge": "TL-H-3339 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3350",
+    "displayName": "TL-H-3350 Dark Woven Texture",
+    "category": "Dark",
+    "styleType": "Woven / Dark",
+    "recommendedBadge": "TL-H-3350 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3352",
+    "displayName": "TL-H-3352 Dyed Black White Fine Pattern",
+    "category": "Dyed",
+    "styleType": "Fine Pattern / High Contrast",
+    "recommendedBadge": "TL-H-3352 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3356",
+    "displayName": "TL-H-3356 Light Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Light Wood",
+    "recommendedBadge": "TL-H-3356 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-3374",
+    "displayName": "TL-H-3374 Light Birdseye Burl Pattern",
+    "category": "Light",
+    "styleType": "Birdseye / Burl",
+    "recommendedBadge": "TL-H-3374 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-360",
+    "displayName": "TL-H-360 Dark Grey Straight Grain",
+    "category": "Dark",
+    "styleType": "Straight Grain / Dark Grey",
+    "recommendedBadge": "TL-H-360 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-362",
+    "displayName": "TL-H-362 Smoked Olive Straight Grain",
+    "category": "Smoked",
+    "styleType": "Straight Grain / Smoked",
+    "recommendedBadge": "TL-H-362 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-378N",
+    "displayName": "TL-H-378N Warm Golden Figured Grain",
+    "category": "Warm",
+    "styleType": "Figured / Warm",
+    "recommendedBadge": "TL-H-378N · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-4",
+    "displayName": "TL-H-4 Dyed Multicolor Chevron",
+    "category": "Dyed",
+    "styleType": "Chevron / Multicolor",
+    "recommendedBadge": "TL-H-4 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-4002N",
+    "displayName": "TL-H-4002N Light Natural Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Light Wood",
+    "recommendedBadge": "TL-H-4002N · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-438",
+    "displayName": "TL-H-438 Light Linear Stripe Grain",
+    "category": "Light",
+    "styleType": "Linear Stripe / Light",
+    "recommendedBadge": "TL-H-438 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-454C",
+    "displayName": "TL-H-454C Light Maple Crown Grain",
+    "category": "Light",
+    "styleType": "Crown Grain / Maple Look",
+    "recommendedBadge": "TL-H-454C · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-468C",
+    "displayName": "TL-H-468C Smoked Oak Crown Grain",
+    "category": "Smoked",
+    "styleType": "Crown Grain / Smoked Oak",
+    "recommendedBadge": "TL-H-468C · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-490C",
+    "displayName": "TL-H-490C Light Oak Crown Grain",
+    "category": "Light",
+    "styleType": "Crown Grain / Oak Look",
+    "recommendedBadge": "TL-H-490C · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-5",
+    "displayName": "TL-H-5 Dyed Blue Grey Chevron",
+    "category": "Dyed",
+    "styleType": "Chevron / Dyed",
+    "recommendedBadge": "TL-H-5 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-801N",
+    "displayName": "TL-H-801N Dyed Black White Stripe Pattern",
+    "category": "Dyed",
+    "styleType": "Stripe / High Contrast",
+    "recommendedBadge": "TL-H-801N · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-8042",
+    "displayName": "TL-H-8042 Dark Wenge Linear Grain",
+    "category": "Dark",
+    "styleType": "Linear / Wenge Look",
+    "recommendedBadge": "TL-H-8042 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-817N",
+    "displayName": "TL-H-817N Light Herringbone Chevron",
+    "category": "Light",
+    "styleType": "Chevron / Herringbone",
+    "recommendedBadge": "TL-H-817N · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-831N",
+    "displayName": "TL-H-831N Light Checker Block Pattern",
+    "category": "Light",
+    "styleType": "Geometric / Checker",
+    "recommendedBadge": "TL-H-831N · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-8601",
+    "displayName": "TL-H-8601 Dark Grey Straight Grain",
+    "category": "Dark",
+    "styleType": "Straight Grain / Dark Grey",
+    "recommendedBadge": "TL-H-8601 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-8605N",
+    "displayName": "TL-H-8605N Light Natural Straight Grain",
+    "category": "Light",
+    "styleType": "Straight Grain / Light Wood",
+    "recommendedBadge": "TL-H-8605N · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-863N",
+    "displayName": "TL-H-863N Warm Grid Pattern",
+    "category": "Warm",
+    "styleType": "Grid / Decorative",
+    "recommendedBadge": "TL-H-863N · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-8806C",
+    "displayName": "TL-H-8806C Smoked Olive Crown Grain",
+    "category": "Smoked",
+    "styleType": "Crown Grain / Smoked",
+    "recommendedBadge": "TL-H-8806C · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-8807C",
+    "displayName": "TL-H-8807C Dark Walnut Straight Grain",
+    "category": "Dark",
+    "styleType": "Straight Grain / Walnut Look",
+    "recommendedBadge": "TL-H-8807C · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-8816N",
+    "displayName": "TL-H-8816N Dark Checker Block Pattern",
+    "category": "Dark",
+    "styleType": "Geometric / Checker",
+    "recommendedBadge": "TL-H-8816N · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-900",
+    "displayName": "TL-H-900 Smoked Grey Birdseye Pattern",
+    "category": "Smoked",
+    "styleType": "Birdseye / Grey",
+    "recommendedBadge": "TL-H-900 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-906",
+    "displayName": "TL-H-906 Smoked Light Birdseye Pattern",
+    "category": "Smoked",
+    "styleType": "Birdseye / Light Grey",
+    "recommendedBadge": "TL-H-906 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-908",
+    "displayName": "TL-H-908 Dyed Blue Birdseye Pattern",
+    "category": "Dyed",
+    "styleType": "Birdseye / Blue Dyed",
+    "recommendedBadge": "TL-H-908 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-910",
+    "displayName": "TL-H-910 Light Ivory Birdseye Pattern",
+    "category": "Light",
+    "styleType": "Birdseye / Ivory",
+    "recommendedBadge": "TL-H-910 · Light",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-916",
+    "displayName": "TL-H-916 Warm Birdseye Pattern",
+    "category": "Warm",
+    "styleType": "Birdseye / Warm",
+    "recommendedBadge": "TL-H-916 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-918",
+    "displayName": "TL-H-918 Dyed Black Ivory Swirl Pattern",
+    "category": "Dyed",
+    "styleType": "Swirl / High Contrast",
+    "recommendedBadge": "TL-H-918 · Dyed",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-920",
+    "displayName": "TL-H-920 Warm Orange Burl Pattern",
+    "category": "Warm",
+    "styleType": "Burl / Warm",
+    "recommendedBadge": "TL-H-920 · Warm",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-YGW1",
+    "displayName": "TL-H-YGW1 Smoked Grey Chevron",
+    "category": "Smoked",
+    "styleType": "Chevron / Grey",
+    "recommendedBadge": "TL-H-YGW1 · Smoked",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  },
+  {
+    "code": "TL-H-YGW2",
+    "displayName": "TL-H-YGW2 Dark Smoked Chevron",
+    "category": "Dark",
+    "styleType": "Chevron / Dark Smoked",
+    "recommendedBadge": "TL-H-YGW2 · Dark",
+    "notes": "Visual classification for collection filtering; not a verified wood species."
+  }
+]
