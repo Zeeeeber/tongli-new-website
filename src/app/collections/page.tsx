@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
+import codeCategoryLookup from "./code-category-lookup.json";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -133,6 +134,11 @@ function SwatchGallery({
                   <div className="mt-4 text-center">
                     <p className="font-semibold text-[#1F2621] text-sm">{swatch.name}</p>
                     <p className="text-xs text-[#6b7280] font-mono mt-1">{swatch.code}</p>
+                    {codeCategoryLookup[swatch.code] ? (
+                      <span className="inline-block mt-1.5 px-2 py-0.5 bg-[#F7F3EC] rounded text-[10px] text-[#6b7280]">
+                        {codeCategoryLookup[swatch.code]}
+                      </span>
+                    ) : null}
                   </div>
                 </div>
               ))}
