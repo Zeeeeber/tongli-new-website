@@ -93,50 +93,8 @@ const swatches = [
   { name: "Dyed White Ivory 02", code: "T", tone: "Dyed", species: "Ivory", image: "DYED WHITE IVORY 02.jpg" },
 ];
 
-const productForms = [
-  "Natural Veneer Sheet",
-  "Wood Veneer Panel",
-  "Veneer Plywood",
-  "Veneer MDF",
-  "Veneer Edge Banding",
-];
-
-const applications = [
-  { name: "Furniture", icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" },
-  { name: "Doors", icon: "M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" },
-  { name: "Cabinets", icon: "M4 6h16M4 10h16M4 14h16M4 18h16" },
-  { name: "Wall Panels", icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" },
-  { name: "Hotel Interiors", icon: "M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" },
-];
-
-const relatedProducts = [
-  { name: "Wood Veneer Panels", href: "/products/wood-veneer-panels" },
-  { name: "Engineered Wood Veneer", href: "/products/engineered-wood-veneer" },
-  { name: "Veneer Edge Banding", href: "/products/veneer-edge-banding" },
-];
-
-const faqs = [
-  {
-    q: "What is the thickness of your natural wood veneer?",
-    a: "Our natural wood veneer typically ranges from 0.15mm to 3mm thickness. Standard thickness for lamination is 0.5mm-0.6mm. Custom thicknesses available for specific applications."
-  },
-  {
-    q: "Can I request samples of specific wood species?",
-    a: "Yes, you can request samples of any veneer in our collection. Click the 'Request Sample' button on the swatch card or contact us with the code number (e.g., TLO-001 for Natural Oak)."
-  },
-  {
-    q: "Do natural veneers have color variations?",
-    a: "Yes, natural wood veneer exhibits inherent color and grain variations as each sheet comes from real wood. This is part of its authentic character. We recommend ordering all materials for a project from the same batch."
-  },
-  {
-    q: "How should I store natural wood veneer?",
-    a: "Store veneer sheets flat in a climate-controlled environment (ideally 40-60% humidity) away from direct sunlight. Keep sheets covered to prevent warping or moisture absorption."
-  },
-];
-
 export default function NaturalWoodVeneerPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [toneFilter, setToneFilter] = useState<string | null>(null);
+    const [toneFilter, setToneFilter] = useState<string | null>(null);
   const [selectedSwatch, setSelectedSwatch] = useState<number | null>(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -188,51 +146,11 @@ export default function NaturalWoodVeneerPage() {
       {/* Hero */}
       <section className="relative bg-gradient-to-r from-[#8B5E3C] to-[#6B4A2C] py-16 lg:py-20">
         <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-white">
-              <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Collection</span>
-              <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4">Natural Wood Veneer</h1>
-              <p className="text-white/80 text-lg leading-relaxed mb-8">
-                Authentic wood veneer sheets with natural grain patterns, organic textures, and unique color variations. Each piece showcases the genuine beauty of real wood.
-              </p>
-              <div className="flex gap-4">
-                <Link 
-                  href="/contact?type=sample" 
-                  className="px-6 py-3 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
-                >
-                  Request Samples
-                </Link>
-                <Link 
-                  href="/contact?type=inquiry" 
-                  className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
-                >
-                  Send Inquiry
-                </Link>
-              </div>
-            </div>
-            <div className="hidden lg:block">
-              <div className="grid grid-cols-3 gap-3">
-                {["#D4A574", "#C49A6C", "#B8956F", "#A67B5B", "#8B6914", "#704214"].map((color, i) => (
-                  <div 
-                    key={i}
-                    className="aspect-square rounded-xl shadow-lg cursor-pointer hover:scale-105 transition-transform"
-                    style={{ backgroundColor: color }}
-                    onClick={() => handleOpenModal(-1)}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Collection Introduction */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-4">About Natural Wood Veneer</h2>
-            <p className="text-[#6b7280] leading-relaxed">
-              Natural wood veneer is sliced from real hardwood logs, preserving the authentic grain patterns, color variations, and organic textures unique to each species. Ideal for premium furniture, interior decoration, and architectural applications where the genuine character of wood is valued.
+          <div className="max-w-3xl">
+            <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Collection</span>
+            <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-white">Natural Wood Veneer</h1>
+            <p className="text-white/80 text-lg leading-relaxed">
+              Sliced from real hardwood logs, each sheet preserves the authentic grain patterns, organic textures, and unique color variations of its species. Browse the full style library below.
             </p>
           </div>
         </div>
@@ -317,59 +235,13 @@ export default function NaturalWoodVeneerPage() {
         </div>
       </section>
 
-      {/* Available Product Forms */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-2">Available Product Forms</h2>
-            <p className="text-[#6b7280]">These collections are available in the following product formats</p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4">
-            {productForms.map((form) => (
-              <span 
-                key={form}
-                className="px-6 py-3 bg-[#F7F3EC] rounded-full text-sm font-medium text-[#1F2621]"
-              >
-                {form}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Available Applications */}
-      <section className="py-16 bg-[#FDFBF7]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-2">Suitable Applications</h2>
-            <p className="text-[#6b7280]">Perfect for these interior and furniture applications</p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto">
-            {applications.map((app) => (
-              <Link
-                key={app.name}
-                href="/applications"
-                className="group bg-white rounded-xl p-6 text-center border border-[#E5E1D8] hover:border-[#0F6B3A]/30 hover:shadow-md transition-all"
-              >
-                <div className="w-12 h-12 mx-auto mb-3 rounded-lg bg-[#F7F3EC] flex items-center justify-center group-hover:bg-[#0F6B3A]/10 transition-colors">
-                  <svg className="w-6 h-6 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={app.icon} />
-                  </svg>
-                </div>
-                <span className="text-sm font-medium text-[#1F2621]">{app.name}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Request Samples CTA */}
       <section className="py-16 bg-[#8B5E3C]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
             <h2 className="text-3xl font-bold mb-4">Need Physical Samples?</h2>
             <p className="text-white/80 mb-8">
-              Request samples by code number (e.g., TLO-001 for Natural Oak) to evaluate colors, grains, and textures before ordering.
+              Request samples by code number to evaluate colors, grains, and textures before placing your order.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
@@ -384,67 +256,6 @@ export default function NaturalWoodVeneerPage() {
               >
                 Send Inquiry
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Products */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-2">Related Products</h2>
-            <p className="text-[#6b7280]">View products made with natural wood veneer</p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4">
-            {relatedProducts.map((product) => (
-              <Link
-                key={product.name}
-                href={product.href}
-                className="px-6 py-3 bg-[#F7F3EC] rounded-lg text-sm font-medium text-[#1F2621] hover:bg-[#0F6B3A]/10 hover:text-[#0F6B3A] transition-colors"
-              >
-                {product.name}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-16 bg-[#FAFAFA]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
-            </div>
-
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div 
-                  key={index}
-                  className="bg-white rounded-xl border border-[#E5E1D8] overflow-hidden"
-                >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left font-semibold text-[#1F2621] hover:text-[#0F6B3A] transition-colors"
-                  >
-                    <span className="pr-4">{faq.q}</span>
-                    <svg 
-                      className={`w-5 h-5 text-[#0F6B3A] flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}>
-                    <div className="px-6 pb-6 text-[#6b7280] leading-relaxed">
-                      {faq.a}
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
