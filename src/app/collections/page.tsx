@@ -279,56 +279,7 @@ const collections = [
   },
 ];
 
-// Surface guide data
-const surfaceGuide = [
-  {
-    title: "Grain & Tone",
-    description: "Natural wood offers unique grain variations; engineered veneer provides consistent patterns; melamine offers uniform modern finishes.",
-    icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5z",
-  },
-  {
-    title: "Production Consistency",
-    description: "Engineered veneer excels in batch-to-batch consistency. Natural veneer brings authentic character. Melamine ensures color uniformity.",
-    icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-  },
-  {
-    title: "Suitable Application",
-    description: "Natural for premium furniture and feature pieces. Engineered for large-scale manufacturing. Melamine for modern cabinetry and office furniture.",
-    icon: "M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10",
-  },
-];
-
-// Applications data
-const applications = [
-  { name: "Furniture", icon: "M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" },
-  { name: "Doors", icon: "M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" },
-  { name: "Cabinets", icon: "M4 6h16M4 10h16M4 14h16M4 18h16" },
-  { name: "Wall Panels", icon: "M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" },
-];
-
-// FAQ data
-const faqs = [
-  {
-    q: "How do I request samples?",
-    a: "Click the 'Request Sample' button on any swatch card. We'll send you physical material samples by mail. Please include your project details and required quantity in the inquiry."
-  },
-  {
-    q: "Can I get custom colors or patterns?",
-    a: "Yes, we offer custom color matching and pattern development for bulk orders. Contact our team with your reference samples or color specifications."
-  },
-  {
-    q: "What's the minimum order quantity for samples?",
-    a: "Sample orders typically start from 1-5 sheets per item. Sample fees are usually refundable upon confirmation of bulk orders."
-  },
-  {
-    q: "How do I maintain color consistency across batches?",
-    a: "We recommend ordering all materials for a project in one batch. For extended projects, we can reserve inventory to ensure color matching across deliveries."
-  },
-];
-
 export default function CollectionsPage() {
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-
   return (
     <>
       {/* Breadcrumb */}
@@ -446,59 +397,9 @@ export default function CollectionsPage() {
         </div>
       </section>
 
-      {/* How to Choose Surface */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="inline-block text-[#8B5E3C] text-sm font-semibold tracking-widest uppercase mb-4">Surface Guide</span>
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621]">How to Choose the Right Surface</h2>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {surfaceGuide.map((item) => (
-              <div key={item.title} className="text-center group">
-                <div className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-[#F7F3EC] flex items-center justify-center group-hover:bg-[#0F6B3A] transition-colors duration-300">
-                  <svg className="w-10 h-10 text-[#0F6B3A] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={item.icon} />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-bold text-[#1F2621] mb-3">{item.title}</h3>
-                <p className="text-[#6b7280] leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Application Inspiration */}
-      <section className="py-20 bg-[#FDFBF7]">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <span className="inline-block text-[#8B5E3C] text-sm font-semibold tracking-widest uppercase mb-4">Applications</span>
-            <h2 className="text-3xl font-bold text-[#1F2621]">Surface Applications</h2>
-            <p className="text-[#6b7280] mt-4">See how our materials transform different project types</p>
-          </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {applications.map((app) => (
-              <Link
-                key={app.name}
-                href="/applications"
-                className="group bg-white rounded-2xl p-8 text-center border border-[#E5E1D8] hover:border-[#0F6B3A]/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-xl bg-[#F7F3EC] flex items-center justify-center group-hover:bg-[#0F6B3A]/10 transition-colors">
-                  <svg className="w-8 h-8 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={app.icon} />
-                  </svg>
-                </div>
-                <span className="font-semibold text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">
-                  {app.name}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Sample CTA */}
       <section className="py-20 bg-[#0F6B3A] relative overflow-hidden">
@@ -527,67 +428,6 @@ export default function CollectionsPage() {
                 Send Inquiry
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <span className="inline-block text-[#8B5E3C] text-sm font-semibold tracking-widest uppercase mb-4">FAQ</span>
-              <h2 className="text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
-            </div>
-
-            <div className="space-y-4">
-              {faqs.map((faq, index) => (
-                <div 
-                  key={index}
-                  className="bg-[#FDFBF7] rounded-xl border border-[#E5E1D8] overflow-hidden"
-                >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full flex items-center justify-between p-6 text-left font-semibold text-[#1F2621] hover:text-[#0F6B3A] transition-colors"
-                  >
-                    <span className="pr-4">{faq.q}</span>
-                    <svg 
-                      className={`w-5 h-5 text-[#0F6B3A] flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}>
-                    <div className="px-6 pb-6 text-[#6b7280] leading-relaxed">
-                      {faq.a}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quick Links */}
-      <section className="py-12 bg-[#FDFBF7] border-t border-[#E5E1D8]">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <Link href="/products" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">View All Products</span>
-            </Link>
-            <Link href="/custom-solutions" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">Custom Solutions</span>
-            </Link>
-            <Link href="/about" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">About Factory</span>
-            </Link>
-            <Link href="/contact" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">Contact Us</span>
-            </Link>
           </div>
         </div>
       </section>
