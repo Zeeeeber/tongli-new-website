@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { engineeredWoodVeneerProducts, type EngineeredWoodVeneerProduct } from "@/data/products/engineered-wood-veneer-products";
@@ -48,6 +49,7 @@ export function EngineeredWoodVeneerDetailTemplate({
   const [selectedImage, setSelectedImage] = useState(0);
   const [showContactModal, setShowContactModal] = useState(false);
   const thumbnailScrollRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const productImages = useMemo(() => {
     if (product.gallery?.length) {
       return product.gallery;
@@ -496,7 +498,7 @@ export function EngineeredWoodVeneerDetailTemplate({
                     </div>
                   ))}
                 </div>
-                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Veneer Sample</button>
+                <button onClick={() => router.push("/contact")} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Veneer Sample</button>
               </div>
             </div>
           </div>
