@@ -225,13 +225,6 @@ export default function NaturalWoodVeneerPage() {
               </div>
             ))}
           </div>
-
-          {/* Load More */}
-          <div className="mt-12 text-center">
-            <button className="px-8 py-3 border-2 border-[#E5E1D8] text-[#1F2621] rounded-lg font-semibold hover:border-[#0F6B3A] hover:text-[#0F6B3A] transition-colors">
-              Load More ({swatches.length} items)
-            </button>
-          </div>
         </div>
       </section>
 
