@@ -136,9 +136,9 @@ function SwatchGallery({
                     {swatch.name !== swatch.code ? (
                       <p className="text-xs text-[#6b7280] font-mono mt-1">{swatch.code}</p>
                     ) : null}
-                    {codeCategoryLookup[swatch.code] ? (
+                    {(codeCategoryLookup as Record<string, string>)[swatch.code] ? (
                       <span className="inline-block mt-1.5 px-2 py-0.5 bg-[#F7F3EC] rounded text-[10px] text-[#6b7280]">
-                        {codeCategoryLookup[swatch.code]}
+                        {(codeCategoryLookup as Record<string, string>)[swatch.code]}
                       </span>
                     ) : null}
                   </div>
