@@ -243,12 +243,6 @@ export default function NaturalWoodVeneerPage() {
               >
                 Request Samples
               </Link>
-              <Link 
-                href="/contact?type=inquiry" 
-                className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
-              >
-                Send Inquiry
-              </Link>
             </div>
           </div>
         </div>
