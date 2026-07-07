@@ -285,6 +285,25 @@ const collections = [
       { name: "TLQ-KBDS", code: "TLQ-KBDS", bg: "from-[#F5F5F5] to-[#E8E8E8]", image: "/images/collections/melamine-board/TLQ-KBDS.jpg" },
     ],
   },
+  {
+    id: "3d-wood-panels",
+    shortName: "3D Wood",
+    description: "Carved 3D decorative wood wall panels with linear fluted, geometric, wave, and organic patterns for interiors, hotels and commercial spaces.",
+    features: ["32 Styles", "Custom Sizes", "Various Finishes"],
+    color: "#3a2d1f",
+    bgColor: "from-[#3a2d1f] to-[#1F2621]",
+    scrollDirection: "right" as const,
+    swatches: [
+      { name: "TL-3D-002", code: "TL-3D-002", bg: "from-[#5C3D2E] to-[#3D2820]", image: "/images/collections/3d-wood-panels/TL-3D-002.jpg" },
+      { name: "TL-3D-007", code: "TL-3D-007", bg: "from-[#4A3222] to-[#2E1E14]", image: "/images/collections/3d-wood-panels/TL-3D-007.jpg" },
+      { name: "TL-3D-012", code: "TL-3D-012", bg: "from-[#3D3025] to-[#261E16]", image: "/images/collections/3d-wood-panels/TL-3D-012.jpg" },
+      { name: "TL-3D-001", code: "TL-3D-001", bg: "from-[#4A3828] to-[#2E2218]", image: "/images/collections/3d-wood-panels/TL-3D-001.jpg" },
+      { name: "TL-3D-009", code: "TL-3D-009", bg: "from-[#5A4030] to-[#3A2820]", image: "/images/collections/3d-wood-panels/TL-3D-009.jpg" },
+      { name: "TL-3D-025", code: "TL-3D-025", bg: "from-[#3E2E20] to-[#261C14]", image: "/images/collections/3d-wood-panels/TL-3D-025.jpg" },
+      { name: "TL-3D-018", code: "TL-3D-018", bg: "from-[#4D3D2D] to-[#2F2519]", image: "/images/collections/3d-wood-panels/TL-3D-018.jpg" },
+      { name: "TL-3D-030", code: "TL-3D-030", bg: "from-[#5C4030] to-[#3A281E]", image: "/images/collections/3d-wood-panels/TL-3D-030.jpg" },
+    ],
+  },
 ];
 
 export default function CollectionsPage() {
