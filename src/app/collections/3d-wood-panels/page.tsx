@@ -111,11 +111,6 @@ export default function ThreeDWoodPanelsCollectionPage() {
 
       <section className="pb-16 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-sm text-[#6b7280] mb-6">
-            Showing {filtered.length} {filtered.length === 1 ? "style" : "styles"}
-            {active !== "All" ? ` in ${active}` : ""}
-          </div>
-
           {filtered.length === 0 ? (
             <div className="py-20 text-center text-[#6b7280]">
               No styles in this category.
@@ -166,16 +161,16 @@ export default function ThreeDWoodPanelsCollectionPage() {
       <section className="py-16 bg-[#8B5E3C]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Custom 3D Wood Panels for Your Project?</h2>
+            <h2 className="text-3xl font-bold mb-4">Need Physical Samples?</h2>
             <p className="text-white/80 mb-8">
-              Send us your preferred pattern, size, wood finish or project application. Tongli Timber can help match suitable 3D decorative wall panels for interiors, hotels, furniture and commercial spaces.
+              Request samples by code number to evaluate 3D panel patterns, finishes and textures for your interior, hotel or commercial project.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/contact"
+                href="/contact?type=sample"
                 className="px-8 py-4 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Contact Us
+                Request Samples
               </Link>
             </div>
           </div>
