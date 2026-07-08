@@ -11,12 +11,14 @@ function SwatchGallery({
   collectionId, 
   color,
   viewAllHref,
+  moreCount,
   scrollDirection = 'left' // 'left' = scroll left, 'right' = scroll right
 }: { 
-  swatches: Array<{ name: string; code: string; bg: string; image?: string }>;
+  swatches: Array<{ name: string; code: string; bg: string; image?: string; category?: string }>;
   collectionId: string;
   color: string;
   viewAllHref: string;
+  moreCount?: number;
   scrollDirection?: 'left' | 'right';
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -136,9 +138,9 @@ function SwatchGallery({
                     {swatch.name !== swatch.code ? (
                       <p className="text-xs text-[#6b7280] font-mono mt-1">{swatch.code}</p>
                     ) : null}
-                    {(codeCategoryLookup as Record<string, string>)[swatch.code] ? (
+                    {(swatch.category ?? (codeCategoryLookup as Record<string, string>)[swatch.code]) ? (
                       <span className="inline-block mt-1.5 px-2 py-0.5 bg-[#F7F3EC] rounded text-[10px] text-[#6b7280]">
-                        {(codeCategoryLookup as Record<string, string>)[swatch.code]}
+                        {swatch.category ?? (codeCategoryLookup as Record<string, string>)[swatch.code]}
                       </span>
                     ) : null}
                   </div>
@@ -158,7 +160,7 @@ function SwatchGallery({
                       </svg>
                     </div>
                     <span className="text-base font-semibold text-[#6b7280] group-hover:text-[#0F6B3A]">View All</span>
-                    <p className="text-sm text-[#9CA3AF] mt-1">+93 More Styles</p>
+                    <p className="text-sm text-[#9CA3AF] mt-1">{moreCount ? `+${moreCount} More Styles` : 'View All Styles'}</p>
                   </div>
                 </Link>
                 <div className="mt-4 text-center">
@@ -294,15 +296,16 @@ const collections = [
     bgColor: "from-[#3a2d1f] to-[#1F2621]",
     scrollDirection: "right" as const,
     swatches: [
-      { name: "Linear Fluted Slat", code: "TL-3D-002", bg: "from-[#5C3D2E] to-[#3D2820]", image: "/images/collections/3d-wood-panels/TL-3D-002.jpg" },
-      { name: "Wave Ripple Texture", code: "TL-3D-007", bg: "from-[#4A3222] to-[#2E1E14]", image: "/images/collections/3d-wood-panels/TL-3D-007.jpg" },
-      { name: "Geometric Grid", code: "TL-3D-012", bg: "from-[#3D3025] to-[#261E16]", image: "/images/collections/3d-wood-panels/TL-3D-012.jpg" },
-      { name: "Geometric Grid", code: "TL-3D-001", bg: "from-[#4A3828] to-[#2E2218]", image: "/images/collections/3d-wood-panels/TL-3D-001.jpg" },
-      { name: "Organic Carved", code: "TL-3D-009", bg: "from-[#5A4030] to-[#3A2820]", image: "/images/collections/3d-wood-panels/TL-3D-009.jpg" },
-      { name: "Wave Ripple Texture", code: "TL-3D-025", bg: "from-[#3E2E20] to-[#261C14]", image: "/images/collections/3d-wood-panels/TL-3D-025.jpg" },
-      { name: "Geometric Grid", code: "TL-3D-018", bg: "from-[#4D3D2D] to-[#2F2519]", image: "/images/collections/3d-wood-panels/TL-3D-018.jpg" },
-      { name: "Organic Carved", code: "TL-3D-030", bg: "from-[#5C4030] to-[#3A281E]", image: "/images/collections/3d-wood-panels/TL-3D-030.jpg" },
+      { name: "Linear Fluted", code: "TL-3D-002", bg: "from-[#5C3D2E] to-[#3D2820]", image: "/images/collections/3d-wood-panels/TL-3D-002.jpg", category: "Linear / Fluted" },
+      { name: "Wave Ripple", code: "TL-3D-007", bg: "from-[#4A3222] to-[#2E1E14]", image: "/images/collections/3d-wood-panels/TL-3D-007.jpg", category: "Wave / Ripple" },
+      { name: "Geometric Grid", code: "TL-3D-012", bg: "from-[#3D3025] to-[#261E16]", image: "/images/collections/3d-wood-panels/TL-3D-012.jpg", category: "Geometric / Grid" },
+      { name: "Tree Ring", code: "TL-3D-001", bg: "from-[#4A3828] to-[#2E2218]", image: "/images/collections/3d-wood-panels/TL-3D-001.jpg", category: "Geometric / Grid" },
+      { name: "Organic Carved", code: "TL-3D-009", bg: "from-[#5A4030] to-[#3A2820]", image: "/images/collections/3d-wood-panels/TL-3D-009.jpg", category: "Organic Carved" },
+      { name: "S-Shape Wave", code: "TL-3D-025", bg: "from-[#3E2E20] to-[#261C14]", image: "/images/collections/3d-wood-panels/TL-3D-025.jpg", category: "Wave / Ripple" },
+      { name: "Square Grid", code: "TL-3D-018", bg: "from-[#4D3D2D] to-[#2F2519]", image: "/images/collections/3d-wood-panels/TL-3D-018.jpg", category: "Geometric / Grid" },
+      { name: "Leaf Carved", code: "TL-3D-030", bg: "from-[#5C4030] to-[#3A281E]", image: "/images/collections/3d-wood-panels/TL-3D-030.jpg", category: "Organic Carved" },
     ],
+    moreCount: 24,
   },
 ];
 
@@ -417,6 +420,7 @@ export default function CollectionsPage() {
                   color={collection.color}
                   viewAllHref={`/collections/${collection.id}`}
                   scrollDirection={collection.scrollDirection}
+                  moreCount={collection.moreCount}
                 />
               </div>
             ))}
