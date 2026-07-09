@@ -13,7 +13,7 @@ function SwatchGallery({
   viewAllHref,
   scrollDirection = 'left' // 'left' = scroll left, 'right' = scroll right
 }: { 
-  swatches: Array<{ name: string; code: string; bg: string; image?: string }>;
+  swatches: Array<{ name: string; code: string; bg: string; image?: string; category?: string }>;
   collectionId: string;
   color: string;
   viewAllHref: string;
@@ -139,6 +139,10 @@ function SwatchGallery({
                     {(codeCategoryLookup as Record<string, string>)[swatch.code] ? (
                       <span className="inline-block mt-1.5 px-2 py-0.5 bg-[#F7F3EC] rounded text-[10px] text-[#6b7280]">
                         {(codeCategoryLookup as Record<string, string>)[swatch.code]}
+                      </span>
+                    ) : swatch.category ? (
+                      <span className="inline-block mt-1.5 px-2 py-0.5 bg-[#F7F3EC] rounded text-[10px] text-[#6b7280]">
+                        {swatch.category}
                       </span>
                     ) : null}
                   </div>
@@ -294,14 +298,14 @@ const collections = [
     bgColor: "from-[#3a2d1f] to-[#1F2621]",
     scrollDirection: "right" as const,
     swatches: [
-      { name: "TL-3D-002", code: "TL-3D-002", bg: "from-[#5C3D2E] to-[#3D2820]", image: "/images/collections/3d-wood-panels/TL-3D-002.jpg" },
-      { name: "TL-3D-007", code: "TL-3D-007", bg: "from-[#4A3222] to-[#2E1E14]", image: "/images/collections/3d-wood-panels/TL-3D-007.jpg" },
-      { name: "TL-3D-012", code: "TL-3D-012", bg: "from-[#3D3025] to-[#261E16]", image: "/images/collections/3d-wood-panels/TL-3D-012.jpg" },
-      { name: "TL-3D-001", code: "TL-3D-001", bg: "from-[#4A3828] to-[#2E2218]", image: "/images/collections/3d-wood-panels/TL-3D-001.jpg" },
-      { name: "TL-3D-009", code: "TL-3D-009", bg: "from-[#5A4030] to-[#3A2820]", image: "/images/collections/3d-wood-panels/TL-3D-009.jpg" },
-      { name: "TL-3D-025", code: "TL-3D-025", bg: "from-[#3E2E20] to-[#261C14]", image: "/images/collections/3d-wood-panels/TL-3D-025.jpg" },
-      { name: "TL-3D-018", code: "TL-3D-018", bg: "from-[#4D3D2D] to-[#2F2519]", image: "/images/collections/3d-wood-panels/TL-3D-018.jpg" },
-      { name: "TL-3D-030", code: "TL-3D-030", bg: "from-[#5C4030] to-[#3A281E]", image: "/images/collections/3d-wood-panels/TL-3D-030.jpg" },
+      { name: "TL-3D-002", code: "TL-3D-002", bg: "from-[#5C3D2E] to-[#3D2820]", image: "/images/collections/3d-wood-panels/TL-3D-002.jpg", category: "Linear / Fluted" },
+      { name: "TL-3D-007", code: "TL-3D-007", bg: "from-[#4A3222] to-[#2E1E14]", image: "/images/collections/3d-wood-panels/TL-3D-007.jpg", category: "Wave / Ripple" },
+      { name: "TL-3D-001", code: "TL-3D-001", bg: "from-[#4A3828] to-[#2E2218]", image: "/images/collections/3d-wood-panels/TL-3D-001.jpg", category: "Geometric / Grid" },
+      { name: "TL-3D-009", code: "TL-3D-009", bg: "from-[#5A4030] to-[#3A2820]", image: "/images/collections/3d-wood-panels/TL-3D-009.jpg", category: "Organic Carved" },
+      { name: "TL-3D-012", code: "TL-3D-012", bg: "from-[#3D3025] to-[#261E16]", image: "/images/collections/3d-wood-panels/TL-3D-012.jpg", category: "Geometric / Grid" },
+      { name: "TL-3D-025", code: "TL-3D-025", bg: "from-[#3E2E20] to-[#261C14]", image: "/images/collections/3d-wood-panels/TL-3D-025.jpg", category: "Wave / Ripple" },
+      { name: "TL-3D-018", code: "TL-3D-018", bg: "from-[#4D3D2D] to-[#2F2519]", image: "/images/collections/3d-wood-panels/TL-3D-018.jpg", category: "Linear / Fluted" },
+      { name: "TL-3D-030", code: "TL-3D-030", bg: "from-[#5C4030] to-[#3A281E]", image: "/images/collections/3d-wood-panels/TL-3D-030.jpg", category: "Organic Carved" },
     ],
   },
 ];
