@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 import ImageModal from "@/components/ImageModal";
 import stylesData from "./styles-data.json";
 
-type Category = "Light" | "Warm" | "Dark" | "Smoked" | "Dyed";
+type Category = "Light" | "Warm" | "Dark" | "Dyed";
 
 interface StyleItem {
   code: string;
@@ -21,7 +21,6 @@ const categories: { key: "All" | Category; label: string }[] = [
   { key: "Light", label: "Light" },
   { key: "Warm", label: "Warm" },
   { key: "Dark", label: "Dark" },
-  { key: "Smoked", label: "Smoked" },
   { key: "Dyed", label: "Dyed" },
 ];
 
