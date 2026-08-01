@@ -30,24 +30,27 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = product.seoTitle || product.name;
+  const metadataTitle = /\|\s*Tongli Timber\s*$/i.test(title)
+    ? title
+    : `${title} | Tongli Timber`;
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/natural-wood-veneer/${product.slug}`;
 
   return {
-    title: `${title} | Tongli Timber`,
+    title: metadataTitle,
     description,
     alternates: {
       canonical: productUrl,
     },
     openGraph: {
-      title: `${title} | Tongli Timber`,
+      title: metadataTitle,
       description,
       url: productUrl,
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Tongli Timber`,
+      title: metadataTitle,
       description,
     },
   };

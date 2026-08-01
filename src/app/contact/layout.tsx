@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   title: "Contact Tongli Timber | Wood Veneer & Decorative Panel Supplier",
   description:
     "Contact Tongli Timber for wood veneer panels, natural veneer, engineered veneer, 3D wood panels and decorative plywood sourcing, samples and B2B project inquiries.",
   alternates: {
-    canonical: "https://tlveneer.com/contact",
+    canonical: `${siteConfig.canonicalUrl}/contact`,
   },
   robots: {
     index: true,
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     title: "Contact Tongli Timber | Wood Veneer & Decorative Panel Supplier",
     description:
       "Contact Tongli Timber for wood veneer panels, natural veneer, engineered veneer, 3D wood panels and decorative plywood sourcing, samples and B2B project inquiries.",
-    url: "https://tlveneer.com/contact",
+    url: `${siteConfig.canonicalUrl}/contact`,
     locale: "en_US",
   },
   twitter: {

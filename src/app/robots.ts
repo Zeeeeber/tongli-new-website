@@ -14,13 +14,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        // Disallow admin and private paths
-        disallow: [
-          "/api/",
-          "/admin/",
-          "/_next/",
-          "/private/",
-        ],
+        // Keep private or non-content routes out of crawl queues. Next.js
+        // assets stay crawlable so search engines can render every page.
+        disallow: ["/api/", "/admin/", "/private/"],
       },
     ],
     sitemap: `${siteConfig.canonicalUrl}/sitemap.xml`,

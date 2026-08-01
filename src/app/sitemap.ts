@@ -1,225 +1,119 @@
-/**
- * Dynamic Sitemap Generator
- * Generates sitemap.xml for all public pages
- * 
- * Usage: Automatically served at /sitemap.xml by Next.js App Router
- */
-
-import { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/seo/site";
 import { articles } from "@/data/resources/articles";
+import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
+import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-veneer-products";
+import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-products";
+import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
+import { melamineBoardProducts } from "@/data/products/melamine-board-products";
+import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
 
-/**
- * Static pages that should always be included
- */
-const staticPages: MetadataRoute.Sitemap = [
-  // Homepage
-  {
-    url: siteConfig.canonicalUrl,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 1.0,
-  },
-  // Main pages
-  {
-    url: `${siteConfig.canonicalUrl}/products`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.9,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/collections`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/applications`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/custom-solutions`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/about`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.6,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/projects`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/resources`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/contact`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.7,
-  },
-  // Product category pages
-  {
-    url: `${siteConfig.canonicalUrl}/products/wood-veneer-panels`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/products/natural-wood-veneer`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/products/engineered-wood-veneer`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/products/3d-wood-panels`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.8,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/products/veneer-edge-banding`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/products/melamine-board`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/products/supporting-boards`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  // Collection pages
-  {
-    url: `${siteConfig.canonicalUrl}/collections/natural-wood-veneer`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/collections/engineered-veneer`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/collections/melamine-board`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.7,
-  },
-  // Resource category pages
-  {
-    url: `${siteConfig.canonicalUrl}/resources/category/product-news`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/resources/category/industry-news`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/resources/category/company-news`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.6,
-  },
-  // Utility pages
-  {
-    url: `${siteConfig.canonicalUrl}/samples`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.5,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/privacy`,
-    lastModified: new Date(),
-    changeFrequency: "yearly",
-    priority: 0.3,
-  },
-  {
-    url: `${siteConfig.canonicalUrl}/terms`,
-    lastModified: new Date(),
-    changeFrequency: "yearly",
-    priority: 0.3,
-  },
-];
+type SitemapEntry = MetadataRoute.Sitemap[number];
+type ProductSitemapSource = {
+  slug: string;
+  updatedAt?: string;
+};
 
-/**
- * Generate resource article URLs from local data
- * Note: Currently using local data. Future: Replace with WordPress API fetch.
- */
-function generateResourceUrls(): MetadataRoute.Sitemap {
-  return articles.map((article) => ({
-    url: `${siteConfig.canonicalUrl}/resources/${article.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
+const staticPaths = [
+  "/",
+  "/products",
+  "/collections",
+  "/applications",
+  "/applications/cabinets-wardrobes",
+  "/applications/door-production",
+  "/applications/furniture-manufacturing",
+  "/applications/hotel-commercial",
+  "/applications/wall-panels-interior",
+  "/applications/whole-house-customization",
+  "/custom-solutions",
+  "/about",
+  "/projects",
+  "/resources",
+  "/contact",
+  "/products/wood-veneer-panels",
+  "/products/natural-wood-veneer",
+  "/products/engineered-wood-veneer",
+  "/products/3d-wood-panels",
+  "/products/veneer-edge-banding",
+  "/products/melamine-board",
+  "/products/supporting-boards",
+  "/collections/natural-wood-veneer",
+  "/collections/engineered-veneer",
+  "/collections/3d-wood-panels",
+  "/collections/melamine-board",
+  "/resources/category/product-news",
+  "/resources/category/industry-news",
+  "/resources/category/company-news",
+  "/samples",
+  "/privacy",
+  "/terms",
+] as const;
+
+function absoluteUrl(path: string): string {
+  return path === "/"
+    ? siteConfig.canonicalUrl
+    : `${siteConfig.canonicalUrl}${path}`;
 }
 
-/**
- * Generate Natural Wood Veneer product URLs from local data
- * Note: Currently using local data. Future: Replace with WordPress API fetch.
- */
-function generateNaturalWoodVeneerProductUrls(): MetadataRoute.Sitemap {
-  return naturalWoodVeneerProducts.map((product) => ({
-    url: `${siteConfig.canonicalUrl}/products/natural-wood-veneer/${product.slug}`,
-    lastModified: product.updatedAt ? new Date(product.updatedAt) : new Date(),
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-  }));
+function sitemapEntry(path: string, lastModified?: string | Date): SitemapEntry {
+  return {
+    url: absoluteUrl(path),
+    ...(lastModified ? { lastModified } : {}),
+  };
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  /**
-   * Future: Add dynamic routes from WordPress CMS
-   * 
-   * Example:
-   * const products = await fetchProducts();
-   * const productUrls = products.map(product => ({
-   *   url: `${siteConfig.canonicalUrl}/products/${product.category}/${product.slug}`,
-   *   lastModified: new Date(product.updatedAt),
-   *   changeFrequency: "weekly" as const,
-   *   priority: 0.8,
-   * }));
-   * 
-   * return [...staticPages, ...productUrls];
-   */
+function productEntries(
+  categoryPath: string,
+  products: readonly ProductSitemapSource[],
+): MetadataRoute.Sitemap {
+  return products.map((product) =>
+    sitemapEntry(
+      `${categoryPath}/${product.slug}`,
+      product.updatedAt,
+    ),
+  );
+}
 
-  const resourceUrls = generateResourceUrls();
-  const productUrls = generateNaturalWoodVeneerProductUrls();
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticEntries = staticPaths.map((path) => sitemapEntry(path));
 
-  return [
-    ...staticPages,
-    ...resourceUrls,
-    ...productUrls,
+  const articleEntries = articles.map((article) =>
+    sitemapEntry(`/resources/${article.slug}`, new Date(article.date)),
+  );
+
+  const productDetailEntries = [
+    ...productEntries(
+      "/products/wood-veneer-panels",
+      Object.values(woodVeneerPanelProducts).filter(
+        (product) => product.featuredImage.length > 0,
+      ),
+    ),
+    ...productEntries(
+      "/products/natural-wood-veneer",
+      naturalWoodVeneerProducts,
+    ),
+    ...productEntries(
+      "/products/engineered-wood-veneer",
+      engineeredWoodVeneerProducts,
+    ),
+    ...productEntries(
+      "/products/3d-wood-panels",
+      threeDWoodPanelsProducts,
+    ),
+    ...productEntries(
+      "/products/veneer-edge-banding",
+      veneerEdgeBandingProducts,
+    ),
+    ...productEntries(
+      "/products/melamine-board",
+      melamineBoardProducts,
+    ),
+    ...productEntries(
+      "/products/supporting-boards",
+      supportingBoardsProducts,
+    ),
   ];
+
+  return [...staticEntries, ...articleEntries, ...productDetailEntries];
 }

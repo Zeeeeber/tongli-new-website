@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   title: "About Tongli Timber | Wood Veneer & Decorative Plywood Factory Since 1999",
   description:
     "Learn about Tongli Timber, a wood veneer and decorative plywood manufacturer established in 1999, serving furniture, door, hotel and commercial interior clients worldwide.",
   alternates: {
-    canonical: "https://tlveneer.com/about",
+    canonical: `${siteConfig.canonicalUrl}/about`,
   },
   robots: {
     index: true,
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     title: "About Tongli Timber | Wood Veneer & Decorative Plywood Factory Since 1999",
     description:
       "Learn about Tongli Timber, a wood veneer and decorative plywood manufacturer established in 1999, serving furniture, door, hotel and commercial interior clients worldwide.",
-    url: "https://tlveneer.com/about",
+    url: `${siteConfig.canonicalUrl}/about`,
     locale: "en_US",
   },
   twitter: {

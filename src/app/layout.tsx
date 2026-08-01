@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
+import { siteConfig } from "@/lib/seo/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,12 +17,12 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tlveneer.com"),
+  metadataBase: new URL(siteConfig.canonicalUrl),
   title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
   description:
     "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
   alternates: {
-    canonical: "https://tlveneer.com/",
+    canonical: siteConfig.canonicalUrl,
   },
   robots: {
     index: true,
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
     title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
     description:
       "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
-    url: "https://tlveneer.com/",
+    url: siteConfig.canonicalUrl,
     locale: "en_US",
   },
   twitter: {

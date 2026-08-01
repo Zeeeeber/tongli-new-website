@@ -9,6 +9,7 @@ import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanne
 export const metadata: Metadata = createPageMetadata({
   title: "Natural Wood Veneer",
   description: "Authentic wood veneer sheets with natural grain patterns. Over 80 species including Oak, Walnut, Teak, Cherry, Maple, Ash, and more.",
+  path: "/products/natural-wood-veneer",
 });
 
 export default function NaturalWoodVeneerPage() {

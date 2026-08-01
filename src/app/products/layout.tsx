@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/lib/seo/site";
 
 export const metadata: Metadata = {
   title: "Wood Veneer Panels, Natural Veneer & Decorative Board Products | Tongli Timber",
   description:
     "Explore Tongli Timber wood veneer panels, natural wood veneer, engineered veneer, 3D wood panels, melamine boards and supporting boards for B2B furniture, door and interior projects.",
   alternates: {
-    canonical: "https://tlveneer.com/products",
+    canonical: `${siteConfig.canonicalUrl}/products`,
   },
   robots: {
     index: true,
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     title: "Wood Veneer Panels, Natural Veneer & Decorative Board Products | Tongli Timber",
     description:
       "Explore Tongli Timber wood veneer panels, natural wood veneer, engineered veneer, 3D wood panels, melamine boards and supporting boards for B2B furniture, door and interior projects.",
-    url: "https://tlveneer.com/products",
+    url: `${siteConfig.canonicalUrl}/products`,
     locale: "en_US",
   },
   twitter: {

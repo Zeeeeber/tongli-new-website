@@ -8,8 +8,8 @@ export const siteConfig = {
   tagline: "Premium Wood Veneer & Panel Solutions",
   description:
     "Professional wood veneer manufacturer since 1999. We specialize in natural wood veneer, engineered veneer, veneer plywood, and decorative panels for furniture, doors, and interior projects worldwide.",
-  url: "https://tlveneer.com",
-  canonicalUrl: "https://tlveneer.com",
+  url: "https://www.tlveneer.com",
+  canonicalUrl: "https://www.tlveneer.com",
   locale: "en_US",
   language: "en",
   country: "US",
@@ -85,6 +85,7 @@ export const mainNavUrls = {
   collectionCategories: {
     naturalWoodVeneer: "/collections/natural-wood-veneer",
     engineeredVeneer: "/collections/engineered-veneer",
+    wood3dPanels: "/collections/3d-wood-panels",
     melamineBoard: "/collections/melamine-board",
   },
   applications: "/applications",
@@ -110,9 +111,9 @@ export const defaultSeo = {
   title: `${siteConfig.name} - ${siteConfig.tagline}`,
   titleTemplate: `%s | ${siteConfig.name}`,
   description: siteConfig.description,
-  ogImage: "/images/og-image.jpg",
-  ogImageWidth: 1200,
-  ogImageHeight: 630,
+  ogImage: "/images/banner-bg.png",
+  ogImageWidth: 1024,
+  ogImageHeight: 515,
   twitterCard: "summary_large_image" as const,
 } as const;
 

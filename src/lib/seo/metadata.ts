@@ -37,7 +37,7 @@ interface BaseMetadataOptions {
 interface PageMetadataOptions extends BaseMetadataOptions {
   section?: string;
   /** Relative path like "/resources" - auto-generates canonical */
-  path?: string;
+  path: string;
 }
 
 /**
@@ -85,23 +85,10 @@ export function createPageMetadata(options: PageMetadataOptions): Metadata {
     ? `${title} | ${siteConfig.name}`
     : defaultSeo.title;
 
-  // Determine canonical URL:
-  // 1. Explicit canonical takes priority
-  // 2. Path parameter generates absolute URL
-  // 3. Fallback to homepage ONLY if it's the homepage
-  let canonicalUrl: string;
-  if (canonical) {
-    canonicalUrl = toAbsoluteUrl(canonical);
-  } else if (path) {
-    canonicalUrl = toAbsoluteUrl(path);
-  } else {
-    // Only use homepage as fallback when it's actually the homepage
-    // (when title is undefined or matches homepage title)
-    canonicalUrl = siteConfig.canonicalUrl;
-  }
+  const canonicalUrl = toAbsoluteUrl(canonical || path);
 
   return {
-    title: title || siteConfig.name,
+    title: fullTitle,
     description,
     alternates: {
       canonical: canonicalUrl,

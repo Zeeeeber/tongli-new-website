@@ -6,6 +6,7 @@ import { createPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Wood Veneer Knowledge & Resources",
   description: "Practical articles about wood veneer panels, natural veneer, engineered veneer, decorative panels and related topics.",
+  path: "/resources",
 });
 
 const categories = ["All", "Product News", "Industry News", "Company News"] as const;
