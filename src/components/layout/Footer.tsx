@@ -1,5 +1,45 @@
 import Link from "next/link";
 import Image from "next/image";
+import { socialLinks, socialNames } from "@/lib/seo/site";
+
+const socialItems = [
+  {
+    key: "instagram",
+    label: socialNames.instagram,
+    href: socialLinks.instagram,
+    icon: "/images/social/icons8-instagram-50.svg",
+  },
+  {
+    key: "facebook",
+    label: socialNames.facebook,
+    href: socialLinks.facebook,
+    icon: "/images/social/icons8-facebook.svg",
+  },
+  {
+    key: "pinterest",
+    label: socialNames.pinterest,
+    href: socialLinks.pinterest,
+    icon: "/images/social/icons8-pinterest-50.svg",
+  },
+  {
+    key: "linkedin",
+    label: socialNames.linkedin,
+    href: socialLinks.linkedin,
+    icon: "/images/social/icons8-linkedin-50.svg",
+  },
+  {
+    key: "youtube",
+    label: socialNames.youtube,
+    href: socialLinks.youtube,
+    icon: "/images/social/icons8-youtube-50.svg",
+  },
+  {
+    key: "whatsapp",
+    label: socialNames.whatsapp,
+    href: socialLinks.whatsapp,
+    icon: "/images/social/icons8-whatsapp-50.svg",
+  },
+] as const;
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -44,6 +84,50 @@ export default function Footer() {
                 height={32}
                 className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity"
               />
+            </div>
+
+            <div className="grid w-fit grid-cols-3 gap-2" aria-label="Tongli Timber social media">
+              {socialItems.map((item) => {
+                const isConfigured = item.href.startsWith("http");
+                const icon = (
+                  <Image
+                    src={item.icon}
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="h-5 w-5"
+                  />
+                );
+                const className =
+                  "flex h-9 w-9 items-center justify-center rounded border border-gray-600 transition-all";
+
+                if (!isConfigured) {
+                  return (
+                    <span
+                      key={item.key}
+                      aria-label={`${item.label} link coming soon`}
+                      title={`${item.label} link coming soon`}
+                      className={`${className} cursor-not-allowed opacity-45`}
+                    >
+                      {icon}
+                    </span>
+                  );
+                }
+
+                return (
+                  <a
+                    key={item.key}
+                    href={item.href}
+                    aria-label={item.label}
+                    title={item.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${className} hover:border-[#c8a45a] hover:bg-[#c8a45a]/10 hover:text-[#c8a45a]`}
+                  >
+                    {icon}
+                  </a>
+                );
+              })}
             </div>
           </div>
 

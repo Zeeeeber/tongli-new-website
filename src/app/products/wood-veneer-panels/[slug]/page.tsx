@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
 import WoodVeneerPanelDetailTemplate from "@/components/product/WoodVeneerPanelDetailTemplate";
+import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
+import { defaultSeo, siteConfig } from "@/lib/seo/site";
 
 interface PageProps {
   params: Promise<{
@@ -27,11 +29,29 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const productUrl = `/products/wood-veneer-panels/${product.slug}`;
+  const socialImage = product.featuredImage || defaultSeo.ogImage;
+
   return {
     title: product.seoTitle,
     description: product.metaDescription,
     alternates: {
-      canonical: `/products/wood-veneer-panels/${product.slug}`,
+      canonical: productUrl,
+    },
+    openGraph: {
+      type: "website",
+      siteName: siteConfig.name,
+      title: product.seoTitle,
+      description: product.metaDescription,
+      locale: siteConfig.locale,
+      url: productUrl,
+      images: [{ url: socialImage, alt: product.name }],
+    },
+    twitter: {
+      card: defaultSeo.twitterCard,
+      title: product.seoTitle,
+      description: product.metaDescription,
+      images: [socialImage],
     },
   };
 }
@@ -45,9 +65,17 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <WoodVeneerPanelDetailTemplate
-      product={product}
-      slug={slug}
-    />
+    <>
+      <ProductBreadcrumbJsonLd
+        categoryName="Wood Veneer Panels"
+        categoryPath="/products/wood-veneer-panels"
+        productName={product.name}
+        productPath={`/products/wood-veneer-panels/${slug}`}
+      />
+      <WoodVeneerPanelDetailTemplate
+        product={product}
+        slug={slug}
+      />
+    </>
   );
 }

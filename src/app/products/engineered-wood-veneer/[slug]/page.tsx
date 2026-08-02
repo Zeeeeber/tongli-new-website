@@ -5,6 +5,8 @@ import {
   getAllProductSlugs,
 } from "@/data/products/engineered-wood-veneer-products";
 import { EngineeredWoodVeneerDetailTemplate } from "@/components/product/EngineeredWoodVeneerDetailTemplate";
+import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
+import { defaultSeo } from "@/lib/seo/site";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,6 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const title = product.seoTitle || product.name;
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/engineered-wood-veneer/${product.slug}`;
+  const socialImage = product.featuredImage || defaultSeo.ogImage;
 
   return {
     title: `${title} | Tongli Timber`,
@@ -44,11 +47,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: productUrl,
       type: "website",
+      images: [{ url: socialImage, alt: product.name }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | Tongli Timber`,
       description,
+      images: [socialImage],
     },
   };
 }
@@ -62,9 +67,17 @@ export default async function EngineeredWoodVeneerProductDetailPage({ params }: 
   }
 
   return (
-    <EngineeredWoodVeneerDetailTemplate
-      product={product}
-      slug={slug}
-    />
+    <>
+      <ProductBreadcrumbJsonLd
+        categoryName="Engineered Wood Veneer"
+        categoryPath="/products/engineered-wood-veneer"
+        productName={product.name}
+        productPath={`/products/engineered-wood-veneer/${slug}`}
+      />
+      <EngineeredWoodVeneerDetailTemplate
+        product={product}
+        slug={slug}
+      />
+    </>
   );
 }

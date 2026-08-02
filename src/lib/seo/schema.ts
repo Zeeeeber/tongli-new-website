@@ -4,7 +4,7 @@
  * Following Google's Rich Results guidelines
  */
 
-import { siteConfig, companyConfig, socialLinks } from "./site";
+import { companyConfig, configuredSocialLinks, siteConfig } from "./site";
 
 /**
  * Base schema type
@@ -67,8 +67,8 @@ export function getOrganizationSchema(config?: SchemaConfig): object {
     logo: {
       "@type": "ImageObject",
       url: `${baseUrl}/logo.png`,
-      width: 200,
-      height: 60,
+      width: 800,
+      height: 800,
     },
     description: siteConfig.description,
     foundingDate: companyConfig.established.toString(),
@@ -87,13 +87,7 @@ export function getOrganizationSchema(config?: SchemaConfig): object {
       contactType: "sales",
       availableLanguage: ["English", "Chinese"],
     },
-    sameAs: [
-      socialLinks.facebook,
-      socialLinks.instagram,
-      socialLinks.linkedin,
-      socialLinks.youtube,
-      socialLinks.tiktok,
-    ],
+    sameAs: configuredSocialLinks,
   };
 }
 
@@ -112,14 +106,6 @@ export function getWebSiteSchema(config?: SchemaConfig): object {
     description: siteConfig.description,
     publisher: {
       "@id": `${baseUrl}/#organization`,
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${baseUrl}/search?q={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
     },
   };
 }
@@ -328,12 +314,7 @@ export function getLocalBusinessSchema(config?: SchemaConfig): object {
         closes: "18:00",
       },
     ],
-    sameAs: [
-      socialLinks.facebook,
-      socialLinks.instagram,
-      socialLinks.linkedin,
-      socialLinks.youtube,
-    ],
+    sameAs: configuredSocialLinks,
   };
 }
 

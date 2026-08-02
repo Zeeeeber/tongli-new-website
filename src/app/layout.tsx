@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
-import { siteConfig } from "@/lib/seo/site";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getOrganizationSchema, getWebSiteSchema } from "@/lib/seo/schema";
+import { defaultSeo, siteConfig } from "@/lib/seo/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.canonicalUrl),
   title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
   description:
-    "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
+    "Tongli Timber manufactures natural and engineered wood veneer, veneer panels, 3D wood panels and decorative plywood for furniture and commercial interiors.",
   alternates: {
     canonical: siteConfig.canonicalUrl,
   },
@@ -51,15 +53,24 @@ export const metadata: Metadata = {
     siteName: "Tongli Timber",
     title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
     description:
-      "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
+      "Tongli Timber manufactures natural and engineered wood veneer, veneer panels, 3D wood panels and decorative plywood for furniture and commercial interiors.",
     url: siteConfig.canonicalUrl,
     locale: "en_US",
+    images: [
+      {
+        url: defaultSeo.ogImage,
+        width: defaultSeo.ogImageWidth,
+        height: defaultSeo.ogImageHeight,
+        alt: "Tongli Timber wood veneer panels and decorative plywood",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tongli Timber | Wood Veneer Panels & Decorative Plywood Manufacturer",
     description:
-      "Tongli Timber manufactures natural wood veneer, wood veneer panels, engineered veneer, 3D wood panels and decorative plywood for furniture, doors, hotels and commercial interiors.",
+      "Tongli Timber manufactures natural and engineered wood veneer, veneer panels, 3D wood panels and decorative plywood for furniture and commercial interiors.",
+    images: [defaultSeo.ogImage],
   },
 };
 
@@ -71,6 +82,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${dmSans.variable}`}>
       <body>
+        <JsonLd data={[getOrganizationSchema(), getWebSiteSchema()]} />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

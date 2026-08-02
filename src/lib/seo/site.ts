@@ -48,22 +48,26 @@ export const contactConfig = {
 } as const;
 
 export const socialLinks = {
-  facebook: "#",
-  instagram: "#",
-  linkedin: "#",
-  youtube: "#",
-  tiktok: "#",
+  instagram: "https://www.instagram.com/tongliwood/",
+  facebook: "https://www.facebook.com/share/14kCoMrhpji/?mibextid=wwXIfr",
+  pinterest: "https://pin.it/2IX8y7aCk",
+  linkedin: "https://www.linkedin.com/in/tongli-timber-a23bb240a",
+  youtube: "https://youtube.com/@tongli_timber",
   whatsapp: "https://wa.me/8615817587053",
 } as const;
 
 export const socialNames = {
-  facebook: "Tongli Timber on Facebook",
   instagram: "Tongli Timber on Instagram",
+  facebook: "Tongli Timber on Facebook",
+  pinterest: "Tongli Timber on Pinterest",
   linkedin: "Tongli Timber on LinkedIn",
   youtube: "Tongli Timber on YouTube",
-  tiktok: "Tongli Timber on TikTok",
   whatsapp: "Tongli Timber on WhatsApp",
 } as const;
+
+export const configuredSocialLinks = Object.values(socialLinks).filter(
+  (url) => url.startsWith("https://") || url.startsWith("http://"),
+);
 
 /**
  * Main navigation URLs

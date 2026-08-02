@@ -13,6 +13,8 @@ import { ParticleBoardDetailTemplate } from "@/components/product/ParticleBoardD
 import { RawMDFDetailTemplate } from "@/components/product/RawMDFDetailTemplate";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
 import { type SupportingBoardSubCategorySlug } from "@/data/products/supporting-boards-products";
+import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
+import { defaultSeo } from "@/lib/seo/site";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -46,6 +48,7 @@ export async function generateMetadata({
   const title = product.seoTitle || product.name;
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/supporting-boards/${product.slug}`;
+  const socialImage = product.featuredImage || defaultSeo.ogImage;
 
   return {
     title: `${title} | Tongli Timber`,
@@ -58,11 +61,13 @@ export async function generateMetadata({
       description,
       url: productUrl,
       type: "website",
+      images: [{ url: socialImage, alt: product.name }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | Tongli Timber`,
       description,
+      images: [socialImage],
     },
   };
 }
@@ -104,9 +109,19 @@ export default async function SupportingBoardsProductDetailPage({
     notFound();
   }
 
-  return renderTemplateForSubCategory(
-    product.subCategorySlug,
-    product as unknown as NaturalWoodVeneerProduct,
-    slug,
+  return (
+    <>
+      <ProductBreadcrumbJsonLd
+        categoryName="Supporting Boards"
+        categoryPath="/products/supporting-boards"
+        productName={product.name}
+        productPath={`/products/supporting-boards/${slug}`}
+      />
+      {renderTemplateForSubCategory(
+        product.subCategorySlug,
+        product as unknown as NaturalWoodVeneerProduct,
+        slug,
+      )}
+    </>
   );
 }

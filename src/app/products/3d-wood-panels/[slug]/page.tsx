@@ -5,7 +5,9 @@ import {
   getAllThreeDWoodPanelsProductSlugs,
 } from "@/data/products/three-d-wood-panels-products";
 import { ThreeDWoodPanelsDetailTemplate } from "@/components/product/ThreeDWoodPanelsDetailTemplate";
+import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
+import { defaultSeo } from "@/lib/seo/site";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -39,6 +41,7 @@ export async function generateMetadata({
   const title = product.seoTitle || product.name;
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/3d-wood-panels/${product.slug}`;
+  const socialImage = product.featuredImage || defaultSeo.ogImage;
 
   return {
     title: `${title} | Tongli Timber`,
@@ -51,11 +54,13 @@ export async function generateMetadata({
       description,
       url: productUrl,
       type: "website",
+      images: [{ url: socialImage, alt: product.name }],
     },
     twitter: {
       card: "summary_large_image",
       title: `${title} | Tongli Timber`,
       description,
+      images: [socialImage],
     },
   };
 }
@@ -71,9 +76,17 @@ export default async function ThreeDWoodPanelsProductDetailPage({
   }
 
   return (
-    <ThreeDWoodPanelsDetailTemplate
-      product={product as unknown as NaturalWoodVeneerProduct}
-      slug={slug}
-    />
+    <>
+      <ProductBreadcrumbJsonLd
+        categoryName="3D Wood Panels"
+        categoryPath="/products/3d-wood-panels"
+        productName={product.name}
+        productPath={`/products/3d-wood-panels/${slug}`}
+      />
+      <ThreeDWoodPanelsDetailTemplate
+        product={product as unknown as NaturalWoodVeneerProduct}
+        slug={slug}
+      />
+    </>
   );
 }

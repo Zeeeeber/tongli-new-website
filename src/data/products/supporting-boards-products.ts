@@ -93,9 +93,8 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
     imageAlt:
       "18mm EV eucalyptus commercial plywood sheet for furniture and cabinet manufacturing",
     featuredImage:
-      "/images/products/supporting-boards/commercial-plywood-bb-grade-4x8/image-00.jpg",
+      "/images/products/supporting-boards/commercial-plywood-bb-grade-4x8/image-01.jpg",
     gallery: [
-      "/images/products/supporting-boards/commercial-plywood-bb-grade-4x8/image-00.jpg",
       "/images/products/supporting-boards/commercial-plywood-bb-grade-4x8/image-01.jpg",
       "/images/products/supporting-boards/commercial-plywood-bb-grade-4x8/image-02.jpg",
       "/images/products/supporting-boards/commercial-plywood-bb-grade-4x8/image-03.jpg",
@@ -185,9 +184,8 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
     imageAlt:
       "15mm cherry veneer plywood 4x8 commercial board sheet for furniture and interior panels",
     featuredImage:
-      "/images/products/supporting-boards/15mm-cherry-veneer-commercial-plywood-4x8/image-00.jpg",
+      "/images/products/supporting-boards/15mm-cherry-veneer-commercial-plywood-4x8/image-01.jpg",
     gallery: [
-      "/images/products/supporting-boards/15mm-cherry-veneer-commercial-plywood-4x8/image-00.jpg",
       "/images/products/supporting-boards/15mm-cherry-veneer-commercial-plywood-4x8/image-01.jpg",
       "/images/products/supporting-boards/15mm-cherry-veneer-commercial-plywood-4x8/image-02.jpg",
       "/images/products/supporting-boards/15mm-cherry-veneer-commercial-plywood-4x8/image-03.jpg",
@@ -272,14 +270,12 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
     imageAlt:
       "3mm basswood plywood sheets 4x8 for laser cutting and craft panel applications",
     featuredImage:
-      "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-00.jpg",
+      "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-01.jpg",
     gallery: [
-      "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-00.jpg",
       "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-01.jpg",
       "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-02.jpg",
       "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-03.jpg",
       "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-04.jpg",
-      "/images/products/supporting-boards/basswood-plywood-furniture-grade/image-05.jpg",
     ],
     overview:
       "This 3mm basswood plywood sheet is a lightweight panel option for laser cutting, crafts, model making and decorative applications. Its smooth surface and easy processing make it suitable for buyers who need consistent thin plywood sheets for manufacturing or wholesale supply.",
@@ -583,7 +579,6 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
       "/images/products/supporting-boards/particle-board-furniture-grade/image-01.jpg",
       "/images/products/supporting-boards/particle-board-furniture-grade/image-02.jpg",
       "/images/products/supporting-boards/particle-board-furniture-grade/image-03.jpg",
-      "/images/products/supporting-boards/particle-board-furniture-grade/image-04.jpg",
     ],
     overview:
       "This furniture grade particle board sheet is designed for cabinet, wardrobe, shelf, furniture and interior panel applications. It offers a cost-effective substrate option for manufacturers and wholesalers who need stable wood-based panels in customizable specifications.",

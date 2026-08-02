@@ -3,7 +3,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { articles, getArticleBySlug, getRelatedArticles } from "@/data/resources/articles";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { createArticleMetadata } from "@/lib/seo/metadata";
+import { getArticleSchema, getBreadcrumbSchema } from "@/lib/seo/schema";
+import { siteConfig } from "@/lib/seo/site";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -43,9 +46,28 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   const relatedArticles = getRelatedArticles(article.slug, 3);
+  const articlePath = `/resources/${article.slug}`;
+  const articleUrl = `${siteConfig.canonicalUrl}${articlePath}`;
+  const structuredData = [
+    getArticleSchema({
+      headline: article.title,
+      description: article.excerpt,
+      image: `${siteConfig.canonicalUrl}${article.image}`,
+      author: article.author,
+      publishedDate: new Date(article.date).toISOString(),
+      url: articleUrl,
+    }),
+    getBreadcrumbSchema([
+      { name: "Home", url: "/" },
+      { name: "Resources", url: "/resources" },
+      { name: article.title, url: articlePath },
+    ]),
+  ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <>
+      <JsonLd data={structuredData} />
+      <div className="min-h-screen bg-white">
       {/* Breadcrumb */}
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
@@ -203,6 +225,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

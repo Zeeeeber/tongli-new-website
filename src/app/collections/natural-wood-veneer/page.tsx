@@ -252,7 +252,7 @@ export default function NaturalWoodVeneerPage() {
       <ImageModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        images={selectedSwatch !== null ? [`/images/collections/natural-wood-veneer/${swatches[selectedSwatch].image}`] : ["/images/placeholder.jpg"]}
+        images={selectedSwatch !== null ? [`/images/collections/natural-wood-veneer/${swatches[selectedSwatch].image}`] : ["/images/banner-bg.png"]}
         currentIndex={selectedImageIndex}
         onNext={handleNextImage}
         onPrev={handlePrevImage}
