@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
-import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
+import { getSupportingBoardRelatedProducts } from "@/data/products/supporting-boards-products";
 
 interface RawMDFDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
@@ -94,11 +94,10 @@ export function RawMDFDetailTemplate({
     return [];
   }, [product.featuredImage, product.gallery]);
   const relatedProducts = useMemo((): NaturalWoodVeneerProduct[] => {
-    return supportingBoardsProducts
-      .filter((p) => p.slug !== slug)
-      .slice(0, 4)
-      .map((p) => p as unknown as NaturalWoodVeneerProduct);
-  }, [slug]);
+    return getSupportingBoardRelatedProducts(
+      product.slug,
+    ) as unknown as NaturalWoodVeneerProduct[];
+  }, [product.slug]);
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
   const imageAlt = product.imageAlt || product.name;
@@ -362,7 +361,7 @@ export function RawMDFDetailTemplate({
             {relatedProducts.length > 0 ? (
               relatedProducts.map((relatedProduct) => {
                 const relatedImage = relatedProduct.featuredImage || relatedProduct.gallery[0] || null;
-                const relatedLabel = relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Raw MDF";
+                const relatedLabel = (relatedProduct as { subCategory?: string }).subCategory || relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Raw MDF";
 
                 return (
                   <Link

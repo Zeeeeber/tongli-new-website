@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
+import { getSupportingBoardRelatedProducts } from "@/data/products/supporting-boards-products";
 
 interface BasswoodPlywoodDetailTemplateProps {
   product: NaturalWoodVeneerProduct;
@@ -93,8 +94,10 @@ export function BasswoodPlywoodDetailTemplate({
     return [];
   }, [product.featuredImage, product.gallery]);
   const relatedProducts = useMemo((): NaturalWoodVeneerProduct[] => {
-    return [];
-  }, []);
+    return getSupportingBoardRelatedProducts(
+      product.slug,
+    ) as unknown as NaturalWoodVeneerProduct[];
+  }, [product.slug]);
   const hasProductImages = productImages.length > 0;
   const activeImage = productImages[selectedImage] ?? productImages[0] ?? null;
   const imageAlt = product.imageAlt || product.name;
@@ -358,7 +361,7 @@ export function BasswoodPlywoodDetailTemplate({
             {relatedProducts.length > 0 ? (
               relatedProducts.map((relatedProduct) => {
                 const relatedImage = relatedProduct.featuredImage || relatedProduct.gallery[0] || null;
-                const relatedLabel = relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Basswood Plywood";
+                const relatedLabel = (relatedProduct as { subCategory?: string }).subCategory || relatedProduct.specs.veneerSpecies || relatedProduct.tags[0] || "Basswood Plywood";
 
                 return (
                   <Link

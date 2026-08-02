@@ -618,3 +618,20 @@ export function getSupportingBoardProductBySlug(
 export function getAllSupportingBoardProductSlugs(): string[] {
   return supportingBoardsProducts.map((p) => p.slug);
 }
+
+export function getSupportingBoardRelatedProducts(
+  currentSlug: string,
+  limit: number = 4,
+): SupportingBoardProduct[] {
+  const current = supportingBoardsProducts.find((p) => p.slug === currentSlug);
+  const currentSubCategorySlug = current?.subCategorySlug;
+  const sameSubCategory = currentSubCategorySlug
+    ? supportingBoardsProducts.filter(
+        (p) => p.subCategorySlug === currentSubCategorySlug && p.slug !== currentSlug,
+      )
+    : [];
+  const otherSubCategory = supportingBoardsProducts.filter(
+    (p) => p.subCategorySlug !== currentSubCategorySlug && p.slug !== currentSlug,
+  );
+  return [...sameSubCategory, ...otherSubCategory].slice(0, limit);
+}
