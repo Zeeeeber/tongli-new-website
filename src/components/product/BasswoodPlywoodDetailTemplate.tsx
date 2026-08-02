@@ -493,7 +493,7 @@ export function BasswoodPlywoodDetailTemplate({
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
                   <Image
-                    src="/images/products/products_basswood plywood_detail page/1. Detail Page_Banner_Basswood Plywood Manufacturer.png"
+                    src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-1-manufacturer.png"
                     alt="Basswood Plywood Manufacturer"
                     width={800}
                     height={600}
@@ -512,7 +512,7 @@ export function BasswoodPlywoodDetailTemplate({
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/2. Basswood Plywood_Real Shot.png" alt="Basswood Plywood Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-2-real-shot.png" alt="Basswood Plywood Real Shots" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
@@ -557,7 +557,7 @@ export function BasswoodPlywoodDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/3. Basswood Plywood_Feature.png" alt="Basswood Plywood Features" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-3-feature.png" alt="Basswood Plywood Features" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
@@ -570,7 +570,7 @@ export function BasswoodPlywoodDetailTemplate({
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/4. Basswood Plywood_Application.png" alt="Basswood Plywood Application" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-4-application.png" alt="Basswood Plywood Application" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
@@ -615,7 +615,7 @@ export function BasswoodPlywoodDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/6. Basswood Plywood_Company Profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-6-company-profile.png" alt="Company Profile" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
@@ -628,7 +628,7 @@ export function BasswoodPlywoodDetailTemplate({
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/7. Basswood Plywood_Customer Feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-7-customer-feedback.png" alt="Customer Feedback" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
@@ -673,7 +673,7 @@ export function BasswoodPlywoodDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/8. Basswood Plywood_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-8-certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
@@ -686,7 +686,7 @@ export function BasswoodPlywoodDetailTemplate({
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/9. Basswood Plywood_Production Process.png" alt="Production Process" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-9-production-process.png" alt="Production Process" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
@@ -731,7 +731,7 @@ export function BasswoodPlywoodDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/10. Basswood Plywood_Dimension Options.png" alt="Dimension Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-10-dimension.png" alt="Dimension Options" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
@@ -744,7 +744,7 @@ export function BasswoodPlywoodDetailTemplate({
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="w-full md:w-1/2 order-2 md:order-1">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_basswood plywood_detail page/11. Basswood Plywood_Packaging Options.png" alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_basswood-plywood-detail-page/basswood-plywood-11-packaging.png" alt="Packaging Options" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
