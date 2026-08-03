@@ -45,6 +45,89 @@ export default function Footer() {
                 className="h-8 w-auto opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
+
+            {/* Social Media Icons */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.instagram.com/tongliwood?igsh=ODdrNnc2YmpicWR3&utm_source=qr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  <Image
+                    src="/images/social/icons8-instagram-50.svg"
+                    alt="Instagram"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7"
+                  />
+                </a>
+                <a
+                  href="https://www.facebook.com/share/14kCoMrhpji/?mibextid=wwXIfr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  <Image
+                    src="/images/social/icons8-facebook.svg"
+                    alt="Facebook"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7"
+                  />
+                </a>
+                <a
+                  href="https://pin.it/2IX8y7aCk"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Pinterest"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  <Image
+                    src="/images/social/icons8-pinterest-50.svg"
+                    alt="Pinterest"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7"
+                  />
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.linkedin.com/in/tongli-timber-a23bb240a?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  <Image
+                    src="/images/social/icons8-linkedin-50.svg"
+                    alt="LinkedIn"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7"
+                  />
+                </a>
+                <a
+                  href="https://youtube.com/@tongli_timber?si=b7nND_pbImU9-LKX"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  <Image
+                    src="/images/social/icons8-youtube-50.svg"
+                    alt="YouTube"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7"
+                  />
+                </a>
+              </div>
+            </div>
           </div>
 
           <div>

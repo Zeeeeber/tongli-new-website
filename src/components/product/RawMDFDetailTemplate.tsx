@@ -321,6 +321,72 @@ export function RawMDFDetailTemplate({
                         We are a 25+ year manufacturer specializing in producing wooden products of veneer plywood, veneer mdf, commercial plywood and wood veneer sheets with more than 95% repurchase rate.
                       </p>
                     </div>
+
+                    {/* Social Media Icons */}
+                    <div className="flex items-center gap-2">
+                      <a
+                        href="https://www.instagram.com/tongliwood?igsh=ODdrNnc2YmpicWR3&utm_source=qr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Instagram"
+                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors"
+                      >
+                        <svg viewBox="0 0 48 48" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#E1306C" d="M24 5A19 19 0 0 0 5 24a19 19 0 0 0 19 19 19 19 0 0 0 19-19A19 19 0 0 0 24 5Z"/>
+                          <path fill="#F77737" d="M34.9 14.1c-.1 1.1-.2 1.9-.4 2.6-.4 1.2-.9 2.1-1.6 2.9-.7.8-1.7 1.4-2.9 1.8-.8.3-1.7.5-2.8.5H21.1c-1 0-1.9-.2-2.8-.5-1.2-.4-2.1-.9-2.9-1.8-.8-.7-1.4-1.7-1.8-2.9-.3-.8-.4-1.7-.5-2.8V21.1c0-1 .2-1.9.5-2.8.4-1.2.9-2.1 1.6-2.9.7-.8 1.7-1.4 2.9-1.8.8-.3 1.7-.5 2.8-.5h6.5c1 0 2 .2 2.8.5 1.2.4 2.1.9 2.9 1.8.8.7 1.4 1.7 1.8 2.9.3.8.4 1.7.5 2.8v6.5z"/>
+                          <path fill="#F77737" d="M24 14.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19zm0 15.7a6.2 6.2 0 1 1 0-12.4 6.2 6.2 0 0 1 0 12.4z"/>
+                          <circle cx="31.5" cy="16.5" r="1.8" fill="#F77737"/>
+                        </svg>
+                      </a>
+                      <a
+                        href="https://www.facebook.com/share/14kCoMrhpji/?mibextid=wwXIfr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Facebook"
+                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors"
+                      >
+                        <svg viewBox="0 0 48 48" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#1877F2" d="M24 5A19 19 0 0 1 40.3 20.4l-3.6-2.4H36V16.5c0-2.3.8-3.5 3.2-3.5h2.5V6.7s-2.3-.2-4.5-.2c-4.6 0-7.6 2.8-7.6 7.8v3.7H24v5.6h5.6v14.4c.3.1.6.1.9.1.3 0 .6 0 .9-.1V24h5.6l.9 5.6H24V24z"/>
+                        </svg>
+                      </a>
+                      <a
+                        href="https://pin.it/2IX8y7aCk"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Pinterest"
+                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors"
+                      >
+                        <svg viewBox="0 0 48 48" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#E60023" d="M24 5A19 19 0 0 0 5 24a19 19 0 0 0 19 19 19 19 0 0 0 19-19A19 19 0 0 0 24 5z"/>
+                          <path fill="#fff" d="M22.6 34c-.8-6-3.5-11-7-14.3-.5 3-.6 6.3.1 9.5 1.8-1.2 2.9-3.4 3-6.5 6.4 3.7 8.6 10.1 6.3 16.8-2.3 6.6-9.3 11-17.1 9.7C12 48 15.6 47 18.4 44.7l-1.3-5.6c-1.3 1.1-2.9 1.7-4.6 1.5-3.2-.3-5.8-2.6-6.2-5.8-.4-3.2 1.4-6.2 4.2-7.4.7-.3 1.5-.4 2.3-.4 2.4 0 4.3 1.5 4.9 3.8l.5 2c.2 1 .7 1.9 1.5 2.6l3-3.7-2.2-.9c-3.5-1.5-4.9-5.8-3.1-9.5 1.8-3.7 6-5.7 10.1-4.9 4.1.8 7 4.5 7 8.7 0 5.2-3.2 9.2-7.5 9.2-2.2 0-4-1.6-3.8-3.8 0-.9.4-1.8 1.1-2.5z"/>
+                        </svg>
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/tongli-timber-a23bb240a?utm_source=share_via&utm_content=profile&utm_medium=member_ios"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="LinkedIn"
+                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors"
+                      >
+                        <svg viewBox="0 0 48 48" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#0A66C2" d="M24 5A19 19 0 0 1 40.3 19.6v-5.1H36v12.8h4.3V24.1c0-3.6 1.5-5.5 4.7-5.5 1.6 0 3.3.3 3.3.3v4h-2.8c-2.5 0-3.2 1.5-3.2 3v3.7H44V19.5s.5-10.5-10-10.5H24zM11.5 35.3c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5-2 4.5-4.5 4.5z"/>
+                          <path fill="#0A66C2" d="M15 16.3c-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3-1.3-3-3-3z"/>
+                          <path fill="#0A66C2" d="M11.5 27.7c-1.4 0-2.5-1.1-2.5-2.5v-9h4.3v9c0 1.4-1.1 2.5-2.5 2.5h.7z"/>
+                        </svg>
+                      </a>
+                      <a
+                        href="https://youtube.com/@tongli_timber?si=b7nND_pbImU9-LKX"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="YouTube"
+                        className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors"
+                      >
+                        <svg viewBox="0 0 48 48" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#FF0000" d="M43.2 12.8C43 11.5 42.3 10.4 41.3 9.7c-1.5-1-3.3-1-6.2-1H13.5C10.4 8.7 8.5 8.7 7 9.7c-1 1-1.7 1.8-1.9 3.1C5 14 5 24 5 24s0 10 .1 11.2c.2 1.3.9 2.4 1.9 3.1 1.5 1 3.3 1 6.2 1h21.6c2.9 0 4.8-.3 6.2-1 1-.7 1.7-1.8 1.9-3.1.1-1.2.1-11.2.1-11.2S43.4 14 43.2 12.8zM19.5 30.8V17.2L32 24l-12.5 6.8z"/>
+                          <path fill="#fff" d="M19.5 30.8V17.2L32 24l-12.5 6.8z"/>
+                        </svg>
+                      </a>
+                    </div>
                   </div>
 
                   {/* Actions */}
