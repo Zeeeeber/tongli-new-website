@@ -699,7 +699,7 @@ export function NaturalWoodVeneerDetailTemplate({
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
-                  <Image src="/images/products/products_natural wood veneer_detail page/7.natural wood veneer_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
+                  <Image src="/images/products/products_natural wood veneer_detail page/7..natural wood veneer_Certification.png" alt="Certifications" width={800} height={600} className="w-full h-auto" unoptimized />
                 </div>
               </div>
             </div>
