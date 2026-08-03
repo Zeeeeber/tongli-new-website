@@ -381,6 +381,8 @@ export function CommercialPlywoodDetailTemplate({
                           </a>
                         </span>
                       </h3>
+                    </div>
+                  </div>
 
                   {/* Actions */}
                   <div className="flex flex-wrap gap-4">
