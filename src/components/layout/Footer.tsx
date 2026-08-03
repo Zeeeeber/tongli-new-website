@@ -126,6 +126,21 @@ export default function Footer() {
                     className="w-7 h-7"
                   />
                 </a>
+                <a
+                  href="https://wa.me/8615817587053?text=Hello%20Tongli%20Timber%2C%20I%20would%20like%20to%20ask%20about%20your%20wood%20veneer%20and%20decorative%20panel%20products."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="WhatsApp"
+                  className="opacity-70 hover:opacity-100 transition-opacity"
+                >
+                  <Image
+                    src="/images/social/icons8-whatsapp-50.svg"
+                    alt="WhatsApp"
+                    width={28}
+                    height={28}
+                    className="w-7 h-7"
+                  />
+                </a>
               </div>
             </div>
           </div>
