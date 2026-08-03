@@ -320,6 +320,23 @@ export function ThreeDWoodPanelsDetailTemplate({
                         <Link href="/about" className="hover:text-[#0F6B3A] transition-colors">
                           About Us
                         </Link>
+                        <span className="flex items-center gap-1.5 ml-1">
+                          <a href="https://www.instagram.com/tongliwood?igsh=ODdrNnc2YmpicWR3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors">
+                            <Image src="/images/social/icons8-instagram-50.svg" alt="Instagram" width={22} height={22} />
+                          </a>
+                          <a href="https://www.facebook.com/share/14kCoMrhpji/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors">
+                            <Image src="/images/social/icons8-facebook.svg" alt="Facebook" width={22} height={22} />
+                          </a>
+                          <a href="https://pin.it/2IX8y7aCk" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors">
+                            <Image src="/images/social/icons8-pinterest-50.svg" alt="Pinterest" width={22} height={22} />
+                          </a>
+                          <a href="https://www.linkedin.com/in/tongli-timber-a23bb240a?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors">
+                            <Image src="/images/social/icons8-linkedin-50.svg" alt="LinkedIn" width={22} height={22} />
+                          </a>
+                          <a href="https://youtube.com/@tongli_timber?si=b7nND_pbImU9-LKX" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors">
+                            <Image src="/images/social/icons8-youtube-50.svg" alt="YouTube" width={22} height={22} />
+                          </a>
+                        </span>
                       </h3>
                       <p className="text-sm text-[#6b7280] leading-relaxed">
                         We are a 25+ year manufacturer specializing in producing wooden products of veneer plywood, veneer mdf, commercial plywood and wood veneer sheets with more than 95% repurchase rate.
