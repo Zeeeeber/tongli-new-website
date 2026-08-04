@@ -4,6 +4,7 @@ import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-produ
 import WoodVeneerPanelDetailTemplate from "@/components/product/WoodVeneerPanelDetailTemplate";
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { defaultSeo, siteConfig } from "@/lib/seo/site";
+import { withSiteName } from "@/lib/seo/metadata";
 
 interface PageProps {
   params: Promise<{
@@ -31,9 +32,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const productUrl = `/products/wood-veneer-panels/${product.slug}`;
   const socialImage = product.featuredImage || defaultSeo.ogImage;
+  const metadataTitle = withSiteName(product.seoTitle);
 
   return {
-    title: product.seoTitle,
+    title: metadataTitle,
     description: product.metaDescription,
     alternates: {
       canonical: productUrl,
@@ -41,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       type: "website",
       siteName: siteConfig.name,
-      title: product.seoTitle,
+      title: metadataTitle,
       description: product.metaDescription,
       locale: siteConfig.locale,
       url: productUrl,
@@ -49,7 +51,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: defaultSeo.twitterCard,
-      title: product.seoTitle,
+      title: metadataTitle,
       description: product.metaDescription,
       images: [socialImage],
     },

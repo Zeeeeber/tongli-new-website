@@ -8,6 +8,7 @@ import { MelamineBoardDetailTemplate } from "@/components/product/MelamineBoardD
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
 import { defaultSeo } from "@/lib/seo/site";
+import { withSiteName } from "@/lib/seo/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -33,18 +34,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = product.seoTitle || product.name;
+  const metadataTitle = withSiteName(title);
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/melamine-board/${product.slug}`;
   const socialImage = product.featuredImage || defaultSeo.ogImage;
 
   return {
-    title: `${title} | Tongli Timber`,
+    title: metadataTitle,
     description,
     alternates: {
       canonical: productUrl,
     },
     openGraph: {
-      title: `${title} | Tongli Timber`,
+      title: metadataTitle,
       description,
       url: productUrl,
       type: "website",
@@ -52,7 +54,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Tongli Timber`,
+      title: metadataTitle,
       description,
       images: [socialImage],
     },

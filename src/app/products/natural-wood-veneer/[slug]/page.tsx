@@ -7,6 +7,7 @@ import {
 import { NaturalWoodVeneerDetailTemplate } from "@/components/product/NaturalWoodVeneerDetailTemplate";
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { defaultSeo } from "@/lib/seo/site";
+import { withSiteName } from "@/lib/seo/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -32,9 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = product.seoTitle || product.name;
-  const metadataTitle = /\|\s*Tongli Timber\s*$/i.test(title)
-    ? title
-    : `${title} | Tongli Timber`;
+  const metadataTitle = withSiteName(title);
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/natural-wood-veneer/${product.slug}`;
   const socialImage = product.featuredImage || defaultSeo.ogImage;

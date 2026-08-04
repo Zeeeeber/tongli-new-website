@@ -617,3 +617,48 @@ export function getSupportingBoardProductBySlug(
 export function getAllSupportingBoardProductSlugs(): string[] {
   return supportingBoardsProducts.map((p) => p.slug);
 }
+
+function seededShuffle<T>(items: T[], seed: number): T[] {
+  const result = items.slice();
+  let state = seed >>> 0;
+  for (let i = result.length - 1; i > 0; i--) {
+    state = (state * 1664525 + 1013904223) >>> 0;
+    const j = state % (i + 1);
+    const tmp = result[i];
+    result[i] = result[j];
+    result[j] = tmp;
+  }
+  return result;
+}
+
+function hashSlug(slug: string): number {
+  let hash = 5381;
+  for (let i = 0; i < slug.length; i++) {
+    hash = ((hash << 5) + hash + slug.charCodeAt(i)) >>> 0;
+  }
+  return hash;
+}
+
+export function getSupportingBoardRelatedProducts(
+  currentSlug: string,
+  limit: number = 4,
+): SupportingBoardProduct[] {
+  const current = supportingBoardsProducts.find((p) => p.slug === currentSlug);
+  const currentSubCategorySlug = current?.subCategorySlug;
+  const seed = hashSlug(currentSlug);
+  const sameSubCategory = currentSubCategorySlug
+    ? seededShuffle(
+        supportingBoardsProducts.filter(
+          (p) => p.subCategorySlug === currentSubCategorySlug && p.slug !== currentSlug,
+        ),
+        seed,
+      )
+    : [];
+  const otherSubCategory = seededShuffle(
+    supportingBoardsProducts.filter(
+      (p) => p.subCategorySlug !== currentSubCategorySlug && p.slug !== currentSlug,
+    ),
+    seed ^ 0x9e3779b9,
+  );
+  return [...sameSubCategory, ...otherSubCategory].slice(0, limit);
+}

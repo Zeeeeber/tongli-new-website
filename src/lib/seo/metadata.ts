@@ -19,6 +19,16 @@ function toAbsoluteUrl(url: string): string {
   return `${siteConfig.canonicalUrl}${path}`;
 }
 
+/** Add the site name once, even when imported SEO titles already include it. */
+export function withSiteName(title: string): string {
+  const normalizedTitle = title.trim();
+  const suffix = `| ${siteConfig.name}`;
+
+  return normalizedTitle.toLowerCase().endsWith(suffix.toLowerCase())
+    ? normalizedTitle
+    : `${normalizedTitle} ${suffix}`;
+}
+
 /**
  * Base metadata options
  */
@@ -77,13 +87,10 @@ export function createPageMetadata(options: PageMetadataOptions): Metadata {
     canonical,
     noIndex = false,
     noFollow = false,
-    section,
     path,
   } = options;
 
-  const fullTitle = title
-    ? `${title} | ${siteConfig.name}`
-    : defaultSeo.title;
+  const fullTitle = title ? withSiteName(title) : defaultSeo.title;
 
   const canonicalUrl = toAbsoluteUrl(canonical || path);
 
@@ -134,16 +141,14 @@ export function createProductMetadata(options: ProductMetadataOptions): Metadata
   const {
     productName,
     productDescription,
-    productCategory,
     productImage,
     productUrl,
-    brand = siteConfig.name,
     canonical,
     noIndex = false,
     noFollow = false,
   } = options;
 
-  const title = `${productName} | ${siteConfig.name}`;
+  const title = withSiteName(productName);
 
   // Determine URL: productUrl or canonical, converted to absolute
   let url: string;
@@ -213,7 +218,7 @@ export function createArticleMetadata(options: ArticleMetadataOptions): Metadata
     noFollow = false,
   } = options;
 
-  const title = `${articleTitle} | ${siteConfig.name}`;
+  const title = withSiteName(articleTitle);
 
   // Determine URL: articleUrl or canonical, converted to absolute
   let url: string;
@@ -283,9 +288,9 @@ export function createCategoryMetadata(
 ): Metadata {
   const { noIndex = false, parentCategory } = options || {};
 
-  const title = parentCategory
-    ? `${categoryName} | ${parentCategory} | ${siteConfig.name}`
-    : `${categoryName} | ${siteConfig.name}`;
+  const title = withSiteName(
+    parentCategory ? `${categoryName} | ${parentCategory}` : categoryName,
+  );
 
   const canonicalUrl = toAbsoluteUrl(categoryUrl);
 
