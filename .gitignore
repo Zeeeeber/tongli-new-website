@@ -44,4 +44,5 @@ next-env.d.ts
 public/images/products/natural\ wood\ veneer/
 
 # scripts (build tools)
-/scripts/
+/scripts/*
+!/scripts/submit-indexnow.mjs
