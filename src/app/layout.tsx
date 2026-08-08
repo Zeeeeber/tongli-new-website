@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { Inter, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
+import { AnalyticsManager } from "@/components/analytics/AnalyticsManager";
 import { JsonLd } from "@/components/seo/JsonLd";
+import {
+  ANALYTICS_CONSENT_STORAGE_KEY,
+  GA_MEASUREMENT_ID,
+} from "@/lib/analytics/google";
 import { getOrganizationSchema, getWebSiteSchema } from "@/lib/seo/schema";
 import { defaultSeo, siteConfig } from "@/lib/seo/site";
 
@@ -82,8 +88,26 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${dmSans.variable}`}>
       <body>
+        <Script id="tongli-google-consent-default" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = window.gtag || gtag;
+            var storedAnalyticsConsent = null;
+            try {
+              storedAnalyticsConsent = localStorage.getItem('${ANALYTICS_CONSENT_STORAGE_KEY}');
+            } catch (error) {}
+            gtag('consent', 'default', {
+              analytics_storage: storedAnalyticsConsent === 'granted' ? 'granted' : 'denied',
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied'
+            });
+          `}
+        </Script>
         <JsonLd data={[getOrganizationSchema(), getWebSiteSchema()]} />
         <ClientLayout>{children}</ClientLayout>
+        <AnalyticsManager measurementId={GA_MEASUREMENT_ID} />
       </body>
     </html>
   );

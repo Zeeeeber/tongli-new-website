@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnalyticsConsentSettings } from "@/components/analytics/AnalyticsConsentSettings";
 
 export default function PrivacyPage() {
   return (
@@ -11,7 +12,7 @@ export default function PrivacyPage() {
               Privacy Policy
             </h1>
             <p className="text-white/70">
-              Last updated: May 2026
+              Last updated: August 2026
             </p>
           </div>
         </div>
@@ -25,10 +26,16 @@ export default function PrivacyPage() {
               <div>
                 <h2 className="text-xl font-bold text-[#1F2621] mb-4">Information We Collect</h2>
                 <p>
-                  We collect information you provide directly to us, such as when you request a quote, 
-                  request samples, or contact us through our website. This may include your name, company name, 
-                  email address, phone number, and project details.
+                  We collect information you choose to provide when you contact us by email, phone, or WhatsApp. This may include your name, company name, email address, phone number, and project details. The Tongli Timber website does not currently use an online inquiry form.
                 </p>
+              </div>
+
+              <div>
+                <h2 className="text-xl font-bold text-[#1F2621] mb-4">Analytics and Cookies</h2>
+                <p>
+                  With your permission, we use Google Analytics to understand which pages and product categories visitors find useful. We measure page visits and clicks on email, phone, WhatsApp, and sample-request links. We do not send your contact details, message text, or inquiry content to Google Analytics. Analytics does not load unless you accept analytics cookies.
+                </p>
+                <AnalyticsConsentSettings />
               </div>
 
               <div>
