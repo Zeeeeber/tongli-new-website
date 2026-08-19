@@ -413,14 +413,14 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
   },
   {
     slug: "fireproof-mdf-flame-retardant",
-    name: "Fireproof MDF Board | Flame-Retardant Panel | China Fire Rated MDF Supplier",
-    seoTitle: "Fireproof MDF Board | Flame-Retardant Panel | China Fire Rated MDF Supplier",
-    metaDescription: "Fireproof MDF board for furniture, doors, wall panels and commercial interiors. Flame-retardant MDF sheets with custom sizes and thickness options.",
+    name: "Fire Rated MDF Board & Flame-Retardant Panel",
+    seoTitle: "Fire Rated MDF Board & Flame-Retardant Panel",
+    metaDescription: "Source fire rated MDF boards for doors, wall panels, furniture and commercial interiors, with custom sizes, thicknesses, export packing and document support.",
     code: "SBP-MDF-FIREPROOF-MDF-FLAME-RETA",
     category: "Supporting Boards",
     subCategory: "Fireproof MDF",
     subCategorySlug: "fireproof-mdf",
-    shortDesc: "Flame-retardant MDF board for furniture, doors, wall panels and commercial interior panel applications requiring improved fire performance.",
+    shortDesc: "Fire rated, flame-retardant MDF board for doors, furniture, wall panels and commercial interior applications requiring improved fire performance.",
     tags: [
       "Fireproof MDF Board",
       "Fire Rated MDF",
@@ -456,16 +456,17 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
       "/images/products/supporting-boards/fireproof-mdf-flame-retardant/image-05.jpg",
       "/images/products/supporting-boards/fireproof-mdf-flame-retardant/image-06.jpg"
     ],
-    overview: "Fireproof MDF board is designed for furniture, door, wall panel and commercial interior applications where improved fire-retardant performance is required. It can be used as a substrate for decorative panels and interior components, with size, thickness and packing options adjusted to order needs.",
+    overview: "Fire rated MDF, also searched as fireproof MDF or flame-retardant MDF, is designed for doors, furniture, wall panels and commercial interiors where improved fire performance is part of the material specification. It can be supplied as a substrate for veneer, laminate and other decorative panel finishes, with size, thickness and export packing adjusted to the order. The required fire standard and available test documents should be confirmed before production so the board specification matches the destination market and project requirements.",
     faqs: [
       { q: "What is fireproof MDF board?", a: "Fireproof MDF, also called flame-retardant MDF or FR MDF, is an MDF panel made for applications requiring improved fire-retardant performance compared with standard MDF." },
+      { q: "Is fireproof MDF the same as fire rated MDF?", a: "The terms fireproof MDF, fire rated MDF, flame-retardant MDF and FR MDF are often used for similar buyer searches. The actual performance depends on the board specification and the fire standard confirmed for the order." },
       { q: "Where is fire rated MDF commonly used?", a: "It is commonly used for doors, partitions, wall panels, furniture, display fixtures and commercial interior projects where fire performance is part of the specification." },
       { q: "Can fireproof MDF be customized?", a: "Yes. Thickness, size, surface processing and packing can be discussed according to the order and project requirements." },
       { q: "Can you provide fire performance information?", a: "Fire performance should be confirmed based on the requested standard, product specification and available test documents for the order." },
       { q: "Can fireproof MDF be used as a decorative panel substrate?", a: "Yes. It can be used as a substrate for decorative finishes, laminated panels, veneer panels and other interior components when the surface process is suitable." }
     ],
     relatedProducts: [],
-    updatedAt: "2026-07-02",
+    updatedAt: "2026-08-17",
   },
   {
     slug: "mr-mdf-moisture-resistant",

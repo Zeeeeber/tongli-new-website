@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -11,16 +11,12 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const [phase, setPhase] = useState<"loading" | "splash" | "transition" | "done">("loading");
-  const hasRun = useRef(false);
 
   useEffect(() => {
     if (typeof window !== "undefined" && localStorage.getItem("tongli-splash")) {
       setPhase("done");
       return;
     }
-
-    if (hasRun.current) return;
-    hasRun.current = true;
 
     // Show splash
     const splashTimer = setTimeout(() => {

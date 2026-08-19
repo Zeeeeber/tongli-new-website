@@ -7,8 +7,9 @@ import { createPageMetadata } from "@/lib/seo/metadata";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Natural Wood Veneer",
-  description: "Authentic wood veneer sheets with natural grain patterns. Over 80 species including Oak, Walnut, Teak, Cherry, Maple, Ash, and more.",
+  title: "Natural Wood Veneer Sheets",
+  description:
+    "Source natural wood veneer sheets in oak, walnut, teak, maple, ash and other species for furniture, doors, plywood, wall panels and custom interiors.",
   path: "/products/natural-wood-veneer",
 });
 

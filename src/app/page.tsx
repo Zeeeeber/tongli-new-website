@@ -7,6 +7,42 @@ import { featuredProducts } from "@/data/featured-products";
 import ProjectModal, { type Project } from "@/components/projects/ProjectModal";
 import { projects as allProjects } from "@/data/projects";
 
+const homeResourceCards = [
+  {
+    category: "Buying Guide",
+    title: "How to Choose Wood Veneer Panels for Furniture Manufacturing",
+    excerpt: "Learn the key factors to consider when selecting veneer panels for your furniture production line.",
+    date: "Apr 25, 2026",
+    readTime: "8 min read",
+    href: "/resources/choose-veneer-panels-furniture",
+  },
+  {
+    category: "Product Comparison",
+    title: "Natural vs Engineered Wood Veneer Guide",
+    excerpt: "Compare grain variation, consistency, cost, matching and ideal uses before choosing a veneer.",
+    date: "Updated Aug 17, 2026",
+    readTime: "7 min read",
+    href: "/resources/natural-vs-engineered-veneer",
+  },
+  {
+    category: "Technical Guide",
+    title: "Wood Veneer Panels: Types & Uses",
+    excerpt: "Understand veneer types, core materials, benefits and selection factors for furniture and interiors.",
+    date: "Updated Aug 17, 2026",
+    readTime: "8 min read",
+    href: "/resources/understanding-wood-veneer-panels",
+  },
+] as const;
+
+const prioritySourcingLinks = [
+  { label: "Wood Veneer Panels", href: "/products/wood-veneer-panels" },
+  { label: "Fire Rated MDF Board", href: "/products/supporting-boards/fireproof-mdf-flame-retardant" },
+  { label: "Burma Teak Veneer", href: "/products/natural-wood-veneer/natural-burma-teak-wood-veneer-sheets" },
+  { label: "Teak Edge Banding", href: "/products/veneer-edge-banding/natural-teak-wood-veneer-edge-banding" },
+  { label: "Okoume Edge Banding", href: "/products/veneer-edge-banding/okoume-wood-veneer-edge-banding" },
+  { label: "All Wood Products", href: "/products" },
+] as const;
+
 // Horizontal scroll hook for project gallery
 function useHorizontalScroll() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -1319,12 +1355,8 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              { category: "Buying Guide", title: "How to Choose Wood Veneer Panels for Furniture Manufacturing", excerpt: "Learn the key factors to consider when selecting veneer panels for your furniture production line.", date: "Dec 15, 2025", readTime: "8 min read" },
-              { category: "Product Comparison", title: "Natural Wood Veneer vs Engineered Veneer: Which is Right for You?", excerpt: "A comprehensive comparison of natural and engineered veneer to help you choose the best option.", date: "Nov 28, 2025", readTime: "6 min read" },
-              { category: "Technical Guide", title: "What Substrate Should You Choose for Veneer Panels?", excerpt: "Understanding the differences between plywood, MDF, and other substrates for veneer applications.", date: "Oct 12, 2025", readTime: "10 min read" },
-            ].map((article, index) => (
-              <Link key={index} href="/resources" className="group block bg-[#F7F3EC] rounded-2xl lg:rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
+            {homeResourceCards.map((article) => (
+              <Link key={article.href} href={article.href} className="group block bg-[#F7F3EC] rounded-2xl lg:rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300">
                 <div className="aspect-video bg-gradient-to-br from-[#0F6B3A]/10 to-[#4C8A68]/10 flex items-center justify-center">
                   <svg className="w-16 lg:w-20 h-16 lg:h-20 text-[#4C8A68]/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -1345,6 +1377,23 @@ export default function HomePage() {
               </Link>
             ))}
           </div>
+
+          <nav aria-label="Popular sourcing pages" className="mt-8 lg:mt-10">
+            <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-[#6b7280]">
+              Popular sourcing pages
+            </p>
+            <div className="flex flex-wrap gap-2.5">
+              {prioritySourcingLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full border border-[#0F6B3A]/20 bg-white px-4 py-2 text-sm font-medium text-[#124B34] transition-colors hover:border-[#0F6B3A] hover:bg-[#0F6B3A] hover:text-white"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
         </div>
       </section>
 

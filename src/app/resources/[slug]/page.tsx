@@ -12,6 +12,23 @@ interface ArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
+function toIsoDate(date: string): string {
+  return new Date(
+    /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T00:00:00.000Z` : date,
+  ).toISOString();
+}
+
+function formatUpdatedDate(date: string): string {
+  const [year, month, day] = date.split("-").map(Number);
+
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
 export async function generateStaticParams() {
   return articles.map((article) => ({
     slug: article.slug,
@@ -26,13 +43,19 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
     return {};
   }
 
+  const publishedDate = toIsoDate(article.date);
+  const modifiedDate = article.updatedAt
+    ? toIsoDate(article.updatedAt)
+    : publishedDate;
+
   return createArticleMetadata({
     articleTitle: article.title,
     articleDescription: article.excerpt,
     articleImage: article.image,
     articleUrl: `/resources/${article.slug}`,
     author: article.author,
-    publishedDate: article.date,
+    publishedDate,
+    modifiedDate,
     category: article.category,
   });
 }
@@ -48,13 +71,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   const relatedArticles = getRelatedArticles(article.slug, 3);
   const articlePath = `/resources/${article.slug}`;
   const articleUrl = `${siteConfig.canonicalUrl}${articlePath}`;
+  const publishedDate = toIsoDate(article.date);
+  const modifiedDate = article.updatedAt
+    ? toIsoDate(article.updatedAt)
+    : publishedDate;
   const structuredData = [
     getArticleSchema({
       headline: article.title,
       description: article.excerpt,
       image: `${siteConfig.canonicalUrl}${article.image}`,
       author: article.author,
-      publishedDate: new Date(article.date).toISOString(),
+      publishedDate,
+      modifiedDate,
       url: articleUrl,
     }),
     getBreadcrumbSchema([
@@ -108,7 +136,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <span>{article.date}</span>
+                <span>
+                  {article.updatedAt
+                    ? `Updated ${formatUpdatedDate(article.updatedAt)}`
+                    : article.date}
+                </span>
               </div>
               <span className="w-1 h-1 rounded-full bg-[#D1D5DB]"></span>
               <div className="flex items-center gap-2">

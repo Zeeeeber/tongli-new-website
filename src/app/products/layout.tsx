@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { defaultSeo, siteConfig } from "@/lib/seo/site";
 
+const title = "Wood Veneer Panels & Decorative Boards | Tongli Timber";
+const description =
+  "Source wood veneer panels, natural and engineered veneer, edge banding, melamine boards and substrates for furniture, doors and commercial interiors.";
+
 export const metadata: Metadata = {
-  title: "Wood Veneer Panels, Natural Veneer & Decorative Board Products | Tongli Timber",
-  description:
-    "Explore Tongli Timber veneer panels, natural and engineered veneer, 3D wood panels, melamine boards and substrates for B2B furniture and interior projects.",
+  title,
+  description,
   alternates: {
     canonical: `${siteConfig.canonicalUrl}/products`,
   },
@@ -19,9 +22,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Tongli Timber",
-    title: "Wood Veneer Panels, Natural Veneer & Decorative Board Products | Tongli Timber",
-    description:
-      "Explore Tongli Timber veneer panels, natural and engineered veneer, 3D wood panels, melamine boards and substrates for B2B furniture and interior projects.",
+    title,
+    description,
     url: `${siteConfig.canonicalUrl}/products`,
     locale: "en_US",
     images: [
@@ -35,9 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Wood Veneer Panels, Natural Veneer & Decorative Board Products | Tongli Timber",
-    description:
-      "Explore Tongli Timber veneer panels, natural and engineered veneer, 3D wood panels, melamine boards and substrates for B2B furniture and interior projects.",
+    title,
+    description,
     images: [defaultSeo.ogImage],
   },
 };

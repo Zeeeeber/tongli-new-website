@@ -4,7 +4,7 @@ import { createPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = createPageMetadata({
   title: "Wood Veneer Panels and Decorative Plywood",
   description:
-    "Natural and engineered wood veneer panels on plywood, MDF and custom substrates for furniture, doors and interiors.",
+    "Source natural or engineered wood veneer panels on plywood, MDF and custom cores for furniture, doors, wall panels and commercial interior projects.",
   path: "/products/wood-veneer-panels",
 });
 

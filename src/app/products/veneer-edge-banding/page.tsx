@@ -3,12 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
+import { createPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
-  title: "Veneer Edge Banding | Wood Veneer Edge Tape Supplier | Tongli Timber",
+export const metadata: Metadata = createPageMetadata({
+  title: "Natural Wood Veneer Edge Banding",
   description:
-    "Wood veneer edge banding for furniture, cabinets, doors and decorative panels. Natural wood veneer edge tape and engineered wood veneer edge banding in multiple species.",
-};
+    "Source natural and engineered veneer edge banding for furniture, cabinets, doors and panels, with custom widths, backing, finish and roll lengths.",
+  path: "/products/veneer-edge-banding",
+});
 
 export default function VeneerEdgeBandingPage() {
   const productCount = veneerEdgeBandingProducts.length;

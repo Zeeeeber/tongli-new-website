@@ -326,6 +326,7 @@ function createProduct(input: {
   featuredImage?: string;
   gallery?: string[];
   featured?: boolean;
+  updatedAt?: string;
 }): NaturalWoodVeneerProduct {
   const imageData = buildImageData(input.slug);
 
@@ -355,7 +356,7 @@ Tongli Timber supports sample confirmation, production matching, export packing 
     faqs: [...naturalWoodVeneerFaqs],
     relatedProducts: [...defaultRelatedProducts],
     featured: input.featured ?? false,
-    updatedAt: "2026-06-04",
+    updatedAt: input.updatedAt ?? "2026-06-04",
   };
 }
 
@@ -492,9 +493,9 @@ export const naturalWoodVeneerProducts: NaturalWoodVeneerProduct[] = [
   createProduct({
     slug: "natural-burma-teak-wood-veneer-sheets",
     name: "Natural Burma Teak Wood Veneer Sheets",
-    seoTitle: "Natural Burma Teak Wood Veneer Sheets | Tongli Timber",
-    metaDescription: "Natural Burma teak veneer sheets with classic teak color and grain for furniture, doors, plywood and interior applications.",
-    shortDesc: "Natural Burma teak veneer sheets with classic teak color and grain for furniture, doors, plywood and interior applications.",
+    seoTitle: "Burma Teak Wood Veneer Sheets",
+    metaDescription: "Source Burma teak veneer sheets with classic color and grain for furniture, doors and interiors, with sample matching and export packing support.",
+    shortDesc: "Natural Burma teak veneer sheets with classic color and grain for furniture, doors, plywood, wall panels and custom interior applications.",
     tags: ["Natural Wood Veneer", "Burma Teak Veneer", "Teak Veneer", "Wood Veneer Sheets", "Furniture Veneer", "Door Veneer", "Decorative Veneer"],
     veneerSpecies: "Burma Teak",
     cuttingMethod: "Natural Cut / Custom",
@@ -502,6 +503,7 @@ export const naturalWoodVeneerProducts: NaturalWoodVeneerProduct[] = [
     imageAlt: "Natural Burma Teak Wood Veneer Sheets for furniture, doors and decorative panels",
     code: "NV-NWV-010",
     imageCount: 7,
+    updatedAt: "2026-08-17",
   }),
   createProduct({
     slug: "crown-cut-red-oak-natural-wood-veneer-sheets",
@@ -693,4 +695,3 @@ export function getFeaturedProducts(): NaturalWoodVeneerProduct[] {
 export function getAllProductSlugs(): string[] {
   return naturalWoodVeneerProducts.map((p) => p.slug);
 }
-

@@ -50,6 +50,17 @@ const staticPaths = [
   "/terms",
 ] as const;
 
+const seoUpdateDate = "2026-08-17";
+
+const staticPathLastModified = new Map<string, string>([
+  ["/", seoUpdateDate],
+  ["/products", seoUpdateDate],
+  ["/products/wood-veneer-panels", seoUpdateDate],
+  ["/products/natural-wood-veneer", seoUpdateDate],
+  ["/products/veneer-edge-banding", seoUpdateDate],
+  ["/products/supporting-boards", seoUpdateDate],
+]);
+
 function absoluteUrl(path: string): string {
   return path === "/"
     ? siteConfig.canonicalUrl
@@ -76,10 +87,15 @@ function productEntries(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticEntries = staticPaths.map((path) => sitemapEntry(path));
+  const staticEntries = staticPaths.map((path) =>
+    sitemapEntry(path, staticPathLastModified.get(path)),
+  );
 
   const articleEntries = articles.map((article) =>
-    sitemapEntry(`/resources/${article.slug}`, new Date(article.date)),
+    sitemapEntry(
+      `/resources/${article.slug}`,
+      article.updatedAt || new Date(article.date),
+    ),
   );
 
   const productDetailEntries = [

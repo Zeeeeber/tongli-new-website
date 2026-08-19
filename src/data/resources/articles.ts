@@ -16,6 +16,7 @@ export interface Article {
   content?: string;
   category: ArticleCategory;
   date: string;
+  updatedAt?: string;
   author: string;
   image: string;
   slug: string;
@@ -60,10 +61,11 @@ export const resourceCategories: ResourceCategory[] = [
 export const articles: Article[] = [
   {
     id: 1,
-    title: "Understanding Wood Veneer Panels: Types, Construction & Benefits",
-    excerpt: "A comprehensive guide to wood veneer panels, covering engineered veneer, natural veneer, and how to choose the right panel for your furniture manufacturing needs.",
+    title: "Wood Veneer Panels: Types & Uses",
+    excerpt: "A practical guide to wood veneer panels, including natural and engineered veneer, core materials, benefits and selection tips for furniture projects.",
     category: "Product News",
     date: "May 10, 2026",
+    updatedAt: "2026-08-17",
     author: "Tongli Timber",
     image: "/images/products-page-banners/wood-veneer-panels.jpg",
     slug: "understanding-wood-veneer-panels",
@@ -92,7 +94,7 @@ export const articles: Article[] = [
 </ul>
 
 <h2>Choosing the Right Panel</h2>
-<p>When selecting veneer panels for your project, consider factors such as the substrate type, veneer species, thickness, and finish requirements. Our team can help you find the perfect solution for your specific needs.</p>`,
+<p>When selecting veneer panels for your project, consider factors such as the substrate type, veneer species, thickness, and finish requirements. Explore our <a href="/products/wood-veneer-panels">wood veneer panel options</a>, or <a href="/contact">contact our team</a> to discuss your application, dimensions, finish, and order requirements.</p>`,
   },
   {
     id: 2,
@@ -169,10 +171,11 @@ export const articles: Article[] = [
   },
   {
     id: 4,
-    title: "Natural Wood Veneer vs Engineered Veneer: Which Is Right for You?",
-    excerpt: "Compare natural and engineered veneer to find the best option for your project requirements.",
+    title: "Natural vs Engineered Wood Veneer Guide",
+    excerpt: "Compare natural and engineered wood veneer by grain variation, consistency, cost, matching and ideal uses for furniture and commercial interior projects.",
     category: "Product News",
     date: "May 3, 2026",
+    updatedAt: "2026-08-17",
     author: "Tongli Timber",
     image: "/images/products/engineered_veneer.png",
     slug: "natural-vs-engineered-veneer",
@@ -216,7 +219,9 @@ export const articles: Article[] = [
 </ul>
 
 <h2>Making the Choice</h2>
-<p>Consider your project's specific needs: premium aesthetics may favor natural veneer, while large-scale commercial projects often benefit from the consistency of engineered veneer.</p>`,
+<p>Choose <a href="/products/natural-wood-veneer">natural wood veneer</a> when authentic grain variation and a premium natural appearance are the priority. Choose <a href="/products/engineered-wood-veneer">engineered wood veneer</a> when repeatable color, pattern consistency, and large-volume matching matter more.</p>
+
+<p>For project-specific advice, <a href="/contact">contact Tongli Timber</a> with your application, preferred species or pattern, dimensions, quantity, and destination market.</p>`,
   },
   {
     id: 5,
@@ -326,10 +331,11 @@ export const articles: Article[] = [
   },
   {
     id: 8,
-    title: "Wood Veneer Panel vs Melamine Board: A Complete Comparison",
-    excerpt: "Understand the key differences between veneer panels and melamine boards for your projects.",
+    title: "Wood Veneer Panel vs Melamine Board",
+    excerpt: "Compare wood veneer panels and melamine boards by appearance, consistency, maintenance, refinishing, cost and suitability for furniture and interiors.",
     category: "Product News",
     date: "April 15, 2026",
+    updatedAt: "2026-08-17",
     author: "Tongli Timber",
     image: "/images/products/melamine_board.png",
     slug: "veneer-panel-vs-melamine-board",
@@ -364,7 +370,9 @@ export const articles: Article[] = [
 <p>Veneer panels generally have a higher material cost but offer premium aesthetics. Melamine boards are more economical and work well for budget-conscious projects.</p>
 
 <h2>Making the Right Choice</h2>
-<p>Consider your project's priorities: premium aesthetics favor veneer, while consistency and budget may point to melamine.</p>`,
+<p>Choose <a href="/products/wood-veneer-panels">wood veneer panels</a> when real wood character, a premium finish, and refinishing potential are important. Choose <a href="/products/melamine-board">melamine boards</a> when easy maintenance, repeatable color, and budget control are the main priorities.</p>
+
+<p><a href="/contact">Contact our team</a> to compare substrate, finish, dimensions, quantity, and shipping requirements for your project.</p>`,
   },
   {
     id: 9,
