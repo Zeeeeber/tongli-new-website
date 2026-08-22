@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const mainNavItems = [
   { label: "Home", href: "/" },
@@ -177,7 +178,9 @@ export default function Header() {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+
             <Link
               href="/contact"
               className="hidden sm:flex items-center gap-2 px-6 py-3 bg-[#0F6B3A] text-white text-sm font-bold uppercase tracking-wide rounded-full hover:bg-[#124B34] hover:shadow-lg hover:shadow-[#0F6B3A]/20 transition-all duration-200"
