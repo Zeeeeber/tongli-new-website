@@ -8,8 +8,8 @@ import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-pr
 import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
+import { locales, localizePath } from "@/i18n/config";
 
-type SitemapEntry = MetadataRoute.Sitemap[number];
 type ProductSitemapSource = {
   slug: string;
   updatedAt?: string;
@@ -59,6 +59,7 @@ const staticPathLastModified = new Map<string, string>([
   ["/products/natural-wood-veneer", seoUpdateDate],
   ["/products/veneer-edge-banding", seoUpdateDate],
   ["/products/supporting-boards", seoUpdateDate],
+  ["/contact", "2026-08-24"],
 ]);
 
 function absoluteUrl(path: string): string {
@@ -67,19 +68,32 @@ function absoluteUrl(path: string): string {
     : `${siteConfig.canonicalUrl}${path}`;
 }
 
-function sitemapEntry(path: string, lastModified?: string | Date): SitemapEntry {
-  return {
-    url: absoluteUrl(path),
+function localizedSitemapEntries(
+  path: string,
+  lastModified?: string | Date,
+): MetadataRoute.Sitemap {
+  const languages = Object.fromEntries(
+    locales.map((locale) => [locale, absoluteUrl(localizePath(path, locale))]),
+  );
+
+  return locales.map((locale) => ({
+    url: absoluteUrl(localizePath(path, locale)),
     ...(lastModified ? { lastModified } : {}),
-  };
+    alternates: {
+      languages: {
+        ...languages,
+        "x-default": absoluteUrl(path),
+      },
+    },
+  }));
 }
 
 function productEntries(
   categoryPath: string,
   products: readonly ProductSitemapSource[],
 ): MetadataRoute.Sitemap {
-  return products.map((product) =>
-    sitemapEntry(
+  return products.flatMap((product) =>
+    localizedSitemapEntries(
       `${categoryPath}/${product.slug}`,
       product.updatedAt,
     ),
@@ -87,12 +101,12 @@ function productEntries(
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticEntries = staticPaths.map((path) =>
-    sitemapEntry(path, staticPathLastModified.get(path)),
+  const staticEntries = staticPaths.flatMap((path) =>
+    localizedSitemapEntries(path, staticPathLastModified.get(path)),
   );
 
-  const articleEntries = articles.map((article) =>
-    sitemapEntry(
+  const articleEntries = articles.flatMap((article) =>
+    localizedSitemapEntries(
       `/resources/${article.slug}`,
       article.updatedAt || new Date(article.date),
     ),

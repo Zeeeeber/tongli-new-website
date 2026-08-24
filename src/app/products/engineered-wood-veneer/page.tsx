@@ -1,7 +1,8 @@
+import T from "@/i18n/full-site-context";
 import { Metadata } from "next";
 import Image from "next/image";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import { engineeredWoodVeneerProducts } from "@/data/products/engineered-wood-veneer-products";
 
 export const metadata: Metadata = {
@@ -24,15 +25,15 @@ export default function EngineeredWoodVeneerPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products" className="hover:text-[#0F6B3A]">Products</Link>
+            <Link href="/products" className="hover:text-[#0F6B3A]"><T>{"Products"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Engineered Wood Veneer</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Engineered Wood Veneer"}</T></span>
           </div>
         </div>
       </div>
@@ -41,10 +42,9 @@ export default function EngineeredWoodVeneerPage() {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-4">About Engineered Wood Veneer</h2>
+            <h2 className="text-2xl font-bold text-[#1F2621] mb-4"><T>{"About Engineered Wood Veneer"}</T></h2>
             <p className="text-[#6b7280] leading-relaxed">
-              Engineered wood veneer (also called reconstituted veneer) is manufactured from rapidly renewable tropical wood species. The logs are sliced into thin layers, dyed in controlled color tones, and then re-bonded into blocks that produce consistent grain patterns and colors when re-sliced. This process delivers 300+ design options with stable colors, uniform textures, and reliable batch-to-batch consistency — ideal for large-scale commercial production.
-            </p>
+              <T>{"Engineered wood veneer (also called reconstituted veneer) is manufactured from rapidly renewable tropical wood species. The logs are sliced into thin layers, dyed in controlled color tones, and then re-bonded into blocks that produce consistent grain patterns and colors when re-sliced. This process delivers 300+ design options with stable colors, uniform textures, and reliable batch-to-batch consistency — ideal for large-scale commercial production.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -53,10 +53,9 @@ export default function EngineeredWoodVeneerPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Product Range</h2>
+            <h2 className="text-3xl font-bold text-[#1F2621]"><T>{"Product Range"}</T></h2>
             <p className="text-[#6b7280] mt-4">
-              {products.length} reconstituted veneer patterns available
-            </p>
+              {products.length} <T>{"reconstituted veneer patterns available\n            "}</T></p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -88,8 +87,7 @@ export default function EngineeredWoodVeneerPage() {
                     )}
                     <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">
-                        View Details
-                      </span>
+                        <T>{"View Details\n                      "}</T></span>
                     </div>
                   </div>
                   <div className="p-4">
@@ -97,7 +95,7 @@ export default function EngineeredWoodVeneerPage() {
                     <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-2 group-hover:text-[#0F6B3A] transition-colors leading-snug text-sm">
                       {product.specs.pattern}
                     </h3>
-                    <p className="text-xs text-[#6b7280] line-clamp-2 leading-relaxed">{product.shortDesc}</p>
+                    <p className="text-xs text-[#6b7280] line-clamp-2 leading-relaxed"><T>{product.shortDesc}</T></p>
                   </div>
                 </Link>
               );
@@ -110,11 +108,11 @@ export default function EngineeredWoodVeneerPage() {
       <section className="py-16 bg-[#0F6B3A]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Engineered Wood Veneer?</h2>
-            <p className="text-white/80 mb-8">Contact us for pattern availability, custom development, and sample requests.</p>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Engineered Wood Veneer?"}</T></h2>
+            <p className="text-white/80 mb-8"><T>{"Contact us for pattern availability, custom development, and sample requests."}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">Contact Us</Link>
-              <Link href="/products" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">View All Products</Link>
+              <Link href="/contact" className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"><T>{"Contact Us"}</T></Link>
+              <Link href="/products" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"><T>{"View All Products"}</T></Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import T from "@/i18n/full-site-context";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import ImageModal from "@/components/ImageModal";
@@ -47,15 +48,15 @@ export default function EngineeredVeneerPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/collections" className="hover:text-[#0F6B3A]">Collections</Link>
+            <Link href="/collections" className="hover:text-[#0F6B3A]"><T>{"Collections"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Engineered Wood Veneer</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Engineered Wood Veneer"}</T></span>
           </div>
         </div>
       </div>
@@ -63,11 +64,10 @@ export default function EngineeredVeneerPage() {
       <section className="relative bg-gradient-to-r from-[#0F6B3A] to-[#124B34] py-16 lg:py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Collection</span>
-            <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-white">Engineered Wood Veneer</h1>
+            <span className="text-white/60 text-sm font-medium tracking-wider uppercase"><T>{"Collection"}</T></span>
+            <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-white"><T>{"Engineered Wood Veneer"}</T></h1>
             <p className="text-white/80 text-lg leading-relaxed">
-              Reconstituted veneer engineered for visual consistency across production runs. Stable colors, uniform textures, and a curated style library make it ideal for large-scale furniture, cabinetry, and architectural projects.
-            </p>
+              <T>{"Reconstituted veneer engineered for visual consistency across production runs. Stable colors, uniform textures, and a curated style library make it ideal for large-scale furniture, cabinetry, and architectural projects.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -88,7 +88,7 @@ export default function EngineeredVeneerPage() {
                       : "bg-white text-[#1F2621] border-[#E5E1D8] hover:border-[#0F6B3A]/40 hover:text-[#0F6B3A]",
                   ].join(" ")}
                 >
-                  {c.label}
+                  <T>{c.label}</T>
                   <span
                     className={[
                       "ml-2 text-xs font-mono",
@@ -107,14 +107,13 @@ export default function EngineeredVeneerPage() {
       <section className="pb-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-sm text-[#6b7280] mb-6">
-            Showing {filtered.length} {filtered.length === 1 ? "style" : "styles"}
-            {active !== "All" ? ` in ${active}` : ""}
+            <T>{"Showing "}</T>{filtered.length} <T>{filtered.length === 1 ? "style" : "styles"}</T>
+            <T>{active !== "All" ? ` in ${active}` : ""}</T>
           </div>
 
           {filtered.length === 0 ? (
             <div className="py-20 text-center text-[#6b7280]">
-              No styles in this category.
-            </div>
+              <T>{"No styles in this category.\n            "}</T></div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               {filtered.map((s) => {
@@ -147,7 +146,7 @@ export default function EngineeredVeneerPage() {
                     <div className="p-3">
                       <h3 className="font-semibold text-[#1F2621] text-sm mb-1.5">{s.code}</h3>
                       <span className="inline-block px-2 py-0.5 bg-[#F7F3EC] rounded text-xs text-[#6b7280]">
-                        {s.category}
+                        <T>{s.category}</T>
                       </span>
                     </div>
                   </div>
@@ -161,17 +160,15 @@ export default function EngineeredVeneerPage() {
       <section className="py-16 bg-[#0F6B3A]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Physical Samples?</h2>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Physical Samples?"}</T></h2>
             <p className="text-white/80 mb-8">
-              Request samples by code number to evaluate colors and patterns for your production requirements.
-            </p>
+              <T>{"Request samples by code number to evaluate colors and patterns for your production requirements.\n            "}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=sample"
                 className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Request Samples
-              </Link>
+                <T>{"Request Samples\n              "}</T></Link>
             </div>
           </div>
         </div>

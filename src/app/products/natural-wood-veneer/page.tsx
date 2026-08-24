@@ -1,6 +1,7 @@
+import T from "@/i18n/full-site-context";
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 import { NaturalWoodVeneerCategoryClient } from "@/components/product/NaturalWoodVeneerCategoryClient";
 import { createPageMetadata } from "@/lib/seo/metadata";
@@ -26,15 +27,15 @@ export default function NaturalWoodVeneerPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products" className="hover:text-[#0F6B3A]">Products</Link>
+            <Link href="/products" className="hover:text-[#0F6B3A]"><T>{"Products"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Natural Wood Veneer</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Natural Wood Veneer"}</T></span>
           </div>
         </div>
       </div>
@@ -43,10 +44,9 @@ export default function NaturalWoodVeneerPage() {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-4">About Natural Wood Veneer</h2>
+            <h2 className="text-2xl font-bold text-[#1F2621] mb-4"><T>{"About Natural Wood Veneer"}</T></h2>
             <p className="text-[#6b7280] leading-relaxed">
-              Natural wood veneer is sliced from real hardwood logs, preserving the authentic grain patterns, color variations, and organic textures unique to each species. Each sheet is a one-of-a-kind piece of nature, making natural veneer ideal for premium furniture, interior decoration, and architectural applications.
-            </p>
+              <T>{"Natural wood veneer is sliced from real hardwood logs, preserving the authentic grain patterns, color variations, and organic textures unique to each species. Each sheet is a one-of-a-kind piece of nature, making natural veneer ideal for premium furniture, interior decoration, and architectural applications.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -55,8 +55,8 @@ export default function NaturalWoodVeneerPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Product Range</h2>
-            <p className="text-[#6b7280] mt-4">Explore our natural wood veneer collection — authentic sliced veneer sheets with unique grain patterns from 80+ species</p>
+            <h2 className="text-3xl font-bold text-[#1F2621]"><T>{"Product Range"}</T></h2>
+            <p className="text-[#6b7280] mt-4"><T>{"Explore our natural wood veneer collection — authentic sliced veneer sheets with unique grain patterns from 80+ species"}</T></p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -88,15 +88,15 @@ export default function NaturalWoodVeneerPage() {
                       </div>
                     )}
                     <div className="absolute inset-0 bg-[#8B5E3C]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="px-4 py-2 bg-white text-[#8B5E3C] rounded-lg font-medium text-sm">View Details</span>
+                      <span className="px-4 py-2 bg-white text-[#8B5E3C] rounded-lg font-medium text-sm"><T>{"View Details"}</T></span>
                     </div>
                   </div>
                   <div className="p-4">
                     <span className="text-xs text-[#8B5E3C] font-mono">{product.code}</span>
-                    <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1">{product.name}</h3>
+                    <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-1"><T>{product.name}</T></h3>
                     <div className="text-xs text-[#6b7280] space-y-1">
                       <p>{product.specs.veneerSpecies} | {product.specs.cuttingMethod}</p>
-                      <p>{product.specs.veneerThickness} thickness</p>
+                      <p>{product.specs.veneerThickness} <T>{"thickness"}</T></p>
                     </div>
                   </div>
                 </Link>

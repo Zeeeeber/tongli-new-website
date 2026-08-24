@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
+import { getSiteLink, type Locale } from "@/i18n/config";
+import { projectsPageCopy } from "@/i18n/core-page-copy";
 
 /**
  * Shared types for project data.
@@ -50,21 +52,35 @@ interface ProjectModalProps {
   onClose: () => void;
   /** Whether to show the "Request Similar Materials" CTA and details */
   showDetails?: boolean;
+  locale?: Locale;
 }
 
 export default function ProjectModal({
   project,
   onClose,
   showDetails = true,
+  locale = "en",
 }: ProjectModalProps) {
+  const copy = projectsPageCopy[locale];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const [isZoomed, setIsZoomed] = useState(false);
 
-  useEffect(() => {
-    setCurrentIndex(0);
-    setIsZoomed(false);
-  }, [project.id]);
+  const handleClose = useCallback(() => {
+    setIsVisible(false);
+    setTimeout(() => {
+      onClose();
+      setIsZoomed(false);
+    }, 300);
+  }, [onClose]);
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((i) => (i - 1 + project.images.length) % project.images.length);
+  }, [project.images.length]);
+
+  const handleNext = useCallback(() => {
+    setCurrentIndex((i) => (i + 1) % project.images.length);
+  }, [project.images.length]);
 
   useEffect(() => {
     requestAnimationFrame(() => setIsVisible(true));
@@ -79,24 +95,7 @@ export default function ProjectModal({
       window.removeEventListener("keydown", handleEscape);
       document.body.style.overflow = "unset";
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose();
-      setIsZoomed(false);
-    }, 300);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((i) => (i - 1 + project.images.length) % project.images.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((i) => (i + 1) % project.images.length);
-  };
+  }, [handleClose, handleNext, handlePrev]);
 
   const currentImage = project.images[currentIndex] ?? project.images[0];
 
@@ -127,6 +126,7 @@ export default function ProjectModal({
         <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-4 bg-gradient-to-b from-black/60 to-transparent">
           <div className="flex items-center gap-3">
             <button
+              aria-label={copy.close}
               className="text-white/80 hover:text-white transition-colors p-2 bg-white/10 rounded-full backdrop-blur-sm"
               onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
             >
@@ -141,6 +141,7 @@ export default function ProjectModal({
               {currentIndex + 1} / {project.images.length}
             </span>
             <button
+              aria-label={copy.previousImage}
               className="text-white/80 hover:text-white transition-colors p-2 bg-white/10 rounded-full backdrop-blur-sm"
               onClick={(e) => { e.stopPropagation(); setIsZoomed(false); }}
             >
@@ -154,6 +155,7 @@ export default function ProjectModal({
         {project.images.length > 1 && (
           <>
             <button
+              aria-label={copy.nextImage}
               className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-all p-3 bg-white/10 rounded-full backdrop-blur-sm hover:bg-white/20"
               onClick={(e) => { e.stopPropagation(); handlePrev(); }}
             >
@@ -218,6 +220,7 @@ export default function ProjectModal({
         style={{ maxHeight: "90vh" }}
       >
         <button
+          aria-label={copy.close}
           className="absolute top-4 right-4 text-white/80 hover:text-white transition-colors p-2 z-20 bg-black/30 rounded-full backdrop-blur-sm"
           onClick={handleClose}
         >
@@ -249,13 +252,14 @@ export default function ProjectModal({
               <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
               </svg>
-              Click to enlarge
+              {copy.clickToEnlarge}
             </div>
           </div>
 
           {project.images.length > 1 && (
             <>
               <button
+                aria-label={copy.previousImage}
                 className="absolute left-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-all p-2 bg-black/30 rounded-full backdrop-blur-sm hover:bg-black/50"
                 onClick={(e) => { e.stopPropagation(); handlePrev(); }}
               >
@@ -264,6 +268,7 @@ export default function ProjectModal({
                 </svg>
               </button>
               <button
+                aria-label={copy.nextImage}
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-white/70 hover:text-white transition-all p-2 bg-black/30 rounded-full backdrop-blur-sm hover:bg-black/50"
                 onClick={(e) => { e.stopPropagation(); handleNext(); }}
               >
@@ -279,7 +284,7 @@ export default function ProjectModal({
               className="px-3 py-1 rounded-full text-white text-[11px] font-semibold backdrop-blur-sm"
               style={{ backgroundColor: productTypeColors[project.productType] + "dd" }}
             >
-              {project.productType}
+              {copy.productTypeLabels[project.productType] ?? project.productType}
             </span>
             {project.images.length > 1 && (
               <span className="px-2 py-1 rounded-full bg-black/40 text-white text-[10px] backdrop-blur-sm">
@@ -319,7 +324,7 @@ export default function ProjectModal({
           <div className="p-6 lg:p-8 flex-1">
             <div className="mb-6">
               <p className="text-[#0F6B3A] text-xs font-semibold uppercase tracking-widest mb-2">
-                Project #{String(project.id).padStart(3, "0")}
+                {copy.project} #{String(project.id).padStart(3, "0")}
               </p>
               <h2 className="text-xl lg:text-2xl font-bold text-[#1F2621] mb-1 leading-tight">
                 {project.name}
@@ -343,8 +348,8 @@ export default function ProjectModal({
                       </svg>
                     </div>
                     <div>
-                      <p className="text-[#6b7280] text-[11px] uppercase tracking-widest mb-0.5">Product Type</p>
-                      <p className="text-[#1F2621] text-sm font-medium">{project.productType}</p>
+                      <p className="text-[#6b7280] text-[11px] uppercase tracking-widest mb-0.5">{copy.productType}</p>
+                      <p className="text-[#1F2621] text-sm font-medium">{copy.productTypeLabels[project.productType] ?? project.productType}</p>
                     </div>
                   </div>
                   <div className="w-full h-px bg-[#D4C9BC]/50" />
@@ -355,7 +360,7 @@ export default function ProjectModal({
                       </svg>
                     </div>
                     <div>
-                      <p className="text-[#6b7280] text-[11px] uppercase tracking-widest mb-0.5">Materials Used</p>
+                      <p className="text-[#6b7280] text-[11px] uppercase tracking-widest mb-0.5">{copy.materialsUsed}</p>
                       <p className="text-[#1F2621] text-sm font-medium leading-relaxed">{project.products}</p>
                     </div>
                   </div>
@@ -368,7 +373,7 @@ export default function ProjectModal({
                       </svg>
                     </div>
                     <div>
-                      <p className="text-[#6b7280] text-[11px] uppercase tracking-widest mb-0.5">Location</p>
+                      <p className="text-[#6b7280] text-[11px] uppercase tracking-widest mb-0.5">{copy.location}</p>
                       <p className="text-[#1F2621] text-sm font-medium">{project.location}</p>
                     </div>
                   </div>
@@ -376,11 +381,11 @@ export default function ProjectModal({
 
                 <div className="flex flex-col gap-2">
                   <Link
-                    href="/contact"
+                    href={getSiteLink("/contact", locale)}
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#0F6B3A] text-white rounded-xl font-medium hover:bg-[#124B34] transition-all duration-200 text-sm shadow-lg shadow-[#0F6B3A]/20 hover:shadow-xl hover:shadow-[#0F6B3A]/30 hover:-translate-y-0.5"
                     onClick={handleClose}
                   >
-                    <span>Request Similar Materials</span>
+                    <span>{copy.requestSimilar}</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -389,7 +394,7 @@ export default function ProjectModal({
                     onClick={handleClose}
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 text-[#6b7280] rounded-xl font-medium hover:bg-gray-50 transition-all duration-200 text-sm"
                   >
-                    Close
+                    {copy.close}
                   </button>
                 </div>
               </>
@@ -398,11 +403,11 @@ export default function ProjectModal({
             {!showDetails && (
               <div className="flex flex-col gap-2">
                 <Link
-                  href="/contact"
+                  href={getSiteLink("/contact", locale)}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#0F6B3A] text-white rounded-xl font-medium hover:bg-[#124B34] transition-all duration-200 text-sm shadow-lg shadow-[#0F6B3A]/20 hover:shadow-xl hover:shadow-[#0F6B3A]/30 hover:-translate-y-0.5"
                   onClick={handleClose}
                 >
-                  <span>Request Similar Materials</span>
+                  <span>{copy.requestSimilar}</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -411,7 +416,7 @@ export default function ProjectModal({
                   onClick={handleClose}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-gray-200 text-[#6b7280] rounded-xl font-medium hover:bg-gray-50 transition-all duration-200 text-sm"
                 >
-                  Close
+                  {copy.close}
                 </button>
               </div>
             )}

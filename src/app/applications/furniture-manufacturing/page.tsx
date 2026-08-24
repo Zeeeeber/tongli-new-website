@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import T from "@/i18n/full-site-context";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -258,15 +259,15 @@ export default function FurnitureManufacturingPage() {
       <div className="py-4 border-b" style={{ background: C.ivory, borderColor: C.border }}>
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm" style={{ color: C.textMuted }}>
-            <Link href="/" className="hover:text-[#0F6B3A] transition-colors">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A] transition-colors"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/applications" className="hover:text-[#0F6B3A] transition-colors">Applications</Link>
+            <Link href="/applications" className="hover:text-[#0F6B3A] transition-colors"><T>{"Applications"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span style={{ color: C.charcoal, fontWeight: 500 }}>Furniture Manufacturing</span>
+            <span style={{ color: C.charcoal, fontWeight: 500 }}><T>{"Furniture Manufacturing"}</T></span>
           </div>
         </div>
       </div>
@@ -307,24 +308,20 @@ export default function FurnitureManufacturingPage() {
                   </svg>
                 </div>
                 <span className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm font-semibold tracking-wide">
-                  Furniture Manufacturing
-                </span>
+                  <T>{"Furniture Manufacturing\n                "}</T></span>
               </div>
             </FadeUp>
 
             <FadeUp delay={100}>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-8">
-                Wood Veneer Panels for
-                <br />
-                <span style={{ color: C.accentLight }}>Furniture Production</span>
+                <T>{"Wood Veneer Panels for\n                "}</T><br />
+                <span style={{ color: C.accentLight }}><T>{"Furniture Production"}</T></span>
               </h1>
             </FadeUp>
 
             <FadeUp delay={200}>
               <p className="text-white/75 text-lg lg:text-xl leading-relaxed mb-10 max-w-xl">
-                For furniture factories that need stable veneer appearance, suitable substrates,
-                smooth panel surfaces, and matching edge banding for repeatable production.
-              </p>
+                <T>{"For furniture factories that need stable veneer appearance, suitable substrates,\n                smooth panel surfaces, and matching edge banding for repeatable production.\n              "}</T></p>
             </FadeUp>
 
             <FadeUp delay={300}>
@@ -337,8 +334,7 @@ export default function FurnitureManufacturingPage() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
-                  Request Material Advice
-                </Link>
+                  <T>{"Request Material Advice\n                "}</T></Link>
                 <Link
                   href="/contact?type=sample"
                   className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold rounded-xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 text-white"
@@ -347,8 +343,7 @@ export default function FurnitureManufacturingPage() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
-                  Request Samples
-                </Link>
+                  <T>{"Request Samples\n                "}</T></Link>
               </div>
             </FadeUp>
           </div>
@@ -364,17 +359,15 @@ export default function FurnitureManufacturingPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel>What Matters Most</SectionLabel>
+                <SectionLabel><T>{"What Matters Most"}</T></SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight">
-                  What Furniture
-                  <br />
-                  <span style={{ color: C.accent }}>Manufacturers Need</span>
+                  <T>{"What Furniture\n                  "}</T><br />
+                  <span style={{ color: C.accent }}><T>{"Manufacturers Need"}</T></span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: C.border }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center" style={{ color: C.textBody }}>
-                We understand the priorities in furniture production. Here is what matters most to our clients.
-              </p>
+                <T>{"We understand the priorities in furniture production. Here is what matters most to our clients.\n              "}</T></p>
             </div>
           </FadeUp>
 
@@ -391,9 +384,9 @@ export default function FurnitureManufacturingPage() {
                         <path d={concern.icon} />
                       </svg>
                     </div>
-                    <h3 className="font-bold text-[#1F2621] text-base leading-tight pt-2">{concern.title}</h3>
+                    <h3 className="font-bold text-[#1F2621] text-base leading-tight pt-2"><T>{concern.title}</T></h3>
                   </div>
-                  <p className="text-sm leading-relaxed" style={{ color: C.textBody }}>{concern.description}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: C.textBody }}><T>{concern.description}</T></p>
                 </div>
               </FadeUp>
             ))}
@@ -412,17 +405,15 @@ export default function FurnitureManufacturingPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel>Common Challenges</SectionLabel>
+                <SectionLabel><T>{"Common Challenges"}</T></SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight">
-                  Problems
-                  <br />
-                  <span style={{ color: C.accent }}>& How We Solve Them</span>
+                  <T>{"Problems\n                  "}</T><br />
+                  <span style={{ color: C.accent }}><T>{"& How We Solve Them"}</T></span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: C.border }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center" style={{ color: C.textBody }}>
-                Understanding the real challenges helps us provide practical, factory-backed solutions.
-              </p>
+                <T>{"Understanding the real challenges helps us provide practical, factory-backed solutions.\n              "}</T></p>
             </div>
           </FadeUp>
 
@@ -457,18 +448,17 @@ export default function FurnitureManufacturingPage() {
                             </svg>
                           </div>
                           <span className="text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm px-2 py-0.5 rounded-full" style={{ background: "rgba(201,75,60,0.7)" }}>
-                            The Problem
-                          </span>
+                            <T>{"The Problem\n                          "}</T></span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg">{item.problem}</h4>
+                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg"><T>{item.problem}</T></h4>
                         </div>
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 h-1" style={{ background: C.problem }} />
                     </div>
                     <div className="p-5">
-                      <p className="text-sm leading-relaxed mb-3" style={{ color: C.textBody }}>{item.impact}</p>
-                      <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: C.problem }}>Impact</span>
+                      <p className="text-sm leading-relaxed mb-3" style={{ color: C.textBody }}><T>{item.impact}</T></p>
+                      <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: C.problem }}><T>{"Impact"}</T></span>
                     </div>
                   </div>
 
@@ -506,17 +496,16 @@ export default function FurnitureManufacturingPage() {
                             </svg>
                           </div>
                           <span className="text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm px-2 py-0.5 rounded-full" style={{ background: "rgba(15,107,58,0.7)" }}>
-                            Tongli Solution
-                          </span>
+                            <T>{"Tongli Solution\n                          "}</T></span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg">{item.solution}</h4>
+                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg"><T>{item.solution}</T></h4>
                         </div>
                       </div>
                       <div className="absolute bottom-0 left-0 right-0 h-1" style={{ background: C.primary }} />
                     </div>
                     <div className="p-5">
-                      <p className="text-sm leading-relaxed" style={{ color: C.textBody }}>{item.solution}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: C.textBody }}><T>{item.solution}</T></p>
                     </div>
                   </div>
                 </div>
@@ -535,17 +524,15 @@ export default function FurnitureManufacturingPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel>What We Provide</SectionLabel>
+                <SectionLabel><T>{"What We Provide"}</T></SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight">
-                  Tongli&apos;s
-                  <br />
-                  <span style={{ color: C.accent }}>Solution Stack</span>
+                  <T>{"Tongli&apos;s\n                  "}</T><br />
+                  <span style={{ color: C.accent }}><T>{"Solution Stack"}</T></span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: C.border }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center" style={{ color: C.textBody }}>
-                From veneer selection to bulk delivery — practical support backed by factory expertise.
-              </p>
+                <T>{"From veneer selection to bulk delivery — practical support backed by factory expertise.\n              "}</T></p>
             </div>
           </FadeUp>
 
@@ -571,15 +558,14 @@ export default function FurnitureManufacturingPage() {
                   <div className="absolute top-4 left-4">
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/95 backdrop-blur-sm rounded-full text-[10px] font-bold uppercase tracking-widest" style={{ color: C.accent }}>
                       <span className="w-1.5 h-1.5 rounded-full" style={{ background: C.accent }} />
-                      Solution
-                    </span>
+                      <T>{"Solution\n                    "}</T></span>
                   </div>
 
                   {/* Bottom content */}
                   <div className="absolute inset-x-0 bottom-0 p-5">
                     <div className="w-8 h-0.5 mb-3 transition-all duration-300 group-hover:w-12" style={{ background: C.accentLight }} />
-                    <h4 className="text-white font-bold text-base leading-tight mb-2">{item.title}</h4>
-                    <p className="text-white/70 text-xs leading-relaxed line-clamp-3">{item.description}</p>
+                    <h4 className="text-white font-bold text-base leading-tight mb-2"><T>{item.title}</T></h4>
+                    <p className="text-white/70 text-xs leading-relaxed line-clamp-3"><T>{item.description}</T></p>
                   </div>
 
                   <div className="absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-300 group-hover:border-white/20 pointer-events-none" />
@@ -599,17 +585,15 @@ export default function FurnitureManufacturingPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel>Material Guide</SectionLabel>
+                <SectionLabel><T>{"Material Guide"}</T></SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight">
-                  Recommended
-                  <br />
-                  <span style={{ color: C.accent }}>Combinations</span>
+                  <T>{"Recommended\n                  "}</T><br />
+                  <span style={{ color: C.accent }}><T>{"Combinations"}</T></span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: C.border }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center" style={{ color: C.textBody }}>
-                Select the right combination based on your furniture type and production requirements.
-              </p>
+                <T>{"Select the right combination based on your furniture type and production requirements.\n              "}</T></p>
             </div>
           </FadeUp>
 
@@ -639,7 +623,7 @@ export default function FurnitureManufacturingPage() {
                         <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v14a1 1 0 01-1 1H5a1 1 0 01-1-1V5z" />
                         </svg>
-                        {item.type}
+                        <T>{item.type}</T>
                       </span>
                     </div>
                   </div>
@@ -648,12 +632,12 @@ export default function FurnitureManufacturingPage() {
                   <div className="p-6 flex flex-col sm:flex-row sm:items-center gap-4">
                     <div className="flex-1">
                       <div className="mb-3">
-                        <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: C.textMuted }}>Surface</p>
-                        <p className="text-sm font-medium" style={{ color: C.charcoal }}>{item.surface}</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: C.textMuted }}><T>{"Surface"}</T></p>
+                        <p className="text-sm font-medium" style={{ color: C.charcoal }}><T>{item.surface}</T></p>
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: C.textMuted }}>Substrate</p>
-                        <p className="text-sm font-medium" style={{ color: C.charcoal }}>{item.substrate}</p>
+                        <p className="text-[10px] font-bold uppercase tracking-widest mb-1" style={{ color: C.textMuted }}><T>{"Substrate"}</T></p>
+                        <p className="text-sm font-medium" style={{ color: C.charcoal }}><T>{item.substrate}</T></p>
                       </div>
                     </div>
                     <Link
@@ -661,8 +645,7 @@ export default function FurnitureManufacturingPage() {
                       className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 text-xs font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
                       style={{ background: C.primary, color: "white" }}
                     >
-                      Get Advice
-                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <T>{"Get Advice\n                      "}</T><svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
                     </Link>
@@ -689,17 +672,15 @@ export default function FurnitureManufacturingPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel light>How It Works</SectionLabel>
+                <SectionLabel light><T>{"How It Works"}</T></SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
-                  From Sample
-                  <br />
-                  <span style={{ color: C.accentLight }}>to Bulk Delivery</span>
+                  <T>{"From Sample\n                  "}</T><br />
+                  <span style={{ color: C.accentLight }}><T>{"to Bulk Delivery"}</T></span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: "rgba(255,255,255,0.15)" }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center text-white/50">
-                A structured workflow that reduces your procurement risk from inquiry to delivery.
-              </p>
+                <T>{"A structured workflow that reduces your procurement risk from inquiry to delivery.\n              "}</T></p>
             </div>
           </FadeUp>
 
@@ -736,13 +717,12 @@ export default function FurnitureManufacturingPage() {
                             className="text-[9px] font-semibold uppercase tracking-widest leading-none"
                             style={{ color: i === 0 ? "rgba(255,255,255,0.7)" : C.textMuted }}
                           >
-                            Step
-                          </span>
+                            <T>{"Step\n                          "}</T></span>
                         </div>
                       </div>
 
-                      <h4 className="font-bold text-white text-sm mb-1 leading-tight">{step.title}</h4>
-                      <p className="text-white/50 text-xs leading-relaxed max-w-[120px]">{step.description}</p>
+                      <h4 className="font-bold text-white text-sm mb-1 leading-tight"><T>{step.title}</T></h4>
+                      <p className="text-white/50 text-xs leading-relaxed max-w-[120px]"><T>{step.description}</T></p>
                     </div>
                   </FadeUp>
                 ))}
@@ -758,8 +738,7 @@ export default function FurnitureManufacturingPage() {
                 className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-xl"
                 style={{ background: C.white, color: C.primary }}
               >
-                Start Your Project Consultation
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <T>{"Start Your Project Consultation\n                "}</T><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
@@ -776,17 +755,15 @@ export default function FurnitureManufacturingPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel>FAQ</SectionLabel>
+                <SectionLabel><T>{"FAQ"}</T></SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight">
-                  Questions
-                  <br />
-                  <span style={{ color: C.accent }}>Answered</span>
+                  <T>{"Questions\n                  "}</T><br />
+                  <span style={{ color: C.accent }}><T>{"Answered"}</T></span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: C.border }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center" style={{ color: C.textBody }}>
-                Common questions about furniture material sourcing, answered by our team.
-              </p>
+                <T>{"Common questions about furniture material sourcing, answered by our team.\n              "}</T></p>
             </div>
           </FadeUp>
 
@@ -802,7 +779,7 @@ export default function FurnitureManufacturingPage() {
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full flex items-center justify-between p-6 text-left font-semibold text-[#1F2621] hover:text-[#0F6B3A] transition-colors"
                   >
-                    <span className="pr-6 text-sm lg:text-base">{faq.q}</span>
+                    <span className="pr-6 text-sm lg:text-base"><T>{faq.q}</T></span>
                     <svg
                       className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? "rotate-180" : ""}`}
                       style={{ color: C.primary }}
@@ -818,7 +795,7 @@ export default function FurnitureManufacturingPage() {
                     style={{ maxHeight: openFaq === index ? "500px" : "0px" }}
                   >
                     <div className="px-6 pb-6 text-sm leading-relaxed" style={{ color: C.textBody }}>
-                      {faq.a}
+                      <T>{faq.a}</T>
                     </div>
                   </div>
                 </div>
@@ -848,20 +825,17 @@ export default function FurnitureManufacturingPage() {
 
         <div className="relative z-20 container mx-auto px-6 lg:px-8 text-center">
           <FadeUp>
-            <SectionLabel light>Ready to Start?</SectionLabel>
+            <SectionLabel light><T>{"Ready to Start?"}</T></SectionLabel>
           </FadeUp>
           <FadeUp delay={100}>
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-5">
-              Need Stable Veneer Panels
-              <br />
-              <span style={{ color: C.accentLight }}>for Furniture Production?</span>
+              <T>{"Need Stable Veneer Panels\n              "}</T><br />
+              <span style={{ color: C.accentLight }}><T>{"for Furniture Production?"}</T></span>
             </h2>
           </FadeUp>
           <FadeUp delay={200}>
             <p className="text-white/70 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-              Send us your product type, required size, surface style, and quantity.
-              We will recommend the right materials for your furniture production.
-            </p>
+              <T>{"Send us your product type, required size, surface style, and quantity.\n              We will recommend the right materials for your furniture production.\n            "}</T></p>
           </FadeUp>
           <FadeUp delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
@@ -873,8 +847,7 @@ export default function FurnitureManufacturingPage() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
-                Request Material Advice
-              </Link>
+                <T>{"Request Material Advice\n              "}</T></Link>
               <Link
                 href="/contact?type=sample"
                 className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold rounded-xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 text-white"
@@ -883,8 +856,7 @@ export default function FurnitureManufacturingPage() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
-                Request Samples
-              </Link>
+                <T>{"Request Samples\n              "}</T></Link>
             </div>
           </FadeUp>
         </div>

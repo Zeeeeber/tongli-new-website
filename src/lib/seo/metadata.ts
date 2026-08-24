@@ -5,6 +5,7 @@
 
 import { Metadata } from "next";
 import { siteConfig, defaultSeo } from "./site";
+import { locales, localizePath } from "@/i18n/config";
 
 /**
  * Helper function to convert relative URL to absolute URL
@@ -17,6 +18,23 @@ function toAbsoluteUrl(url: string): string {
   // Ensure path starts with /
   const path = url.startsWith('/') ? url : `/${url}`;
   return `${siteConfig.canonicalUrl}${path}`;
+}
+
+function routePath(url: string): string {
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return new URL(url).pathname || "/";
+  }
+  return url.startsWith("/") ? url : `/${url}`;
+}
+
+function languageAlternates(pathOrUrl: string) {
+  const path = routePath(pathOrUrl);
+  return {
+    ...Object.fromEntries(
+      locales.map((locale) => [locale, toAbsoluteUrl(localizePath(path, locale))]),
+    ),
+    "x-default": toAbsoluteUrl(path),
+  };
 }
 
 /** Add the site name once, even when imported SEO titles already include it. */
@@ -99,6 +117,7 @@ export function createPageMetadata(options: PageMetadataOptions): Metadata {
     description,
     alternates: {
       canonical: canonicalUrl,
+      languages: languageAlternates(canonical || path),
     },
     robots: {
       index: !noIndex,
@@ -165,6 +184,7 @@ export function createProductMetadata(options: ProductMetadataOptions): Metadata
     description: productDescription,
     alternates: {
       canonical: canonical ? toAbsoluteUrl(canonical) : url,
+      languages: languageAlternates(canonical || productUrl || "/"),
     },
     robots: {
       index: !noIndex,
@@ -235,6 +255,7 @@ export function createArticleMetadata(options: ArticleMetadataOptions): Metadata
     description: articleDescription,
     alternates: {
       canonical: canonical ? toAbsoluteUrl(canonical) : url,
+      languages: languageAlternates(canonical || articleUrl || "/"),
     },
     robots: {
       index: !noIndex,
@@ -299,6 +320,7 @@ export function createCategoryMetadata(
     description: categoryDescription,
     alternates: {
       canonical: canonicalUrl,
+      languages: languageAlternates(categoryUrl),
     },
     robots: {
       index: !noIndex,
@@ -342,6 +364,7 @@ export function createHomeMetadata(): Metadata {
     description: defaultSeo.description,
     alternates: {
       canonical: siteConfig.canonicalUrl,
+      languages: languageAlternates("/"),
     },
     robots: {
       index: true,

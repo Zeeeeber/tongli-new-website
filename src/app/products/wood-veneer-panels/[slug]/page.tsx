@@ -5,6 +5,7 @@ import WoodVeneerPanelDetailTemplate from "@/components/product/WoodVeneerPanelD
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { defaultSeo, siteConfig } from "@/lib/seo/site";
 import { withSiteName } from "@/lib/seo/metadata";
+import { createLanguageAlternates } from "@/i18n/metadata";
 
 interface PageProps {
   params: Promise<{
@@ -39,6 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description: product.metaDescription,
     alternates: {
       canonical: productUrl,
+      languages: createLanguageAlternates(productUrl),
     },
     openGraph: {
       type: "website",

@@ -9,6 +9,7 @@ import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonL
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
 import { defaultSeo } from "@/lib/seo/site";
 import { withSiteName } from "@/lib/seo/metadata";
+import { createLanguageAlternates } from "@/i18n/metadata";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -44,6 +45,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     description,
     alternates: {
       canonical: productUrl,
+      languages: createLanguageAlternates(productUrl),
     },
     openGraph: {
       title: metadataTitle,

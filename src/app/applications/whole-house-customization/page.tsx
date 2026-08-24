@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import T from "@/i18n/full-site-context";
+import Link from "@/components/i18n/LocalizedLink";
 import { useState } from "react";
 
 // ============================================
@@ -152,15 +153,15 @@ export default function WholeHouseCustomizationPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/applications" className="hover:text-[#0F6B3A]">Applications</Link>
+            <Link href="/applications" className="hover:text-[#0F6B3A]"><T>{"Applications"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Whole House Custom</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Whole House Custom"}</T></span>
           </div>
         </div>
       </div>
@@ -189,31 +190,27 @@ export default function WholeHouseCustomizationPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 </div>
-                <span className="px-3 py-1 bg-white/20 rounded-full text-white/80 text-sm">Whole House Custom</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white/80 text-sm"><T>{"Whole House Custom"}</T></span>
               </div>
 
               <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                Materials for
-                <span className="block text-[#D6BCFA]">Whole House Customization</span>
+                <T>{"Materials for\n                "}</T><span className="block text-[#D6BCFA]"><T>{"Whole House Customization"}</T></span>
               </h1>
 
               <p className="text-lg text-white/80 mb-6 max-w-2xl leading-relaxed">
-                Coordinated decorative panels, melamine boards, veneer surfaces and supporting boards for whole-house customization and real estate projects.
-              </p>
+                <T>{"Coordinated decorative panels, melamine boards, veneer surfaces and supporting boards for whole-house customization and real estate projects.\n              "}</T></p>
 
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/contact?type=advice"
                   className="px-6 py-3 bg-white text-[#553C9A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
                 >
-                  Request Material Advice
-                </Link>
+                  <T>{"Request Material Advice\n                "}</T></Link>
                 <Link
                   href="/contact?type=sample"
                   className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
                 >
-                  Request Samples
-                </Link>
+                  <T>{"Request Samples\n                "}</T></Link>
               </div>
             </div>
 
@@ -221,12 +218,11 @@ export default function WholeHouseCustomizationPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                   <span className="text-white/70 text-sm text-center px-4">
-                    [Whole house customization image]<br /><br />
-                    - Living room wood veneer feature wall<br />
-                    - Coordinated cabinet system<br />
-                    - Bedroom wardrobe materials<br />
-                    - Multi-space material coordination
-                  </span>
+                    <T>{"[Whole house customization image]"}</T><br /><br />
+                    <T>{"- Living room wood veneer feature wall"}</T><br />
+                    <T>{"- Coordinated cabinet system"}</T><br />
+                    <T>{"- Bedroom wardrobe materials"}</T><br />
+                    <T>{"- Multi-space material coordination\n                  "}</T></span>
                 </div>
               </div>
             </div>
@@ -240,11 +236,10 @@ export default function WholeHouseCustomizationPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4">Key Concerns</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">What Project Developers Really Care About</h2>
+            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Key Concerns"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"What Project Developers Really Care About"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              We understand the priorities in whole house customization. Here is what matters most to our project developer clients.
-            </p>
+              <T>{"We understand the priorities in whole house customization. Here is what matters most to our project developer clients.\n            "}</T></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -260,8 +255,8 @@ export default function WholeHouseCustomizationPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#1F2621] mb-2">{concern.title}</h3>
-                    <p className="text-[#6b7280] text-sm leading-relaxed">{concern.description}</p>
+                    <h3 className="font-bold text-[#1F2621] mb-2"><T>{concern.title}</T></h3>
+                    <p className="text-[#6b7280] text-sm leading-relaxed"><T>{concern.description}</T></p>
                   </div>
                 </div>
               </div>
@@ -276,11 +271,10 @@ export default function WholeHouseCustomizationPage() {
       <section className="py-16 bg-[#F7F3EC]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4">Problem Analysis</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">Common Challenges in Whole House Projects</h2>
+            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Problem Analysis"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"Common Challenges in Whole House Projects"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              These are the real challenges whole house projects face. Understanding them helps us provide better solutions.
-            </p>
+              <T>{"These are the real challenges whole house projects face. Understanding them helps us provide better solutions.\n            "}</T></p>
           </div>
 
           <div className="space-y-4 max-w-4xl mx-auto">
@@ -292,13 +286,13 @@ export default function WholeHouseCustomizationPage() {
                   </div>
                   <div className="flex-1">
                     <div className="mb-2">
-                      <span className="text-xs text-[#C94B3C] font-medium uppercase tracking-wide">Problem</span>
-                      <p className="text-[#1F2621] font-semibold mt-0.5">{item.problem}</p>
-                      <p className="text-[#6b7280] text-sm mt-1">{item.impact}</p>
+                      <span className="text-xs text-[#C94B3C] font-medium uppercase tracking-wide"><T>{"Problem"}</T></span>
+                      <p className="text-[#1F2621] font-semibold mt-0.5"><T>{item.problem}</T></p>
+                      <p className="text-[#6b7280] text-sm mt-1"><T>{item.impact}</T></p>
                     </div>
                     <div className="bg-[#0F6B3A]/5 rounded-lg p-3">
-                      <span className="text-xs text-[#0F6B3A] font-medium uppercase tracking-wide">Tongli Solution</span>
-                      <p className="text-[#1F2621] text-sm mt-0.5">{item.solution}</p>
+                      <span className="text-xs text-[#0F6B3A] font-medium uppercase tracking-wide"><T>{"Tongli Solution"}</T></span>
+                      <p className="text-[#1F2621] text-sm mt-0.5"><T>{item.solution}</T></p>
                     </div>
                   </div>
                 </div>
@@ -314,11 +308,10 @@ export default function WholeHouseCustomizationPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4">Our Solutions</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">How Tongli Supports Whole House Projects</h2>
+            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Our Solutions"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"How Tongli Supports Whole House Projects"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              Our practical solutions are backed by factory expertise and years of experience serving whole house projects.
-            </p>
+              <T>{"Our practical solutions are backed by factory expertise and years of experience serving whole house projects.\n            "}</T></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -333,9 +326,9 @@ export default function WholeHouseCustomizationPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-[#1F2621]">{solution.title}</h3>
+                  <h3 className="font-bold text-[#1F2621]"><T>{solution.title}</T></h3>
                 </div>
-                <p className="text-[#6b7280] text-sm leading-relaxed">{solution.description}</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed"><T>{solution.description}</T></p>
               </div>
             ))}
           </div>
@@ -348,28 +341,27 @@ export default function WholeHouseCustomizationPage() {
       <section className="py-16 bg-[#F7F3EC]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4">Material Guide</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">Recommended Combinations</h2>
+            <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Material Guide"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"Recommended Combinations"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              Select the right combination based on your project type and requirements.
-            </p>
+              <T>{"Select the right combination based on your project type and requirements.\n            "}</T></p>
           </div>
 
           <div className="overflow-x-auto max-w-5xl mx-auto">
             <table className="w-full bg-white rounded-xl overflow-hidden shadow-sm">
               <thead>
                 <tr className="bg-gradient-to-r from-[#553C9A] to-[#44337A] text-white">
-                  <th className="px-6 py-4 text-left text-sm font-bold">Use Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-bold">Recommended Surface</th>
-                  <th className="px-6 py-4 text-left text-sm font-bold">Recommended Substrate</th>
+                  <th className="px-6 py-4 text-left text-sm font-bold"><T>{"Use Type"}</T></th>
+                  <th className="px-6 py-4 text-left text-sm font-bold"><T>{"Recommended Surface"}</T></th>
+                  <th className="px-6 py-4 text-left text-sm font-bold"><T>{"Recommended Substrate"}</T></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E5E1D8]">
                 {materialCombinations.map((row, index) => (
                   <tr key={index} className="hover:bg-[#F7F3EC]/50 transition-colors">
-                    <td className="px-6 py-4 text-sm font-medium text-[#1F2621]">{row.type}</td>
-                    <td className="px-6 py-4 text-sm text-[#6b7280]">{row.surface}</td>
-                    <td className="px-6 py-4 text-sm text-[#6b7280]">{row.substrate}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-[#1F2621]"><T>{row.type}</T></td>
+                    <td className="px-6 py-4 text-sm text-[#6b7280]"><T>{row.surface}</T></td>
+                    <td className="px-6 py-4 text-sm text-[#6b7280]"><T>{row.substrate}</T></td>
                   </tr>
                 ))}
               </tbody>
@@ -385,11 +377,10 @@ export default function WholeHouseCustomizationPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10 text-white">
-              <span className="inline-block text-white/60 text-sm font-semibold tracking-widest uppercase mb-4">Before Ordering</span>
-              <h2 className="text-3xl font-bold mb-4">What to Confirm Before Ordering</h2>
+              <span className="inline-block text-white/60 text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Before Ordering"}</T></span>
+              <h2 className="text-3xl font-bold mb-4"><T>{"What to Confirm Before Ordering"}</T></h2>
               <p className="text-white/80">
-                Preparing this information helps us give you more accurate recommendations and faster response.
-              </p>
+                <T>{"Preparing this information helps us give you more accurate recommendations and faster response.\n              "}</T></p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
@@ -400,7 +391,7 @@ export default function WholeHouseCustomizationPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-white text-sm">{item}</span>
+                  <span className="text-white text-sm"><T>{item}</T></span>
                 </div>
               ))}
             </div>
@@ -415,9 +406,9 @@ export default function WholeHouseCustomizationPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4">FAQ</span>
-              <h2 className="text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
-              <p className="text-[#6b7280] mt-2">Questions specific to whole house customization material sourcing.</p>
+              <span className="inline-block text-[#553C9A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"FAQ"}</T></span>
+              <h2 className="text-3xl font-bold text-[#1F2621]"><T>{"Frequently Asked Questions"}</T></h2>
+              <p className="text-[#6b7280] mt-2"><T>{"Questions specific to whole house customization material sourcing."}</T></p>
             </div>
 
             <div className="space-y-4">
@@ -430,7 +421,7 @@ export default function WholeHouseCustomizationPage() {
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full flex items-center justify-between p-6 text-left font-semibold text-[#1F2621] hover:text-[#553C9A] transition-colors"
                   >
-                    <span className="pr-4">{faq.q}</span>
+                    <span className="pr-4"><T>{faq.q}</T></span>
                     <svg
                       className={`w-5 h-5 text-[#553C9A] flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
                       fill="none"
@@ -442,7 +433,7 @@ export default function WholeHouseCustomizationPage() {
                   </button>
                   <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}>
                     <div className="px-6 pb-6 text-[#6b7280] leading-relaxed">
-                      {faq.a}
+                      <T>{faq.a}</T>
                     </div>
                   </div>
                 </div>
@@ -459,25 +450,21 @@ export default function WholeHouseCustomizationPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Need Coordinated Materials for Whole House Projects?
-            </h2>
+              <T>{"Need Coordinated Materials for Whole House Projects?\n            "}</T></h2>
             <p className="text-xl text-white/80 mb-8 max-w-xl mx-auto">
-              Send us your space plan, surface style, substrate requirement and quantity.
-            </p>
+              <T>{"Send us your space plan, surface style, substrate requirement and quantity.\n            "}</T></p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=advice"
                 className="px-8 py-4 bg-white text-[#553C9A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Request Material Advice
-              </Link>
+                <T>{"Request Material Advice\n              "}</T></Link>
               <Link
                 href="/contact?type=sample"
                 className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                Request Samples
-              </Link>
+                <T>{"Request Samples\n              "}</T></Link>
             </div>
           </div>
         </div>
@@ -488,16 +475,16 @@ export default function WholeHouseCustomizationPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <Link href="/products" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]">View All Products</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]"><T>{"View All Products"}</T></span>
             </Link>
             <Link href="/collections" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]">Browse Collections</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]"><T>{"Browse Collections"}</T></span>
             </Link>
             <Link href="/applications" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]">All Applications</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]"><T>{"All Applications"}</T></span>
             </Link>
             <Link href="/contact" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]">Contact Us</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#553C9A]"><T>{"Contact Us"}</T></span>
             </Link>
           </div>
         </div>

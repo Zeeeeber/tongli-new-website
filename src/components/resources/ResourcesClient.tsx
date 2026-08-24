@@ -1,15 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import type { Article, ArticleCategory } from "@/data/resources/articles";
+import Link from "@/components/i18n/LocalizedLink";
+import type { Article } from "@/data/resources/articles";
+import { getSiteLink, type Locale } from "@/i18n/config";
+import { resourcesPageCopy } from "@/i18n/core-page-copy";
 
 interface ResourcesClientProps {
   articles: Article[];
   categories: string[];
+  locale: Locale;
 }
 
-export function ResourcesClient({ articles, categories }: ResourcesClientProps) {
+export function ResourcesClient({ articles, categories, locale }: ResourcesClientProps) {
+  const copy = resourcesPageCopy[locale];
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [visibleCount, setVisibleCount] = useState(6);
 
@@ -38,7 +42,7 @@ export function ResourcesClient({ articles, categories }: ResourcesClientProps) 
                     : "bg-white text-charcoal border border-beige hover:border-primary hover:text-primary"
                 }`}
               >
-                {cat}
+                {copy.categoryLabels[cat] ?? cat}
               </button>
             ))}
           </div>
@@ -51,11 +55,11 @@ export function ResourcesClient({ articles, categories }: ResourcesClientProps) 
           <div className="container-page">
             <div className="flex items-center gap-3 mb-8">
               <span className="w-1 h-8 bg-primary rounded-full"></span>
-              <h2 className="text-2xl md:text-3xl font-bold text-charcoal">Featured Articles</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-charcoal">{copy.featuredArticles}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {featuredArticles.map((article) => (
-                <ArticleCard key={article.id} article={article} />
+                <ArticleCard key={article.id} article={article} locale={locale} />
               ))}
             </div>
           </div>
@@ -68,7 +72,7 @@ export function ResourcesClient({ articles, categories }: ResourcesClientProps) 
           <div className="flex items-center gap-3 mb-8">
             <span className="w-1 h-8 bg-primary rounded-full"></span>
             <h2 className="text-2xl md:text-3xl font-bold text-charcoal">
-              {activeCategory === "All" ? "Latest Articles" : activeCategory}
+              {activeCategory === "All" ? copy.latestArticles : (copy.categoryLabels[activeCategory] ?? activeCategory)}
             </h2>
           </div>
           
@@ -76,7 +80,7 @@ export function ResourcesClient({ articles, categories }: ResourcesClientProps) 
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {visibleArticles.map((article) => (
-                  <ArticleCard key={article.id} article={article} />
+                  <ArticleCard key={article.id} article={article} locale={locale} />
                 ))}
               </div>
               
@@ -86,14 +90,14 @@ export function ResourcesClient({ articles, categories }: ResourcesClientProps) 
                     onClick={() => setVisibleCount((prev) => prev + 6)}
                     className="px-8 py-3 bg-white text-primary font-semibold rounded-full border-2 border-primary hover:bg-primary hover:text-white transition-all duration-200"
                   >
-                    Load More Articles
+                    {copy.loadMore}
                   </button>
                 </div>
               )}
             </>
           ) : (
             <div className="text-center py-16">
-              <p className="text-muted text-lg">No articles found in this category.</p>
+              <p className="text-muted text-lg">{copy.noArticles}</p>
             </div>
           )}
         </div>
@@ -103,23 +107,22 @@ export function ResourcesClient({ articles, categories }: ResourcesClientProps) 
       <section className="bg-primary-dark py-16">
         <div className="container-page">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold text-white mb-4">Need Help Choosing Materials?</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">{copy.needHelp}</h2>
             <p className="text-white/80 mb-8">
-              Tell us your application, substrate, wood species, surface style and quantity. 
-              Tongli can help recommend suitable veneer panel or decorative board options.
+              {copy.helpDescription}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
-                href="/contact"
+                href={getSiteLink("/contact", locale)}
                 className="inline-flex items-center px-6 py-3 bg-white text-primary-dark font-semibold rounded-lg hover:bg-beige transition-colors"
               >
-                Contact Tongli
+                {copy.contactTongli}
               </Link>
               <Link
-                href="/samples"
+                href={getSiteLink("/samples", locale)}
                 className="inline-flex items-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
               >
-                Request Samples
+                {copy.requestSamples}
               </Link>
             </div>
           </div>
@@ -129,7 +132,8 @@ export function ResourcesClient({ articles, categories }: ResourcesClientProps) 
   );
 }
 
-function ArticleCard({ article }: { article: Article }) {
+function ArticleCard({ article, locale }: { article: Article; locale: Locale }) {
+  const copy = resourcesPageCopy[locale];
   return (
     <div className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-beige">
       <div className="aspect-[16/10] overflow-hidden">
@@ -144,7 +148,7 @@ function ArticleCard({ article }: { article: Article }) {
       <div className="p-5">
         <div className="flex items-center gap-2 mb-2">
           <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary/10 text-primary">
-            {article.category}
+            {copy.categoryLabels[article.category] ?? article.category}
           </span>
           <span className="text-xs text-muted">{article.date}</span>
         </div>
@@ -156,7 +160,7 @@ function ArticleCard({ article }: { article: Article }) {
           href={`/resources/${article.slug}`}
           className="inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark transition-colors"
         >
-          Read More
+          {copy.readMore}
           <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>

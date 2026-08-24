@@ -1,7 +1,8 @@
 "use client";
 
+import T from "@/i18n/full-site-context";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 
@@ -21,11 +22,9 @@ export default function MelamineBoardPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-[#1F2621] mb-4">
-              Melamine Faced Boards
-            </h2>
+              <T>{"Melamine Faced Boards\n            "}</T></h2>
             <p className="text-[#6b7280] leading-relaxed">
-              Melamine boards offer excellent durability, scratch resistance, and a wide variety of surface finishes to match any design requirement. Available on various substrates including plywood, MDF, moisture-resistant MDF, and particle board.
-            </p>
+              <T>{"Melamine boards offer excellent durability, scratch resistance, and a wide variety of surface finishes to match any design requirement. Available on various substrates including plywood, MDF, moisture-resistant MDF, and particle board.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -35,9 +34,8 @@ export default function MelamineBoardPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#1F2621] mb-4">
-              Product Range
-            </h2>
-            <p className="text-[#6b7280]">Explore our melamine board collection — scratch-resistant decorative boards on plywood, MDF, MR MDF and particle board substrates</p>
+              <T>{"Product Range\n            "}</T></h2>
+            <p className="text-[#6b7280]"><T>{"Explore our melamine board collection — scratch-resistant decorative boards on plywood, MDF, MR MDF and particle board substrates"}</T></p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -68,8 +66,7 @@ export default function MelamineBoardPage() {
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">
-                      View Details
-                    </span>
+                      <T>{"View Details\n                    "}</T></span>
                   </div>
                 </Link>
 
@@ -78,17 +75,17 @@ export default function MelamineBoardPage() {
                   <span className="text-xs text-[#8B5E3C] font-medium">{product.code}</span>
                   <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-2 leading-snug">
                     <Link href={`/products/melamine-board/${product.slug}`} className="hover:text-[#0F6B3A] transition-colors">
-                      {product.name}
+                      <T>{product.name}</T>
                     </Link>
                   </h3>
                   {product.shortDesc && (
-                    <p className="text-xs text-[#6b7280] line-clamp-2 mb-3 leading-relaxed">{product.shortDesc}</p>
+                    <p className="text-xs text-[#6b7280] line-clamp-2 mb-3 leading-relaxed"><T>{product.shortDesc}</T></p>
                   )}
                   {product.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1">
                       {product.tags.slice(0, 3).map((tag) => (
                         <span key={tag} className="text-[10px] px-2 py-0.5 bg-[#F7F3EC] text-[#8B5E3C] rounded-full">
-                          {tag}
+                          <T>{tag}</T>
                         </span>
                       ))}
                     </div>
@@ -104,17 +101,14 @@ export default function MelamineBoardPage() {
       <section className="py-16 bg-[#6B4A2C]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Melamine Board?</h2>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Melamine Board?"}</T></h2>
             <p className="text-white/80 mb-8">
-              Contact us for specifications, color options, custom sizes and pricing.
-            </p>
+              <T>{"Contact us for specifications, color options, custom sizes and pricing.\n            "}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link href="/contact" className="px-8 py-4 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">
-                Contact Us
-              </Link>
+                <T>{"Contact Us\n              "}</T></Link>
               <Link href="/products" className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors">
-                View All Products
-              </Link>
+                <T>{"View All Products\n              "}</T></Link>
             </div>
           </div>
         </div>

@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import T from "@/i18n/full-site-context";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import ImageModal from "@/components/ImageModal";
@@ -52,15 +53,15 @@ export default function ThreeDWoodPanelsCollectionPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/collections" className="hover:text-[#0F6B3A]">Collections</Link>
+            <Link href="/collections" className="hover:text-[#0F6B3A]"><T>{"Collections"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">3D Wood Panels</span>
+            <span className="text-[#1F2621] font-medium"><T>{"3D Wood Panels"}</T></span>
           </div>
         </div>
       </div>
@@ -68,11 +69,10 @@ export default function ThreeDWoodPanelsCollectionPage() {
       <section className="relative bg-gradient-to-r from-[#3a2d1f] to-[#1F2621] py-16 lg:py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Collection</span>
-            <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-white">3D Wood Panels</h1>
+            <span className="text-white/60 text-sm font-medium tracking-wider uppercase"><T>{"Collection"}</T></span>
+            <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-white"><T>{"3D Wood Panels"}</T></h1>
             <p className="text-white/80 text-lg leading-relaxed">
-              Carved 3D decorative wood wall panels add depth and dimension to interiors. Browse the full style library to compare patterns, grooves, waves and organic textures before requesting samples.
-            </p>
+              <T>{"Carved 3D decorative wood wall panels add depth and dimension to interiors. Browse the full style library to compare patterns, grooves, waves and organic textures before requesting samples.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -93,7 +93,7 @@ export default function ThreeDWoodPanelsCollectionPage() {
                       : "bg-white text-[#1F2621] border-[#E5E1D8] hover:border-[#0F6B3A]/40 hover:text-[#0F6B3A]",
                   ].join(" ")}
                 >
-                  {c.label}
+                  <T>{c.label}</T>
                   <span
                     className={[
                       "ml-2 text-xs font-mono",
@@ -113,8 +113,7 @@ export default function ThreeDWoodPanelsCollectionPage() {
         <div className="container mx-auto px-6">
           {filtered.length === 0 ? (
             <div className="py-20 text-center text-[#6b7280]">
-              No styles in this category.
-            </div>
+              <T>{"No styles in this category.\n            "}</T></div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
               {filtered.map((s) => {
@@ -147,7 +146,7 @@ export default function ThreeDWoodPanelsCollectionPage() {
                     <div className="p-3">
                       <h3 className="font-semibold text-[#1F2621] text-sm mb-1.5">{s.code}</h3>
                       <span className="inline-block px-2 py-0.5 bg-[#F7F3EC] rounded text-xs text-[#6b7280]">
-                        {s.category}
+                        <T>{s.category}</T>
                       </span>
                     </div>
                   </div>
@@ -161,17 +160,15 @@ export default function ThreeDWoodPanelsCollectionPage() {
       <section className="py-16 bg-[#8B5E3C]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Physical Samples?</h2>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Physical Samples?"}</T></h2>
             <p className="text-white/80 mb-8">
-              Request samples by code number to evaluate 3D panel patterns, finishes and textures for your interior, hotel or commercial project.
-            </p>
+              <T>{"Request samples by code number to evaluate 3D panel patterns, finishes and textures for your interior, hotel or commercial project.\n            "}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=sample"
                 className="px-8 py-4 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Request Samples
-              </Link>
+                <T>{"Request Samples\n              "}</T></Link>
             </div>
           </div>
         </div>

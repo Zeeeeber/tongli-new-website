@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { naturalWoodVeneerProducts } from "@/data/products/natural-wood-veneer-products";
 import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-products";
@@ -10,6 +10,9 @@ import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-products";
 import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
+import { getSiteLink, localeDirections, type Locale } from "@/i18n/config";
+import { productsPageCopy } from "@/i18n/core-page-copy";
+import { useFullSiteTranslator } from "@/i18n/full-site-context";
 
 // Design System
 const C = {
@@ -154,7 +157,9 @@ const allProductsData: ProductCard[] = [
   })),
 ];
 
-export default function ProductsPage() {
+export function ProductsPageContent({ locale }: { locale: Locale }) {
+  const copy = productsPageCopy[locale];
+  const t = useFullSiteTranslator();
   const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(["supporting-boards"]));
   const [heroLoaded, setHeroLoaded] = useState(false);
@@ -194,7 +199,7 @@ export default function ProductsPage() {
   ]);
 
   return (
-    <>
+    <div lang={locale} dir={localeDirections[locale]}>
 
       {/* Hero Banner - Video Background */}
       <section className="relative min-h-[100svh] overflow-hidden">
@@ -235,43 +240,43 @@ export default function ProductsPage() {
             {/* Label */}
             <div className="mb-6">
               <span className="inline-block px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest" style={{ background: `${C.primary}15`, color: C.primary }}>
-                Wood Material Solutions
+                {copy.heroLabel}
               </span>
             </div>
 
             {/* Main Heading */}
             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-[#1F2621] leading-[1.1] mb-6">
-              Premium Wood Products
+              {copy.heroTitle}
               <br />
-              <span style={{ color: C.primary }}>for Every Project</span>
+              <span style={{ color: C.primary }}>{copy.heroAccent}</span>
             </h1>
 
             {/* Subtitle */}
             <p className="text-base lg:text-lg leading-relaxed mb-8 max-w-md" style={{ color: C.textBody }}>
-              Discover our comprehensive range of wood veneer panels, natural and engineered veneer, 3D panels, and quality substrates for furniture, doors, and interior applications.
+              {copy.heroDescription}
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4">
               <Link
-                href="/contact?type=sample"
+                href={`${getSiteLink("/contact", locale)}?type=sample`}
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-lg"
                 style={{ background: C.primary, color: C.white }}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
-                Request Samples
+                {copy.requestSamples}
               </Link>
               <Link
-                href="/about"
+                href={getSiteLink("/about", locale)}
                 className="inline-flex items-center gap-2.5 px-7 py-3.5 text-sm font-semibold rounded-xl border-2 transition-all duration-200 hover:-translate-y-0.5"
                 style={{ borderColor: C.primary, color: C.primary }}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
-                About Factory
+                {copy.aboutFactory}
               </Link>
             </div>
           </div>
@@ -296,7 +301,7 @@ export default function ProductsPage() {
               <div className="sticky top-24">
                 <div className="bg-white rounded-xl border border-[#E5E1D8] overflow-hidden">
                   <div className="px-5 py-4 border-b border-[#E5E1D8]">
-                    <h2 className="text-base font-semibold text-[#1F2621]">Product Categories</h2>
+                    <h2 className="text-base font-semibold text-[#1F2621]">{copy.categoriesTitle}</h2>
                   </div>
                   <div className="p-2">
                     {CATEGORIES.map((category) => {
@@ -327,7 +332,7 @@ export default function ProductsPage() {
                                   : "text-[#4B5563] hover:bg-[#F7F3EC] hover:text-[#1F2621]"
                               }`}
                             >
-                              <span>{category.label}</span>
+                              <span>{copy.categoryLabels[category.label] ?? category.label}</span>
                               <svg
                                 className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
                                 fill="none"
@@ -352,7 +357,7 @@ export default function ProductsPage() {
                                           : "text-[#6b7280] hover:bg-[#F7F3EC] hover:text-[#1F2621]"
                                       }`}
                                     >
-                                      {sub.label}
+                                      {copy.categoryLabels[sub.label] ?? sub.label}
                                     </button>
                                   );
                                 })}
@@ -372,7 +377,7 @@ export default function ProductsPage() {
                               : "text-[#4B5563] hover:bg-[#F7F3EC] hover:text-[#1F2621]"
                           }`}
                         >
-                          {category.label}
+                          {copy.categoryLabels[category.label] ?? category.label}
                         </button>
                       );
                     })}
@@ -398,7 +403,7 @@ export default function ProductsPage() {
                             : "bg-white text-[#6b7280] border border-[#E5E1D8] hover:border-[#0F6B3A] hover:text-[#0F6B3A]"
                         }`}
                       >
-                        {chip.label}
+                        {copy.categoryLabels[chip.label] ?? chip.label}
                       </button>
                     );
                   })}
@@ -408,15 +413,15 @@ export default function ProductsPage() {
               {/* Results Header */}
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold text-[#1F2621]">
-                  {activeTab.label}
+                  {copy.categoryLabels[activeTab.label] ?? activeTab.label}
                 </h2>
                 <p className="text-sm text-[#6b7280]">
                   {displayProducts.length > 0 ? (
                     <>
-                      Showing <span className="font-medium text-[#1F2621]">{displayProducts.length}</span> product{displayProducts.length !== 1 ? "s" : ""}
+                      {copy.showing} <span className="font-medium text-[#1F2621]">{displayProducts.length}</span> {displayProducts.length === 1 ? copy.productSingular : copy.productPlural}
                     </>
                   ) : (
-                    "No products listed yet"
+                    copy.noProducts
                   )}
                 </p>
               </div>
@@ -434,7 +439,7 @@ export default function ProductsPage() {
                         {product.image ? (
                           <Image
                             src={product.image}
-                            alt={product.name}
+                            alt={t(product.name)}
                             fill
                             sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw"
                             className="object-cover"
@@ -451,28 +456,28 @@ export default function ProductsPage() {
                         {/* Hover Overlay */}
                         <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                           <Link
-                            href={product.href}
+                            href={getSiteLink(product.href, locale)}
                             className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm hover:bg-[#F7F3EC] transition-colors"
                           >
-                            View Details
+                            {copy.viewDetails}
                           </Link>
                         </div>
                       </div>
 
                       {/* Product Info */}
                       <div className="p-4">
-                        <span className="text-xs text-[#8B5E3C] font-medium">{product.category}</span>
+                        <span className="text-xs text-[#8B5E3C] font-medium">{copy.categoryLabels[product.category] ?? product.category}</span>
                         <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-2 group-hover:text-[#0F6B3A] transition-colors leading-snug">
-                          {product.name}
+                          {t(product.name)}
                         </h3>
                         {product.description && (
-                          <p className="text-xs text-[#6b7280] line-clamp-2 mb-3 leading-relaxed">{product.description}</p>
+                          <p className="text-xs text-[#6b7280] line-clamp-2 mb-3 leading-relaxed">{t(product.description)}</p>
                         )}
                         {product.tags.length > 0 && (
                           <div className="flex flex-wrap gap-1">
                             {product.tags.map((tag) => (
                               <span key={tag} className="text-[10px] px-2 py-0.5 bg-[#F7F3EC] text-[#8B5E3C] rounded-full">
-                                {tag}
+                                {t(tag)}
                               </span>
                             ))}
                           </div>
@@ -489,15 +494,15 @@ export default function ProductsPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-semibold text-[#1F2621] mb-2">Products will be updated soon.</h3>
+                  <h3 className="text-lg font-semibold text-[#1F2621] mb-2">{copy.emptyTitle}</h3>
                   <p className="text-sm text-[#6b7280] mb-6 max-w-sm">
-                    Explore this category page for available options, materials and customization details.
+                    {copy.emptyDescription}
                   </p>
                   <Link
-                    href={activeTab.href}
+                    href={getSiteLink(activeTab.href, locale)}
                     className="inline-flex items-center gap-2 px-6 py-3 bg-[#0F6B3A] text-white rounded-lg font-semibold text-sm hover:bg-[#124B34] transition-colors"
                   >
-                    View Category
+                    {copy.viewCategory}
                   </Link>
                 </div>
               )}
@@ -506,7 +511,7 @@ export default function ProductsPage() {
               {displayProducts.length > 0 && (
                 <div className="mt-12 text-center">
                   <button className="px-8 py-3 border-2 border-[#E5E1D8] text-[#1F2621] rounded-lg font-semibold hover:border-[#0F6B3A] hover:text-[#0F6B3A] transition-colors">
-                    Load More Products
+                    {copy.loadMore}
                   </button>
                 </div>
               )}
@@ -519,22 +524,22 @@ export default function ProductsPage() {
       <section className="py-16 bg-[#0F6B3A]">
         <div className="container mx-auto px-6">
           <div className="text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Can't Find What You Need?</h2>
+            <h2 className="text-3xl font-bold mb-4">{copy.customTitle}</h2>
             <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              We offer custom manufacturing for specific substrate, veneer, size, and surface requirements. Contact our team for personalized solutions.
+              {copy.customDescription}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
-                href="/custom-solutions" 
+                href={getSiteLink("/custom-solutions", locale)}
                 className="px-6 py-3 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Custom Solutions
+                {copy.customSolutions}
               </Link>
               <Link 
-                href="/contact" 
+                href={getSiteLink("/contact", locale)}
                 className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                Contact Us
+                {copy.contactUs}
               </Link>
             </div>
           </div>
@@ -546,39 +551,13 @@ export default function ProductsPage() {
         <div className="container mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] mb-3">Why Choose Tongli Products</h2>
-            <p className="text-[#6b7280] max-w-xl mx-auto">Professional quality and reliable service to support your business growth worldwide</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] mb-3">{copy.whyTitle}</h2>
+            <p className="text-[#6b7280] max-w-xl mx-auto">{copy.whyDescription}</p>
           </div>
           
           {/* Features Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
-            {[
-              {
-                number: "01",
-                title: "Strict Selection",
-                description: "Strict selection and grading ensure consistent color, grain and performance.",
-              },
-              {
-                number: "02",
-                title: "Custom Solutions",
-                description: "OEM/ODM support with flexible sizes, cores and surface options.",
-              },
-              {
-                number: "03",
-                title: "Wide Range",
-                description: "From natural veneers to engineered panels and supporting boards.",
-              },
-              {
-                number: "04",
-                title: "Export Packaging",
-                description: "Strong packaging for sea transport and long-distance delivery.",
-              },
-              {
-                number: "05",
-                title: "Fast Samples",
-                description: "Samples ready in 3-7 days to help you win projects faster.",
-              },
-            ].map((feature, index) => (
+            {copy.features.map((feature, index) => (
               <div 
                 key={index}
                 className="group bg-[#FAFAFA] rounded-xl p-5 hover:bg-[#F7F3EC] hover:shadow-md transition-all duration-300 border border-transparent hover:border-[#E5E1D8]"
@@ -586,7 +565,7 @@ export default function ProductsPage() {
                 {/* Number badge */}
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-2xl font-bold text-[#0F6B3A]/20 group-hover:text-[#0F6B3A]/40 transition-colors">
-                    {feature.number}
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="flex-1 h-px bg-[#E5E1D8]" />
                 </div>
@@ -605,6 +584,10 @@ export default function ProductsPage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
+}
+
+export default function ProductsPage() {
+  return <ProductsPageContent locale="en" />;
 }
