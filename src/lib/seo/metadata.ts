@@ -6,6 +6,7 @@
 import { Metadata } from "next";
 import { siteConfig, defaultSeo } from "./site";
 import { locales, localizePath } from "@/i18n/config";
+import { isLocalizedPathIndexable } from "@/i18n/seo-policy";
 
 /**
  * Helper function to convert relative URL to absolute URL
@@ -29,6 +30,11 @@ function routePath(url: string): string {
 
 function languageAlternates(pathOrUrl: string) {
   const path = routePath(pathOrUrl);
+
+  if (!isLocalizedPathIndexable(path)) {
+    return undefined;
+  }
+
   return {
     ...Object.fromEntries(
       locales.map((locale) => [locale, toAbsoluteUrl(localizePath(path, locale))]),

@@ -4,6 +4,7 @@ import { contactCopy } from "./copy";
 import { corePagePaths, coreSeoCopy, type CorePageKey } from "./core-page-copy";
 import { locales, localizePath, openGraphLocales, type Locale } from "./config";
 import { translateFullSiteText } from "./full-site-text";
+import { isLocalizedPathIndexable } from "./seo-policy";
 
 function absoluteUrl(path: string): string {
   return path === "/" ? siteConfig.canonicalUrl : `${siteConfig.canonicalUrl}${path}`;
@@ -38,18 +39,19 @@ export function createFullSiteMetadata({
   const canonicalPath = localizePath(path, locale);
   const canonicalUrl = absoluteUrl(canonicalPath);
   const languages = createLanguageAlternates(path);
+  const indexable = isLocalizedPathIndexable(path);
 
   return {
     title: localizedTitle,
     description: localizedDescription,
     alternates: {
       canonical: canonicalUrl,
-      languages,
+      ...(indexable ? { languages } : {}),
     },
     robots: {
-      index: true,
+      index: indexable,
       follow: true,
-      googleBot: { index: true, follow: true },
+      googleBot: { index: indexable, follow: true },
     },
     openGraph: {
       type,

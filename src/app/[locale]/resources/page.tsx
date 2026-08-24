@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ResourcesPageContent } from "@/app/resources/page";
+import { ResourcesPageContent } from "@/components/resources/ResourcesPageContent";
 import { createCorePageMetadata } from "@/i18n/metadata";
 import {
   generateLocalizedParams,

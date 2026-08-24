@@ -414,8 +414,8 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
   {
     slug: "fireproof-mdf-flame-retardant",
     name: "Fire Rated MDF Board & Flame-Retardant Panel",
-    seoTitle: "Fire Rated MDF Board & Flame-Retardant Panel",
-    metaDescription: "Source fire rated MDF boards for doors, wall panels, furniture and commercial interiors, with custom sizes, thicknesses, export packing and document support.",
+    seoTitle: "Fire Rated MDF Panels & Fire Retardant MDF",
+    metaDescription: "Source fire rated MDF panels, fire retardant and fire resistant MDF boards for doors, walls and furniture, with custom sizes, export packing and document support.",
     code: "SBP-MDF-FIREPROOF-MDF-FLAME-RETA",
     category: "Supporting Boards",
     subCategory: "Fireproof MDF",
@@ -466,7 +466,7 @@ export const supportingBoardsProducts: SupportingBoardProduct[] = [
       { q: "Can fireproof MDF be used as a decorative panel substrate?", a: "Yes. It can be used as a substrate for decorative finishes, laminated panels, veneer panels and other interior components when the surface process is suitable." }
     ],
     relatedProducts: [],
-    updatedAt: "2026-08-17",
+    updatedAt: "2026-08-25",
   },
   {
     slug: "mr-mdf-moisture-resistant",

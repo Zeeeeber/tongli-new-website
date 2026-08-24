@@ -8,7 +8,8 @@ import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-pr
 import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
-import { locales, localizePath } from "@/i18n/config";
+import { defaultLocale, locales, localizePath } from "@/i18n/config";
+import { isLocalizedPathIndexable } from "@/i18n/seo-policy";
 
 type ProductSitemapSource = {
   slug: string;
@@ -51,6 +52,7 @@ const staticPaths = [
 ] as const;
 
 const seoUpdateDate = "2026-08-17";
+const localizedLaunchDate = "2026-08-24";
 
 const staticPathLastModified = new Map<string, string>([
   ["/", seoUpdateDate],
@@ -68,17 +70,47 @@ function absoluteUrl(path: string): string {
     : `${siteConfig.canonicalUrl}${path}`;
 }
 
+function sitemapEntry(
+  path: string,
+  lastModified?: string | Date,
+): MetadataRoute.Sitemap[number] {
+  return {
+    url: absoluteUrl(path),
+    ...(lastModified ? { lastModified } : {}),
+  };
+}
+
+function localizedLastModified(
+  lastModified?: string | Date,
+): string | Date {
+  if (!lastModified) return localizedLaunchDate;
+  return new Date(lastModified) > new Date(localizedLaunchDate)
+    ? lastModified
+    : localizedLaunchDate;
+}
+
 function localizedSitemapEntries(
   path: string,
   lastModified?: string | Date,
 ): MetadataRoute.Sitemap {
+  if (!isLocalizedPathIndexable(path)) {
+    return [sitemapEntry(path, lastModified)];
+  }
+
   const languages = Object.fromEntries(
     locales.map((locale) => [locale, absoluteUrl(localizePath(path, locale))]),
   );
 
   return locales.map((locale) => ({
     url: absoluteUrl(localizePath(path, locale)),
-    ...(lastModified ? { lastModified } : {}),
+    ...(lastModified || locale !== defaultLocale
+      ? {
+          lastModified:
+            locale === defaultLocale
+              ? lastModified
+              : localizedLastModified(lastModified),
+        }
+      : {}),
     alternates: {
       languages: {
         ...languages,
