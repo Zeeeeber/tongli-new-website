@@ -1,8 +1,9 @@
 "use client";
 
+import T from "@/i18n/full-site-context";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "@/components/i18n/LocalizedLink";
+import { useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
 import { getSupportingBoardRelatedProducts } from "@/data/products/supporting-boards-products";
@@ -110,31 +111,25 @@ export function ParticleBoardDetailTemplate({
     });
   };
 
-  useEffect(() => {
-    if (selectedImage >= productImages.length) {
-      setSelectedImage(0);
-    }
-  }, [productImages.length, selectedImage]);
-
   return (
     <>
       {/* Breadcrumb */}
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products" className="hover:text-[#0F6B3A]">Products</Link>
+            <Link href="/products" className="hover:text-[#0F6B3A]"><T>{"Products"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products/supporting-boards" className="hover:text-[#0F6B3A]">Particle Board</Link>
+            <Link href="/products/supporting-boards" className="hover:text-[#0F6B3A]"><T>{"Particle Board"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium truncate max-w-[200px]">{product.name}</span>
+            <span className="text-[#1F2621] font-medium truncate max-w-[200px]"><T>{product.name}</T></span>
           </div>
         </div>
       </div>
@@ -147,7 +142,7 @@ export function ParticleBoardDetailTemplate({
             <aside className="hidden md:block md:w-64 flex-shrink-0">
               <div className="bg-[#FDFBF7] rounded-2xl border border-[#E5E1D8] overflow-hidden sticky top-24">
                 <div className="px-5 py-4 border-b border-[#E5E1D8]">
-                  <h3 className="font-bold text-[#1F2621]">Product Categories</h3>
+                  <h3 className="font-bold text-[#1F2621]"><T>{"Product Categories"}</T></h3>
                 </div>
                 <nav className="py-2">
                   {sidebarCategories.map((cat) => (
@@ -160,7 +155,7 @@ export function ParticleBoardDetailTemplate({
                           }}
                           className="w-full flex items-center justify-between px-5 py-3 text-sm text-[#6b7280] hover:bg-[#E5E1D8]/50 hover:text-[#1F2621] transition-colors"
                         >
-                          <span>{cat.name}</span>
+                          <span><T>{cat.name}</T></span>
                           <svg id={`chevron-${cat.name.replace(/\s+/g, "-")}`} className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
@@ -174,7 +169,7 @@ export function ParticleBoardDetailTemplate({
                               : "text-[#6b7280] hover:bg-[#E5E1D8]/50 hover:text-[#1F2621]"
                           }`}
                         >
-                          {cat.name}
+                          <T>{cat.name}</T>
                         </Link>
                       )}
                       <div id={`cat-${cat.name.replace(/\s+/g, "-")}`} className="hidden bg-[#F7F3EC]">
@@ -184,7 +179,7 @@ export function ParticleBoardDetailTemplate({
                             href={sub.href}
                             className="block pl-8 pr-5 py-2.5 text-sm text-[#6b7280] hover:text-[#1F2621] transition-colors"
                           >
-                            {sub.name}
+                            <T>{sub.name}</T>
                           </Link>
                         ))}
                       </div>
@@ -215,7 +210,7 @@ export function ParticleBoardDetailTemplate({
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
                         </div>
-                        <span className="text-sm text-[#8B5E3C]/50">Product Image {selectedImage + 1}</span>
+                        <span className="text-sm text-[#8B5E3C]/50"><T>{"Product Image "}</T>{selectedImage + 1}</span>
                       </div>
                     )}
                   </div>
@@ -290,18 +285,18 @@ export function ParticleBoardDetailTemplate({
                 {/* Product Info */}
                 <div>
                   <div className="mb-4">
-                    <span className="text-sm text-[#8B5E3C] font-medium">{product.category}</span>
+                    <span className="text-sm text-[#8B5E3C] font-medium"><T>{product.category}</T></span>
                     <span className="mx-2 text-[#E5E1D8]">|</span>
-                    <span className="text-sm text-[#6b7280]">Code: {product.code}</span>
+                    <span className="text-sm text-[#6b7280]"><T>{"Code: "}</T>{product.code}</span>
                   </div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F2621] mb-4">{product.name}</h1>
-                  <p className="text-[#6b7280] leading-relaxed mb-6">{product.shortDesc}</p>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F2621] mb-4"><T>{product.name}</T></h1>
+                  <p className="text-[#6b7280] leading-relaxed mb-6"><T>{product.shortDesc}</T></p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-8">
                     {product.tags.map((tag) => (
                       <span key={tag} className="px-3 py-1 bg-[#F7F3EC] rounded-full text-xs font-medium text-[#1F2621]">
-                        {tag}
+                        <T>{tag}</T>
                       </span>
                     ))}
                   </div>
@@ -314,8 +309,7 @@ export function ParticleBoardDetailTemplate({
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                         <Link href="/about" className="hover:text-[#0F6B3A] transition-colors">
-                          About Us
-                        </Link>
+                          <T>{"About Us\n                        "}</T></Link>
                         <span className="flex items-center gap-1.5 ml-1">
                           <a href="https://www.instagram.com/tongliwood?igsh=ODdrNnc2YmpicWR3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors">
                             <Image src="/images/social/icons8-instagram-50.svg" alt="Instagram" width={22} height={22} />
@@ -335,8 +329,7 @@ export function ParticleBoardDetailTemplate({
                         </span>
                       </h3>
                       <p className="text-sm text-[#6b7280] leading-relaxed">
-                        We are a 25+ year manufacturer specializing in producing wooden products of veneer plywood, veneer mdf, commercial plywood and wood veneer sheets with more than 95% repurchase rate.
-                      </p>
+                        <T>{"We are a 25+ year manufacturer specializing in producing wooden products of veneer plywood, veneer mdf, commercial plywood and wood veneer sheets with more than 95% repurchase rate.\n                      "}</T></p>
                     </div>
                   </div>
 
@@ -346,8 +339,7 @@ export function ParticleBoardDetailTemplate({
                       href="/contact"
                       className="flex-1 min-w-[120px] px-4 py-3 bg-[#0F6B3A] text-white text-center rounded-lg font-semibold hover:bg-[#124B34] transition-colors"
                     >
-                      CONTACT US
-                    </Link>
+                      <T>{"CONTACT US\n                    "}</T></Link>
                     <a
                       href="https://wa.me/message/2DMHTU2VVZTKC1"
                       target="_blank"
@@ -357,8 +349,7 @@ export function ParticleBoardDetailTemplate({
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                       </svg>
-                      WHATSAPP
-                    </a>
+                      <T>{"WHATSAPP\n                    "}</T></a>
                   </div>
 
 
@@ -373,7 +364,7 @@ export function ParticleBoardDetailTemplate({
       {/* Related Products */}
       <section className="py-10 sm:py-16 bg-[#FDFBF7]">
         <div className="container mx-auto px-4 sm:px-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-8">Related Products</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-8"><T>{"Related Products"}</T></h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts.length > 0 ? (
               relatedProducts.map((relatedProduct) => {
@@ -405,13 +396,13 @@ export function ParticleBoardDetailTemplate({
                         </div>
                       )}
                       <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">View Details</span>
+                        <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm"><T>{"View Details"}</T></span>
                       </div>
                     </div>
                     <div className="p-4">
                       <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">{relatedLabel}</span>
-                      <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">{relatedProduct.name}</h3>
-                      <p className="text-sm text-[#6b7280] line-clamp-3">{relatedProduct.shortDesc}</p>
+                      <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2"><T>{relatedProduct.name}</T></h3>
+                      <p className="text-sm text-[#6b7280] line-clamp-3"><T>{relatedProduct.shortDesc}</T></p>
                     </div>
                   </Link>
                 );
@@ -432,9 +423,9 @@ export function ParticleBoardDetailTemplate({
                     </div>
                   </div>
                   <div className="p-4">
-                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">Particle Board</span>
-                    <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">Related Product</h3>
-                    <p className="text-sm text-[#6b7280] line-clamp-3">More particle board products will appear here.</p>
+                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]"><T>{"Particle Board"}</T></span>
+                    <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2"><T>{"Related Product"}</T></h3>
+                    <p className="text-sm text-[#6b7280] line-clamp-3"><T>{"More particle board products will appear here."}</T></p>
                   </div>
                 </div>
               ))
@@ -447,7 +438,7 @@ export function ParticleBoardDetailTemplate({
       <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-5">Detailed Specifications</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-5"><T>{"Detailed Specifications"}</T></h2>
             <div className="rounded-xl overflow-hidden border border-[#E5E1D8] shadow-sm overflow-x-auto">
               <table className="w-full min-w-[600px]">
                 <tbody>
@@ -472,10 +463,10 @@ export function ParticleBoardDetailTemplate({
                       className={`group transition-colors ${index % 2 === 0 ? "bg-[#FDFBF7]" : "bg-white/60"} hover:bg-[#0F6B3A]/5 border-b border-[#E5E1D8] last:border-b-0`}
                     >
                       <td className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-[#0F6B3A] w-32 sm:w-44 align-middle pr-3 sm:pr-4 border-r border-[#E5E1D8]">
-                        {row.label}
+                        <T>{row.label}</T>
                       </td>
                       <td className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-sm text-[#6b7280] align-top">
-                        {row.value}
+                        <T>{row.value}</T>
                       </td>
                     </tr>
                   ))}
@@ -493,21 +484,21 @@ export function ParticleBoardDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">{product.category}</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Professional Particle Board Supplier</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Cost-effective particle board solutions for furniture, cabinets, doors and interior decoration.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies particle board for furniture manufacturers, cabinet factories, door producers, wood panel distributors and whole-house customization projects. With stable board structure, smooth surface and flexible size options, particle board is widely used as a practical substrate for melamine lamination, veneer lamination, furniture production and interior panel applications.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{product.category}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Professional Particle Board Supplier"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Cost-effective particle board solutions for furniture, cabinets, doors and interior decoration."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Tongli Timber supplies particle board for furniture manufacturers, cabinet factories, door producers, wood panel distributors and whole-house customization projects. With stable board structure, smooth surface and flexible size options, particle board is widely used as a practical substrate for melamine lamination, veneer lamination, furniture production and interior panel applications."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
                   {["Raw particle board and laminated particle board options", "Suitable for furniture, cabinets and interior panels", "Stable surface for melamine, veneer or decorative lamination", "Standard and custom sizes available", "Factory direct supply with export packaging support", "Ideal for manufacturers, distributors and project buyers"].map((point) => (
                     <div key={point} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{point}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{point}</T></span>
                     </div>
                   ))}
                 </div>
-                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Sample</button>
+                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors"><T>{"Request A Sample"}</T></button>
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
@@ -535,17 +526,17 @@ export function ParticleBoardDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">About Us</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Decorative Wood Panel Supplier Since 1999</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Supporting global buyers with particle board, plywood, MDF, veneer panels and customized wood-based materials.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in decorative wood-based panels, including particle board, MDF, plywood, veneer plywood, fancy plywood, natural wood veneer, engineered veneer and UV coated panels. With years of production experience and export service, we support global customers with stable supply, flexible customization and professional communication.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"About Us"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"A Decorative Wood Panel Supplier Since 1999"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Supporting global buyers with particle board, plywood, MDF, veneer panels and customized wood-based materials."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in decorative wood-based panels, including particle board, MDF, plywood, veneer plywood, fancy plywood, natural wood veneer, engineered veneer and UV coated panels. With years of production experience and export service, we support global customers with stable supply, flexible customization and professional communication."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Established in 1999", "Experienced in wood-based panel supply", "Support for raw and laminated particle board solutions", "Custom size, thickness, surface and packaging options", "Serving furniture, cabinet, door and interior project customers", "Export experience for overseas buyers and distributors"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -559,17 +550,17 @@ export function ParticleBoardDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Testimonials</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable quality, clear communication and reliable delivery support long-term cooperation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our customers value stable panel quality, accurate sample confirmation and reliable shipment support. For particle board buyers, we help confirm board type, thickness, density, surface requirement, lamination needs and packaging details before production, reducing sourcing risks and improving purchasing efficiency.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Testimonials"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Trusted by Overseas Buyers and Repeat Customers"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Stable quality, clear communication and reliable delivery support long-term cooperation."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Our customers value stable panel quality, accurate sample confirmation and reliable shipment support. For particle board buyers, we help confirm board type, thickness, density, surface requirement, lamination needs and packaging details before production, reducing sourcing risks and improving purchasing efficiency."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Clear sample confirmation before production", "Stable board quality for repeat orders", "Accurate size and thickness communication", "Surface options for melamine or veneer lamination", "Reliable packaging for international shipping", "Support for long-term supply cooperation"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -593,17 +584,17 @@ export function ParticleBoardDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certification and Document Support for Global Buyers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Helping customers complete supplier evaluation, import review and project approval.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For international buyers, supplier qualification and product documentation are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company documents according to different market and project requirements, helping customers reduce sourcing risk and complete supplier approval more efficiently.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Certifications"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Certification and Document Support for Global Buyers"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Helping customers complete supplier evaluation, import review and project approval."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"For international buyers, supplier qualification and product documentation are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company documents according to different market and project requirements, helping customers reduce sourcing risk and complete supplier approval more efficiently."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["SGS-related test reports", "CE / GMC certificate support", "FSC-related documentation when required", "Company qualification documents", "Export and project approval support", "Material documents for buyer review"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -617,17 +608,17 @@ export function ParticleBoardDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Production Process</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Controlled Production Process for Stable Particle Board Quality</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">From raw material preparation to forming, pressing, sanding and inspection, each step supports consistent supply.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Particle board production requires controlled raw material preparation, drying, screening, glue mixing, mat forming, hot pressing, trimming, sanding and quality inspection. A stable production process helps improve board flatness, internal bonding strength and surface quality, making the panels suitable for furniture, cabinets and decorative lamination.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Production Process"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Controlled Production Process for Stable Particle Board Quality"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"From raw material preparation to forming, pressing, sanding and inspection, each step supports consistent supply."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Particle board production requires controlled raw material preparation, drying, screening, glue mixing, mat forming, hot pressing, trimming, sanding and quality inspection. A stable production process helps improve board flatness, internal bonding strength and surface quality, making the panels suitable for furniture, cabinets and decorative lamination."}</T></p>
                 <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {["Raw material preparation", "Drying and screening", "Glue mixing", "Mat forming", "Hot pressing", "Trimming and edge cutting", "Sanding and surface calibration", "Quality inspection", "Stacking, packaging and shipment preparation"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -651,17 +642,17 @@ export function ParticleBoardDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Export Packaging for Bulk Orders and Custom Shipments</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Protecting particle board panels during loading, handling and international transportation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Proper packaging is important for particle board because panels need protection from edge damage, surface scratches and moisture during transportation. We provide bulk loading, pallet packaging, wooden frame packaging and custom export packaging according to order quantity and shipping requirements.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Packaging"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Export Packaging for Bulk Orders and Custom Shipments"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Protecting particle board panels during loading, handling and international transportation."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Proper packaging is important for particle board because panels need protection from edge damage, surface scratches and moisture during transportation. We provide bulk loading, pallet packaging, wooden frame packaging and custom export packaging according to order quantity and shipping requirements."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Bulk truck loading", "Bulk container loading", "Custom packaging", "Wooden frame packaging", "Export pallet support", "Protective packing for panel edges and surfaces", "Packaging can be customized according to customer requirements"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -676,10 +667,10 @@ export function ParticleBoardDetailTemplate({
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
-              <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-widest mb-2 sm:mb-3">FAQ</p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
+              <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-widest mb-2 sm:mb-3"><T>{"FAQ"}</T></p>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F2621]"><T>{"Frequently Asked Questions"}</T></h2>
               <div className="w-12 sm:w-16 h-1 bg-[#0F6B3A] mx-auto mt-3 sm:mt-4 rounded-full"></div>
-              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm">Everything you need to know about our particle board</p>
+              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm"><T>{"Everything you need to know about our particle board"}</T></p>
             </div>
 
             <div className="space-y-3">
@@ -696,7 +687,7 @@ export function ParticleBoardDetailTemplate({
                       <span className="text-xs font-bold text-[#0F6B3A] bg-[#0F6B3A]/10 px-3 py-1.5 rounded-lg mt-0.5 flex-shrink-0">
                         0{index + 1}
                       </span>
-                      <span className="text-[#1F2621] font-medium pr-4 leading-relaxed text-sm lg:text-base">{faq.q}</span>
+                      <span className="text-[#1F2621] font-medium pr-4 leading-relaxed text-sm lg:text-base"><T>{faq.q}</T></span>
                     </div>
                     <div className={`w-8 h-8 rounded-full border flex items-center justify-center flex-shrink-0 transition-all duration-300 ${openFaq === index ? "bg-[#0F6B3A] border-[#0F6B3A] rotate-45" : "border-[#E5E1D8] group-hover:border-[#0F6B3A]/50"}`}>
                       <svg className={`w-4 h-4 transition-colors duration-300 ${openFaq === index ? "text-white" : "text-[#6b7280] group-hover:text-[#0F6B3A]"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -706,7 +697,7 @@ export function ParticleBoardDetailTemplate({
                   </button>
                   <div className={`overflow-hidden transition-all duration-500 ease-in-out ${openFaq === index ? "max-h-60" : "max-h-0"}`}>
                     <div className="px-4 sm:px-6 pb-5 sm:pb-6 ml-10 sm:ml-20 text-[#6b7280] leading-relaxed text-xs sm:text-sm border-t border-[#F7F3EC] pt-4">
-                      {faq.a}
+                      <T>{faq.a}</T>
                     </div>
                   </div>
                 </div>

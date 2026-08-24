@@ -1,6 +1,7 @@
+import T from "@/i18n/full-site-context";
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 import { createPageMetadata } from "@/lib/seo/metadata";
@@ -27,15 +28,15 @@ export default function VeneerEdgeBandingPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products" className="hover:text-[#0F6B3A]">Products</Link>
+            <Link href="/products" className="hover:text-[#0F6B3A]"><T>{"Products"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Veneer Edge Banding</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Veneer Edge Banding"}</T></span>
           </div>
         </div>
       </div>
@@ -45,15 +46,9 @@ export default function VeneerEdgeBandingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl font-bold text-[#1F2621] mb-4">
-              About Veneer Edge Banding
-            </h2>
+              <T>{"About Veneer Edge Banding\n            "}</T></h2>
             <p className="text-[#6b7280] leading-relaxed">
-              Veneer edge banding is made from real wood veneer (natural or engineered) and is
-              used to cover and finish the exposed edges of veneer-faced boards, furniture parts,
-              cabinets, doors and decorative panels. Compared with PVC or plastic edge banding, real
-              wood veneer edge banding provides a matching wood surface effect across panels and
-              edges for a more refined and natural finish.
-            </p>
+              <T>{"Veneer edge banding is made from real wood veneer (natural or engineered) and is\n              used to cover and finish the exposed edges of veneer-faced boards, furniture parts,\n              cabinets, doors and decorative panels. Compared with PVC or plastic edge banding, real\n              wood veneer edge banding provides a matching wood surface effect across panels and\n              edges for a more refined and natural finish.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -62,11 +57,10 @@ export default function VeneerEdgeBandingPage() {
       <section id="products" className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Product Range</h2>
+            <h2 className="text-3xl font-bold text-[#1F2621]"><T>{"Product Range"}</T></h2>
             <p className="text-[#6b7280] mt-4">
-              Showing <span className="font-medium text-[#1F2621]">{productCount}</span>{" "}
-              veneer edge banding products in natural and engineered wood veneer.
-            </p>
+              <T>{"Showing "}</T><span className="font-medium text-[#1F2621]">{productCount}</span>{" "}
+              <T>{"veneer edge banding products in natural and engineered wood veneer.\n            "}</T></p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -109,14 +103,13 @@ export default function VeneerEdgeBandingPage() {
                     )}
                     <div className="absolute inset-0 bg-[#8B5E3C]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <span className="px-4 py-2 bg-white text-[#8B5E3C] rounded-lg font-medium text-sm">
-                        View Details
-                      </span>
+                        <T>{"View Details\n                      "}</T></span>
                     </div>
                   </div>
                   <div className="p-4">
                     <span className="text-xs text-[#8B5E3C] font-mono">{product.code}</span>
                     <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-2 leading-snug">
-                      {product.name}
+                      <T>{product.name}</T>
                     </h3>
                     {product.tags && product.tags.length > 0 && (
                       <div className="flex flex-wrap gap-1">
@@ -125,7 +118,7 @@ export default function VeneerEdgeBandingPage() {
                             key={tag}
                             className="text-[10px] px-2 py-0.5 bg-[#F7F3EC] text-[#8B5E3C] rounded-full"
                           >
-                            {tag}
+                            <T>{tag}</T>
                           </span>
                         ))}
                       </div>
@@ -142,19 +135,16 @@ export default function VeneerEdgeBandingPage() {
       <section className="py-16 bg-[#8B5E3C]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Veneer Edge Banding?</h2>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Veneer Edge Banding?"}</T></h2>
             <p className="text-white/80 mb-8">
-              Contact us for species, width, backing and finishing options. Sample shipments can be
-              arranged for evaluation before bulk orders.
-            </p>
+              <T>{"Contact us for species, width, backing and finishing options. Sample shipments can be\n              arranged for evaluation before bulk orders.\n            "}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact" className="px-8 py-4 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors">Contact Us</Link>
+              <Link href="/contact" className="px-8 py-4 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"><T>{"Contact Us"}</T></Link>
               <Link
                 href="/products"
                 className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                View All Products
-              </Link>
+                <T>{"View All Products\n              "}</T></Link>
             </div>
           </div>
         </div>

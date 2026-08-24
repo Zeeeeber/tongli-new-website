@@ -1,5 +1,6 @@
+import T from "@/i18n/full-site-context";
 import { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { getArticlesByCategory, type ArticleCategory } from "@/data/resources/articles";
 import { createPageMetadata } from "@/lib/seo/metadata";
@@ -21,15 +22,15 @@ export default function CompanyNewsPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/resources" className="hover:text-[#0F6B3A]">Resources</Link>
+            <Link href="/resources" className="hover:text-[#0F6B3A]"><T>{"Resources"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Company News</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Company News"}</T></span>
           </div>
         </div>
       </div>
@@ -46,15 +47,11 @@ export default function CompanyNewsPage() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
               </svg>
-              Company News
-            </span>
+              <T>{"Company News\n            "}</T></span>
             <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-              Company News
-            </h1>
+              <T>{"Company News\n            "}</T></h1>
             <p className="text-lg text-white/90">
-              Latest updates from Tongli Timber including trade show participation, 
-              certifications, company milestones, and team news.
-            </p>
+              <T>{"Latest updates from Tongli Timber including trade show participation, \n              certifications, company milestones, and team news.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -83,19 +80,18 @@ export default function CompanyNewsPage() {
                     <div className="p-6">
                       <div className="flex items-center gap-3 mb-3">
                         <span className="px-3 py-1 bg-[#1c1c1c]/10 text-[#1c1c1c] text-xs font-medium rounded-full">
-                          {article.category}
+                          <T>{article.category}</T>
                         </span>
                         <span className="text-sm text-[#6b7280]">{article.date}</span>
                       </div>
                       <h2 className="text-xl font-bold text-[#1F2621] mb-3 group-hover:text-[#1c1c1c] transition-colors line-clamp-2">
-                        {article.title}
+                        <T>{article.title}</T>
                       </h2>
                       <p className="text-[#6b7280] text-sm line-clamp-3">
-                        {article.excerpt}
+                        <T>{article.excerpt}</T>
                       </p>
                       <div className="mt-4 flex items-center text-[#1c1c1c] text-sm font-medium">
-                        Read More
-                        <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <T>{"Read More\n                        "}</T><svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
                       </div>
@@ -110,18 +106,14 @@ export default function CompanyNewsPage() {
                 <svg className="w-16 h-16 text-[#1c1c1c]/30 mx-auto mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                 </svg>
-                <h2 className="text-2xl font-bold text-[#1F2621] mb-4">No Company News Yet</h2>
+                <h2 className="text-2xl font-bold text-[#1F2621] mb-4"><T>{"No Company News Yet"}</T></h2>
                 <p className="text-[#6b7280] mb-8 max-w-md mx-auto">
-                  We are preparing news about our latest certifications, 
-                  trade show participation, and company milestones.
-                </p>
+                  <T>{"We are preparing news about our latest certifications, \n                  trade show participation, and company milestones.\n                "}</T></p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link href="/resources" className="px-6 py-3 bg-[#1c1c1c] text-white rounded-full font-semibold hover:bg-[#2a2a2a] transition-colors">
-                    View All Resources
-                  </Link>
+                    <T>{"View All Resources\n                  "}</T></Link>
                   <Link href="/about" className="px-6 py-3 border-2 border-[#1c1c1c] text-[#1c1c1c] rounded-full font-semibold hover:bg-[#1c1c1c] hover:text-white transition-colors">
-                    About Us
-                  </Link>
+                    <T>{"About Us\n                  "}</T></Link>
                 </div>
               </div>
             </div>
@@ -133,16 +125,14 @@ export default function CompanyNewsPage() {
       <section className="py-16 bg-[#F7F3EC]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-4">Want to Learn More?</h2>
+            <h2 className="text-2xl font-bold text-[#1F2621] mb-4"><T>{"Want to Learn More?"}</T></h2>
             <p className="text-[#6b7280] mb-6">
-              Contact our team for product specifications, samples, or technical support.
-            </p>
+              <T>{"Contact our team for product specifications, samples, or technical support.\n            "}</T></p>
             <Link
               href="/contact"
               className="inline-flex items-center px-6 py-3 bg-[#1c1c1c] text-white rounded-full font-semibold hover:bg-[#2a2a2a] transition-colors"
             >
-              Contact Us
-            </Link>
+              <T>{"Contact Us\n            "}</T></Link>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
+import T from "@/i18n/full-site-context";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
 import { ProductCategoryBanner } from "@/components/product/ProductCategoryBanner";
 
@@ -19,11 +20,9 @@ export default function SupportingBoardsPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-[#1F2621] mb-4">
-              About Supporting Boards
-            </h2>
+              <T>{"About Supporting Boards\n            "}</T></h2>
             <p className="text-[#6b7280] leading-relaxed">
-              Supporting boards serve as the structural core substrate for furniture, cabinets, doors and interior panels. Available in plywood, MDF, moisture-resistant MDF, fireproof MDF and particle board — each type offers different strength, surface quality and moisture-resistance characteristics to match specific application requirements.
-            </p>
+              <T>{"Supporting boards serve as the structural core substrate for furniture, cabinets, doors and interior panels. Available in plywood, MDF, moisture-resistant MDF, fireproof MDF and particle board — each type offers different strength, surface quality and moisture-resistance characteristics to match specific application requirements.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -32,8 +31,8 @@ export default function SupportingBoardsPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Product Range</h2>
-            <p className="text-[#6b7280] mt-4">Explore our supporting board product range — plywood, MDF, moisture-resistant MDF, fireproof MDF and particle board options</p>
+            <h2 className="text-3xl font-bold text-[#1F2621]"><T>{"Product Range"}</T></h2>
+            <p className="text-[#6b7280] mt-4"><T>{"Explore our supporting board product range — plywood, MDF, moisture-resistant MDF, fireproof MDF and particle board options"}</T></p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -76,24 +75,23 @@ export default function SupportingBoardsPage() {
                     )}
                     <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">
-                        View Details
-                      </span>
+                        <T>{"View Details\n                      "}</T></span>
                     </div>
                   </div>
                   <div className="p-4">
                     <span className="text-xs text-[#8B5E3C] font-mono">{product.code}</span>
                     <h3 className="font-semibold text-[#1F2621] mt-1 mb-2 line-clamp-2 leading-snug">
-                      {product.name}
+                      <T>{product.name}</T>
                     </h3>
                     {product.shortDesc && (
                       <p className="text-xs text-[#6b7280] line-clamp-2 mb-3 leading-relaxed">
-                        {product.shortDesc}
+                        <T>{product.shortDesc}</T>
                       </p>
                     )}
                     {product.subCategory && (
                       <div className="flex flex-wrap gap-1">
                         <span className="text-[10px] px-2 py-0.5 bg-[#F7F3EC] text-[#8B5E3C] rounded-full">
-                          {product.subCategory}
+                          <T>{product.subCategory}</T>
                         </span>
                       </div>
                     )}
@@ -109,23 +107,20 @@ export default function SupportingBoardsPage() {
       <section className="py-16 bg-[#5C6B5E]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Supporting Boards?</h2>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Supporting Boards?"}</T></h2>
             <p className="text-white/80 mb-8">
-              Contact us for specifications, pricing, thickness options and availability.
-            </p>
+              <T>{"Contact us for specifications, pricing, thickness options and availability.\n            "}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
                 className="px-8 py-4 bg-white text-[#5C6B5E] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Contact Us
-              </Link>
+                <T>{"Contact Us\n              "}</T></Link>
               <Link
                 href="/products"
                 className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                View All Products
-              </Link>
+                <T>{"View All Products\n              "}</T></Link>
             </div>
           </div>
         </div>

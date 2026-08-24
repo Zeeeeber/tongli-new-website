@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import { createPageMetadata } from "@/lib/seo/metadata";
+import { createCorePageMetadata } from "@/i18n/metadata";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Wood Veneer Applications",
-  description:
-    "Explore wood veneer, decorative panel and supporting board solutions for furniture, doors, cabinets, hotels and interior projects.",
-  path: "/applications",
-});
+export const metadata: Metadata = createCorePageMetadata("applications", "en");
 
 export default function ApplicationsLayout({ children }: { children: React.ReactNode }) {
   return children;

@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import ImageModal from "@/components/ImageModal";
+import { getSiteLink, localeDirections, type Locale } from "@/i18n/config";
+import { customSolutionsPageCopy } from "@/i18n/core-page-copy";
 
 // Design System
 const C = {
@@ -84,7 +86,8 @@ const customizationSections = [
 // ============================================
 // Hero Banner Component
 // ============================================
-function HeroBanner() {
+function HeroBanner({ locale }: { locale: Locale }) {
+  const copy = customSolutionsPageCopy[locale];
   return (
     <section
       className="relative py-24 lg:py-32 overflow-hidden"
@@ -111,13 +114,13 @@ function HeroBanner() {
         {/* Decorative Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          <span className="text-sm font-medium text-white/90 tracking-wide">Premium Wood Solutions</span>
+          <span className="text-sm font-medium text-white/90 tracking-wide">{copy.heroBadge}</span>
         </div>
 
         <h1
           className="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-8 leading-[1.1] tracking-tight"
         >
-          Custom Solutions
+          {copy.heroTitle}
         </h1>
 
         {/* Decorative Line */}
@@ -132,16 +135,15 @@ function HeroBanner() {
         <p
           className="text-lg lg:text-xl text-white/80 max-w-2xl mx-auto leading-relaxed"
         >
-          Tailored wood panel solutions for furniture, doors, cabinets and interior applications.
-          Every detail customized to your project needs.
+          {copy.heroDescription}
         </p>
 
         {/* Quick Stats */}
         <div className="flex flex-wrap justify-center gap-8 mt-12">
           {[
-            { value: "150+", label: "Wood Species" },
-            { value: "10K+", label: "Projects Done" },
-            { value: "50+", label: "Countries" },
+            { value: "150+", label: copy.stats[0] },
+            { value: "10K+", label: copy.stats[1] },
+            { value: "50+", label: copy.stats[2] },
           ].map((stat, i) => (
             <div key={i} className="text-center">
               <div className="text-3xl lg:text-4xl font-black text-white">{stat.value}</div>
@@ -164,7 +166,8 @@ function HeroBanner() {
 // ============================================
 // Product Grid Component
 // ============================================
-function ProductGrid({ sectionId, items, basePath }: { sectionId: string; items: { name: string; image: string }[]; basePath: string }) {
+function ProductGrid({ items, basePath, locale }: { items: { name: string; image: string }[]; basePath: string; locale: Locale }) {
+  const copy = customSolutionsPageCopy[locale];
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const getImageSrc = (image: string) =>
@@ -183,7 +186,7 @@ function ProductGrid({ sectionId, items, basePath }: { sectionId: string; items:
             <div className="relative aspect-square rounded-2xl overflow-hidden shadow-lg group-hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
               <Image
                 src={getImageSrc(item.image)}
-                alt={item.name}
+                alt={copy.productLabels[item.name] ?? item.name}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
@@ -198,14 +201,14 @@ function ProductGrid({ sectionId, items, basePath }: { sectionId: string; items:
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 </div>
-                <span className="text-white text-xs font-semibold tracking-wide">View Details</span>
+                <span className="text-white text-xs font-semibold tracking-wide">{copy.viewDetails}</span>
               </div>
             </div>
 
             {/* Label */}
             <div className="mt-3 text-center">
               <span className="text-sm font-semibold text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors duration-300">
-                {item.name}
+                {copy.productLabels[item.name] ?? item.name}
               </span>
             </div>
           </div>
@@ -230,9 +233,11 @@ function ProductGrid({ sectionId, items, basePath }: { sectionId: string; items:
 function CustomizationCard({
   section,
   index,
+  locale,
 }: {
   section: typeof customizationSections[0];
   index: number;
+  locale: Locale;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -402,9 +407,9 @@ function CustomizationCard({
             {/* Product Grid */}
             {productGrid ? (
               <ProductGrid
-                sectionId={section.id}
                 items={productGrid.items}
                 basePath={productGrid.basePath}
+                locale={locale}
               />
             ) : null}
 
@@ -418,7 +423,8 @@ function CustomizationCard({
 // ============================================
 // CTA Section Component
 // ============================================
-function CTASection() {
+function CTASection({ locale }: { locale: Locale }) {
+  const copy = customSolutionsPageCopy[locale];
   return (
     <section
       className="relative py-28 lg:py-40 overflow-hidden"
@@ -444,12 +450,12 @@ function CTASection() {
       <div className="container mx-auto px-6 lg:px-12 relative z-10 text-center">
         {/* Decorative Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-2 mb-8 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
-          <span className="text-sm font-medium text-white/90">Let&apos;s Work Together</span>
+          <span className="text-sm font-medium text-white/90">{copy.ctaBadge}</span>
         </div>
 
         <h2 className="text-4xl lg:text-6xl font-black text-white mb-8 leading-tight">
-          Ready to Start Your<br />
-          <span style={{ color: C.accentLight }}>Custom Project?</span>
+          {copy.ctaTitle}<br />
+          <span style={{ color: C.accentLight }}>{copy.ctaAccent}</span>
         </h2>
 
         {/* Decorative Line */}
@@ -462,28 +468,28 @@ function CTASection() {
         </div>
 
         <p className="text-lg lg:text-xl text-white/70 max-w-xl mx-auto mb-12 leading-relaxed">
-          Contact our team for tailored recommendations, samples, and quotations for your specific requirements.
+          {copy.ctaDescription}
         </p>
 
         <div className="flex flex-wrap justify-center gap-5">
           <Link
-            href="/contact?type=custom"
+            href={`${getSiteLink("/contact", locale)}?type=custom`}
             className="group inline-flex items-center gap-3 px-8 py-4 bg-white rounded-full font-bold text-base transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             style={{ color: C.primary }}
           >
-            <span>Get Custom Quote</span>
+            <span>{copy.getQuote}</span>
             <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
           <Link
-            href="/contact?type=sample"
+            href={`${getSiteLink("/contact", locale)}?type=sample`}
             className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-white/40 rounded-full font-bold text-base text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/60"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
-            <span>Request Samples</span>
+            <span>{copy.requestSamples}</span>
           </Link>
         </div>
       </div>
@@ -501,65 +507,76 @@ function CTASection() {
 // ============================================
 // Main Page Component
 // ============================================
-export default function CustomSolutionsPage() {
+export function CustomSolutionsPageContent({ locale }: { locale: Locale }) {
+  const copy = customSolutionsPageCopy[locale];
+  const localizedSections = customizationSections.map((section) => ({
+    ...section,
+    ...(copy.sections[section.id] ?? {}),
+  }));
+
   return (
-    <div style={{ background: C.ivory, color: C.charcoal, overflowX: "hidden" }}>
+    <div style={{ background: C.ivory, color: C.charcoal, overflowX: "hidden" }} lang={locale} dir={localeDirections[locale]}>
       {/* Hero Banner - Dark green with title */}
-      <HeroBanner />
+      <HeroBanner locale={locale} />
 
       {/* Customization Sections - Full Width */}
       <div>
-        {customizationSections.map((section, index) => (
+        {localizedSections.map((section, index) => (
           <CustomizationCard
             key={section.id}
             section={section}
             index={index}
+            locale={locale}
           />
         ))}
       </div>
 
       {/* CTA Section */}
-      <CTASection />
+      <CTASection locale={locale} />
 
       {/* Quick Links */}
       <section className="py-10" style={{ background: C.cream, borderTop: `1px solid ${C.border}` }}>
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-10 text-center">
-            <Link href="/products" className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
+            <Link href={getSiteLink("/products", locale)} className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
               <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `${C.primary}15` }}>
                 <svg className="w-5 h-5" style={{ color: C.primary }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">View All Products</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">{copy.viewAllProducts}</span>
             </Link>
-            <Link href="/collections" className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
+            <Link href={getSiteLink("/collections", locale)} className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
               <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `${C.primary}15` }}>
                 <svg className="w-5 h-5" style={{ color: C.primary }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">Browse Collections</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">{copy.browseCollections}</span>
             </Link>
-            <Link href="/applications" className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
+            <Link href={getSiteLink("/applications", locale)} className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
               <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `${C.primary}15` }}>
                 <svg className="w-5 h-5" style={{ color: C.primary }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">Applications</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">{copy.applications}</span>
             </Link>
-            <Link href="/contact" className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
+            <Link href={getSiteLink("/contact", locale)} className="group flex flex-col items-center gap-2 p-4 rounded-xl transition-colors hover:bg-white">
               <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: `${C.primary}15` }}>
                 <svg className="w-5 h-5" style={{ color: C.primary }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">Contact Us</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A] transition-colors">{copy.contactUs}</span>
             </Link>
           </div>
         </div>
       </section>
     </div>
   );
+}
+
+export default function CustomSolutionsPage() {
+  return <CustomSolutionsPageContent locale="en" />;
 }

@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { getLocaleFromPathname, localeDirections } from "@/i18n/config";
+import { SiteLocaleProvider } from "@/i18n/site-locale-context";
 
 export default function ClientLayout({
   children,
@@ -11,11 +14,18 @@ export default function ClientLayout({
   children: React.ReactNode;
 }) {
   const [phase, setPhase] = useState<"loading" | "splash" | "transition" | "done">("loading");
+  const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+    document.documentElement.dir = localeDirections[locale];
+  }, [locale]);
 
   useEffect(() => {
     if (typeof window !== "undefined" && localStorage.getItem("tongli-splash")) {
-      setPhase("done");
-      return;
+      const skipSplashTimer = setTimeout(() => setPhase("done"), 0);
+      return () => clearTimeout(skipSplashTimer);
     }
 
     // Show splash
@@ -46,7 +56,7 @@ export default function ClientLayout({
   const isDone = phase === "done";
 
   return (
-    <>
+    <SiteLocaleProvider locale={locale}>
       {/* Splash Screen */}
       <div
         className={`
@@ -120,6 +130,6 @@ export default function ClientLayout({
         </main>
         <Footer />
       </div>
-    </>
+    </SiteLocaleProvider>
   );
 }

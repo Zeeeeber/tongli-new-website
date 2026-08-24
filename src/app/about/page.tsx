@@ -1,37 +1,36 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
+import {
+  getSiteLink,
+  localeDirections,
+  type Locale,
+} from "@/i18n/config";
+import { getCoreTextTranslator } from "@/i18n/core-text";
 
 function useInfiniteScroll(contentRef: React.RefObject<HTMLDivElement | null>, isPaused: boolean) {
   const rafRef = useRef<number>(0);
-  const speed = 0.8;
-
-  const animate = useCallback(() => {
-    if (!contentRef.current) return;
-    const el = contentRef.current;
-    const halfWidth = el.scrollWidth / 2;
-    const current = parseFloat((el as any)._scrollX || 0);
-    const next = current + speed;
-    if (next >= halfWidth) {
-      (el as any)._scrollX = 0;
-      el.style.transform = 'translateX(0px)';
-    } else {
-      (el as any)._scrollX = next;
-      el.style.transform = `translateX(-${next}px)`;
-    }
-    rafRef.current = requestAnimationFrame(animate);
-  }, [contentRef]);
 
   useEffect(() => {
-    if (!isPaused) {
+    const currentElement = contentRef.current;
+    if (isPaused || currentElement === null) return;
+
+    const el: HTMLDivElement = currentElement;
+
+    let scrollX = 0;
+    const speed = 0.8;
+    function animate() {
+      const halfWidth = el.scrollWidth / 2;
+      scrollX = scrollX + speed >= halfWidth ? 0 : scrollX + speed;
+      el.style.transform = `translateX(-${scrollX}px)`;
       rafRef.current = requestAnimationFrame(animate);
-    } else {
-      cancelAnimationFrame(rafRef.current);
     }
+
+    rafRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(rafRef.current);
-  }, [isPaused, animate]);
+  }, [contentRef, isPaused]);
 }
 
 const testimonials = [
@@ -57,6 +56,71 @@ const testimonials = [
   { text: "We have worked with many panel suppliers, but Tongli's advantage is that they understand both veneer appearance and panel production requirements.", name: "Lucas B.", initials: "LB", type: "Decorative Material Wholesaler", country: "Germany" },
 ];
 
+function TestimonialsCarousel({ locale }: { locale: Locale }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const translate = getCoreTextTranslator(locale);
+  useInfiniteScroll(trackRef, isPaused);
+
+  return (
+    <div
+      className="relative overflow-hidden"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+      <div ref={trackRef} className="flex w-max">
+        {[...testimonials, ...testimonials].map((testimonial, index) => {
+          const colors = [
+            ["from-[#0F6B3A]", "to-[#124B34]"],
+            ["from-[#8B5E3C]", "to-[#6B4423]"],
+            ["from-[#2C5F2D]", "to-[#1A3D1B]"],
+            ["from-[#FF6B35]", "to-[#C94B1D]"],
+            ["from-[#4A6741]", "to-[#2D4A28]"],
+            ["from-[#6B7280]", "to-[#4B5563]"],
+            ["from-[#0F6B3A]", "to-[#8B5E3C]"],
+            ["from-[#124B34]", "to-[#2C5F2D]"],
+          ];
+          const [from, to] = colors[index % colors.length];
+
+          return (
+            <div key={index} className="flex-shrink-0 w-[380px] bg-gradient-to-br from-ivory to-white rounded-2xl p-8 shadow-lg border border-beige mx-3">
+              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+                <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, starIndex) => (
+                  <svg key={starIndex} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              <p className="text-charcoal text-base leading-relaxed mb-6">
+                &ldquo;{translate(testimonial.text)}&rdquo;
+              </p>
+              <div className="flex items-end gap-4">
+                <div className={`w-12 h-12 flex-shrink-0 bg-gradient-to-br ${from} ${to} rounded-full flex items-center justify-center text-white font-bold text-base leading-none`}>
+                  {testimonial.initials}
+                </div>
+                <div className="pb-1 min-w-0">
+                  <p className="font-bold text-charcoal text-sm truncate">{testimonial.name}</p>
+                  <p className="text-xs text-muted leading-snug">
+                    {translate(testimonial.type)} — {translate(testimonial.country)}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // Auto-scroll hook for timeline
 function useAutoScroll(containerRef: React.RefObject<HTMLDivElement>, isVisible: boolean) {
   useEffect(() => {
@@ -64,7 +128,7 @@ function useAutoScroll(containerRef: React.RefObject<HTMLDivElement>, isVisible:
 
     const container = containerRef.current;
     let animationId: number;
-    let scrollSpeed = 0.5;
+    const scrollSpeed = 0.5;
     let isPaused = false;
 
     const scroll = () => {
@@ -99,8 +163,8 @@ function useCountUp(end: number, duration: number = 2000, isVisible: boolean = f
 
   useEffect(() => {
     if (!isVisible) {
-      setCount(0);
-      return;
+      const frame = requestAnimationFrame(() => setCount(0));
+      return () => cancelAnimationFrame(frame);
     }
 
     let start = 0;
@@ -124,7 +188,9 @@ function useCountUp(end: number, duration: number = 2000, isVisible: boolean = f
 }
 
 // Auto-Scroll Timeline Component
-function AutoScrollTimeline() {
+function AutoScrollTimeline({ locale }: { locale: Locale }) {
+  const t = getCoreTextTranslator(locale);
+
   return (
     <div
       className="timeline-scroll flex overflow-x-auto pb-8 pt-4 scroll-smooth"
@@ -182,7 +248,7 @@ function AutoScrollTimeline() {
 
               {/* Event Text */}
               <p className="text-charcoal leading-relaxed group-hover:text-[#0F6B3A] transition-colors duration-300">
-                {event.event}
+                {t(event.event)}
               </p>
             </div>
           </div>
@@ -449,7 +515,8 @@ function AnimatedCounter({ target, isVisible }: { target: number; isVisible: boo
       requestAnimationFrame(animate);
     } else if (!isVisible) {
       hasAnimated.current = false;
-      setCount(0);
+      const frame = requestAnimationFrame(() => setCount(0));
+      return () => cancelAnimationFrame(frame);
     }
   }, [isVisible, target]);
 
@@ -484,7 +551,8 @@ function AnimatedNumber({ value, isVisible }: { value: number; isVisible: boolea
       return () => clearInterval(timer);
     } else if (!isVisible) {
       hasAnimated.current = false;
-      setCount(0);
+      const frame = requestAnimationFrame(() => setCount(0));
+      return () => cancelAnimationFrame(frame);
     }
   }, [isVisible, value]);
 
@@ -630,12 +698,13 @@ const factorySections = [
   { title: "Packaging & Warehouse", description: "Secure packaging and storage" },
 ];
 
-export default function AboutPage() {
+export function AboutPageContent({ locale = "en" }: { locale?: Locale }) {
   const [heroVideoError, setHeroVideoError] = useState(false);
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const t = getCoreTextTranslator(locale);
 
   return (
-    <div className="bg-ivory">
+    <div className="bg-ivory" lang={locale} dir={localeDirections[locale]}>
       {/* Hero Banner with Video - Full Screen */}
       <section className="relative h-screen min-h-[600px] overflow-hidden">
         {heroVideoError && (
@@ -716,11 +785,11 @@ export default function AboutPage() {
           {/* Section Header - Match other pages format */}
           <div className="text-center mb-16">
             <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-              About Us
+              {t("About Us")}
             </span>
-            <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">Who We Are</h2>
+            <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">{t("Who We Are")}</h2>
             <p className="text-muted max-w-2xl mx-auto text-lg">
-              Professional manufacturer of high-quality wood panels since 1999
+              {t("Professional manufacturer of high-quality wood panels since 1999")}
             </p>
           </div>
           
@@ -732,30 +801,30 @@ export default function AboutPage() {
                 <div className="relative pl-10 border-l-2 border-[#0F6B3A]/30">
                   <span className="absolute left-0 -translate-x-1/2 -top-1 w-10 h-10 bg-[#0F6B3A] rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">01</span>
                   <h3 className="text-2xl lg:text-3xl font-bold text-[#1F2621] mb-4">
-                    Founded in 1999
+                    {t("Founded in 1999")}
                   </h3>
                   <p className="text-[#6b7280] text-lg leading-relaxed">
-                    Dongguan Tongli Timber Products Co., Ltd. is a professional manufacturer of high-quality <span className="text-[#0F6B3A] font-semibold">prefinished and unfinished veneer panels, fancy plywood, wood veneer, melamine boards, and 3D wood panels</span>.
+                    {t("Dongguan Tongli Timber Products Co., Ltd. is a professional manufacturer of high-quality prefinished and unfinished veneer panels, fancy plywood, wood veneer, melamine boards, and 3D wood panels.")}
                   </p>
                 </div>
 
                 <div className="relative pl-10 border-l-2 border-[#0F6B3A]/30">
                   <span className="absolute left-0 -translate-x-1/2 -top-1 w-10 h-10 bg-[#0F6B3A] rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">02</span>
                   <h3 className="text-2xl lg:text-3xl font-bold text-[#1F2621] mb-4">
-                    Scale & Capacity
+                    {t("Scale & Capacity")}
                   </h3>
                   <p className="text-[#6b7280] text-lg leading-relaxed">
-                    With <span className="text-[#0F6B3A] font-semibold">150+ employees</span>, an <span className="text-[#0F6B3A] font-semibold">18,000+ m² factory</span>, and annual output of <span className="text-[#0F6B3A] font-semibold">3.8 million+ sheets</span> of fancy plywood, we provide stable and customized wood solutions for furniture, doors, wall panels, cabinets, and hotel projects worldwide.
+                    {t("With 150+ employees, an 18,000+ m² factory, and annual output of 3.8 million+ sheets of fancy plywood, we provide stable and customized wood solutions for furniture, doors, wall panels, cabinets, and hotel projects worldwide.")}
                   </p>
                 </div>
 
                 <div className="relative pl-10 border-l-2 border-[#0F6B3A]/30">
                   <span className="absolute left-0 -translate-x-1/2 -top-1 w-10 h-10 bg-[#0F6B3A] rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg">03</span>
                   <h3 className="text-2xl lg:text-3xl font-bold text-[#1F2621] mb-4">
-                    Global Standards
+                    {t("Global Standards")}
                   </h3>
                   <p className="text-[#6b7280] text-lg leading-relaxed">
-                    Products supported by <span className="text-[#0F6B3A] font-semibold">CE, FSC, EPA, CARB, GMC, and SGS</span> certifications. Serving customers in <span className="text-[#0F6B3A] font-semibold">Southeast Asia, the Middle East, North America</span>, and other global markets, with long-term cooperation with <span className="text-[#0F6B3A] font-semibold">50+ brands and partners</span> worldwide.
+                    {t("Products supported by CE, FSC, EPA, CARB, GMC, and SGS certifications. Serving customers in Southeast Asia, the Middle East, North America, and other global markets, with long-term cooperation with 50+ brands and partners worldwide.")}
                   </p>
                 </div>
               </div>
@@ -773,7 +842,7 @@ export default function AboutPage() {
                     preload="metadata"
                   >
                     <source src="/videos/company-intro.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
+                    {t("Your browser does not support the video tag.")}
                   </video>
                 </div>
               </div>
@@ -804,9 +873,9 @@ export default function AboutPage() {
                   animation: `fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${index * 0.1}s both`
                 }}
               >
-                <p className="text-white/50 text-xs lg:text-sm uppercase tracking-widest mb-2">{stat.sublabel}</p>
+                <p className="text-white/50 text-xs lg:text-sm uppercase tracking-widest mb-2">{t(stat.sublabel)}</p>
                 <p className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-1">{stat.value}</p>
-                <p className="text-white/70 text-sm lg:text-base font-medium">{stat.label}</p>
+                <p className="text-white/70 text-sm lg:text-base font-medium">{t(stat.label)}</p>
                 <div className="w-8 h-0.5 bg-[#4C8A68] mx-auto mt-3 rounded-full group-hover:w-12 transition-all duration-300" />
               </div>
             ))}
@@ -843,11 +912,11 @@ export default function AboutPage() {
           {/* Section Header */}
           <div className="text-center mb-12">
             <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-              Our Facilities
+              {t("Our Facilities")}
             </span>
-            <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">Factory Tour</h2>
+            <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">{t("Factory Tour")}</h2>
             <p className="text-muted max-w-2xl mx-auto text-lg">
-              Explore our manufacturing facility with 360° VR tour and real production shots
+              {t("Explore our manufacturing facility with 360° VR tour and real production shots")}
             </p>
           </div>
 
@@ -860,7 +929,7 @@ export default function AboutPage() {
                 className="w-full h-[900px] lg:h-[1000px]"
                 allowFullScreen
                 loading="lazy"
-                title="360° VR Factory Tour"
+                title={t("360° VR Factory Tour")}
               />
               {/* Overlay Badge */}
               <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-2 flex items-center gap-3 shadow-lg z-10">
@@ -870,8 +939,8 @@ export default function AboutPage() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-bold text-charcoal text-sm">360° VR Tour</p>
-                  <p className="text-xs text-muted">Click & drag to explore</p>
+                  <p className="font-bold text-charcoal text-sm">{t("360° VR Tour")}</p>
+                  <p className="text-xs text-muted">{t("Click & drag to explore")}</p>
                 </div>
               </div>
             </div>
@@ -902,12 +971,12 @@ export default function AboutPage() {
                 <div key={i} className="relative flex-shrink-0 w-[420px] h-[300px] rounded-xl overflow-hidden shadow-xl group cursor-pointer">
                   <img
                     src={img.src}
-                    alt={img.label}
+                    alt={t(img.label)}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="text-white font-bold text-lg">{img.label}</p>
+                    <p className="text-white font-bold text-lg">{t(img.label)}</p>
                   </div>
                 </div>
               ))}
@@ -925,7 +994,7 @@ export default function AboutPage() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
               </svg>
-              View Full VR Tour
+              {t("View Full VR Tour")}
             </a>
           </div>
         </div>
@@ -939,11 +1008,11 @@ export default function AboutPage() {
           <div className="mb-20">
             <div className="text-center mb-12">
               <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Verified Standards
+                {t("Verified Standards")}
               </span>
-              <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">Certifications & Trust</h2>
+              <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">{t("Certifications & Trust")}</h2>
               <p className="text-muted max-w-2xl mx-auto text-lg">
-                Trusted by global partners with internationally recognized certifications
+                {t("Trusted by global partners with internationally recognized certifications")}
               </p>
             </div>
 
@@ -972,78 +1041,16 @@ export default function AboutPage() {
           <div>
         <div className="text-center mb-12">
               <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Client Feedback
+                {t("Client Feedback")}
               </span>
-              <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">What Our Partners Say</h2>
+              <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">{t("What Our Partners Say")}</h2>
               <p className="text-muted max-w-2xl mx-auto text-lg">
-                Trusted by furniture manufacturers and distributors worldwide
+                {t("Trusted by furniture manufacturers and distributors worldwide")}
               </p>
             </div>
 
             {/* Auto-scrolling Testimonials */}
-            {(() => {
-              const trackRef = useRef<HTMLDivElement>(null);
-              const [isPaused, setIsPaused] = useState(false);
-              useInfiniteScroll(trackRef, isPaused);
-              return (
-              <div
-                className="relative overflow-hidden"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-              >
-                {/* Fade masks */}
-                <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-                {/* Scrolling track — duplicated for seamless loop */}
-                <div ref={trackRef} className="flex w-max">
-                  {[...testimonials, ...testimonials].map((t, i) => {
-                    const colors = [
-                      ['from-[#0F6B3A]', 'to-[#124B34]'],
-                      ['from-[#8B5E3C]', 'to-[#6B4423]'],
-                      ['from-[#2C5F2D]', 'to-[#1A3D1B]'],
-                      ['from-[#FF6B35]', 'to-[#C94B1D]'],
-                      ['from-[#4A6741]', 'to-[#2D4A28]'],
-                      ['from-[#6B7280]', 'to-[#4B5563]'],
-                      ['from-[#0F6B3A]', 'to-[#8B5E3C]'],
-                      ['from-[#124B34]', 'to-[#2C5F2D]'],
-                    ];
-                    const [from, to] = colors[i % colors.length];
-                    return (
-                    <div key={i} className="flex-shrink-0 w-[380px] bg-gradient-to-br from-ivory to-white rounded-2xl p-8 shadow-lg border border-beige mx-3">
-                      {/* Quote Icon */}
-                      <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                        </svg>
-                      </div>
-                      {/* Stars */}
-                      <div className="flex gap-1 mb-4">
-                        {[...Array(5)].map((_, si) => (
-                          <svg key={si} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                          </svg>
-                        ))}
-                      </div>
-                      {/* Quote */}
-                      <p className="text-charcoal text-base leading-relaxed mb-6">"{t.text}"</p>
-                      {/* Author */}
-                      <div className="flex items-end gap-4">
-                        <div className={`w-12 h-12 flex-shrink-0 bg-gradient-to-br ${from} ${to} rounded-full flex items-center justify-center text-white font-bold text-base leading-none`}>
-                          {t.initials}
-                        </div>
-                        <div className="pb-1 min-w-0">
-                          <p className="font-bold text-charcoal text-sm truncate">{t.name}</p>
-                          <p className="text-xs text-muted leading-snug">{t.type} — {t.country}</p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                  })}
-                </div>
-              </div>
-              );
-            })()}
+            <TestimonialsCarousel locale={locale} />
           </div>
         </div>
       </section>
@@ -1066,13 +1073,13 @@ export default function AboutPage() {
         {/* Section Header */}
         <div className="text-center mb-16 px-6">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-            Our Legacy
+            {t("Our Legacy")}
           </span>
           <h2 className="text-4xl lg:text-5xl font-black text-charcoal mb-4">
-            Our Journey
+            {t("Our Journey")}
           </h2>
           <p className="text-muted max-w-xl mx-auto">
-            Building expertise and trust since 1999
+            {t("Building expertise and trust since 1999")}
           </p>
         </div>
 
@@ -1082,22 +1089,22 @@ export default function AboutPage() {
           <div className="absolute top-[120px] left-8 right-8 h-0.5 bg-gradient-to-r from-transparent via-[#0F6B3A]/20 to-transparent" />
           
           {/* Timeline Container - Auto-Scroll */}
-          <AutoScrollTimeline />
+          <AutoScrollTimeline locale={locale} />
         </div>
 
         {/* Bottom Stats */}
         <div className="grid grid-cols-3 gap-6 mt-12 px-8 lg:px-16 xl:px-24 max-w-4xl mx-auto">
           <div className="text-center">
             <div className="text-4xl lg:text-5xl font-black mb-2" style={{ color: "#0F6B3A" }}>25+</div>
-            <div className="text-sm text-muted uppercase tracking-wider">Years Experience</div>
+            <div className="text-sm text-muted uppercase tracking-wider">{t("Years Experience")}</div>
           </div>
           <div className="text-center border-x border-beige">
             <div className="text-4xl lg:text-5xl font-black mb-2" style={{ color: "#0F6B3A" }}>50+</div>
-            <div className="text-sm text-muted uppercase tracking-wider">Countries Served</div>
+            <div className="text-sm text-muted uppercase tracking-wider">{t("Countries Served")}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl lg:text-5xl font-black mb-2" style={{ color: "#0F6B3A" }}>1000+</div>
-            <div className="text-sm text-muted uppercase tracking-wider">Happy Clients</div>
+            <div className="text-sm text-muted uppercase tracking-wider">{t("Happy Clients")}</div>
           </div>
         </div>
       </section>
@@ -1114,13 +1121,13 @@ export default function AboutPage() {
         {/* Section Header */}
         <div className="relative text-center mb-16 px-6">
           <span className="inline-block text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-            What We Stand For
+            {t("What We Stand For")}
           </span>
           <h2 className="text-4xl lg:text-5xl xl:text-6xl font-black text-charcoal mb-4">
-            Our Core Values
+            {t("Our Core Values")}
           </h2>
           <p className="text-lg text-muted max-w-2xl mx-auto">
-            The principles that guide every decision and partnership
+            {t("The principles that guide every decision and partnership")}
           </p>
         </div>
 
@@ -1145,10 +1152,10 @@ export default function AboutPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{companyValues[0].title}</h3>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{t(companyValues[0].title)}</h3>
                 </div>
                 <p className="text-white/80 text-base leading-relaxed">
-                  {companyValues[0].description}
+                  {t(companyValues[0].description)}
                 </p>
               </div>
             </div>
@@ -1171,10 +1178,10 @@ export default function AboutPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{companyValues[1].title}</h3>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{t(companyValues[1].title)}</h3>
                 </div>
                 <p className="text-white/80 text-base leading-relaxed">
-                  {companyValues[1].description}
+                  {t(companyValues[1].description)}
                 </p>
               </div>
             </div>
@@ -1196,10 +1203,10 @@ export default function AboutPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{companyValues[2].title}</h3>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{t(companyValues[2].title)}</h3>
                 </div>
                 <p className="text-white/80 text-base leading-relaxed">
-                  {companyValues[2].description}
+                  {t(companyValues[2].description)}
                 </p>
               </div>
             </div>
@@ -1221,10 +1228,10 @@ export default function AboutPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                   </div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{companyValues[3].title}</h3>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white">{t(companyValues[3].title)}</h3>
                 </div>
                 <p className="text-white/80 text-base leading-relaxed">
-                  {companyValues[3].description}
+                  {t(companyValues[3].description)}
                 </p>
               </div>
             </div>
@@ -1255,39 +1262,39 @@ export default function AboutPage() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-5 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-8">
             <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            <span className="text-white/90 text-sm font-medium">Ready to Partner?</span>
+            <span className="text-white/90 text-sm font-medium">{t("Ready to Partner?")}</span>
           </div>
 
           {/* Main Heading */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 leading-tight">
-            Let's Build Something
+            {t("Let's Build Something")}
             <span className="block mt-2 text-white/90">
-              Extraordinary Together
+              {t("Extraordinary Together")}
             </span>
           </h2>
 
           {/* Subtext */}
           <p className="text-lg lg:text-xl text-white/80 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Tell us your product type, application, substrate, veneer species, size, finish and quantity. 
+            {t("Tell us your product type, application, substrate, veneer species, size, finish and quantity.")}
             <br className="hidden md:block" />
-            <span className="text-white font-medium">Tongli</span> will help you find the perfect material solution.
+            {t("Tongli will help you find the perfect material solution.")}
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 lg:gap-6">
-            <Link href="/contact" className="group relative inline-flex items-center gap-3 px-10 py-5 text-lg font-bold rounded-full text-white overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl">
+            <Link href={getSiteLink("/contact", locale)} className="group relative inline-flex items-center gap-3 px-10 py-5 text-lg font-bold rounded-full text-white overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl">
               <span className="absolute inset-0 bg-white rounded-full" />
               <span className="absolute inset-[2px] rounded-full bg-[#0F6B3A]" />
               <span className="relative flex items-center gap-3 text-white">
-                Start Your Project
+                {t("Start Your Project")}
                 <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
             </Link>
             
-            <Link href="/products" className="group relative inline-flex items-center gap-3 px-10 py-5 text-lg font-bold rounded-full border-2 border-white/30 text-white overflow-hidden transition-all duration-500 hover:border-white hover:bg-white/10">
-              <span className="text-white">View Products</span>
+            <Link href={getSiteLink("/products", locale)} className="group relative inline-flex items-center gap-3 px-10 py-5 text-lg font-bold rounded-full border-2 border-white/30 text-white overflow-hidden transition-all duration-500 hover:border-white hover:bg-white/10">
+              <span className="text-white">{t("View Products")}</span>
               <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
@@ -1305,7 +1312,7 @@ export default function AboutPage() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={badge.icon} />
                 </svg>
-                <span className="text-sm font-medium">{badge.text}</span>
+                <span className="text-sm font-medium">{t(badge.text)}</span>
               </div>
             ))}
           </div>
@@ -1313,4 +1320,8 @@ export default function AboutPage() {
       </section>
     </div>
   );
+}
+
+export default function AboutPage() {
+  return <AboutPageContent locale="en" />;
 }

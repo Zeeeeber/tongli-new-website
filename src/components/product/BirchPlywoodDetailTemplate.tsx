@@ -1,8 +1,9 @@
 "use client";
 
+import T from "@/i18n/full-site-context";
 import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "@/components/i18n/LocalizedLink";
+import { useMemo, useRef, useState } from "react";
 import { ContactFormModal } from "@/components/contact/ContactFormModal";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
 import { getSupportingBoardRelatedProducts } from "@/data/products/supporting-boards-products";
@@ -110,31 +111,25 @@ export function BirchPlywoodDetailTemplate({
     });
   };
 
-  useEffect(() => {
-    if (selectedImage >= productImages.length) {
-      setSelectedImage(0);
-    }
-  }, [productImages.length, selectedImage]);
-
   return (
     <>
       {/* Breadcrumb */}
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products" className="hover:text-[#0F6B3A]">Products</Link>
+            <Link href="/products" className="hover:text-[#0F6B3A]"><T>{"Products"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/products/supporting-boards" className="hover:text-[#0F6B3A]">Birch Plywood</Link>
+            <Link href="/products/supporting-boards" className="hover:text-[#0F6B3A]"><T>{"Birch Plywood"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium truncate max-w-[200px]">{product.name}</span>
+            <span className="text-[#1F2621] font-medium truncate max-w-[200px]"><T>{product.name}</T></span>
           </div>
         </div>
       </div>
@@ -147,7 +142,7 @@ export function BirchPlywoodDetailTemplate({
             <aside className="hidden md:block md:w-64 flex-shrink-0">
               <div className="bg-[#FDFBF7] rounded-2xl border border-[#E5E1D8] overflow-hidden sticky top-24">
                 <div className="px-5 py-4 border-b border-[#E5E1D8]">
-                  <h3 className="font-bold text-[#1F2621]">Product Categories</h3>
+                  <h3 className="font-bold text-[#1F2621]"><T>{"Product Categories"}</T></h3>
                 </div>
                 <nav className="py-2">
                   {sidebarCategories.map((cat) => (
@@ -160,7 +155,7 @@ export function BirchPlywoodDetailTemplate({
                           }}
                           className="w-full flex items-center justify-between px-5 py-3 text-sm text-[#6b7280] hover:bg-[#E5E1D8]/50 hover:text-[#1F2621] transition-colors"
                         >
-                          <span>{cat.name}</span>
+                          <span><T>{cat.name}</T></span>
                           <svg id={`chevron-${cat.name.replace(/\s+/g, "-")}`} className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                           </svg>
@@ -174,7 +169,7 @@ export function BirchPlywoodDetailTemplate({
                               : "text-[#6b7280] hover:bg-[#E5E1D8]/50 hover:text-[#1F2621]"
                           }`}
                         >
-                          {cat.name}
+                          <T>{cat.name}</T>
                         </Link>
                       )}
                       <div id={`cat-${cat.name.replace(/\s+/g, "-")}`} className="hidden bg-[#F7F3EC]">
@@ -184,7 +179,7 @@ export function BirchPlywoodDetailTemplate({
                             href={sub.href}
                             className="block pl-8 pr-5 py-2.5 text-sm text-[#6b7280] hover:text-[#1F2621] transition-colors"
                           >
-                            {sub.name}
+                            <T>{sub.name}</T>
                           </Link>
                         ))}
                       </div>
@@ -215,7 +210,7 @@ export function BirchPlywoodDetailTemplate({
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                           </svg>
                         </div>
-                        <span className="text-sm text-[#8B5E3C]/50">Product Image {selectedImage + 1}</span>
+                        <span className="text-sm text-[#8B5E3C]/50"><T>{"Product Image "}</T>{selectedImage + 1}</span>
                       </div>
                     )}
                   </div>
@@ -290,18 +285,18 @@ export function BirchPlywoodDetailTemplate({
                 {/* Product Info */}
                 <div>
                   <div className="mb-4">
-                    <span className="text-sm text-[#8B5E3C] font-medium">{product.category}</span>
+                    <span className="text-sm text-[#8B5E3C] font-medium"><T>{product.category}</T></span>
                     <span className="mx-2 text-[#E5E1D8]">|</span>
-                    <span className="text-sm text-[#6b7280]">Code: {product.code}</span>
+                    <span className="text-sm text-[#6b7280]"><T>{"Code: "}</T>{product.code}</span>
                   </div>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F2621] mb-4">{product.name}</h1>
-                  <p className="text-[#6b7280] leading-relaxed mb-6">{product.shortDesc}</p>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#1F2621] mb-4"><T>{product.name}</T></h1>
+                  <p className="text-[#6b7280] leading-relaxed mb-6"><T>{product.shortDesc}</T></p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-8">
                     {product.tags.map((tag) => (
                       <span key={tag} className="px-3 py-1 bg-[#F7F3EC] rounded-full text-xs font-medium text-[#1F2621]">
-                        {tag}
+                        <T>{tag}</T>
                       </span>
                     ))}
                   </div>
@@ -314,8 +309,7 @@ export function BirchPlywoodDetailTemplate({
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                         </svg>
                         <Link href="/about" className="hover:text-[#0F6B3A] transition-colors">
-                          About Us
-                        </Link>
+                          <T>{"About Us\n                        "}</T></Link>
                         <span className="flex items-center gap-1.5 ml-1">
                           <a href="https://www.instagram.com/tongliwood?igsh=ODdrNnc2YmpicWR3&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-7 h-7 flex items-center justify-center rounded-full hover:bg-[#0F6B3A]/10 transition-colors">
                             <Image src="/images/social/icons8-instagram-50.svg" alt="Instagram" width={22} height={22} />
@@ -335,8 +329,7 @@ export function BirchPlywoodDetailTemplate({
                         </span>
                       </h3>
                       <p className="text-sm text-[#6b7280] leading-relaxed">
-                        We are a 25+ year manufacturer specializing in producing wooden products of veneer plywood, veneer mdf, commercial plywood and wood veneer sheets with more than 95% repurchase rate.
-                      </p>
+                        <T>{"We are a 25+ year manufacturer specializing in producing wooden products of veneer plywood, veneer mdf, commercial plywood and wood veneer sheets with more than 95% repurchase rate.\n                      "}</T></p>
                     </div>
                   </div>
 
@@ -346,8 +339,7 @@ export function BirchPlywoodDetailTemplate({
                       href="/contact"
                       className="flex-1 min-w-[120px] px-4 py-3 bg-[#0F6B3A] text-white text-center rounded-lg font-semibold hover:bg-[#124B34] transition-colors"
                     >
-                      CONTACT US
-                    </Link>
+                      <T>{"CONTACT US\n                    "}</T></Link>
                     <a
                       href="https://wa.me/message/2DMHTU2VVZTKC1"
                       target="_blank"
@@ -357,8 +349,7 @@ export function BirchPlywoodDetailTemplate({
                       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                       </svg>
-                      WHATSAPP
-                    </a>
+                      <T>{"WHATSAPP\n                    "}</T></a>
                   </div>
 
 
@@ -373,7 +364,7 @@ export function BirchPlywoodDetailTemplate({
       {/* Related Products */}
       <section className="py-10 sm:py-16 bg-[#FDFBF7]">
         <div className="container mx-auto px-4 sm:px-6">
-          <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-8">Related Products</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-8"><T>{"Related Products"}</T></h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts.length > 0 ? (
               relatedProducts.map((relatedProduct) => {
@@ -405,13 +396,13 @@ export function BirchPlywoodDetailTemplate({
                         </div>
                       )}
                       <div className="absolute inset-0 bg-[#0F6B3A]/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm">View Details</span>
+                        <span className="px-4 py-2 bg-white text-[#0F6B3A] rounded-lg font-medium text-sm"><T>{"View Details"}</T></span>
                       </div>
                     </div>
                     <div className="p-4">
                       <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">{relatedLabel}</span>
-                      <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">{relatedProduct.name}</h3>
-                      <p className="text-sm text-[#6b7280] line-clamp-3">{relatedProduct.shortDesc}</p>
+                      <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2"><T>{relatedProduct.name}</T></h3>
+                      <p className="text-sm text-[#6b7280] line-clamp-3"><T>{relatedProduct.shortDesc}</T></p>
                     </div>
                   </Link>
                 );
@@ -432,9 +423,9 @@ export function BirchPlywoodDetailTemplate({
                     </div>
                   </div>
                   <div className="p-4">
-                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]">Birch Plywood</span>
-                    <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2">Related Product</h3>
-                    <p className="text-sm text-[#6b7280] line-clamp-3">More birch plywood products will appear here.</p>
+                    <span className="inline-flex items-center rounded-full bg-[#F7F3EC] px-3 py-1 text-[11px] font-medium text-[#0F6B3A]"><T>{"Birch Plywood"}</T></span>
+                    <h3 className="font-semibold text-[#1F2621] mt-3 mb-2 line-clamp-2"><T>{"Related Product"}</T></h3>
+                    <p className="text-sm text-[#6b7280] line-clamp-3"><T>{"More birch plywood products will appear here."}</T></p>
                   </div>
                 </div>
               ))
@@ -447,7 +438,7 @@ export function BirchPlywoodDetailTemplate({
       <section className="py-10 sm:py-16 bg-white">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-5">Detailed Specifications</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-[#1F2621] mb-5"><T>{"Detailed Specifications"}</T></h2>
             <div className="rounded-xl overflow-hidden border border-[#E5E1D8] shadow-sm overflow-x-auto">
               <table className="w-full min-w-[600px]">
                 <tbody>
@@ -501,10 +492,10 @@ export function BirchPlywoodDetailTemplate({
                       className={`group transition-colors ${index % 2 === 0 ? "bg-[#FDFBF7]" : "bg-white/60"} hover:bg-[#0F6B3A]/5 border-b border-[#E5E1D8] last:border-b-0`}
                     >
                       <td className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-sm font-semibold text-[#0F6B3A] w-32 sm:w-44 align-middle pr-3 sm:pr-4 border-r border-[#E5E1D8]">
-                        {row.label}
+                        <T>{row.label}</T>
                       </td>
                       <td className="px-3 sm:px-5 py-3 sm:py-4 text-xs sm:text-sm text-[#6b7280] align-top">
-                        {row.value}
+                        <T>{row.value}</T>
                       </td>
                     </tr>
                   ))}
@@ -522,21 +513,21 @@ export function BirchPlywoodDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">{product.category}</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Birch Plywood Manufacturer</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable birch plywood panels for furniture, construction, interior decoration and industrial use.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Tongli Timber supplies birch plywood with stable core structure, smooth surface and multiple size, thickness and grade options. It is suitable for furniture manufacturing, cabinet production, interior decoration, construction projects, flooring base, packaging and other applications that require strength, stability and clean panel appearance.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{product.category}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Birch Plywood Manufacturer"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Stable birch plywood panels for furniture, construction, interior decoration and industrial use."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Tongli Timber supplies birch plywood with stable core structure, smooth surface and multiple size, thickness and grade options. It is suitable for furniture manufacturing, cabinet production, interior decoration, construction projects, flooring base, packaging and other applications that require strength, stability and clean panel appearance."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3 mb-6 sm:mb-8">
                   {["Birch plywood for furniture and construction use", "Smooth surface and stable plywood structure", "Multiple thickness and surface grade options", "Standard and extended sizes available", "Suitable for cutting, sanding, coating and further processing", "Export packaging and bulk order support"].map((point) => (
                     <div key={point} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{point}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{point}</T></span>
                     </div>
                   ))}
                 </div>
-                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors">Request A Sample</button>
+                <button onClick={() => setShowContactModal(true)} className="px-8 py-4 bg-[#0F6B3A] text-white rounded-lg font-semibold hover:bg-[#124B34] transition-colors"><T>{"Request A Sample"}</T></button>
               </div>
               <div className="w-full md:w-1/2">
                 <div className="w-full rounded-2xl overflow-hidden">
@@ -564,17 +555,17 @@ export function BirchPlywoodDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Real Shots</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Real Birch Plywood Details for Quality Checking</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Check surface appearance, edge structure and plywood layers before ordering.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our real product photos show the surface texture, panel edge, plywood layers and overall board quality from different angles. Birch plywood is known for its light color, clean surface and stable laminated structure. Before bulk production, customers can confirm samples, grades, thickness and surface quality according to their final application.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Real Shots"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Real Birch Plywood Details for Quality Checking"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Check surface appearance, edge structure and plywood layers before ordering."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Our real product photos show the surface texture, panel edge, plywood layers and overall board quality from different angles. Birch plywood is known for its light color, clean surface and stable laminated structure. Before bulk production, customers can confirm samples, grades, thickness and surface quality according to their final application."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Sample confirmation before bulk order", "Surface grade checking", "Edge and core structure inspection", "Furniture and cabinet material approval", "Project material comparison and selection"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -588,17 +579,17 @@ export function BirchPlywoodDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Product Features</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Stable Performance for Furniture, Interior and Project Use</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A strong plywood solution with good processing performance and practical durability.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Birch plywood offers a balanced combination of strength, stability and surface quality. With proper glue and production control, it can provide good resistance to daily moisture, steam and temperature changes. Low-emission glue options are also available for customers who need safer interior materials.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Product Features"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Stable Performance for Furniture, Interior and Project Use"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"A strong plywood solution with good processing performance and practical durability."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Birch plywood offers a balanced combination of strength, stability and surface quality. With proper glue and production control, it can provide good resistance to daily moisture, steam and temperature changes. Low-emission glue options are also available for customers who need safer interior materials."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Low water absorption rate", "Low-emission glue options available", "Good resistance to boiling water and steam with suitable glue", "Stable color and UV-resistant surface options", "Strong plywood structure for further processing", "Smooth surface for coating, laminating or finishing"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -622,17 +613,17 @@ export function BirchPlywoodDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Product Application</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Widely Used in Furniture, Construction and Interior Projects</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">A versatile plywood material for both decorative and structural applications.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Birch plywood is widely used in furniture, cabinets, shelves, flooring base, wall panels, construction projects, packaging, toys and interior decoration. Its stable structure and clean surface make it suitable for both visible decorative surfaces and hidden structural parts.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Product Application"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Widely Used in Furniture, Construction and Interior Projects"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"A versatile plywood material for both decorative and structural applications."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Birch plywood is widely used in furniture, cabinets, shelves, flooring base, wall panels, construction projects, packaging, toys and interior decoration. Its stable structure and clean surface make it suitable for both visible decorative surfaces and hidden structural parts."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Furniture and cabinet manufacturing", "Shelves, drawers and storage systems", "Wall panels and interior decoration", "Flooring base and construction projects", "Packaging and industrial panels", "Wooden toys and craft products"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -646,17 +637,17 @@ export function BirchPlywoodDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Company Profile</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">A Plywood and Decorative Panel Supplier Since 1999</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Supporting global buyers with stable production, customization and export service.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in plywood, veneer plywood, fancy plywood, natural wood veneer, engineered veneer, UV coated panels and other decorative wood-based materials. With years of production experience and export service, we provide birch plywood and related panel solutions for furniture factories, construction suppliers, distributors and project buyers.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Company Profile"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"A Plywood and Decorative Panel Supplier Since 1999"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Supporting global buyers with stable production, customization and export service."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Dongguan Tongli Timber Products Co., Ltd. was established in 1999 and specializes in plywood, veneer plywood, fancy plywood, natural wood veneer, engineered veneer, UV coated panels and other decorative wood-based materials. With years of production experience and export service, we provide birch plywood and related panel solutions for furniture factories, construction suppliers, distributors and project buyers."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Established in 1999", "Experienced in plywood and veneer panel production", "Multiple sizes, thicknesses and surface grades available", "Support for samples, customization and bulk orders", "Export packaging and container loading support", "Serving furniture, construction and interior project customers worldwide"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -680,17 +671,17 @@ export function BirchPlywoodDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Certifications</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Certification and Document Support for Global Buyers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Helping customers complete supplier evaluation, import review and project approval.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">For international buyers, supplier qualification and product documentation are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company documents according to different market and project requirements, helping customers reduce sourcing risk and complete supplier approval more efficiently.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Certifications"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Certification and Document Support for Global Buyers"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Helping customers complete supplier evaluation, import review and project approval."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"For international buyers, supplier qualification and product documentation are important for purchasing decisions. Tongli Timber can provide related certificates, test reports and company documents according to different market and project requirements, helping customers reduce sourcing risk and complete supplier approval more efficiently."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["SGS-related test reports", "CE / GMC certificate support", "FSC-related documentation when required", "Company qualification documents", "Export and project approval support", "Material documents for buyer review"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -704,17 +695,17 @@ export function BirchPlywoodDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Customer Feedback</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Trusted by Overseas Buyers and Repeat Customers</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Stable quality, clear communication and reliable delivery support long-term cooperation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our customers value stable panel quality, accurate sample confirmation and reliable shipment support. From plywood grade selection to size, thickness, packaging and delivery communication, we help overseas buyers reduce sourcing risk and make the purchasing process more efficient.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Customer Feedback"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Trusted by Overseas Buyers and Repeat Customers"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Stable quality, clear communication and reliable delivery support long-term cooperation."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Our customers value stable panel quality, accurate sample confirmation and reliable shipment support. From plywood grade selection to size, thickness, packaging and delivery communication, we help overseas buyers reduce sourcing risk and make the purchasing process more efficient."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Clear sample confirmation before production", "Stable plywood quality for repeat orders", "Accurate size and thickness communication", "Proper packaging for international shipping", "Reliable delivery and after-sales follow-up", "Support for long-term supply cooperation"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -738,17 +729,17 @@ export function BirchPlywoodDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Dimension Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Standard and Extended Sizes Available</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Flexible dimensions for furniture production, construction and project orders.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">We provide standard and extended birch plywood sizes to meet different production and project needs. Sample sizes are available for material checking, while larger formats can support furniture, wall panels, flooring base and construction applications.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Dimension Options"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Standard and Extended Sizes Available"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Flexible dimensions for furniture production, construction and project orders."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"We provide standard and extended birch plywood sizes to meet different production and project needs. Sample sizes are available for material checking, while larger formats can support furniture, wall panels, flooring base and construction applications."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Sample size: 300×200mm", "Standard size: 2440×1220mm", "Extended size: 3050×1220mm", "Extended size: 3050×1525mm", "Custom size available upon request"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -762,17 +753,17 @@ export function BirchPlywoodDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Thickness Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Multiple Thickness Options for Different Applications</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose the right thickness according to strength, weight and processing needs.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Birch plywood can be supplied in different thicknesses to match various applications. Thin panels are suitable for lightweight furniture, backing panels and craft products, while thicker panels can be used for cabinets, shelves, construction panels and stronger structural parts.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Thickness Options"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Multiple Thickness Options for Different Applications"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Choose the right thickness according to strength, weight and processing needs."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Birch plywood can be supplied in different thicknesses to match various applications. Thin panels are suitable for lightweight furniture, backing panels and craft products, while thicker panels can be used for cabinets, shelves, construction panels and stronger structural parts."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["4mm", "6mm", "9mm", "12mm", "15mm", "18mm", "21mm", "24mm", "Custom thickness available upon request"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -796,17 +787,17 @@ export function BirchPlywoodDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Surface Grade Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Different Surface Grades for Different Quality Requirements</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Select the suitable plywood grade according to appearance, budget and final use.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Different projects require different surface grades. We provide surface grade options such as B, BB, CP and other grades according to customer requirements. Higher grades are suitable for visible surfaces, furniture and decorative use, while more economical grades can be used for construction, packaging or hidden structural applications.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Surface Grade Options"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Different Surface Grades for Different Quality Requirements"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Select the suitable plywood grade according to appearance, budget and final use."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Different projects require different surface grades. We provide surface grade options such as B, BB, CP and other grades according to customer requirements. Higher grades are suitable for visible surfaces, furniture and decorative use, while more economical grades can be used for construction, packaging or hidden structural applications."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["B grade for cleaner visible surfaces", "BB grade for furniture and general panel use", "CP grade for economical production needs", "Different face and back grade combinations available", "Grade selection according to final application"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -820,17 +811,17 @@ export function BirchPlywoodDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Surface Treatment Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Surface Treatment Options for Further Processing</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Choose sanding, brushing, painting or UV coating according to your production needs.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Birch plywood can be supplied as raw sanded panels or further processed with different surface treatments. Depending on the final application, customers can choose sanded, brushed, open paint, closed paint, semi-open paint, water-based paint or UV coated finishes. These options help improve appearance, touch feeling and processing efficiency.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Surface Treatment Options"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Surface Treatment Options for Further Processing"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Choose sanding, brushing, painting or UV coating according to your production needs."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Birch plywood can be supplied as raw sanded panels or further processed with different surface treatments. Depending on the final application, customers can choose sanded, brushed, open paint, closed paint, semi-open paint, water-based paint or UV coated finishes. These options help improve appearance, touch feeling and processing efficiency."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Sanded surface", "Brushed texture", "Open paint finish", "Closed paint finish", "Semi-open paint finish", "Water-based paint", "UV coated finish", "Custom surface treatment available"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -854,17 +845,17 @@ export function BirchPlywoodDetailTemplate({
                 </div>
               </div>
               <div className="flex-1 order-1 md:order-2">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Production Process</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Controlled Production Process for Stable Plywood Quality</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">From veneer selection to pressing, sanding and inspection, each step supports consistency.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Our birch plywood production includes selecting and grading, core assembling, adjusting, cold pressing, repairing, veneer laminating, hot pressing, cutting edge, sanding, quality inspection and packing. Through controlled production steps, we help ensure stable board structure, better bonding quality and smoother surface performance.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Production Process"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Controlled Production Process for Stable Plywood Quality"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"From veneer selection to pressing, sanding and inspection, each step supports consistency."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Our birch plywood production includes selecting and grading, core assembling, adjusting, cold pressing, repairing, veneer laminating, hot pressing, cutting edge, sanding, quality inspection and packing. Through controlled production steps, we help ensure stable board structure, better bonding quality and smoother surface performance."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Selecting and grading", "Core assembling", "Adjusting", "Cold pressing", "Repairing", "Veneer laminating", "Hot pressing", "Edge cutting", "Sanding", "Quality inspection", "Packing"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -878,17 +869,17 @@ export function BirchPlywoodDetailTemplate({
           <div className="container mx-auto px-4 sm:px-6">
             <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
               <div className="flex-1">
-                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3">Packaging Options</p>
-                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3">Export Packaging for Samples, Bulk Orders and Custom Shipments</h2>
-                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic">Protecting plywood panels during storage, handling and international transportation.</p>
-                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6">Proper packaging is important for birch plywood because panels need to be protected from surface damage, edge impact and moisture during transportation. We provide sample packaging, bulk loading, custom packaging and wooden frame packaging according to order quantity and shipping requirements.</p>
+                <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-wider mb-2 sm:mb-3"><T>{"Packaging Options"}</T></p>
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#1F2621] mb-3"><T>{"Export Packaging for Samples, Bulk Orders and Custom Shipments"}</T></h2>
+                <p className="text-sm text-[#8B5E3C] mb-4 sm:mb-6 italic"><T>{"Protecting plywood panels during storage, handling and international transportation."}</T></p>
+                <p className="text-[#6b7280] text-sm leading-relaxed mb-4 sm:mb-6"><T>{"Proper packaging is important for birch plywood because panels need to be protected from surface damage, edge impact and moisture during transportation. We provide sample packaging, bulk loading, custom packaging and wooden frame packaging according to order quantity and shipping requirements."}</T></p>
                 <div className="grid grid-cols-1 gap-2 sm:gap-3">
                   {["Sample packaging", "Bulk container loading", "Custom packaging", "Wooden frame packaging", "Export pallet support", "Protective packing for panel edges and surfaces", "Packaging can be customized according to customer requirements"].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-5 h-5 rounded-full bg-[#0F6B3A]/10 flex items-center justify-center flex-shrink-0">
                         <svg className="w-3 h-3 text-[#0F6B3A]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
                       </div>
-                      <span className="text-sm text-[#6b7280]">{item}</span>
+                      <span className="text-sm text-[#6b7280]"><T>{item}</T></span>
                     </div>
                   ))}
                 </div>
@@ -908,10 +899,10 @@ export function BirchPlywoodDetailTemplate({
         <div className="container mx-auto px-4 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-8 sm:mb-12">
-              <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-widest mb-2 sm:mb-3">FAQ</p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
+              <p className="text-[10px] sm:text-xs font-semibold text-[#0F6B3A] uppercase tracking-widest mb-2 sm:mb-3"><T>{"FAQ"}</T></p>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1F2621]"><T>{"Frequently Asked Questions"}</T></h2>
               <div className="w-12 sm:w-16 h-1 bg-[#0F6B3A] mx-auto mt-3 sm:mt-4 rounded-full"></div>
-              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm">Everything you need to know about our birch plywood</p>
+              <p className="text-[#6b7280] mt-3 sm:mt-4 text-xs sm:text-sm"><T>{"Everything you need to know about our birch plywood"}</T></p>
             </div>
 
             <div className="space-y-3">
@@ -928,7 +919,7 @@ export function BirchPlywoodDetailTemplate({
                       <span className="text-xs font-bold text-[#0F6B3A] bg-[#0F6B3A]/10 px-3 py-1.5 rounded-lg mt-0.5 flex-shrink-0">
                         0{index + 1}
                       </span>
-                      <span className="text-[#1F2621] font-medium pr-4 leading-relaxed text-sm lg:text-base">{faq.q}</span>
+                      <span className="text-[#1F2621] font-medium pr-4 leading-relaxed text-sm lg:text-base"><T>{faq.q}</T></span>
                     </div>
                     <div className={`w-8 h-8 rounded-full border flex items-center justify-center flex-shrink-0 transition-all duration-300 ${openFaq === index ? "bg-[#0F6B3A] border-[#0F6B3A] rotate-45" : "border-[#E5E1D8] group-hover:border-[#0F6B3A]/50"}`}>
                       <svg className={`w-4 h-4 transition-colors duration-300 ${openFaq === index ? "text-white" : "text-[#6b7280] group-hover:text-[#0F6B3A]"}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -938,7 +929,7 @@ export function BirchPlywoodDetailTemplate({
                   </button>
                   <div className={`overflow-hidden transition-all duration-500 ease-in-out ${openFaq === index ? "max-h-60" : "max-h-0"}`}>
                     <div className="px-4 sm:px-6 pb-5 sm:pb-6 ml-10 sm:ml-20 text-[#6b7280] leading-relaxed text-xs sm:text-sm border-t border-[#F7F3EC] pt-4">
-                      {faq.a}
+                      <T>{faq.a}</T>
                     </div>
                   </div>
                 </div>

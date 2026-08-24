@@ -1,11 +1,14 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { featuredProducts } from "@/data/featured-products";
 import ProjectModal, { type Project } from "@/components/projects/ProjectModal";
 import { projects as allProjects } from "@/data/projects";
+import { getSiteLink, localeDirections, type Locale } from "@/i18n/config";
+import { getCoreTextTranslator } from "@/i18n/core-text";
+import { projectsPageCopy } from "@/i18n/core-page-copy";
 
 const homeResourceCards = [
   {
@@ -69,10 +72,10 @@ function useCountUp(end: number, duration: number = 2000, start: number = 0, isV
 
   useEffect(() => {
     if (!isVisible) {
-      setCount(start);
       startRef.current = null;
       startedRef.current = false;
-      return;
+      const frame = requestAnimationFrame(() => setCount(start));
+      return () => cancelAnimationFrame(frame);
     }
 
     const animate = (currentTime: number) => {
@@ -151,14 +154,15 @@ function useInView(threshold: number = 0.3) {
 }
 
 // Animated Stats Section
-function AnimatedStats() {
+function AnimatedStats({ locale }: { locale: Locale }) {
+  const t = getCoreTextTranslator(locale);
   const { ref, isInView } = useInView(0.3);
 
   const stats = [
-    { value: 1999, suffix: "", label: "Established", sublabel: "Years of Excellence" },
-    { value: 18, suffix: ",000㎡", label: "Factory Area", sublabel: "Production Capacity" },
-    { value: 100, suffix: "+", label: "Skilled Workers", sublabel: "Expert Team" },
-    { value: 380, suffix: ",000+", label: "Sheets/Year", sublabel: "Annual Output" },
+    { value: 1999, suffix: "", label: t("Established"), sublabel: t("Years of Excellence") },
+    { value: 18, suffix: ",000㎡", label: t("Factory Area"), sublabel: t("Production Capacity") },
+    { value: 100, suffix: "+", label: t("Skilled Workers"), sublabel: t("Expert Team") },
+    { value: 380, suffix: ",000+", label: t("Sheets/Year"), sublabel: t("Annual Output") },
   ];
 
   return (
@@ -179,10 +183,10 @@ function AnimatedStats() {
       {/* About Page Link */}
       <div className="text-center mt-8">
         <Link 
-          href="/about" 
+          href={getSiteLink("/about", locale)}
           className="group inline-flex items-center gap-2 text-sm font-medium text-[#8B5E3C] hover:text-[#0F6B3A] transition-colors"
         >
-          <span>Learn more about our factory and capabilities</span>
+          <span>{t("Learn more about our factory and capabilities")}</span>
           <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
@@ -208,7 +212,8 @@ function StatItem({ value, suffix, label, sublabel, delay, isVisible }: {
       const timer = setTimeout(() => setShow(true), 100);
       return () => clearTimeout(timer);
     } else {
-      setShow(false);
+      const frame = requestAnimationFrame(() => setShow(false));
+      return () => cancelAnimationFrame(frame);
     }
   }, [isVisible]);
 
@@ -239,7 +244,9 @@ function StatItem({ value, suffix, label, sublabel, delay, isVisible }: {
   );
 }
 
-export default function HomePage() {
+export function HomePageContent({ locale }: { locale: Locale }) {
+  const t = getCoreTextTranslator(locale);
+  const projectCopy = projectsPageCopy[locale];
   const [loaded, setLoaded] = useState(false);
   const { scrollRef, scroll } = useHorizontalScroll();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -250,18 +257,19 @@ export default function HomePage() {
   );
 
   useEffect(() => {
-    setLoaded(true);
+    const frame = requestAnimationFrame(() => setLoaded(true));
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   return (
-    <>
+    <div lang={locale} dir={localeDirections[locale]}>
       {/* Hero Section - Full Screen */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Background with banner image */}
         <div className="absolute inset-0">
         <Image
             src="/banner.jpg"
-            alt="Tongli Timber - Premium Wood Materials"
+            alt={t("Tongli Timber - Premium Wood Materials")}
             fill
             className="object-cover object-center"
           priority
@@ -302,18 +310,18 @@ export default function HomePage() {
 
             {/* Welcome tag */}
             <p className="text-white/40 text-xs tracking-[0.4em] uppercase mb-8">
-              Factory Direct • Since 1999
+              {t("Factory Direct • Since 1999")}
             </p>
 
             {/* Main heading */}
             <h1 className="text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[7rem] font-bold text-white leading-[0.9] tracking-tight mb-8">
-              Wood Veneer Panel<br />
-              <span className="text-[#4C8A68]">& Wood Veneer</span>
+              {t("Wood Veneer Panel")}<br />
+              <span className="text-[#4C8A68]">{t("& Wood Veneer")}</span>
           </h1>
 
             {/* Subheading */}
             <p className="text-lg sm:text-xl text-white/50 mb-10 font-light leading-relaxed max-w-xl">
-              Crafting premium natural and engineered wood veneer panels from our state-of-the-art manufacturing facility. Trusted by architects and designers worldwide.
+              {t("Crafting premium natural and engineered wood veneer panels from our state-of-the-art manufacturing facility. Trusted by architects and designers worldwide.")}
             </p>
 
             {/* Divider line */}
@@ -323,11 +331,11 @@ export default function HomePage() {
             <div className={`flex flex-wrap gap-x-8 gap-y-3 transition-all duration-1000 delay-500 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
               {/* Products Link */}
               <Link
-                href="/products"
+                href={getSiteLink("/products", locale)}
                 className="group relative flex items-center gap-3 py-2 px-1 border-b-2 border-transparent hover:border-primary transition-all duration-300"
               >
                 <span className="text-sm font-bold text-white/90 group-hover:text-white transition-colors duration-300">
-                  Products
+                  {t("Products")}
                 </span>
                 <svg className="w-4 h-4 text-primary-light group-hover:translate-x-2 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -339,11 +347,11 @@ export default function HomePage() {
               
               {/* About Link */}
               <Link
-                href="/about"
+                href={getSiteLink("/about", locale)}
                 className="group relative flex items-center gap-3 py-2 px-1 border-b-2 border-transparent hover:border-white/40 transition-all duration-300"
               >
                 <span className="text-sm font-bold text-white/50 group-hover:text-white/80 transition-colors duration-300">
-                  About
+                  {t("About")}
                 </span>
                 <svg className="w-4 h-4 text-white/30 group-hover:translate-x-2 group-hover:text-white/50 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -355,11 +363,11 @@ export default function HomePage() {
               
               {/* Contact Link */}
               <Link
-                href="/contact"
+                href={getSiteLink("/contact", locale)}
                 className="group relative flex items-center gap-3 py-2 px-1 border-b-2 border-transparent hover:border-white/40 transition-all duration-300"
               >
                 <span className="text-sm font-bold text-white/50 group-hover:text-white/80 transition-colors duration-300">
-                  Contact
+                  {t("Contact")}
                 </span>
                 <svg className="w-4 h-4 text-white/30 group-hover:translate-x-2 group-hover:text-white/50 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -369,10 +377,10 @@ export default function HomePage() {
               {/* Request Quote CTA */}
               <div className="ml-4 pl-4 border-l border-white/20">
                 <Link
-                  href="/contact"
+                  href={getSiteLink("/contact", locale)}
                   className="group inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-primary border border-white/20 hover:border-primary rounded-full text-sm font-bold text-white transition-all duration-300 backdrop-blur-sm"
                 >
-                  <span>Request Quote</span>
+                  <span>{t("Request Quote")}</span>
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
                   </svg>
@@ -404,7 +412,7 @@ export default function HomePage() {
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F6B3A] via-[#4C8A68] to-[#8B5E3C]" />
 
         <div className="container-page py-4">
-          <AnimatedStats />
+          <AnimatedStats locale={locale} />
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#E9E0D2] to-transparent" />
@@ -417,13 +425,13 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 lg:mb-14">
             <div>
               <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Our Products
+                {t("Our Products")}
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-4 sm:mb-6 leading-tight">Comprehensive Wood<br className="hidden sm:block" /> Surface Solutions</h2>
-              <p className="text-base sm:text-lg lg:text-xl text-[#6b7280] max-w-3xl">Premium materials crafted for furniture, doors, cabinetry, and interior applications worldwide</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-4 sm:mb-6 leading-tight">{t("Comprehensive Wood")}<br className="hidden sm:block" /> {t("Surface Solutions")}</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-[#6b7280] max-w-3xl">{t("Premium materials crafted for furniture, doors, cabinetry, and interior applications worldwide")}</p>
             </div>
-            <Link href="/products" className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
-              <span>View All Products</span>
+            <Link href={getSiteLink("/products", locale)} className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
+              <span>{t("View All Products")}</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -440,17 +448,17 @@ export default function HomePage() {
             >
               <Image
                 src="/images/products/wood_veneer_panels.png"
-                alt="Wood Veneer Panels"
+                alt={t("Wood Veneer Panels")}
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-[#0F6B3A] text-white text-xs sm:text-sm font-bold rounded-full">Core Product</span>
+                <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-[#0F6B3A] text-white text-xs sm:text-sm font-bold rounded-full">{t("Core Product")}</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8">
-                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 group-hover:text-[#4C8A68] transition-colors">Wood Veneer Panels</h3>
-                <p className="text-white/70 text-sm sm:text-base line-clamp-2">Natural & engineered veneer pressed onto plywood, MDF, particleboard and blockboard substrates</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-2 group-hover:text-[#4C8A68] transition-colors">{t("Wood Veneer Panels")}</h3>
+                <p className="text-white/70 text-sm sm:text-base line-clamp-2">{t("Natural & engineered veneer pressed onto plywood, MDF, particleboard and blockboard substrates")}</p>
               </div>
             </Link>
 
@@ -468,11 +476,11 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 bg-[#8B5E3C] text-white text-xs font-semibold rounded-full">Natural</span>
+                <span className="px-3 py-1 bg-[#8B5E3C] text-white text-xs font-semibold rounded-full">{t("Natural")}</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-5">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-[#C9A87C] transition-colors">Natural Wood Veneer</h3>
-                <p className="text-white/60 text-sm">Oak, Walnut, Teak, 80+ species</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-[#C9A87C] transition-colors">{t("Natural Wood Veneer")}</h3>
+                <p className="text-white/60 text-sm">{t("Oak, Walnut, Teak, 80+ species")}</p>
               </div>
             </Link>
 
@@ -490,11 +498,11 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute top-4 left-4">
-                <span className="px-3 py-1 bg-[#4C8A68] text-white text-xs font-semibold rounded-full">Engineered</span>
+                <span className="px-3 py-1 bg-[#4C8A68] text-white text-xs font-semibold rounded-full">{t("Engineered")}</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-5">
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-[#6db88a] transition-colors">Engineered Veneer</h3>
-                <p className="text-white/60 text-sm">300+ consistent patterns</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 group-hover:text-[#6db88a] transition-colors">{t("Engineered Veneer")}</h3>
+                <p className="text-white/60 text-sm">{t("300+ consistent patterns")}</p>
               </div>
             </Link>
 
@@ -514,7 +522,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-base font-bold text-white group-hover:text-[#4C8A68] transition-colors">3D Wood Panels</h3>
+                  <h3 className="text-base font-bold text-white group-hover:text-[#4C8A68] transition-colors">{t("3D Wood Panels")}</h3>
                 </div>
               </Link>
 
@@ -532,7 +540,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-base font-bold text-white group-hover:text-[#4C8A68] transition-colors">Veneer Edge Banding</h3>
+                  <h3 className="text-base font-bold text-white group-hover:text-[#4C8A68] transition-colors">{t("Veneer Edge Banding")}</h3>
                 </div>
               </Link>
 
@@ -550,7 +558,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-base font-bold text-white group-hover:text-[#C9A87C] transition-colors">Melamine Board</h3>
+                  <h3 className="text-base font-bold text-white group-hover:text-[#C9A87C] transition-colors">{t("Melamine Board")}</h3>
                 </div>
               </Link>
 
@@ -568,7 +576,7 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <h3 className="text-base font-bold text-white group-hover:text-[#4C8A68] transition-colors">Supporting Boards</h3>
+                  <h3 className="text-base font-bold text-white group-hover:text-[#4C8A68] transition-colors">{t("Supporting Boards")}</h3>
                 </div>
               </Link>
             </div>
@@ -591,13 +599,13 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute top-6 lg:top-8 left-6 lg:left-8">
-                <span className="px-4 py-1.5 lg:px-5 lg:py-2 bg-[#0F6B3A] text-white text-sm font-bold rounded-full">Core Product</span>
+                <span className="px-4 py-1.5 lg:px-5 lg:py-2 bg-[#0F6B3A] text-white text-sm font-bold rounded-full">{t("Core Product")}</span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-3 lg:mb-4 group-hover:text-[#4C8A68] transition-colors">Wood Veneer Panels</h3>
-                <p className="text-white/80 text-base lg:text-xl max-w-2xl line-clamp-2 lg:line-clamp-none">Natural & engineered veneer pressed onto plywood, MDF, particleboard and blockboard substrates</p>
+                <h3 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white mb-3 lg:mb-4 group-hover:text-[#4C8A68] transition-colors">{t("Wood Veneer Panels")}</h3>
+                <p className="text-white/80 text-base lg:text-xl max-w-2xl line-clamp-2 lg:line-clamp-none">{t("Natural & engineered veneer pressed onto plywood, MDF, particleboard and blockboard substrates")}</p>
                 <div className="mt-4 lg:mt-6 flex items-center gap-2 lg:gap-3 text-[#4C8A68] font-bold text-base lg:text-lg">
-                  <span>Explore Collection</span>
+                  <span>{t("Explore Collection")}</span>
                   <svg className="w-5 lg:w-6 h-5 lg:h-6 group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -621,11 +629,11 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute top-4 lg:top-6 left-4 lg:left-6">
-                  <span className="px-3 py-1 lg:px-4 lg:py-1.5 bg-[#8B5E3C] text-white text-xs lg:text-sm font-semibold rounded-full">Natural</span>
+                  <span className="px-3 py-1 lg:px-4 lg:py-1.5 bg-[#8B5E3C] text-white text-xs lg:text-sm font-semibold rounded-full">{t("Natural")}</span>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-8">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2 group-hover:text-[#C9A87C] transition-colors">Natural Wood Veneer</h3>
-                  <p className="text-white/70 text-sm lg:text-base">Oak, Walnut, Teak, 80+ species</p>
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2 group-hover:text-[#C9A87C] transition-colors">{t("Natural Wood Veneer")}</h3>
+                  <p className="text-white/70 text-sm lg:text-base">{t("Oak, Walnut, Teak, 80+ species")}</p>
                 </div>
               </Link>
 
@@ -643,11 +651,11 @@ export default function HomePage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute top-4 lg:top-6 left-4 lg:left-6">
-                  <span className="px-3 py-1 lg:px-4 lg:py-1.5 bg-[#4C8A68] text-white text-xs lg:text-sm font-semibold rounded-full">Engineered</span>
+                  <span className="px-3 py-1 lg:px-4 lg:py-1.5 bg-[#4C8A68] text-white text-xs lg:text-sm font-semibold rounded-full">{t("Engineered")}</span>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-8">
-                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2 group-hover:text-[#6db88a] transition-colors">Engineered Veneer</h3>
-                  <p className="text-white/70 text-sm lg:text-base">300+ consistent patterns</p>
+                  <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1 lg:mb-2 group-hover:text-[#6db88a] transition-colors">{t("Engineered Veneer")}</h3>
+                  <p className="text-white/70 text-sm lg:text-base">{t("300+ consistent patterns")}</p>
                 </div>
               </Link>
             </div>
@@ -669,8 +677,8 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
-                <span className="px-2 py-0.5 lg:px-3 lg:py-1 bg-[#124B34] text-white text-xs font-medium rounded mb-2 block">Decorative</span>
-                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#4C8A68] transition-colors">3D Wood Panels</h3>
+                <span className="px-2 py-0.5 lg:px-3 lg:py-1 bg-[#124B34] text-white text-xs font-medium rounded mb-2 block">{t("Decorative")}</span>
+                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#4C8A68] transition-colors">{t("3D Wood Panels")}</h3>
               </div>
             </Link>
 
@@ -688,7 +696,7 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
-                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#4C8A68] transition-colors">Veneer Edge Banding</h3>
+                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#4C8A68] transition-colors">{t("Veneer Edge Banding")}</h3>
               </div>
             </Link>
 
@@ -706,7 +714,7 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
-                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#C9A87C] transition-colors">Melamine Board</h3>
+                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#C9A87C] transition-colors">{t("Melamine Board")}</h3>
               </div>
             </Link>
 
@@ -724,7 +732,7 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
-                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#4C8A68] transition-colors">Supporting Boards</h3>
+                <h3 className="text-base lg:text-xl font-bold text-white group-hover:text-[#4C8A68] transition-colors">{t("Supporting Boards")}</h3>
               </div>
             </Link>
           </div>
@@ -743,13 +751,13 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 lg:mb-14">
             <div>
               <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Applications
+                {t("Applications")}
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-4 sm:mb-6 leading-tight">Find Materials for<br className="hidden sm:block" /> Your Project</h2>
-              <p className="text-base sm:text-lg lg:text-xl text-[#6b7280] max-w-3xl">Select your application to discover suitable wood materials</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-4 sm:mb-6 leading-tight">{t("Find Materials for")}<br className="hidden sm:block" /> {t("Your Project")}</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-[#6b7280] max-w-3xl">{t("Select your application to discover suitable wood materials")}</p>
             </div>
-            <Link href="/applications" className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
-              <span>View All Applications</span>
+            <Link href={getSiteLink("/applications", locale)} className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
+              <span>{t("View All Applications")}</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -786,13 +794,13 @@ export default function HomePage() {
             ].map((app, index) => (
               <Link 
                 key={app.name} 
-                href="/applications"
+                href={getSiteLink("/applications", locale)}
                 className="group relative overflow-hidden rounded-xl"
                 style={{ aspectRatio: '3/4' }}
               >
                 <Image
                   src={app.image}
-                  alt={app.name}
+                  alt={t(app.name)}
                   fill
                   className="object-cover transition-all duration-700 group-hover:scale-110"
                 />
@@ -802,8 +810,8 @@ export default function HomePage() {
                     className="w-8 h-0.5 rounded-full mb-3"
                     style={{ backgroundColor: app.color }}
                   />
-                  <h3 className="text-base font-bold text-white mb-1">{app.name}</h3>
-                  <p className="text-white/70 text-xs line-clamp-2">{app.description}</p>
+                  <h3 className="text-base font-bold text-white mb-1">{t(app.name)}</h3>
+                  <p className="text-white/70 text-xs line-clamp-2">{t(app.description)}</p>
                 </div>
               </Link>
             ))}
@@ -857,13 +865,13 @@ export default function HomePage() {
             ].map((app, index) => (
               <Link 
                 key={app.name} 
-                href="/applications"
+                href={getSiteLink("/applications", locale)}
                 className="group relative overflow-hidden rounded-2xl lg:rounded-3xl block"
                 style={{ aspectRatio: '3/4' }}
               >
                 <Image
                   src={app.image}
-                  alt={app.name}
+                  alt={t(app.name)}
                   fill
                   className="object-cover transition-all duration-700 group-hover:scale-110"
                 />
@@ -895,12 +903,12 @@ export default function HomePage() {
                       className="w-12 h-1 rounded-full mb-4 lg:mb-6 transition-all duration-500 group-hover:w-24"
                       style={{ backgroundColor: app.color }}
                     />
-                    <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 lg:mb-3">{app.name}</h3>
-                    <p className="text-white/80 text-sm lg:text-base mb-4 lg:mb-6 line-clamp-2 lg:line-clamp-none">{app.description}</p>
+                    <h3 className="text-xl lg:text-2xl xl:text-3xl font-bold text-white mb-2 lg:mb-3">{t(app.name)}</h3>
+                    <p className="text-white/80 text-sm lg:text-base mb-4 lg:mb-6 line-clamp-2 lg:line-clamp-none">{t(app.description)}</p>
                     
                     {/* Explore button */}
                     <div className="flex items-center gap-2 text-white text-sm lg:text-base font-medium">
-                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 font-bold">Explore</span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 font-bold">{t("Explore")}</span>
                       <svg className="w-5 lg:w-6 h-5 lg:h-6 transform -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 delay-150" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
@@ -931,13 +939,13 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10 lg:mb-16">
             <div>
               <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Customization
+                {t("Customization")}
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-4 sm:mb-6 leading-tight">Build Your<br className="hidden sm:block" /> Veneer Panel</h2>
-              <p className="text-base sm:text-lg lg:text-xl text-[#6b7280] max-w-3xl">Every detail tailored — substrate, veneer, size, finish and packaging — to your project needs</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-4 sm:mb-6 leading-tight">{t("Build Your")}<br className="hidden sm:block" /> {t("Veneer Panel")}</h2>
+              <p className="text-base sm:text-lg lg:text-xl text-[#6b7280] max-w-3xl">{t("Every detail tailored — substrate, veneer, size, finish and packaging — to your project needs")}</p>
             </div>
-            <Link href="/custom-solutions" className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
-              <span>View All Options</span>
+            <Link href={getSiteLink("/custom-solutions", locale)} className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
+              <span>{t("View All Options")}</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -966,8 +974,8 @@ export default function HomePage() {
                     </div>
                     {/* Content */}
                     <div className="bg-white rounded-xl p-4 border border-[#E5E1D8] group-hover:border-[#0F6B3A]/50 group-hover:shadow-lg transition-all duration-300 ml-4">
-                      <h3 className="font-semibold text-[#1F2621] text-sm group-hover:text-[#0F6B3A] transition-colors">{item.title}</h3>
-                      <p className="text-xs text-[#6b7280] mt-0.5">{item.desc}</p>
+                      <h3 className="font-semibold text-[#1F2621] text-sm group-hover:text-[#0F6B3A] transition-colors">{t(item.title)}</h3>
+                      <p className="text-xs text-[#6b7280] mt-0.5">{t(item.desc)}</p>
                     </div>
                   </div>
                 ))}
@@ -1003,8 +1011,8 @@ export default function HomePage() {
                       
                       {/* Content */}
                       <div className="transform transition-all duration-300 group-hover:-translate-y-2">
-                        <h3 className="font-bold text-[#1F2621] mb-2 group-hover:text-[#0F6B3A] transition-colors text-lg">{item.title}</h3>
-                        <p className="text-sm text-[#6b7280] group-hover:text-[#4C8A68] transition-colors">{item.desc}</p>
+                        <h3 className="font-bold text-[#1F2621] mb-2 group-hover:text-[#0F6B3A] transition-colors text-lg">{t(item.title)}</h3>
+                        <p className="text-sm text-[#6b7280] group-hover:text-[#4C8A68] transition-colors">{t(item.desc)}</p>
                       </div>
                     </div>
                   ))}
@@ -1017,7 +1025,7 @@ export default function HomePage() {
           <div className="mb-12 lg:mb-16">
             <div className="flex items-center justify-center gap-6 mb-10 lg:mb-16">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent to-[#E5E1D8]" />
-              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1F2621] text-center">What Can Be Customized</h3>
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1F2621] text-center">{t("What Can Be Customized")}</h3>
               <div className="flex-1 h-px bg-gradient-to-l from-transparent to-[#E5E1D8]" />
             </div>
             
@@ -1069,7 +1077,7 @@ export default function HomePage() {
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={t(item.title)}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -1086,8 +1094,8 @@ export default function HomePage() {
                   
                   {/* Content Section */}
                   <div className="p-5 lg:p-6">
-                    <h4 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl group-hover:text-[#0F6B3A] transition-colors">{item.title}</h4>
-                    <p className="text-sm lg:text-base text-[#6b7280] leading-relaxed line-clamp-2">{item.description}</p>
+                    <h4 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl group-hover:text-[#0F6B3A] transition-colors">{t(item.title)}</h4>
+                    <p className="text-sm lg:text-base text-[#6b7280] leading-relaxed line-clamp-2">{t(item.description)}</p>
                   </div>
                 </div>
               ))}
@@ -1109,14 +1117,14 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8 lg:mb-12">
             <div>
               <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Project Gallery
+                {t("Project Gallery")}
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-2 sm:mb-4 leading-tight">Our Projects</h2>
-              <p className="text-base sm:text-lg text-[#6b7280] max-w-2xl">See how our wood veneer panels are used in real-world applications</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-2 sm:mb-4 leading-tight">{t("Our Projects")}</h2>
+              <p className="text-base sm:text-lg text-[#6b7280] max-w-2xl">{t("See how our wood veneer panels are used in real-world applications")}</p>
             </div>
             <div className="flex items-center gap-4">
-              <Link href="/projects" className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
-                <span>View All Projects</span>
+              <Link href={getSiteLink("/projects", locale)} className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base self-start lg:self-auto">
+                <span>{t("View All Projects")}</span>
                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -1170,19 +1178,19 @@ export default function HomePage() {
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#0F6B3A] text-xs font-semibold rounded-full shadow">
-                      {project.productType}
+                      {projectCopy.productTypeLabels[project.productType] ?? project.productType}
                     </span>
                   </div>
 
                   {/* Hover Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <div className="text-white/60 text-sm mb-1">{project.location}</div>
-                    <h3 className="text-white font-bold text-lg mb-1">{project.name}</h3>
-                    <p className="text-white/80 text-sm line-clamp-1">{project.products}</p>
+                    <div className="text-white/60 text-sm mb-1">{t(project.location)}</div>
+                    <h3 className="text-white font-bold text-lg mb-1">{t(project.name)}</h3>
+                    <p className="text-white/80 text-sm line-clamp-1">{t(project.products)}</p>
 
                     {/* View Photo Arrow */}
                     <div className="mt-3 flex items-center gap-2 text-[#C9A87C] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                      <span>View Photo</span>
+                      <span>{t("View Photo")}</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -1202,13 +1210,13 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8 lg:mb-12">
             <div>
               <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Our Products
+                {t("Our Products")}
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-2 sm:mb-4 leading-tight">Featured<br className="hidden sm:block" /> Products</h2>
-              <p className="text-base sm:text-lg text-[#6b7280] max-w-2xl">Explore our premium wood veneer panels, engineered veneers, melamine boards, and more</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-2 sm:mb-4 leading-tight">{t("Featured Products")}</h2>
+              <p className="text-base sm:text-lg text-[#6b7280] max-w-2xl">{t("Explore our premium wood veneer panels, engineered veneers, melamine boards, and more")}</p>
             </div>
-            <Link href="/products" className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base">
-              <span>View All Products</span>
+            <Link href={getSiteLink("/products", locale)} className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base">
+              <span>{t("View All Products")}</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -1235,11 +1243,11 @@ export default function HomePage() {
                   </div>
                   <div className="p-6 lg:p-8">
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="px-3 lg:px-4 py-1.5 lg:py-2 bg-[#0F6B3A]/10 text-[#0F6B3A] text-sm lg:text-base font-medium rounded">Natural Wood Veneer</span>
-                      <span className="text-sm lg:text-base text-[#6b7280]">{product.cuttingMethod}</span>
+                      <span className="px-3 lg:px-4 py-1.5 lg:py-2 bg-[#0F6B3A]/10 text-[#0F6B3A] text-sm lg:text-base font-medium rounded">{t("Natural Wood Veneer")}</span>
+                      <span className="text-sm lg:text-base text-[#6b7280]">{t(product.cuttingMethod)}</span>
                     </div>
-                    <h3 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl group-hover:text-[#0F6B3A] transition-colors line-clamp-2">{product.name}</h3>
-                    <p className="text-base lg:text-lg text-[#6b7280]">{product.veneerSpecies}</p>
+                    <h3 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl group-hover:text-[#0F6B3A] transition-colors line-clamp-2">{t(product.name)}</h3>
+                    <p className="text-base lg:text-lg text-[#6b7280]">{t(product.veneerSpecies)}</p>
                   </div>
                 </Link>
               );
@@ -1284,26 +1292,26 @@ export default function HomePage() {
             {/* Decorative badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A87C]/20 backdrop-blur-sm rounded-full mb-8">
               <div className="w-2 h-2 rounded-full bg-[#C9A87C] animate-pulse" />
-              <span className="text-[#C9A87C] text-sm font-medium tracking-wide">Premium Quality • Factory Direct</span>
+              <span className="text-[#C9A87C] text-sm font-medium tracking-wide">{t("Premium Quality • Factory Direct")}</span>
             </div>
             
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 sm:mb-8 leading-tight">
-              Looking for Wood Veneer Panels<br className="hidden sm:block" /> or Veneer Materials?
+              {t("Looking for Wood Veneer Panels")}<br className="hidden sm:block" /> {t("or Veneer Materials?")}
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-white/70 mb-8 sm:mb-10 max-w-2xl mx-auto leading-relaxed">
-              Tell us your product type, substrate, wood species, thickness, finish and application. Tongli will help you recommend the right material solution.
+              {t("Tell us your product type, substrate, wood species, thickness, finish and application. Tongli will help you recommend the right material solution.")}
             </p>
             
             {/* Buttons with Wood Accent */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/contact" className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#C9A87C] to-[#A68B5B] text-[#1F2621] hover:from-[#D4B896] hover:to-[#B89B6B] rounded-lg font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 hover:-translate-y-0.5">
-                <span>Request a Quote</span>
+              <Link href={getSiteLink("/contact", locale)} className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#C9A87C] to-[#A68B5B] text-[#1F2621] hover:from-[#D4B896] hover:to-[#B89B6B] rounded-lg font-semibold transition-all duration-300 hover:shadow-2xl hover:shadow-black/30 hover:-translate-y-0.5">
+                <span>{t("Request a Quote")}</span>
                 <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
-              <Link href="/contact" className="group inline-flex items-center justify-center px-8 py-4 border-2 border-[#C9A87C]/50 text-white hover:bg-[#C9A87C]/20 hover:border-[#C9A87C]/70 rounded-lg font-semibold transition-all duration-300 hover:-translate-y-0.5">
-                <span>Request Samples</span>
+              <Link href={`${getSiteLink("/contact", locale)}?type=sample`} className="group inline-flex items-center justify-center px-8 py-4 border-2 border-[#C9A87C]/50 text-white hover:bg-[#C9A87C]/20 hover:border-[#C9A87C]/70 rounded-lg font-semibold transition-all duration-300 hover:-translate-y-0.5">
+                <span>{t("Request Samples")}</span>
                 <svg className="w-5 h-5 ml-2 opacity-70 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                 </svg>
@@ -1316,19 +1324,19 @@ export default function HomePage() {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
-                <span>FSC Certified</span>
+                <span>{t("FSC Certified")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>Since 1999</span>
+                <span>{t("Since 1999")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <span>18,000m² Factory</span>
+                <span>{t("18,000m² Factory")}</span>
               </div>
             </div>
           </div>
@@ -1341,13 +1349,13 @@ export default function HomePage() {
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-8 lg:mb-12">
             <div>
               <span className="inline-block text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.3em] mb-4" style={{ color: "#0F6B3A" }}>
-                Knowledge Hub
+                {t("Knowledge Hub")}
               </span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-2 sm:mb-4 leading-tight">Wood Veneer<br className="hidden sm:block" /> Insights</h2>
-              <p className="text-base sm:text-lg text-[#6b7280] max-w-2xl">Expert guides and industry updates to help you make informed decisions</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#1F2621] mb-2 sm:mb-4 leading-tight">{t("Wood Veneer Knowledge")}<br className="hidden sm:block" /> {t("Insights")}</h2>
+              <p className="text-base sm:text-lg text-[#6b7280] max-w-2xl">{t("Expert guides and industry updates to help you make informed decisions")}</p>
             </div>
-            <Link href="/resources" className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base">
-              <span>View All Resources</span>
+            <Link href={getSiteLink("/resources", locale)} className="group inline-flex items-center gap-2 text-[#0F6B3A] hover:text-[#124B34] font-semibold transition-colors text-sm sm:text-base">
+              <span>{t("View All Resources")}</span>
               <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -1364,14 +1372,14 @@ export default function HomePage() {
                 </div>
                 <div className="p-6 lg:p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="px-3 lg:px-4 py-1.5 lg:py-2 bg-[#0F6B3A] text-white text-sm lg:text-base font-medium rounded">{article.category}</span>
-                    <span className="text-sm lg:text-base text-[#6b7280]">{article.readTime}</span>
+                    <span className="px-3 lg:px-4 py-1.5 lg:py-2 bg-[#0F6B3A] text-white text-sm lg:text-base font-medium rounded">{t(article.category)}</span>
+                    <span className="text-sm lg:text-base text-[#6b7280]">{t(article.readTime)}</span>
                   </div>
-                  <h3 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl line-clamp-2 group-hover:text-[#0F6B3A] transition-colors">{article.title}</h3>
-                  <p className="text-base lg:text-lg text-[#6b7280] mb-6 line-clamp-2">{article.excerpt}</p>
+                  <h3 className="font-bold text-[#1F2621] mb-3 text-lg lg:text-xl line-clamp-2 group-hover:text-[#0F6B3A] transition-colors">{t(article.title)}</h3>
+                  <p className="text-base lg:text-lg text-[#6b7280] mb-6 line-clamp-2">{t(article.excerpt)}</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-sm lg:text-base text-[#6b7280]">{article.date}</span>
-                    <span className="text-base lg:text-lg font-medium text-[#0F6B3A] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">Read More <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></span>
+                    <span className="text-sm lg:text-base text-[#6b7280]">{t(article.date)}</span>
+                    <span className="text-base lg:text-lg font-medium text-[#0F6B3A] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">{t("Read More")} <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg></span>
                   </div>
                 </div>
               </Link>
@@ -1380,7 +1388,7 @@ export default function HomePage() {
 
           <nav aria-label="Popular sourcing pages" className="mt-8 lg:mt-10">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-[#6b7280]">
-              Popular sourcing pages
+              {t("Popular sourcing pages")}
             </p>
             <div className="flex flex-wrap gap-2.5">
               {prioritySourcingLinks.map((item) => (
@@ -1389,7 +1397,7 @@ export default function HomePage() {
                   href={item.href}
                   className="rounded-full border border-[#0F6B3A]/20 bg-white px-4 py-2 text-sm font-medium text-[#124B34] transition-colors hover:border-[#0F6B3A] hover:bg-[#0F6B3A] hover:text-white"
                 >
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               ))}
             </div>
@@ -1402,8 +1410,13 @@ export default function HomePage() {
         <ProjectModal
           project={selectedProject}
           onClose={() => setSelectedProject(null)}
+          locale={locale}
         />
       )}
-    </>
+    </div>
   );
+}
+
+export default function HomePage() {
+  return <HomePageContent locale="en" />;
 }

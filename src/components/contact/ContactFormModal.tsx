@@ -1,5 +1,6 @@
 "use client";
 
+import T, { useFullSiteTranslator } from "@/i18n/full-site-context";
 import { useState } from "react";
 
 export interface ContactFormModalProps {
@@ -8,6 +9,7 @@ export interface ContactFormModalProps {
 }
 
 export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
+  const t = useFullSiteTranslator();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -48,31 +50,30 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-[#1F2621] mb-2">Thank You!</h3>
-            <p className="text-[#6b7280] mb-4">Your inquiry has been submitted. We will respond within 24 hours.</p>
+            <h3 className="text-xl font-bold text-[#1F2621] mb-2"><T>{"Thank You!"}</T></h3>
+            <p className="text-[#6b7280] mb-4"><T>{"Your inquiry has been submitted. We will respond within 24 hours."}</T></p>
             <button onClick={onClose} className="px-6 py-2 bg-[#0F6B3A] text-white rounded-full hover:bg-[#124B34] transition-colors">
-              Close
-            </button>
+              <T>{"Close\n            "}</T></button>
           </div>
         ) : (
           <div className="p-8">
-            <h2 className="text-2xl font-bold text-[#1F2621] mb-2">Contact Us</h2>
-            <p className="text-[#6b7280] mb-6">Fill in the form below and we will respond shortly.</p>
+            <h2 className="text-2xl font-bold text-[#1F2621] mb-2"><T>{"Contact Us"}</T></h2>
+            <p className="text-[#6b7280] mb-6"><T>{"Fill in the form below and we will respond shortly."}</T></p>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#1F2621] mb-1">Name *</label>
+                  <label className="block text-sm font-medium text-[#1F2621] mb-1"><T>{"Name *"}</T></label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 border border-[#E5E1D8] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F6B3A] focus:border-transparent transition-all text-sm"
-                    placeholder="Your name"
+                    placeholder={t("Your name")}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#1F2621] mb-1">Phone</label>
+                  <label className="block text-sm font-medium text-[#1F2621] mb-1"><T>{"Phone"}</T></label>
                   <input
                     type="tel"
                     value={formData.phone}
@@ -83,7 +84,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#1F2621] mb-1">Email *</label>
+                <label className="block text-sm font-medium text-[#1F2621] mb-1"><T>{"Email *"}</T></label>
                 <input
                   type="email"
                   required
@@ -94,24 +95,24 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#1F2621] mb-1">Subject</label>
+                <label className="block text-sm font-medium text-[#1F2621] mb-1"><T>{"Subject"}</T></label>
                 <input
                   type="text"
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   className="w-full px-4 py-3 border border-[#E5E1D8] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F6B3A] focus:border-transparent transition-all text-sm"
-                  placeholder="What's your inquiry about?"
+                  placeholder={t("What's your inquiry about?")}
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#1F2621] mb-1">Message</label>
+                <label className="block text-sm font-medium text-[#1F2621] mb-1"><T>{"Message"}</T></label>
                 <textarea
                   required
                   rows={4}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 border border-[#E5E1D8] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0F6B3A] focus:border-transparent transition-all text-sm resize-none"
-                  placeholder="Tell us your requirements..."
+                  placeholder={t("Tell us your requirements...")}
                 />
               </div>
               <button
@@ -119,15 +120,15 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
                 disabled={isSubmitting}
                 className="w-full py-3 bg-[#0F6B3A] text-white rounded-xl font-semibold hover:bg-[#124B34] transition-colors disabled:opacity-70 flex items-center justify-center gap-2"
               >
-                {isSubmitting ? (
+                <T>{isSubmitting ? (
                   <>
                     <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                    Sending...
+                    <T>{"Sending..."}</T>
                   </>
-                ) : "Submit Inquiry"}
+                ) : "Submit Inquiry"}</T>
               </button>
             </form>
           </div>

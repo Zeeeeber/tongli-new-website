@@ -1,12 +1,7 @@
 import type { Metadata } from "next";
-import { createPageMetadata } from "@/lib/seo/metadata";
+import { createCorePageMetadata } from "@/i18n/metadata";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Request Wood Veneer Samples",
-  description:
-    "Request wood veneer, veneer panel and decorative surface samples for material evaluation and project selection.",
-  path: "/samples",
-});
+export const metadata: Metadata = createCorePageMetadata("samples", "en");
 
 export default function SamplesLayout({ children }: { children: React.ReactNode }) {
   return children;

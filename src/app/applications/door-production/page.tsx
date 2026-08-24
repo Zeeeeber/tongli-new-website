@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import T from "@/i18n/full-site-context";
+import Link from "@/components/i18n/LocalizedLink";
 import { useState } from "react";
 
 // ============================================
@@ -161,15 +162,15 @@ export default function DoorProductionPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/applications" className="hover:text-[#0F6B3A]">Applications</Link>
+            <Link href="/applications" className="hover:text-[#0F6B3A]"><T>{"Applications"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Door Production</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Door Production"}</T></span>
           </div>
         </div>
       </div>
@@ -198,31 +199,27 @@ export default function DoorProductionPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
                   </svg>
                 </div>
-                <span className="px-3 py-1 bg-white/20 rounded-full text-white/80 text-sm">Door Production</span>
+                <span className="px-3 py-1 bg-white/20 rounded-full text-white/80 text-sm"><T>{"Door Production"}</T></span>
               </div>
 
               <h1 className="text-3xl lg:text-5xl font-bold text-white mb-4 leading-tight">
-                Wood Veneer Panels for
-                <span className="block text-[#4C8A68]">Door Production</span>
+                <T>{"Wood Veneer Panels for\n                "}</T><span className="block text-[#4C8A68]"><T>{"Door Production"}</T></span>
               </h1>
 
               <p className="text-lg text-white/80 mb-6 max-w-2xl leading-relaxed">
-                Stable decorative veneer surfaces for door skins, door panels and interior door production, with grain matching, substrate selection and batch consistency.
-              </p>
+                <T>{"Stable decorative veneer surfaces for door skins, door panels and interior door production, with grain matching, substrate selection and batch consistency.\n              "}</T></p>
 
               <div className="flex flex-wrap gap-3">
                 <Link
                   href="/contact?type=advice"
                   className="px-6 py-3 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
                 >
-                  Request Material Advice
-                </Link>
+                  <T>{"Request Material Advice\n                "}</T></Link>
                 <Link
                   href="/contact?type=sample"
                   className="px-6 py-3 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
                 >
-                  Request Samples
-                </Link>
+                  <T>{"Request Samples\n                "}</T></Link>
               </div>
             </div>
 
@@ -230,12 +227,11 @@ export default function DoorProductionPage() {
               <div className="relative">
                 <div className="aspect-[4/3] rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-center overflow-hidden">
                   <span className="text-white/70 text-sm text-center px-4">
-                    [Door production application image]<br /><br />
-                    - Door factory production line<br />
-                    - Door skins with wood veneer<br />
-                    - Finished interior doors<br />
-                    - Project door installation
-                  </span>
+                    <T>{"[Door production application image]"}</T><br /><br />
+                    <T>{"- Door factory production line"}</T><br />
+                    <T>{"- Door skins with wood veneer"}</T><br />
+                    <T>{"- Finished interior doors"}</T><br />
+                    <T>{"- Project door installation\n                  "}</T></span>
                 </div>
               </div>
             </div>
@@ -249,11 +245,10 @@ export default function DoorProductionPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4">Key Concerns</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">What Door Manufacturers Really Care About</h2>
+            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Key Concerns"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"What Door Manufacturers Really Care About"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              We understand the priorities in door production. Here is what matters most to our door manufacturing clients.
-            </p>
+              <T>{"We understand the priorities in door production. Here is what matters most to our door manufacturing clients.\n            "}</T></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -269,8 +264,8 @@ export default function DoorProductionPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-bold text-[#1F2621] mb-2">{concern.title}</h3>
-                    <p className="text-[#6b7280] text-sm leading-relaxed">{concern.description}</p>
+                    <h3 className="font-bold text-[#1F2621] mb-2"><T>{concern.title}</T></h3>
+                    <p className="text-[#6b7280] text-sm leading-relaxed"><T>{concern.description}</T></p>
                   </div>
                 </div>
               </div>
@@ -285,11 +280,10 @@ export default function DoorProductionPage() {
       <section className="py-16 bg-[#F7F3EC]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4">Problem Analysis</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">Common Problems in Door Production</h2>
+            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Problem Analysis"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"Common Problems in Door Production"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              These are the real challenges door factories face. Understanding them helps us provide better solutions.
-            </p>
+              <T>{"These are the real challenges door factories face. Understanding them helps us provide better solutions.\n            "}</T></p>
           </div>
 
           <div className="space-y-4 max-w-4xl mx-auto">
@@ -301,13 +295,13 @@ export default function DoorProductionPage() {
                   </div>
                   <div className="flex-1">
                     <div className="mb-2">
-                      <span className="text-xs text-[#C94B3C] font-medium uppercase tracking-wide">Problem</span>
-                      <p className="text-[#1F2621] font-semibold mt-0.5">{item.problem}</p>
-                      <p className="text-[#6b7280] text-sm mt-1">{item.impact}</p>
+                      <span className="text-xs text-[#C94B3C] font-medium uppercase tracking-wide"><T>{"Problem"}</T></span>
+                      <p className="text-[#1F2621] font-semibold mt-0.5"><T>{item.problem}</T></p>
+                      <p className="text-[#6b7280] text-sm mt-1"><T>{item.impact}</T></p>
                     </div>
                     <div className="bg-[#0F6B3A]/5 rounded-lg p-3">
-                      <span className="text-xs text-[#0F6B3A] font-medium uppercase tracking-wide">Tongli Solution</span>
-                      <p className="text-[#1F2621] text-sm mt-0.5">{item.solution}</p>
+                      <span className="text-xs text-[#0F6B3A] font-medium uppercase tracking-wide"><T>{"Tongli Solution"}</T></span>
+                      <p className="text-[#1F2621] text-sm mt-0.5"><T>{item.solution}</T></p>
                     </div>
                   </div>
                 </div>
@@ -323,11 +317,10 @@ export default function DoorProductionPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4">Our Solutions</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">How Tongli Solves Your Door Challenges</h2>
+            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Our Solutions"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"How Tongli Solves Your Door Challenges"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              Our practical solutions are backed by factory expertise and years of experience serving door manufacturers.
-            </p>
+              <T>{"Our practical solutions are backed by factory expertise and years of experience serving door manufacturers.\n            "}</T></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -342,9 +335,9 @@ export default function DoorProductionPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-[#1F2621]">{solution.title}</h3>
+                  <h3 className="font-bold text-[#1F2621]"><T>{solution.title}</T></h3>
                 </div>
-                <p className="text-[#6b7280] text-sm leading-relaxed">{solution.description}</p>
+                <p className="text-[#6b7280] text-sm leading-relaxed"><T>{solution.description}</T></p>
               </div>
             ))}
           </div>
@@ -357,28 +350,27 @@ export default function DoorProductionPage() {
       <section className="py-16 bg-[#F7F3EC]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4">Material Guide</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">Recommended Material Combinations</h2>
+            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Material Guide"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"Recommended Material Combinations"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              Select the right combination based on your door type and production requirements.
-            </p>
+              <T>{"Select the right combination based on your door type and production requirements.\n            "}</T></p>
           </div>
 
           <div className="overflow-x-auto max-w-5xl mx-auto">
             <table className="w-full bg-white rounded-xl overflow-hidden shadow-sm">
               <thead>
                 <tr className="bg-gradient-to-r from-[#0F6B3A] to-[#124B34] text-white">
-                  <th className="px-6 py-4 text-left text-sm font-bold">Use Type</th>
-                  <th className="px-6 py-4 text-left text-sm font-bold">Recommended Surface</th>
-                  <th className="px-6 py-4 text-left text-sm font-bold">Recommended Substrate</th>
+                  <th className="px-6 py-4 text-left text-sm font-bold"><T>{"Use Type"}</T></th>
+                  <th className="px-6 py-4 text-left text-sm font-bold"><T>{"Recommended Surface"}</T></th>
+                  <th className="px-6 py-4 text-left text-sm font-bold"><T>{"Recommended Substrate"}</T></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E5E1D8]">
                 {materialCombinations.map((row, index) => (
                   <tr key={index} className="hover:bg-[#F7F3EC]/50 transition-colors">
-                    <td className="px-6 py-4 text-sm font-medium text-[#1F2621]">{row.type}</td>
-                    <td className="px-6 py-4 text-sm text-[#6b7280]">{row.surface}</td>
-                    <td className="px-6 py-4 text-sm text-[#6b7280]">{row.substrate}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-[#1F2621]"><T>{row.type}</T></td>
+                    <td className="px-6 py-4 text-sm text-[#6b7280]"><T>{row.surface}</T></td>
+                    <td className="px-6 py-4 text-sm text-[#6b7280]"><T>{row.substrate}</T></td>
                   </tr>
                 ))}
               </tbody>
@@ -394,11 +386,10 @@ export default function DoorProductionPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-10 text-white">
-              <span className="inline-block text-white/60 text-sm font-semibold tracking-widest uppercase mb-4">Before Ordering</span>
-              <h2 className="text-3xl font-bold mb-4">What to Confirm Before Ordering</h2>
+              <span className="inline-block text-white/60 text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Before Ordering"}</T></span>
+              <h2 className="text-3xl font-bold mb-4"><T>{"What to Confirm Before Ordering"}</T></h2>
               <p className="text-white/80">
-                Preparing this information helps us give you more accurate recommendations and faster response.
-              </p>
+                <T>{"Preparing this information helps us give you more accurate recommendations and faster response.\n              "}</T></p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-4">
@@ -409,7 +400,7 @@ export default function DoorProductionPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <span className="text-white text-sm">{item}</span>
+                  <span className="text-white text-sm"><T>{item}</T></span>
                 </div>
               ))}
             </div>
@@ -423,11 +414,10 @@ export default function DoorProductionPage() {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4">Process</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">From Sample to Bulk Production</h2>
+            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Process"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"From Sample to Bulk Production"}</T></h2>
             <p className="text-[#6b7280] max-w-2xl mx-auto">
-              Our systematic workflow ensures quality consistency throughout your order.
-            </p>
+              <T>{"Our systematic workflow ensures quality consistency throughout your order.\n            "}</T></p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
@@ -437,8 +427,8 @@ export default function DoorProductionPage() {
                   <div className="w-10 h-10 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#0F6B3A] to-[#124B34] flex items-center justify-center text-white font-bold text-sm">
                     {step.step}
                   </div>
-                  <h4 className="font-bold text-[#1F2621] text-sm mb-2">{step.title}</h4>
-                  <p className="text-[#6b7280] text-xs leading-relaxed">{step.description}</p>
+                  <h4 className="font-bold text-[#1F2621] text-sm mb-2"><T>{step.title}</T></h4>
+                  <p className="text-[#6b7280] text-xs leading-relaxed"><T>{step.description}</T></p>
                 </div>
                 {index < workflowSteps.length - 1 && (
                   <div className="hidden lg:block absolute top-1/2 -right-2 transform -translate-y-1/2">
@@ -459,8 +449,8 @@ export default function DoorProductionPage() {
       <section className="py-16 bg-[#F7F3EC]">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
-            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4">Explore More</span>
-            <h2 className="text-3xl font-bold text-[#1F2621] mb-4">Related Products & Collections</h2>
+            <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"Explore More"}</T></span>
+            <h2 className="text-3xl font-bold text-[#1F2621] mb-4"><T>{"Related Products & Collections"}</T></h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
@@ -475,8 +465,8 @@ export default function DoorProductionPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6z" />
                   </svg>
                 </div>
-                <h4 className="font-bold text-[#1F2621] mb-2 group-hover:text-[#0F6B3A] transition-colors">{product.name}</h4>
-                <p className="text-[#6b7280] text-sm">{product.description}</p>
+                <h4 className="font-bold text-[#1F2621] mb-2 group-hover:text-[#0F6B3A] transition-colors"><T>{product.name}</T></h4>
+                <p className="text-[#6b7280] text-sm"><T>{product.description}</T></p>
               </Link>
             ))}
           </div>
@@ -490,9 +480,9 @@ export default function DoorProductionPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4">FAQ</span>
-              <h2 className="text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
-              <p className="text-[#6b7280] mt-2">Questions specific to door production material sourcing.</p>
+              <span className="inline-block text-[#0F6B3A] text-sm font-semibold tracking-widest uppercase mb-4"><T>{"FAQ"}</T></span>
+              <h2 className="text-3xl font-bold text-[#1F2621]"><T>{"Frequently Asked Questions"}</T></h2>
+              <p className="text-[#6b7280] mt-2"><T>{"Questions specific to door production material sourcing."}</T></p>
             </div>
 
             <div className="space-y-4">
@@ -505,7 +495,7 @@ export default function DoorProductionPage() {
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full flex items-center justify-between p-6 text-left font-semibold text-[#1F2621] hover:text-[#0F6B3A] transition-colors"
                   >
-                    <span className="pr-4">{faq.q}</span>
+                    <span className="pr-4"><T>{faq.q}</T></span>
                     <svg
                       className={`w-5 h-5 text-[#0F6B3A] flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`}
                       fill="none"
@@ -517,7 +507,7 @@ export default function DoorProductionPage() {
                   </button>
                   <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}>
                     <div className="px-6 pb-6 text-[#6b7280] leading-relaxed">
-                      {faq.a}
+                      <T>{faq.a}</T>
                     </div>
                   </div>
                 </div>
@@ -534,25 +524,21 @@ export default function DoorProductionPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center text-white">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Need Veneer Surfaces for Door Production?
-            </h2>
+              <T>{"Need Veneer Surfaces for Door Production?\n            "}</T></h2>
             <p className="text-xl text-white/80 mb-8 max-w-xl mx-auto">
-              Tell us your door type, size, surface effect and batch quantity. We will recommend the right materials for your door production.
-            </p>
+              <T>{"Tell us your door type, size, surface effect and batch quantity. We will recommend the right materials for your door production.\n            "}</T></p>
 
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact?type=advice"
                 className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Request Material Advice
-              </Link>
+                <T>{"Request Material Advice\n              "}</T></Link>
               <Link
                 href="/contact?type=sample"
                 className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                Request Samples
-              </Link>
+                <T>{"Request Samples\n              "}</T></Link>
             </div>
           </div>
         </div>
@@ -563,16 +549,16 @@ export default function DoorProductionPage() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <Link href="/products" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">View All Products</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]"><T>{"View All Products"}</T></span>
             </Link>
             <Link href="/collections" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">Browse Collections</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]"><T>{"Browse Collections"}</T></span>
             </Link>
             <Link href="/applications" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">All Applications</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]"><T>{"All Applications"}</T></span>
             </Link>
             <Link href="/contact" className="group">
-              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]">Contact Us</span>
+              <span className="text-sm font-medium text-[#1F2621] group-hover:text-[#0F6B3A]"><T>{"Contact Us"}</T></span>
             </Link>
           </div>
         </div>

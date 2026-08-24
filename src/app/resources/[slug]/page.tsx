@@ -1,5 +1,6 @@
+import T from "@/i18n/full-site-context";
 import { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { articles, getArticleBySlug, getRelatedArticles } from "@/data/resources/articles";
@@ -7,6 +8,8 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { createArticleMetadata } from "@/lib/seo/metadata";
 import { getArticleSchema, getBreadcrumbSchema } from "@/lib/seo/schema";
 import { siteConfig } from "@/lib/seo/site";
+import { localizeHref, localizePath, type Locale } from "@/i18n/config";
+import { translateFullSiteText } from "@/i18n/full-site-text";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -18,15 +21,32 @@ function toIsoDate(date: string): string {
   ).toISOString();
 }
 
-function formatUpdatedDate(date: string): string {
+function formatUpdatedDate(date: string, locale: Locale): string {
   const [year, month, day] = date.split("-").map(Number);
+  const dateLocales: Record<Locale, string> = {
+    en: "en-US",
+    es: "es-ES",
+    fr: "fr-FR",
+    ar: "ar-SA",
+    ms: "ms-MY",
+    id: "id-ID",
+    pt: "pt-PT",
+  };
 
-  return new Intl.DateTimeFormat("en-US", {
+  return new Intl.DateTimeFormat(dateLocales[locale], {
     year: "numeric",
     month: "long",
     day: "numeric",
     timeZone: "UTC",
   }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+function localizeArticleHtmlLinks(content: string, locale: Locale): string {
+  return content.replace(
+    /href=(["'])(\/[^"']*)\1/g,
+    (_match, quote: string, href: string) =>
+      `href=${quote}${localizeHref(href, locale)}${quote}`,
+  );
 }
 
 export async function generateStaticParams() {
@@ -60,16 +80,34 @@ export async function generateMetadata({ params }: ArticlePageProps): Promise<Me
   });
 }
 
-export default async function ArticlePage({ params }: ArticlePageProps) {
-  const { slug } = await params;
-  const article = getArticleBySlug(slug);
+export async function ArticlePageContent({
+  slug,
+  locale,
+}: {
+  slug: string;
+  locale: Locale;
+}) {
+  const sourceArticle = getArticleBySlug(slug);
 
-  if (!article) {
+  if (!sourceArticle) {
     notFound();
   }
 
+  const localizedContent = sourceArticle.content
+    ? translateFullSiteText(locale, sourceArticle.content)
+    : sourceArticle.content;
+  const article = {
+    ...sourceArticle,
+    title: translateFullSiteText(locale, sourceArticle.title),
+    excerpt: translateFullSiteText(locale, sourceArticle.excerpt),
+    category: translateFullSiteText(locale, sourceArticle.category),
+    content: localizedContent
+      ? localizeArticleHtmlLinks(localizedContent, locale)
+      : localizedContent,
+  };
+
   const relatedArticles = getRelatedArticles(article.slug, 3);
-  const articlePath = `/resources/${article.slug}`;
+  const articlePath = localizePath(`/resources/${article.slug}`, locale);
   const articleUrl = `${siteConfig.canonicalUrl}${articlePath}`;
   const publishedDate = toIsoDate(article.date);
   const modifiedDate = article.updatedAt
@@ -86,8 +124,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       url: articleUrl,
     }),
     getBreadcrumbSchema([
-      { name: "Home", url: "/" },
-      { name: "Resources", url: "/resources" },
+      { name: translateFullSiteText(locale, "Home"), url: localizePath("/", locale) },
+      { name: translateFullSiteText(locale, "Resources"), url: localizePath("/resources", locale) },
       { name: article.title, url: articlePath },
     ]),
   ];
@@ -100,15 +138,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/resources" className="hover:text-[#0F6B3A]">Resources</Link>
+            <Link href="/resources" className="hover:text-[#0F6B3A]"><T>{"Resources"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium truncate max-w-[200px]">{article.title}</span>
+            <span className="text-[#1F2621] font-medium truncate max-w-[200px]"><T>{article.title}</T></span>
           </div>
         </div>
       </div>
@@ -119,15 +157,15 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <div className="max-w-4xl mx-auto">
             {/* Category Badge */}
             <Link
-              href={`/resources/category/${article.category.toLowerCase().replace(" ", "-")}`}
+              href={`/resources/category/${sourceArticle.category.toLowerCase().replace(" ", "-")}`}
               className="inline-block px-4 py-1.5 bg-[#0F6B3A]/10 text-[#0F6B3A] text-sm font-medium rounded-full mb-6 hover:bg-[#0F6B3A]/20 transition-colors"
             >
-              {article.category}
+              <T>{article.category}</T>
             </Link>
 
             {/* Title - H1 */}
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#1F2621] leading-tight mb-6">
-              {article.title}
+              <T>{article.title}</T>
             </h1>
 
             {/* Meta Info */}
@@ -138,7 +176,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 </svg>
                 <span>
                   {article.updatedAt
-                    ? `Updated ${formatUpdatedDate(article.updatedAt)}`
+                    ? `${translateFullSiteText(locale, "Updated")} ${formatUpdatedDate(article.updatedAt, locale)}`
                     : article.date}
                 </span>
               </div>
@@ -147,7 +185,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
-                <span>{article.author}</span>
+                <span><T>{article.author}</T></span>
               </div>
               {article.readTime && (
                 <>
@@ -156,7 +194,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    <span>{article.readTime}</span>
+                    <span><T>{article.readTime}</T></span>
                   </div>
                 </>
               )}
@@ -199,8 +237,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <section className="py-16 bg-[#F7F3EC]">
           <div className="container mx-auto px-6">
             <h2 className="text-2xl font-bold text-[#1F2621] mb-8 text-center">
-              Related Articles
-            </h2>
+              <T>{"Related Articles\n            "}</T></h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {relatedArticles.map((relatedArticle) => (
                 <Link
@@ -218,10 +255,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                   </div>
                   <div className="p-5">
                     <span className="inline-block px-3 py-0.5 bg-[#0F6B3A]/10 text-[#0F6B3A] text-xs font-medium rounded-full mb-3">
-                      {relatedArticle.category}
+                      <T>{relatedArticle.category}</T>
                     </span>
                     <h3 className="font-semibold text-[#1F2621] line-clamp-2 group-hover:text-[#0F6B3A] transition-colors">
-                      {relatedArticle.title}
+                      <T>{relatedArticle.title}</T>
                     </h3>
                     <p className="text-sm text-[#6b7280] mt-2">{relatedArticle.date}</p>
                   </div>
@@ -236,23 +273,20 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       <section className="py-16 bg-gradient-to-r from-[#8B5E3C] to-[#6B4A2C]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Help Choosing Materials?</h2>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Help Choosing Materials?"}</T></h2>
             <p className="text-white/80 mb-8">
-              Our team of wood veneer experts is ready to help you find the perfect solution for your project.
-            </p>
+              <T>{"Our team of wood veneer experts is ready to help you find the perfect solution for your project.\n            "}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
                 className="px-8 py-4 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Contact Us
-              </Link>
+                <T>{"Contact Us\n              "}</T></Link>
               <Link
                 href="/products"
                 className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                View Products
-              </Link>
+                <T>{"View Products\n              "}</T></Link>
             </div>
           </div>
         </div>
@@ -260,4 +294,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       </div>
     </>
   );
+}
+
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { slug } = await params;
+  return <ArticlePageContent slug={slug} locale="en" />;
 }

@@ -1,9 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
+import { getSiteLink, localeDirections, type Locale } from "@/i18n/config";
+import { getCoreTextTranslator } from "@/i18n/core-text";
 
 const WoodMaterialViewer3D = dynamic(() => import("@/components/product/WoodMaterialViewer3D"), {
   ssr: false,
@@ -173,11 +175,11 @@ const problemImages = [
 ];
 
 const solutionImages = [
-  "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=600&h=400&fit=crop&q=80",
+  "/images/applications/furniture.png",
   "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=400&fit=crop&q=80",
   "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600&h=400&fit=crop&q=80",
   "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&q=80",
-  "https://images.unsplash.com/photo-1612831455350-970f8deb9c9f?w=600&h=400&fit=crop&q=80",
+  "/images/applications/customization.png",
   "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&h=400&fit=crop&q=80",
 ];
 
@@ -347,11 +349,12 @@ const scenarioImageMap: Record<string, string> = {
   "whole-house": "/images/applications/wholesaler.png",
 };
 
-function ScenarioCard({ item, index }: { item: typeof applicationScenarios[0]; index: number }) {
+function ScenarioCard({ item, index, locale }: { item: typeof applicationScenarios[0]; index: number; locale: Locale }) {
+  const t = getCoreTextTranslator(locale);
   return (
     <FadeUp delay={index * 100}>
       <Link
-        href={item.href}
+        href={`${getSiteLink("/applications", locale)}#${item.id}`}
         className="group block relative overflow-hidden rounded-2xl transition-all duration-500 hover:shadow-2xl"
         style={{
           aspectRatio: "3/4",
@@ -360,7 +363,7 @@ function ScenarioCard({ item, index }: { item: typeof applicationScenarios[0]; i
         {/* Full-bleed image */}
         <Image
           src={scenarioImageMap[item.id]}
-          alt={item.name}
+          alt={t(item.name)}
           fill
           className="object-cover transition-transform duration-700 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -373,7 +376,7 @@ function ScenarioCard({ item, index }: { item: typeof applicationScenarios[0]; i
         <div className="absolute top-4 left-4">
           <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/95 backdrop-blur-sm rounded-full text-[10px] font-bold uppercase tracking-widest" style={{ color: C.accent }}>
             <span className="w-1.5 h-1.5 rounded-full" style={{ background: C.accent }} />
-            {item.label}
+            {t(item.label)}
           </span>
         </div>
 
@@ -381,17 +384,17 @@ function ScenarioCard({ item, index }: { item: typeof applicationScenarios[0]; i
         <div className="absolute inset-x-0 bottom-0 p-6">
           {/* Title */}
           <h3 className="text-white font-bold text-xl lg:text-2xl leading-tight mb-2 group-hover:translate-y-[-2px] transition-transform duration-300">
-            {item.name}
+            {t(item.name)}
           </h3>
 
           {/* Divider line */}
           <div className="w-8 h-0.5 mb-3 transition-all duration-300 group-hover:w-12" style={{ background: C.accentLight }} />
 
           {/* Buyer info */}
-          <p className="text-white/60 text-xs mb-3 font-medium">{item.buyer}</p>
+          <p className="text-white/60 text-xs mb-3 font-medium">{t(item.buyer)}</p>
 
           {/* Pain point */}
-          <p className="text-white/80 text-sm leading-relaxed mb-4 line-clamp-2">{item.pain}</p>
+          <p className="text-white/80 text-sm leading-relaxed mb-4 line-clamp-2">{t(item.pain)}</p>
 
           {/* Tags */}
           <div className="flex flex-wrap gap-1.5 mb-5">
@@ -401,7 +404,7 @@ function ScenarioCard({ item, index }: { item: typeof applicationScenarios[0]; i
                 className="px-2.5 py-0.5 rounded-full text-[10px] font-semibold backdrop-blur-sm"
                 style={{ background: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.9)", border: "1px solid rgba(255,255,255,0.2)" }}
               >
-                {tag}
+                {t(tag)}
               </span>
             ))}
           </div>
@@ -409,7 +412,7 @@ function ScenarioCard({ item, index }: { item: typeof applicationScenarios[0]; i
           {/* CTA */}
           <div className="flex items-center gap-2">
             <span className="text-white text-sm font-bold group-hover:gap-3 transition-all duration-300 flex items-center gap-2">
-              Explore Solution
+              {t("Explore Solution")}
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
@@ -427,7 +430,8 @@ function ScenarioCard({ item, index }: { item: typeof applicationScenarios[0]; i
 // ============================================
 // Production Step
 // ============================================
-function ProductionStep({ step, isLast }: { step: typeof productionSteps[0]; isLast: boolean }) {
+function ProductionStep({ step, isLast, locale }: { step: typeof productionSteps[0]; isLast: boolean; locale: Locale }) {
+  const t = getCoreTextTranslator(locale);
   return (
     <div className="flex flex-col items-center text-center relative">
       {!isLast && (
@@ -439,8 +443,8 @@ function ProductionStep({ step, isLast }: { step: typeof productionSteps[0]; isL
       >
         {step.step}
       </div>
-      <h4 className="font-bold text-white text-sm mb-1 leading-tight">{step.title}</h4>
-      <p className="text-white/55 text-xs leading-relaxed max-w-[120px]">{step.subtitle}</p>
+      <h4 className="font-bold text-white text-sm mb-1 leading-tight">{t(step.title)}</h4>
+      <p className="text-white/55 text-xs leading-relaxed max-w-[120px]">{t(step.subtitle)}</p>
     </div>
   );
 }
@@ -448,9 +452,12 @@ function ProductionStep({ step, isLast }: { step: typeof productionSteps[0]; isL
 // ============================================
 // Main Page
 // ============================================
-export default function ApplicationsPage() {
+export function ApplicationsPageContent({ locale }: { locale: Locale }) {
+  const t = getCoreTextTranslator(locale);
+  const contactHref = getSiteLink("/contact", locale);
+
   return (
-    <div style={{ background: C.ivory, color: C.charcoal }}>
+    <div style={{ background: C.ivory, color: C.charcoal }} lang={locale} dir={localeDirections[locale]}>
       {/* ============================================
           Section 1: Hero
       ============================================ */}
@@ -474,7 +481,7 @@ export default function ApplicationsPage() {
           <WoodMaterialViewer3D
             diffuseMap="/images/applications/698283_abe71a316aa531ead650c9ee7c1f9207/3d66Mat-698283-maps-1.jpg"
             mapsImage="/images/applications/698283_abe71a316aa531ead650c9ee7c1f9207/3d66Mat-698283-maps-2.jpg"
-            woodName="3D Wood Material Preview"
+            woodName={t("3D Wood Material Preview")}
           />
         </div>
 
@@ -484,41 +491,39 @@ export default function ApplicationsPage() {
         <div className="relative z-40 container mx-auto px-6 lg:px-8 py-24 lg:py-32">
           <div className="max-w-xl">
             <FadeUp>
-              <SectionLabel light>Material Solutions</SectionLabel>
+              <SectionLabel light>{t("Material Solutions")}</SectionLabel>
             </FadeUp>
             <FadeUp delay={100}>
               <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white leading-[1.1] mb-6">
-                Choose the Right
+                {t("Choose the Right")}
                 <br />
-                <span style={{ color: C.accentLight }}>Decorative Wood Material</span>
+                <span style={{ color: C.accentLight }}>{t("Decorative Wood Material")}</span>
                 <br />
-                for Your Application
+                {t("for Your Application")}
               </h1>
             </FadeUp>
             <FadeUp delay={200}>
               <p className="text-white/75 text-lg lg:text-xl leading-relaxed mb-10 max-w-xl">
-                Different applications require different substrates, veneer types, surface treatments,
-                and matching methods. Tongli helps manufacturers and project buyers choose the right
-                wood solutions — from sample to bulk.
+                {t("Different applications require different substrates, veneer types, surface treatments, and matching methods. Tongli helps manufacturers and project buyers choose the right wood solutions — from sample to bulk.")}
               </p>
             </FadeUp>
             <FadeUp delay={300}>
               <div className="flex flex-wrap gap-4">
-                <Link href="/contact?type=advice"
+                <Link href={`${contactHref}?type=advice`}
                   className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-xl"
                   style={{ background: C.white, color: C.primary }}>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
-                  Request Material Advice
+                  {t("Request Material Advice")}
                 </Link>
-                <Link href="/contact?type=sample"
+                <Link href={`${contactHref}?type=sample`}
                   className="inline-flex items-center gap-2.5 px-8 py-4 text-sm font-semibold rounded-xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 text-white"
                   style={{ borderColor: "rgba(255,255,255,0.35)" }}>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                   </svg>
-                  Request Samples
+                  {t("Request Samples")}
                 </Link>
               </div>
             </FadeUp>
@@ -544,13 +549,13 @@ export default function ApplicationsPage() {
           <FadeUp>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5" style={{ background: `${C.accent}12` }}>
               <div className="w-1.5 h-1.5 rounded-full" style={{ background: C.accent }} />
-              <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: C.accent }}>Procurement Challenge</span>
+              <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: C.accent }}>{t("Procurement Challenge")}</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight mb-3">
-              From Sample Risk to Bulk Confidence
+              {t("From Sample Risk to Bulk Confidence")}
             </h2>
             <p className="text-base max-w-xl mx-auto" style={{ color: C.textBody }}>
-              See the gap — and the Tongli solution that closes it.
+              {t("See the gap — and the Tongli solution that closes it.")}
             </p>
           </FadeUp>
         </div>
@@ -574,7 +579,7 @@ export default function ApplicationsPage() {
                     <div className="relative aspect-video overflow-hidden">
                       <Image
                         src={problemImages[i]}
-                        alt={problem.title}
+                        alt={t(problem.title)}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -589,11 +594,11 @@ export default function ApplicationsPage() {
                             </svg>
                           </div>
                           <span className="text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm px-2 py-0.5 rounded-full" style={{ background: "rgba(201,75,60,0.7)" }}>
-                            {problem.subtitle}
+                            {t(problem.subtitle)}
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg">{problem.title}</h4>
+                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg">{t(problem.title)}</h4>
                         </div>
                       </div>
                       {/* Red accent bar */}
@@ -601,7 +606,7 @@ export default function ApplicationsPage() {
                     </div>
                     {/* Content */}
                     <div className="p-5">
-                      <p className="text-sm leading-relaxed" style={{ color: C.textBody }}>{problem.description}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: C.textBody }}>{t(problem.description)}</p>
                     </div>
                   </div>
 
@@ -614,7 +619,7 @@ export default function ApplicationsPage() {
                     <div className="relative aspect-video overflow-hidden">
                       <Image
                         src={solutionImages[i]}
-                        alt={solution.title}
+                        alt={t(solution.title)}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 1024px) 100vw, 50vw"
@@ -629,11 +634,11 @@ export default function ApplicationsPage() {
                             </svg>
                           </div>
                           <span className="text-[10px] font-bold uppercase tracking-widest text-white backdrop-blur-sm px-2 py-0.5 rounded-full" style={{ background: "rgba(15,107,58,0.7)" }}>
-                            Tongli Solution
+                            {t("Tongli Solution")}
                           </span>
                         </div>
                         <div>
-                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg">{solution.title}</h4>
+                          <h4 className="font-bold text-white text-base leading-tight drop-shadow-lg">{t(solution.title)}</h4>
                         </div>
                       </div>
                       {/* Green accent bar */}
@@ -641,7 +646,7 @@ export default function ApplicationsPage() {
                     </div>
                     {/* Content */}
                     <div className="p-5">
-                      <p className="text-sm leading-relaxed" style={{ color: C.textBody }}>{solution.description}</p>
+                      <p className="text-sm leading-relaxed" style={{ color: C.textBody }}>{t(solution.description)}</p>
                     </div>
                   </div>
 
@@ -671,16 +676,16 @@ export default function ApplicationsPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div className="lg:text-left">
-                <SectionLabel>Applications</SectionLabel>
+                <SectionLabel>{t("Applications")}</SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight">
-                  Find Your
+                  {t("Find Your")}
                   <br />
-                  <span style={{ color: C.accent }}>Industry Solution</span>
+                  <span style={{ color: C.accent }}>{t("Industry Solution")}</span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: C.border }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center" style={{ color: C.textBody }}>
-                Whether you are a furniture manufacturer, interior designer, or project buyer — Tongli has a material solution built for your workflow.
+                {t("Whether you are a furniture manufacturer, interior designer, or project buyer — Tongli has a material solution built for your workflow.")}
               </p>
             </div>
           </FadeUp>
@@ -692,6 +697,7 @@ export default function ApplicationsPage() {
                 key={item.id}
                 item={item}
                 index={i}
+                locale={locale}
               />
             ))}
           </div>
@@ -713,16 +719,16 @@ export default function ApplicationsPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel light>How It Works</SectionLabel>
+                <SectionLabel light>{t("How It Works")}</SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-white leading-tight">
-                  From Sample
+                  {t("From Sample")}
                   <br />
-                  <span style={{ color: C.accentLight }}>to Bulk Delivery</span>
+                  <span style={{ color: C.accentLight }}>{t("to Bulk Delivery")}</span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: "rgba(255,255,255,0.15)" }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center text-white/50">
-                A structured workflow that reduces your procurement risk — from the first inquiry to final delivery.
+                {t("A structured workflow that reduces your procurement risk — from the first inquiry to final delivery.")}
               </p>
             </div>
           </FadeUp>
@@ -731,7 +737,7 @@ export default function ApplicationsPage() {
             <div className="max-w-5xl mx-auto">
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-3">
                 {productionSteps.map((step, i) => (
-                  <ProductionStep key={i} step={step} isLast={i === productionSteps.length - 1} />
+                  <ProductionStep key={i} step={step} isLast={i === productionSteps.length - 1} locale={locale} />
                 ))}
               </div>
             </div>
@@ -739,10 +745,10 @@ export default function ApplicationsPage() {
 
           <FadeUp delay={200}>
             <div className="text-center mt-16">
-              <Link href="/contact"
+              <Link href={contactHref}
                 className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-xl"
                 style={{ background: C.white, color: C.primary }}>
-                Start Your Project Consultation
+                {t("Start Your Project Consultation")}
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -761,16 +767,16 @@ export default function ApplicationsPage() {
           <FadeUp>
             <div className="grid lg:grid-cols-[1fr_auto_1fr] gap-6 items-end mb-12 lg:mb-16">
               <div>
-                <SectionLabel>Before You Order</SectionLabel>
+                <SectionLabel>{t("Before You Order")}</SectionLabel>
                 <h2 className="text-3xl lg:text-4xl font-bold text-[#1F2621] leading-tight">
-                  What We Need
+                  {t("What We Need")}
                   <br />
-                  <span style={{ color: C.accent }}>From You</span>
+                  <span style={{ color: C.accent }}>{t("From You")}</span>
                 </h2>
               </div>
               <div className="hidden lg:block w-px h-16 self-center" style={{ background: C.border }} />
               <p className="hidden lg:block text-sm leading-relaxed max-w-xs self-center" style={{ color: C.textBody }}>
-                The more detail you provide, the more precise our recommendation will be. Our team responds within 1 business day.
+                {t("The more detail you provide, the more precise our recommendation will be. Our team responds within 1 business day.")}
               </p>
             </div>
           </FadeUp>
@@ -809,7 +815,7 @@ export default function ApplicationsPage() {
                   <div className="relative" style={{ aspectRatio: "3/4" }}>
                     <Image
                       src={item.image}
-                      alt={item.title}
+                      alt={t(item.title)}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
@@ -823,8 +829,8 @@ export default function ApplicationsPage() {
 
                     {/* Content overlay */}
                     <div className="absolute inset-x-0 bottom-0 p-5">
-                      <h4 className="text-white font-bold text-base leading-tight mb-2">{item.title}</h4>
-                      <p className="text-white/70 text-xs leading-relaxed line-clamp-3">{item.description}</p>
+                      <h4 className="text-white font-bold text-base leading-tight mb-2">{t(item.title)}</h4>
+                      <p className="text-white/70 text-xs leading-relaxed line-clamp-3">{t(item.description)}</p>
                     </div>
 
                     {/* Bottom accent */}
@@ -838,7 +844,7 @@ export default function ApplicationsPage() {
           {/* Additional checklist row */}
           <FadeUp delay={400}>
             <div className="mt-10 p-6 lg:p-8 rounded-2xl" style={{ background: "white", border: `1px solid ${C.border}` }}>
-              <h4 className="font-bold text-[#1F2621] text-sm mb-4">Also helpful to know:</h4>
+              <h4 className="font-bold text-[#1F2621] text-sm mb-4">{t("Also helpful to know:")}</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   "Target delivery date & shipping destination",
@@ -852,7 +858,7 @@ export default function ApplicationsPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <p className="text-xs leading-relaxed" style={{ color: C.textBody }}>{item}</p>
+                    <p className="text-xs leading-relaxed" style={{ color: C.textBody }}>{t(item)}</p>
                   </div>
                 ))}
               </div>
@@ -881,32 +887,31 @@ export default function ApplicationsPage() {
 
         <div className="relative z-20 container mx-auto px-6 lg:px-8 text-center">
           <FadeUp>
-            <SectionLabel light>Ready to Start?</SectionLabel>
+            <SectionLabel light>{t("Ready to Start?")}</SectionLabel>
           </FadeUp>
           <FadeUp delay={100}>
             <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight mb-5">
-              Tell Us Your Application.
+              {t("Tell Us Your Application.")}
               <br />
-              <span style={{ color: C.accentLight }}>We&apos;ll Recommend the Right Material.</span>
+              <span style={{ color: C.accentLight }}>{t("We'll Recommend the Right Material.")}</span>
             </h2>
           </FadeUp>
           <FadeUp delay={200}>
             <p className="text-white/70 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-              Whether you need samples, a material recommendation, or a full project quote —
-              our team responds within 1 business day.
+              {t("Whether you need samples, a material recommendation, or a full project quote — our team responds within 1 business day.")}
             </p>
           </FadeUp>
           <FadeUp delay={300}>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/contact?type=advice"
+              <Link href={`${contactHref}?type=advice`}
                 className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold rounded-xl transition-all duration-200 hover:-translate-y-0.5 shadow-xl"
                 style={{ background: C.white, color: C.primary }}>
-                Request Material Advice
+                {t("Request Material Advice")}
               </Link>
-              <Link href="/contact?type=sample"
+              <Link href={`${contactHref}?type=sample`}
                 className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold rounded-xl border-2 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 text-white"
                 style={{ borderColor: "rgba(255,255,255,0.35)" }}>
-                Request Samples
+                {t("Request Samples")}
               </Link>
             </div>
           </FadeUp>
@@ -914,4 +919,8 @@ export default function ApplicationsPage() {
       </section>
     </div>
   );
+}
+
+export default function ApplicationsPage() {
+  return <ApplicationsPageContent locale="en" />;
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import T from "@/i18n/full-site-context";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
 import { useState } from "react";
 import ImageModal from "@/components/ImageModal";
@@ -130,15 +131,15 @@ export default function NaturalWoodVeneerPage() {
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href="/" className="hover:text-[#0F6B3A]"><T>{"Home"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <Link href="/collections" className="hover:text-[#0F6B3A]">Collections</Link>
+            <Link href="/collections" className="hover:text-[#0F6B3A]"><T>{"Collections"}</T></Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Natural Wood Veneer</span>
+            <span className="text-[#1F2621] font-medium"><T>{"Natural Wood Veneer"}</T></span>
           </div>
         </div>
       </div>
@@ -147,11 +148,10 @@ export default function NaturalWoodVeneerPage() {
       <section className="relative bg-gradient-to-r from-[#8B5E3C] to-[#6B4A2C] py-16 lg:py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="text-white/60 text-sm font-medium tracking-wider uppercase">Collection</span>
-            <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-white">Natural Wood Veneer</h1>
+            <span className="text-white/60 text-sm font-medium tracking-wider uppercase"><T>{"Collection"}</T></span>
+            <h1 className="text-4xl lg:text-5xl font-bold mt-2 mb-4 text-white"><T>{"Natural Wood Veneer"}</T></h1>
             <p className="text-white/80 text-lg leading-relaxed">
-              Sliced from real hardwood logs, each sheet preserves the authentic grain patterns, organic textures, and unique color variations of its species. Browse the full style library below.
-            </p>
+              <T>{"Sliced from real hardwood logs, each sheet preserves the authentic grain patterns, organic textures, and unique color variations of its species. Browse the full style library below.\n            "}</T></p>
           </div>
         </div>
       </section>
@@ -167,7 +167,7 @@ export default function NaturalWoodVeneerPage() {
                 !toneFilter ? 'bg-[#0F6B3A] text-white' : 'bg-white text-[#1F2621] border border-[#E5E1D8]'
               }`}
             >
-              All ({swatches.length})
+              <T>{"All ("}</T>{swatches.length})
             </button>
             {tones.map((tone) => (
               <button
@@ -177,7 +177,7 @@ export default function NaturalWoodVeneerPage() {
                   toneFilter === tone ? 'bg-[#0F6B3A] text-white' : 'bg-white text-[#1F2621] border border-[#E5E1D8]'
                 }`}
               >
-                {tone} ({swatches.filter(s => s.tone === tone).length})
+                <T>{tone}</T> ({swatches.filter(s => s.tone === tone).length})
               </button>
             ))}
           </div>
@@ -216,10 +216,10 @@ export default function NaturalWoodVeneerPage() {
                 
                 {/* Swatch Info */}
                 <div className="p-3">
-                  <h3 className="font-semibold text-[#1F2621] text-xs line-clamp-1 mb-1">{swatch.name}</h3>
+                  <h3 className="font-semibold text-[#1F2621] text-xs line-clamp-1 mb-1"><T>{swatch.name}</T></h3>
                   <div className="flex items-center justify-between gap-2">
                     <span className="text-[10px] text-[#0F6B3A] font-mono">{swatch.code}</span>
-                    <span className="px-1.5 py-0.5 bg-[#F7F3EC] rounded text-[10px] text-[#6b7280]">{swatch.tone}</span>
+                    <span className="px-1.5 py-0.5 bg-[#F7F3EC] rounded text-[10px] text-[#6b7280]"><T>{swatch.tone}</T></span>
                   </div>
                 </div>
               </div>
@@ -232,17 +232,15 @@ export default function NaturalWoodVeneerPage() {
       <section className="py-16 bg-[#8B5E3C]">
         <div className="container mx-auto px-6">
           <div className="max-w-2xl mx-auto text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Need Physical Samples?</h2>
+            <h2 className="text-3xl font-bold mb-4"><T>{"Need Physical Samples?"}</T></h2>
             <p className="text-white/80 mb-8">
-              Request samples by code number to evaluate colors, grains, and textures before placing your order.
-            </p>
+              <T>{"Request samples by code number to evaluate colors, grains, and textures before placing your order.\n            "}</T></p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
                 href="/contact?type=sample" 
                 className="px-8 py-4 bg-white text-[#8B5E3C] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Request Samples
-              </Link>
+                <T>{"Request Samples\n              "}</T></Link>
             </div>
           </div>
         </div>

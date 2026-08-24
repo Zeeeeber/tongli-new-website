@@ -1,5 +1,6 @@
 "use client";
 
+import T from "@/i18n/full-site-context";
 import { useState } from "react";
 
 interface FAQItem {
@@ -20,7 +21,7 @@ export function FAQSection({ faqs, accentColor = "#0F6B3A" }: FAQSectionProps) {
       <div className="container mx-auto px-6">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1F2621]">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold text-[#1F2621]"><T>{"Frequently Asked Questions"}</T></h2>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (
@@ -29,7 +30,7 @@ export function FAQSection({ faqs, accentColor = "#0F6B3A" }: FAQSectionProps) {
                   onClick={() => setOpenFaq(openFaq === index ? null : index)} 
                   className="w-full flex items-center justify-between p-6 text-left font-semibold text-[#1F2621] hover:text-[#0F6B3A] transition-colors"
                 >
-                  <span className="pr-4">{faq.q}</span>
+                  <span className="pr-4"><T>{faq.q}</T></span>
                   <svg 
                     className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${openFaq === index ? 'rotate-180' : ''}`} 
                     style={{ color: accentColor }}
@@ -41,7 +42,7 @@ export function FAQSection({ faqs, accentColor = "#0F6B3A" }: FAQSectionProps) {
                   </svg>
                 </button>
                 <div className={`overflow-hidden transition-all duration-300 ${openFaq === index ? 'max-h-48' : 'max-h-0'}`}>
-                  <div className="px-6 pb-6 text-[#6b7280] leading-relaxed">{faq.a}</div>
+                  <div className="px-6 pb-6 text-[#6b7280] leading-relaxed"><T>{faq.a}</T></div>
                 </div>
               </div>
             ))}

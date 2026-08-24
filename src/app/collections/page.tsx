@@ -1,28 +1,29 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useEffect } from "react";
 import codeCategoryLookup from "./code-category-lookup.json";
-import Link from "next/link";
+import Link from "@/components/i18n/LocalizedLink";
 import Image from "next/image";
+import { getSiteLink, localeDirections, type Locale } from "@/i18n/config";
+import { collectionsPageCopy } from "@/i18n/core-page-copy";
 
 // Swatch scrollable gallery component with seamless infinite scroll
 function SwatchGallery({ 
   swatches, 
-  collectionId, 
-  color,
   viewAllHref,
-  scrollDirection = 'left' // 'left' = scroll left, 'right' = scroll right
+  scrollDirection = "left",
+  locale,
 }: { 
   swatches: Array<{ name: string; code: string; bg: string; image?: string; category?: string }>;
-  collectionId: string;
-  color: string;
   viewAllHref: string;
   scrollDirection?: 'left' | 'right';
+  locale: Locale;
 }) {
+  const copy = collectionsPageCopy[locale];
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const isPausedRef = useRef(false);
   const animationRef = useRef<number>(0);
   const positionRef = useRef(0);
   const lastTimeRef = useRef<number>(0);
@@ -31,49 +32,42 @@ function SwatchGallery({
   const scrollSpeed = 0.8; // pixels per frame
   const direction = scrollDirection === 'right' ? -1 : 1;
 
-  const animate = useCallback((timestamp: number) => {
-    if (!scrollRef.current) {
-      animationRef.current = requestAnimationFrame(animate);
-      return;
-    }
-
-    if (!lastTimeRef.current) {
-      lastTimeRef.current = timestamp;
-    }
-
-    if (!isPaused) {
-      const deltaTime = timestamp - lastTimeRef.current;
-      positionRef.current += scrollSpeed * direction * (deltaTime / 16);
-
-      const contentWidth = scrollRef.current.scrollWidth / 2;
-      if (contentWidthRef.current !== contentWidth) {
-        contentWidthRef.current = contentWidth;
-      }
-
-      // Reset position when scrolled past half (seamless loop)
-      if (positionRef.current >= contentWidthRef.current) {
-        positionRef.current = positionRef.current - contentWidthRef.current;
-      } else if (positionRef.current < 0) {
-        positionRef.current = positionRef.current + contentWidthRef.current;
-      }
-
-      scrollRef.current.scrollLeft = positionRef.current;
-    } else {
-      positionRef.current = scrollRef.current.scrollLeft;
-    }
-
-    lastTimeRef.current = timestamp;
-    animationRef.current = requestAnimationFrame(animate);
-  }, [isPaused, scrollSpeed, direction]);
-
   useEffect(() => {
+    const animate = (timestamp: number) => {
+      if (!scrollRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+
+      if (!isPausedRef.current) {
+        const deltaTime = timestamp - lastTimeRef.current;
+        positionRef.current += scrollSpeed * direction * (deltaTime / 16);
+        contentWidthRef.current = scrollRef.current.scrollWidth / 2;
+
+        if (positionRef.current >= contentWidthRef.current) {
+          positionRef.current -= contentWidthRef.current;
+        } else if (positionRef.current < 0) {
+          positionRef.current += contentWidthRef.current;
+        }
+
+        scrollRef.current.scrollLeft = positionRef.current;
+      } else {
+        positionRef.current = scrollRef.current.scrollLeft;
+      }
+
+      lastTimeRef.current = timestamp;
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
     animationRef.current = requestAnimationFrame(animate);
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [animate]);
+  }, [direction]);
 
   const openModal = (image?: string) => {
     setSelectedImage(image || null);
@@ -95,8 +89,8 @@ function SwatchGallery({
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
             }}
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            onMouseEnter={() => { isPausedRef.current = true; }}
+            onMouseLeave={() => { isPausedRef.current = false; }}
             ref={scrollRef}
           >
             <div className="flex gap-6 w-max">
@@ -161,13 +155,13 @@ function SwatchGallery({
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                       </svg>
                     </div>
-                    <span className="text-base font-semibold text-[#6b7280] group-hover:text-[#0F6B3A]">View All</span>
-                    <p className="text-sm text-[#9CA3AF] mt-1">+93 More Styles</p>
+                    <span className="text-base font-semibold text-[#6b7280] group-hover:text-[#0F6B3A]">{copy.viewAll}</span>
+                    <p className="text-sm text-[#9CA3AF] mt-1">{copy.moreStyles}</p>
                   </div>
                 </Link>
                 <div className="mt-4 text-center">
-                  <p className="font-semibold text-[#1F2621] text-sm">Explore</p>
-                  <p className="text-xs text-[#6b7280] mt-1">More Options</p>
+                  <p className="font-semibold text-[#1F2621] text-sm">{copy.explore}</p>
+                  <p className="text-xs text-[#6b7280] mt-1">{copy.moreOptions}</p>
                 </div>
               </div>
               
@@ -200,7 +194,7 @@ function SwatchGallery({
             <div className="relative w-[70vw] h-[60vh] max-w-5xl max-h-[80vh] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src={selectedImage}
-                alt="Material Preview"
+                alt={copy.materialPreview}
                 fill
                 className="object-contain"
                 sizes="90vw"
@@ -310,18 +304,21 @@ const collections = [
   },
 ];
 
-export default function CollectionsPage() {
+export function CollectionsPageContent({ locale }: { locale: Locale }) {
+  const copy = collectionsPageCopy[locale];
+  const contactHref = getSiteLink("/contact", locale);
+
   return (
-    <>
+    <div lang={locale} dir={localeDirections[locale]}>
       {/* Breadcrumb */}
       <div className="bg-[#F7F3EC] py-4">
         <div className="container mx-auto px-6">
           <div className="flex items-center gap-2 text-sm text-[#6b7280]">
-            <Link href="/" className="hover:text-[#0F6B3A]">Home</Link>
+            <Link href={getSiteLink("/", locale)} className="hover:text-[#0F6B3A]">{copy.home}</Link>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
-            <span className="text-[#1F2621] font-medium">Collections</span>
+            <span className="text-[#1F2621] font-medium">{copy.collections}</span>
           </div>
         </div>
       </div>
@@ -338,23 +335,23 @@ export default function CollectionsPage() {
           <div className="max-w-4xl mx-auto text-center text-white">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-8">
               <span className="w-2 h-2 bg-[#4C8A68] rounded-full animate-pulse" />
-              <span className="text-white/80 text-sm font-medium tracking-wide">Material Library</span>
+              <span className="text-white/80 text-sm font-medium tracking-wide">{copy.materialLibrary}</span>
             </div>
             
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              Wood Veneer & Decorative
-              <span className="block text-[#4C8A68]">Surface Collections</span>
+              {copy.heroTitle}
+              <span className="block text-[#4C8A68]">{copy.heroAccent}</span>
             </h1>
             
             <p className="text-xl text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
-              Browse our material library of natural wood veneer, engineered veneer, and melamine surfaces. Compare colors, grains, textures, and finishes for your next project.
+              {copy.heroDescription}
             </p>
             
             <Link 
               href="#collections" 
               className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-all duration-300"
             >
-              <span>Explore Collections</span>
+              <span>{copy.exploreCollections}</span>
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
               </svg>
@@ -368,10 +365,10 @@ export default function CollectionsPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-2xl lg:text-3xl font-bold text-[#1F2621] mb-6">
-              Our Material Collections
+              {copy.overviewTitle}
             </h2>
             <p className="text-[#6b7280] text-lg leading-relaxed">
-              Our collections help buyers, designers, and manufacturers compare wood grains, colors, textures, and decorative surfaces before production. Select your preferred materials and request physical samples for your project.
+              {copy.overviewDescription}
             </p>
           </div>
         </div>
@@ -381,7 +378,9 @@ export default function CollectionsPage() {
       <section id="collections" className="py-12 bg-[#FAFAFA]">
         <div className="container mx-auto px-6">
           <div className="space-y-10">
-            {collections.map((collection, index) => (
+            {collections.map((collection, index) => {
+              const localizedCollection = copy.collectionDetails[collection.id];
+              return (
               <div 
                 key={collection.id}
                 className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden"
@@ -394,12 +393,12 @@ export default function CollectionsPage() {
                         <span className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg font-bold">
                           {index + 1}
                         </span>
-                        <h3 className="text-2xl font-bold">{collection.shortName}</h3>
+                        <h3 className="text-2xl font-bold">{localizedCollection?.shortName ?? collection.shortName}</h3>
                       </div>
-                      <p className="text-white/80 text-sm max-w-xl">{collection.description}</p>
+                      <p className="text-white/80 text-sm max-w-xl">{localizedCollection?.description ?? collection.description}</p>
                     </div>
                     <div className="flex flex-wrap items-center gap-3">
-                      {collection.features.map((feature) => (
+                      {(localizedCollection?.features ?? collection.features).map((feature) => (
                         <span key={feature} className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs text-white">
                           {feature}
                         </span>
@@ -408,7 +407,7 @@ export default function CollectionsPage() {
                         href={`/collections/${collection.id}`}
                         className="ml-4 px-6 py-2 bg-white text-[#1F2621] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors text-sm"
                       >
-                        View All
+                        {copy.viewAll}
                       </Link>
                     </div>
                   </div>
@@ -417,13 +416,13 @@ export default function CollectionsPage() {
                 {/* Swatch Gallery with Scroll Buttons */}
                 <SwatchGallery 
                   swatches={collection.swatches}
-                  collectionId={collection.id}
-                  color={collection.color}
                   viewAllHref={`/collections/${collection.id}`}
                   scrollDirection={collection.scrollDirection}
+                  locale={locale}
                 />
               </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -441,27 +440,31 @@ export default function CollectionsPage() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-3xl mx-auto text-center text-white">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">Need Samples for Your Project?</h2>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4">{copy.sampleTitle}</h2>
             <p className="text-xl text-white/80 mb-10 max-w-xl mx-auto">
-              Request physical material samples to evaluate colors, grains, and textures before placing your order.
+              {copy.sampleDescription}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link 
-                href="/contact?type=sample" 
+                href={`${contactHref}?type=sample`}
                 className="px-8 py-4 bg-white text-[#0F6B3A] rounded-lg font-semibold hover:bg-[#F7F3EC] transition-colors"
               >
-                Request Samples
+                {copy.requestSamples}
               </Link>
               <Link 
-                href="/contact?type=inquiry" 
+                href={`${contactHref}?type=inquiry`}
                 className="px-8 py-4 border-2 border-white/30 text-white rounded-lg font-semibold hover:bg-white/10 transition-colors"
               >
-                Send Inquiry
+                {copy.sendInquiry}
               </Link>
             </div>
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
+}
+
+export default function CollectionsPage() {
+  return <CollectionsPageContent locale="en" />;
 }
