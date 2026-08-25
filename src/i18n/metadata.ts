@@ -11,6 +11,10 @@ function absoluteUrl(path: string): string {
 }
 
 export function createLanguageAlternates(path: string) {
+  if (!isLocalizedPathIndexable(path)) {
+    return undefined;
+  }
+
   return {
     ...Object.fromEntries(
       locales.map((language) => [language, absoluteUrl(localizePath(path, language))]),
