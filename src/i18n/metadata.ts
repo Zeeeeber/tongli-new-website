@@ -2,22 +2,30 @@ import type { Metadata } from "next";
 import { defaultSeo, siteConfig } from "@/lib/seo/site";
 import { contactCopy } from "./copy";
 import { corePagePaths, coreSeoCopy, type CorePageKey } from "./core-page-copy";
-import { locales, localizePath, openGraphLocales, type Locale } from "./config";
+import { localizePath, openGraphLocales, type Locale } from "./config";
 import { translateFullSiteText } from "./full-site-text";
-import { isLocalizedPathIndexable } from "./seo-policy";
+import {
+  indexableLocalesForPath,
+  isLocalizedPathIndexable,
+} from "./seo-policy";
 
 function absoluteUrl(path: string): string {
   return path === "/" ? siteConfig.canonicalUrl : `${siteConfig.canonicalUrl}${path}`;
 }
 
 export function createLanguageAlternates(path: string) {
-  if (!isLocalizedPathIndexable(path)) {
+  const indexableLocales = indexableLocalesForPath(path);
+
+  if (indexableLocales.length <= 1) {
     return undefined;
   }
 
   return {
     ...Object.fromEntries(
-      locales.map((language) => [language, absoluteUrl(localizePath(path, language))]),
+      indexableLocales.map((language) => [
+        language,
+        absoluteUrl(localizePath(path, language)),
+      ]),
     ),
     "x-default": absoluteUrl(path),
   };
@@ -43,7 +51,8 @@ export function createFullSiteMetadata({
   const canonicalPath = localizePath(path, locale);
   const canonicalUrl = absoluteUrl(canonicalPath);
   const languages = createLanguageAlternates(path);
-  const indexable = isLocalizedPathIndexable(path);
+  const indexable = isLocalizedPathIndexable(path, locale);
+  const indexableLocales = indexableLocalesForPath(path);
 
   return {
     title: localizedTitle,
@@ -64,7 +73,7 @@ export function createFullSiteMetadata({
       description: localizedDescription,
       url: canonicalUrl,
       locale: openGraphLocales[locale],
-      alternateLocale: locales
+      alternateLocale: indexableLocales
         .filter((language) => language !== locale)
         .map((language) => openGraphLocales[language]),
       images: [{
@@ -87,24 +96,21 @@ export function createContactMetadata(locale: Locale): Metadata {
   const copy = contactCopy[locale];
   const canonicalPath = localizePath("/contact", locale);
   const canonicalUrl = absoluteUrl(canonicalPath);
-  const languages = Object.fromEntries(
-    locales.map((language) => [language, absoluteUrl(localizePath("/contact", language))]),
-  );
+  const indexable = isLocalizedPathIndexable("/contact", locale);
+  const languages = createLanguageAlternates("/contact");
+  const indexableLocales = indexableLocalesForPath("/contact");
 
   return {
     title: copy.seoTitle,
     description: copy.seoDescription,
     alternates: {
       canonical: canonicalUrl,
-      languages: {
-        ...languages,
-        "x-default": absoluteUrl("/contact"),
-      },
+      ...(languages ? { languages } : {}),
     },
     robots: {
-      index: true,
+      index: indexable,
       follow: true,
-      googleBot: { index: true, follow: true },
+      googleBot: { index: indexable, follow: true },
     },
     openGraph: {
       type: "website",
@@ -113,7 +119,7 @@ export function createContactMetadata(locale: Locale): Metadata {
       description: copy.seoDescription,
       url: canonicalUrl,
       locale: openGraphLocales[locale],
-      alternateLocale: locales
+      alternateLocale: indexableLocales
         .filter((language) => language !== locale)
         .map((language) => openGraphLocales[language]),
       images: [
@@ -138,21 +144,21 @@ export function createCorePageMetadata(page: CorePageKey, locale: Locale): Metad
   const copy = coreSeoCopy[locale][page];
   const path = corePagePaths[page];
   const canonicalUrl = absoluteUrl(localizePath(path, locale));
-  const languages = Object.fromEntries(
-    locales.map((language) => [language, absoluteUrl(localizePath(path, language))]),
-  );
+  const indexable = isLocalizedPathIndexable(path, locale);
+  const languages = createLanguageAlternates(path);
+  const indexableLocales = indexableLocalesForPath(path);
 
   return {
     title: copy.title,
     description: copy.description,
     alternates: {
       canonical: canonicalUrl,
-      languages: { ...languages, "x-default": absoluteUrl(path) },
+      ...(indexable && languages ? { languages } : {}),
     },
     robots: {
-      index: true,
+      index: indexable,
       follow: true,
-      googleBot: { index: true, follow: true },
+      googleBot: { index: indexable, follow: true },
     },
     openGraph: {
       type: "website",
@@ -161,7 +167,7 @@ export function createCorePageMetadata(page: CorePageKey, locale: Locale): Metad
       description: copy.description,
       url: canonicalUrl,
       locale: openGraphLocales[locale],
-      alternateLocale: locales
+      alternateLocale: indexableLocales
         .filter((language) => language !== locale)
         .map((language) => openGraphLocales[language]),
       images: [{

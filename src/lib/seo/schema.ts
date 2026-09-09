@@ -163,20 +163,31 @@ export function getProductSchema(
   config?: SchemaConfig
 ): object {
   const baseUrl = config?.baseUrl || siteConfig.canonicalUrl;
+  const productUrl = product.url
+    ? product.url.startsWith("http")
+      ? product.url
+      : `${baseUrl}${product.url.startsWith("/") ? product.url : `/${product.url}`}`
+    : `${baseUrl}/products`;
+  const productImage = product.image
+    ? product.image.startsWith("http")
+      ? product.image
+      : `${baseUrl}${product.image.startsWith("/") ? product.image : `/${product.image}`}`
+    : undefined;
 
   return {
     "@context": "https://schema.org",
     "@type": "Product",
+    "@id": `${productUrl}#product`,
     name: product.name,
     description: product.description,
-    image: product.image ? [product.image] : undefined,
+    image: productImage ? [productImage] : undefined,
     sku: product.sku,
     brand: {
       "@type": "Brand",
       name: product.brand || siteConfig.name,
     },
     category: product.category,
-    url: product.url || `${baseUrl}/products`,
+    url: productUrl,
     offers: product.price
       ? {
           "@type": "Offer",

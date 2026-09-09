@@ -5,8 +5,8 @@
 
 import { Metadata } from "next";
 import { siteConfig, defaultSeo } from "./site";
-import { locales, localizePath } from "@/i18n/config";
-import { isLocalizedPathIndexable } from "@/i18n/seo-policy";
+import { localizePath } from "@/i18n/config";
+import { indexableLocalesForPath } from "@/i18n/seo-policy";
 
 /**
  * Helper function to convert relative URL to absolute URL
@@ -30,14 +30,18 @@ function routePath(url: string): string {
 
 function languageAlternates(pathOrUrl: string) {
   const path = routePath(pathOrUrl);
+  const indexableLocales = indexableLocalesForPath(path);
 
-  if (!isLocalizedPathIndexable(path)) {
+  if (indexableLocales.length <= 1) {
     return undefined;
   }
 
   return {
     ...Object.fromEntries(
-      locales.map((locale) => [locale, toAbsoluteUrl(localizePath(path, locale))]),
+      indexableLocales.map((locale) => [
+        locale,
+        toAbsoluteUrl(localizePath(path, locale)),
+      ]),
     ),
     "x-default": toAbsoluteUrl(path),
   };
@@ -51,6 +55,30 @@ export function withSiteName(title: string): string {
   return normalizedTitle.toLowerCase().endsWith(suffix.toLowerCase())
     ? normalizedTitle
     : `${normalizedTitle} ${suffix}`;
+}
+
+/**
+ * Keep product titles descriptive without repeating supplier keywords across
+ * three or four pipe-separated clauses. Product/model terms stay first; the
+ * site name is included only when the complete title remains concise.
+ */
+export function createProductSeoTitle(title: string): string {
+  const segments = title
+    .split("|")
+    .map((segment) => segment.trim())
+    .filter(Boolean)
+    .filter((segment) => segment.toLowerCase() !== siteConfig.name.toLowerCase());
+  const fullProductTitle = segments.join(" | ");
+  const brandedTitle = withSiteName(fullProductTitle);
+
+  if (brandedTitle.length <= 70) return brandedTitle;
+
+  const primaryTitle = segments.slice(0, 2).join(" | ");
+  if (primaryTitle.length <= 70) return primaryTitle;
+  if (segments[0].length <= 70) return segments[0];
+
+  const shortened = segments[0].slice(0, 67).replace(/\s+\S*$/, "").trim();
+  return `${shortened}…`;
 }
 
 /**
@@ -173,7 +201,7 @@ export function createProductMetadata(options: ProductMetadataOptions): Metadata
     noFollow = false,
   } = options;
 
-  const title = withSiteName(productName);
+  const title = createProductSeoTitle(productName);
 
   // Determine URL: productUrl or canonical, converted to absolute
   let url: string;

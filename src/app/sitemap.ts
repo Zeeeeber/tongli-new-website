@@ -8,8 +8,8 @@ import { threeDWoodPanelsProducts } from "@/data/products/three-d-wood-panels-pr
 import { veneerEdgeBandingProducts } from "@/data/products/veneer-edge-banding-products";
 import { melamineBoardProducts } from "@/data/products/melamine-board-products";
 import { supportingBoardsProducts } from "@/data/products/supporting-boards-products";
-import { defaultLocale, locales, localizePath } from "@/i18n/config";
-import { isLocalizedPathIndexable } from "@/i18n/seo-policy";
+import { defaultLocale, localizePath } from "@/i18n/config";
+import { indexableLocalesForPath } from "@/i18n/seo-policy";
 
 type ProductSitemapSource = {
   slug: string;
@@ -52,7 +52,7 @@ const staticPaths = [
 ] as const;
 
 const seoUpdateDate = "2026-08-17";
-const localizedLaunchDate = "2026-08-24";
+const localizedLaunchDate = "2026-09-10";
 
 const staticPathLastModified = new Map<string, string>([
   ["/", seoUpdateDate],
@@ -93,15 +93,20 @@ function localizedSitemapEntries(
   path: string,
   lastModified?: string | Date,
 ): MetadataRoute.Sitemap {
-  if (!isLocalizedPathIndexable(path)) {
+  const indexableLocales = indexableLocalesForPath(path);
+
+  if (indexableLocales.length <= 1) {
     return [sitemapEntry(path, lastModified)];
   }
 
   const languages = Object.fromEntries(
-    locales.map((locale) => [locale, absoluteUrl(localizePath(path, locale))]),
+    indexableLocales.map((locale) => [
+      locale,
+      absoluteUrl(localizePath(path, locale)),
+    ]),
   );
 
-  return locales.map((locale) => ({
+  return indexableLocales.map((locale) => ({
     url: absoluteUrl(localizePath(path, locale)),
     ...(lastModified || locale !== defaultLocale
       ? {

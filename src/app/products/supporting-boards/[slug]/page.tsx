@@ -15,7 +15,7 @@ import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-vene
 import { type SupportingBoardSubCategorySlug } from "@/data/products/supporting-boards-products";
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { defaultSeo } from "@/lib/seo/site";
-import { withSiteName } from "@/lib/seo/metadata";
+import { createProductSeoTitle } from "@/lib/seo/metadata";
 import { createLanguageAlternates } from "@/i18n/metadata";
 
 interface PageProps {
@@ -48,7 +48,7 @@ export async function generateMetadata({
   }
 
   const title = product.seoTitle || product.name;
-  const metadataTitle = withSiteName(title);
+  const metadataTitle = createProductSeoTitle(title);
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/supporting-boards/${product.slug}`;
   const socialImage = product.featuredImage || defaultSeo.ogImage;
@@ -120,6 +120,9 @@ export default async function SupportingBoardsProductDetailPage({
         categoryPath="/products/supporting-boards"
         productName={product.name}
         productPath={`/products/supporting-boards/${slug}`}
+        productDescription={product.metaDescription || product.shortDesc}
+        productImage={product.featuredImage}
+        productSku={product.code}
       />
       {renderTemplateForSubCategory(
         product.subCategorySlug,

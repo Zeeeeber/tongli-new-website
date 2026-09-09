@@ -8,7 +8,7 @@ import { ThreeDWoodPanelsDetailTemplate } from "@/components/product/ThreeDWoodP
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { type NaturalWoodVeneerProduct } from "@/data/products/natural-wood-veneer-products";
 import { defaultSeo } from "@/lib/seo/site";
-import { withSiteName } from "@/lib/seo/metadata";
+import { createProductSeoTitle } from "@/lib/seo/metadata";
 import { createLanguageAlternates } from "@/i18n/metadata";
 
 interface PageProps {
@@ -41,7 +41,7 @@ export async function generateMetadata({
   }
 
   const title = product.seoTitle || product.name;
-  const metadataTitle = withSiteName(title);
+  const metadataTitle = createProductSeoTitle(title);
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/3d-wood-panels/${product.slug}`;
   const socialImage = product.featuredImage || defaultSeo.ogImage;
@@ -86,6 +86,9 @@ export default async function ThreeDWoodPanelsProductDetailPage({
         categoryPath="/products/3d-wood-panels"
         productName={product.name}
         productPath={`/products/3d-wood-panels/${slug}`}
+        productDescription={product.metaDescription || product.shortDesc}
+        productImage={product.featuredImage}
+        productSku={product.code}
       />
       <ThreeDWoodPanelsDetailTemplate
         product={product as unknown as NaturalWoodVeneerProduct}

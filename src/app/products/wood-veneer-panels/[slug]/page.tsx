@@ -4,7 +4,7 @@ import { woodVeneerPanelProducts } from "@/data/products/wood-veneer-panel-produ
 import WoodVeneerPanelDetailTemplate from "@/components/product/WoodVeneerPanelDetailTemplate";
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { defaultSeo, siteConfig } from "@/lib/seo/site";
-import { withSiteName } from "@/lib/seo/metadata";
+import { createProductSeoTitle } from "@/lib/seo/metadata";
 import { createLanguageAlternates } from "@/i18n/metadata";
 
 interface PageProps {
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const productUrl = `/products/wood-veneer-panels/${product.slug}`;
   const socialImage = product.featuredImage || defaultSeo.ogImage;
-  const metadataTitle = withSiteName(product.seoTitle);
+  const metadataTitle = createProductSeoTitle(product.seoTitle);
 
   return {
     title: metadataTitle,
@@ -75,6 +75,9 @@ export default async function Page({ params }: PageProps) {
         categoryPath="/products/wood-veneer-panels"
         productName={product.name}
         productPath={`/products/wood-veneer-panels/${slug}`}
+        productDescription={product.metaDescription}
+        productImage={product.featuredImage}
+        productSku={product.code}
       />
       <WoodVeneerPanelDetailTemplate
         product={product}

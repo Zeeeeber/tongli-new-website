@@ -7,7 +7,7 @@ import {
 import { NaturalWoodVeneerDetailTemplate } from "@/components/product/NaturalWoodVeneerDetailTemplate";
 import { ProductBreadcrumbJsonLd } from "@/components/seo/ProductBreadcrumbJsonLd";
 import { defaultSeo } from "@/lib/seo/site";
-import { withSiteName } from "@/lib/seo/metadata";
+import { createProductSeoTitle } from "@/lib/seo/metadata";
 import { createLanguageAlternates } from "@/i18n/metadata";
 
 interface PageProps {
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = product.seoTitle || product.name;
-  const metadataTitle = withSiteName(title);
+  const metadataTitle = createProductSeoTitle(title);
   const description = product.metaDescription || product.shortDesc;
   const productUrl = `/products/natural-wood-veneer/${product.slug}`;
   const socialImage = product.featuredImage || defaultSeo.ogImage;
@@ -77,6 +77,9 @@ export default async function NaturalWoodVeneerProductDetailPage({ params }: Pag
         categoryPath="/products/natural-wood-veneer"
         productName={product.name}
         productPath={`/products/natural-wood-veneer/${slug}`}
+        productDescription={product.metaDescription || product.shortDesc}
+        productImage={product.featuredImage}
+        productSku={product.code}
       />
       <NaturalWoodVeneerDetailTemplate
         product={product}
